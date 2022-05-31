@@ -1,0 +1,6 @@
+Hidden Brain is an ed-tech platform where tutors and students get connected. You can join as a teacher or a student in this platform. 
+As a tutor you can get tuitions through this platform. All your tuition’s data will be stored in this platform. You can get payment through this platform. Besides you can create your own coaching center here. You can offer some courses which students can take. You can add and manage students under your coaching center, publish results of exams in this platform. 
+As a student you can look out for tutors or coaching centers in this platform. You can post for tuitions and reaching out to interested tutors and negotiate with them. You can see tutor’s profile and past history also. Besides you can take courses from different coaching centers. 
+In summary this is a platform where students can get tutors and tutors can manage their students’ data.
+
+Form: https://docs.google.com/forms/d/e/1FAIpQLSeQIbf09bcDIQUEKJ2HgpMpHHFk41OXC7krROxaJrC80LpfAw/viewform?edit2=2_ABaOnueXMUyAGTSZ1sob6JKePFxDZfwAmcMmbmHXjMmFa8k3GZBeT1fRVDLrbRtbCQ 

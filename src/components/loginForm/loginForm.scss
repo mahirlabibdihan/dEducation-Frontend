@@ -1,0 +1,25 @@
+.loginForm {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .loginButton {
+    width: 100%;
+    height: 50px;
+    background-color: #166fe5;
+  }
+  .signUpButton {
+    width: 75%;
+    height: 50px;
+    background-color: #36a420;
+    &:hover {
+      color: white;
+      background-color: #25842d;
+    }
+  }
+  .resetPassword {
+    &:hover {
+      text-decoration-color: grey;
+    }
+  }
+}
