@@ -1,0 +1,12 @@
+.home-container {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  .left-half,
+  .right-half {
+    font-size: 2rem;
+    color: white;
+  }
+}

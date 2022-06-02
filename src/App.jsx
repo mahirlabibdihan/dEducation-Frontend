@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import Login from "./pages/Login";
+import { Login, Home, Signup } from "./pages";
 import { Background } from "./components";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +11,8 @@ function App() {
       <Background>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Background>
     </Router>

@@ -1,9 +1,10 @@
 import Grid from "@mui/material/Grid";
-import { LoginForm } from "../../components";
+import { LoginForm, Sidebar } from "../../components";
 import "./login.scss";
 const Login = () => {
   return (
-    <Grid className="loginContainer">
+    <Grid className="login-container">
+      {/* <Sidebar /> */}
       <LoginForm />
     </Grid>
   );
