@@ -1,0 +1,16 @@
+.profile-container {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .profile-card {
+    background-color: #fff;
+    width: 40vw;
+    height: 80vh;
+    padding: 3%;
+    .profile-banner {
+      display: flex;
+    }
+  }
+}

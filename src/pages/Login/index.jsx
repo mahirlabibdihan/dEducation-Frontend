@@ -4,7 +4,7 @@ import "./login.scss";
 const Login = () => {
   return (
     <Grid className="login-container">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <LoginForm />
     </Grid>
   );

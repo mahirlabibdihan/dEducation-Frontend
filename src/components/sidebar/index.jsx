@@ -1,32 +1,31 @@
 import React from "react";
+import { Typography } from "@mui/material";
+import MuiLink from "@mui/material/Link";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./sidebar.scss";
+import { AccountCircleRounded } from "@mui/icons-material";
 function Sidebar() {
+  const sidebarButton = (link, name) => {
+    return (
+      <Button
+        component={Link}
+        to={link}
+        className="sidebar-button"
+        startIcon={<AccountCircleRounded />}
+      >
+        {name}
+      </Button>
+    );
+  };
   return (
-    <div class="sidebar-container">
-      <a href="/" class="w3-bar-item w3-button">
-        Home
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        Request Tutor
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        Search Tutor
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        Search Coaching
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        My tutors
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        My coachings
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        Profile
-      </a>
-      <a href="/" class="w3-bar-item w3-button">
-        Log Out
-      </a>
+    <div className="sidebar-container">
+      {sidebarButton("/", "Home")}
+      {sidebarButton("/", "Request Tutor")}
+      {sidebarButton("/", "My tutors")}
+      {sidebarButton("/", "My coachings")}
+      {sidebarButton("/", "Profile")}
+      {sidebarButton("/", "Log Out")}
     </div>
   );
 }
