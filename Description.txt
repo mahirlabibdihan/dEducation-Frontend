@@ -4,3 +4,6 @@ As a student you can look out for tutors or coaching centers in this platform. Y
 In summary this is a platform where students can get tutors and tutors can manage their students’ data.
 
 Form: https://docs.google.com/forms/d/e/1FAIpQLSeQIbf09bcDIQUEKJ2HgpMpHHFk41OXC7krROxaJrC80LpfAw/viewform?edit2=2_ABaOnueXMUyAGTSZ1sob6JKePFxDZfwAmcMmbmHXjMmFa8k3GZBeT1fRVDLrbRtbCQ 
+
+* Sidebar
+* Breadcrumb
