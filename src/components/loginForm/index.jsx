@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -14,30 +14,41 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import AuthContext from "../../store/auth-context";
+import Cookies from "universal-cookie";
+import { api_base_url } from "../../index";
+const cookies = new Cookies();
+const COOKIE_AGE = 31536000;
+
 // import styles from "./_LoginForm.module.scss";
 // import { StyledEngineProvider } from "@mui/material/styles";
+// const server =
 const LoginForm = (props) => {
   const [values, setValues] = useState({
     email: "",
-    password: "",
+    pass: "",
     showPassword: false,
   });
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/login", values)
+      .post(api_base_url + "/auth/login", values)
       .then((res) => {
-        console.log(res.data);
-        if (res.data.USERNAME === undefined) {
-          navigate("/login");
-        } else {
-          console.log(res.data.USERNAME);
-          navigate(`/profile/${res.data.USERNAME}`);
-        }
+        cookies.set("token", res.data.token, { path: "/", maxAge: COOKIE_AGE });
+        console.log(res.data.token);
+        navigate(`/profile`);
       })
       .catch((err) => {
-        console.log(err);
+        switch (err.response.status) {
+          case 404:
+            break;
+          case 401:
+            break;
+          case 500:
+            break;
+          default:
+        }
         navigate("/login");
       })
       .finally(() => {});
@@ -62,11 +73,11 @@ const LoginForm = (props) => {
           required
           id="outlined-adornment-password"
           type={values.showPassword ? "text" : "password"}
-          value={values.password}
+          value={values.pass}
           label="Password"
-          onChange={handleChange("password")}
+          onChange={handleChange("pass")}
           endAdornment={
-            values.password.length > 0 ? (
+            values.pass.length > 0 ? (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -116,19 +127,14 @@ const LoginForm = (props) => {
   };
   const resetPassword = () => {
     return (
-      <MuiLink
-        href="/"
-        variant="body2"
-        underline="hover"
-        className="reset-password"
+      <Typography
+        component={Link}
+        to="/"
+        align="center"
+        className="pt-2 pb-3 border-bottom text-secondary"
       >
-        <Typography
-          align="center"
-          className="pt-2 pb-3 border-bottom text-secondary"
-        >
-          Forgot Password?
-        </Typography>
-      </MuiLink>
+        Forgot Password?
+      </Typography>
     );
   };
   const signUpButton = () => {

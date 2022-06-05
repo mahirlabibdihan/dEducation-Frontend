@@ -1,5 +1,8 @@
 .sign-up-form {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .sign-up-button {
     width: 100%;
     height: 50px;

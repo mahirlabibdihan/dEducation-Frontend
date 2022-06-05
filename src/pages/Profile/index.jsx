@@ -2,10 +2,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Sidebar } from "../../components";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../store/auth-context";
 
 import "./profile.scss";
 const Login = () => {
-  const params = useParams();
+  const { user } = useContext(AuthContext);
+  // const params = useParams();
   return (
     <Grid className="profile-container ">
       <Sidebar />
@@ -19,7 +22,7 @@ const Login = () => {
             />
           </div>
           <div className="banner-details">
-            <h1>{params.username}</h1>
+            <h1>{user.username}</h1>
           </div>
         </div>
         <div className="profile-details"></div>
