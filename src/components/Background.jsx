@@ -1,7 +1,7 @@
 // import styles from "../styles/_Home.module.scss";
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import "./background.scss";
+import "./components.scss";
 // import background from "../../public/images/home-background.jpg";
 // import { StyledEngineProvider } from "@mui/material/styles";
 // import Background from "../components/background/Background";

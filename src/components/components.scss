@@ -1,0 +1,87 @@
+.background {
+  height: 100vh;
+  background-image: url("../assets/images/home-background.jpg");
+  background-size: cover;
+}
+
+.login-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .login-button {
+    width: 100%;
+    height: 50px;
+    background-color: #166fe5;
+  }
+  .sign-up-button {
+    width: 75%;
+    height: 50px;
+    background-color: #36a420;
+    &:hover {
+      color: white;
+      background-color: #25842d;
+    }
+  }
+  .reset-password {
+    &:hover {
+      text-decoration-color: grey;
+    }
+  }
+}
+
+.sidebar-container {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  height: 100vh;
+  // align-items: left;
+  width: 20vw;
+  gap: 1rem;
+  padding-left: 1rem;
+  .sidebar-button {
+    // font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    // align-items: left;
+    text-align: left;
+    // text-decoration: none;
+    border-radius: 5px 0 0 5px;
+    color: aliceblue;
+    transition: 0.3s;
+    &:hover {
+      background-color: #f8f8f8;
+      color: black;
+      // text-decoration-color: grey;
+    }
+  }
+}
+
+.sign-up-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sign-up-button {
+    width: 100%;
+    height: 50px;
+    background-color: #36a420;
+    &:hover {
+      color: white;
+      background-color: #25842d;
+    }
+  }
+  .login-link {
+    text-decoration-color: none;
+    &:hover {
+      text-decoration-color: grey;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import MuiLink from "@mui/material/Link";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./sidebar.scss";
+import "./components.scss";
 import { AccountCircleRounded } from "@mui/icons-material";
 function Sidebar() {
   const sidebarButton = (link, name) => {
