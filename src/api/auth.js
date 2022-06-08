@@ -22,6 +22,10 @@ export const login = async (data) => {
     };
   }
 };
+export const logout = async (data) => {
+  const cookies = new Cookies();
+  cookies.remove("token", { path: "/" });
+};
 export const signup = async (data) => {
   try {
     let res = await axios.post(api_base_url + "/auth/signup", {
