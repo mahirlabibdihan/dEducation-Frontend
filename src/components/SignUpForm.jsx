@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import EyeIcon from "./EyeIcon";
-import { signup } from "../utils/fetchUtils";
+import { signup } from "../api/auth";
 import "./components.scss";
 const SignUpForm = (props) => {
   const navigate = useNavigate();

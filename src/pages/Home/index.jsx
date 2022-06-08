@@ -12,12 +12,12 @@ import "./home.scss";
 const Home = () => {
   return (
     <Grid className="home-container">
-      <Link to="login">
+      {/* <Link to="login">
         <h1 className="left-half">Student?</h1>
       </Link>
       <Link to="login">
         <h1 className="right-half">Tutor?</h1>
-      </Link>
+      </Link> */}
     </Grid>
   );
 };

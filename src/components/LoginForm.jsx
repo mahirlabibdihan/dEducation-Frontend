@@ -7,7 +7,7 @@ import "./components.scss";
 import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import EyeIcon from "./EyeIcon";
-import { login } from "../utils/fetchUtils";
+import { login } from "../api/auth";
 
 // import styles from "./_LoginForm.module.scss";
 // import { StyledEngineProvider } from "@mui/material/styles";

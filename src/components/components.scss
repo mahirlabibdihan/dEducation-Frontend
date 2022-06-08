@@ -1,7 +1,13 @@
 .background {
   height: 100vh;
-  background-image: url("../assets/images/home-background.jpg");
+  background-image: url("../assets/images/home-background-logo.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transition-delay: 1.5s;
+  &:hover {
+    background-image: url("../assets/images/logo-spark.png");
+  }
 }
 
 .login-form {
