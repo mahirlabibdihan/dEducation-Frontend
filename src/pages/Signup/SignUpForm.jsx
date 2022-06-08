@@ -4,10 +4,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import InputField from "./InputField";
-import EyeIcon from "./EyeIcon";
-import { signup } from "../api/auth";
-import "./components.scss";
+import InputField from "../../components/InputField";
+import EyeIcon from "../../components/EyeIcon";
+import { signup } from "../../api/auth";
+import "./signUp.scss";
 const SignUpForm = (props) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");

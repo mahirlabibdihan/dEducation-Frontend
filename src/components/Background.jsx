@@ -7,7 +7,14 @@ import "./components.scss";
 // import Background from "../components/background/Background";
 const Home = (props) => {
   return (
-    <Grid className={`background ${props.className}`}>{props.children}</Grid>
+    <Grid className={`background ${props.className}`}>
+      <img
+        src={require("../assets/images/logo-spark-2.png")}
+        className="bg-overlay"
+        alt="bg-overlay"
+      ></img>
+      <div>{props.children}</div>
+    </Grid>
   );
 };
 

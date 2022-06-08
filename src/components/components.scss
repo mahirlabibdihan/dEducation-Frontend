@@ -4,34 +4,21 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  transition-delay: 1.5s;
-  &:hover {
-    background-image: url("../assets/images/logo-spark.png");
+  .bg-overlay {
+    animation: fadeInOut 0.8s infinite alternate;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 0;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
   }
-}
-
-.login-form {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .login-button {
-    width: 100%;
-    height: 50px;
-    background-color: #166fe5;
-  }
-  .sign-up-button {
-    width: 75%;
-    height: 50px;
-    background-color: #36a420;
-    &:hover {
-      color: white;
-      background-color: #25842d;
-    }
-  }
-  .reset-password {
-    &:hover {
-      text-decoration-color: grey;
+  @keyframes fadeInOut {
+    from {
+      opacity: 0.2;
     }
   }
 }
@@ -66,28 +53,6 @@
       background-color: #f8f8f8;
       color: black;
       // text-decoration-color: grey;
-    }
-  }
-}
-
-.sign-up-form {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .sign-up-button {
-    width: 100%;
-    height: 50px;
-    background-color: #36a420;
-    &:hover {
-      color: white;
-      background-color: #25842d;
-    }
-  }
-  .login-link {
-    text-decoration-color: none;
-    &:hover {
-      text-decoration-color: grey;
     }
   }
 }

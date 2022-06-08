@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { LoginForm, Sidebar } from "../../components";
+import LoginForm from "./LoginForm";
 import "./login.scss";
 const Login = () => {
   return (

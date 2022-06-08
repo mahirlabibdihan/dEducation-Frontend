@@ -3,11 +3,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import "./components.scss";
+import "./login.scss";
 import { useNavigate } from "react-router-dom";
-import InputField from "./InputField";
-import EyeIcon from "./EyeIcon";
-import { login } from "../api/auth";
+import InputField from "../../components/InputField";
+import EyeIcon from "../../components/EyeIcon";
+import { login } from "../../api/auth";
 
 // import styles from "./_LoginForm.module.scss";
 // import { StyledEngineProvider } from "@mui/material/styles";

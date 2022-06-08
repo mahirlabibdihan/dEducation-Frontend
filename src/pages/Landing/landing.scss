@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+.landing-container {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Oswald", sans-serif;
+  .student-button,
+  .tutor-button {
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
+    color: rgb(232, 229, 229);
+    background-color: #16344e;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      color: #fff;
+      // background-color: #204d74;
+      background-color: #000;
+      cursor: hand;
+    }
+  }
+}

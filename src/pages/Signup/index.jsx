@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { SignUpForm, Background } from "../../components";
+import SignUpForm from "./SignUpForm";
 import "./signUp.scss";
 const SignUp = () => {
   return (
