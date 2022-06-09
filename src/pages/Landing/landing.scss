@@ -9,15 +9,20 @@
   .student-button,
   .tutor-button {
     font-family: "Oswald", sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: rgb(232, 229, 229);
     background-color: #16344e;
     transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    min-width: 16vw;
     &:hover {
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      // color: #16344e;
       color: #fff;
-      // background-color: #204d74;
-      background-color: #000;
+      background-color: #112638;
+      // background-color: #fff;
       cursor: hand;
     }
   }

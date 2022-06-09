@@ -1,16 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 .profile-container {
   background-color: #f8f8f8;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  // justify-content: center;
+  // align-items: center;
   height: 100vh;
+  width: 100%;
+  // padding-left: 15vw;
+  // padding-top: 9vh;
   .profile-card {
-    background-color: #fff;
-    width: 40vw;
-    height: 80vh;
+    // background-color: #fff
+    overflow: hidden;
+    border-right: rgba(0, 0, 0, 0.12) solid 2px;
+    width: 25vw;
+    height: 100vh;
     padding: 3%;
+    padding-top: 5.5%;
+    display: flex;
+    flex-direction: column;
+    // height: 91vh;
     .profile-banner {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5%;
+    }
+    .password-change {
+      padding: 2rem 0;
+    }
+  }
+  .profile-details {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 60vw;
+    .header {
+      // margin-bottom: 1rem;
+    }
+    .input-fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+    }
+  }
+  .save-button {
+    margin: 0 auto;
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
+    color: rgb(232, 229, 229);
+    background-color: #164a4e;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    width: 16vw;
+    &:hover {
+      // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      // color: #16344e;
+      color: #fff;
+      background-color: #112638;
+      // background-color: #fff;
+      cursor: hand;
     }
   }
 }
