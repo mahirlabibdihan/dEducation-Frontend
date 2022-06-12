@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
 import { login } from "../../api/auth";
+import AuthContext from "../../store/AuthContext";
 
 // import styles from "./_LoginForm.module.scss";
 // import { StyledEngineProvider } from "@mui/material/styles";
@@ -16,12 +17,19 @@ const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (authCtx.loggedInAs === "") {
+      navigate("/");
+    }
+  }, [authCtx.loggedInAs]);
   const handleLogin = async (e) => {
     e.preventDefault();
     const result = await login({
       email: email,
       pass: pass,
+      type: authCtx.loggedInAs,
     });
     console.log(result);
     if (result.success) {
@@ -70,6 +78,7 @@ const LoginForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow login-form ${props.className}`}
     >
+      <h1 className="form-header">{authCtx.loggedInAs}</h1>
       <InputField
         label="Email Address"
         type="email"

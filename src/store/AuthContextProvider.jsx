@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import AuthContext from "./auth-context";
+import AuthContext from "./AuthContext";
 const AuthContextProvider = (props) => {
-  const [user, setUser] = useState({
-    username: "",
-  });
+  const [loggedInAs, setLoggedInAs] = useState("");
   const val = {
-    user,
-    setUser,
+    loggedInAs,
+    setLoggedInAs,
   };
   return (
     <AuthContext.Provider value={val}>{props.children}</AuthContext.Provider>

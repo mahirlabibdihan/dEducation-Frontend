@@ -1,0 +1,55 @@
+@import "./components.scss";
+
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .nav-bar {
+  }
+  .body {
+    display: flex;
+    flex-direction: row;
+    .side-bar {
+      height: 100vh;
+      background-color: #fff;
+      border-right: rgba(0, 0, 0, 0.12) solid 1px;
+      // position: absolute;
+      width: 16vw;
+      .logo {
+        display: flex;
+        flex-direction: row;
+        padding: 0 16px;
+        gap: 20px;
+        .logo-image {
+          width: 30px;
+          background-image: "../assets/images/logo-2.svg";
+        }
+        .logo-name {
+          @include flexCenter;
+          justify-content: left;
+          font-family: "Oswald", sans-serif;
+          font-size: 1.6rem;
+          font-weight: bold;
+          height: 70px;
+        }
+      }
+
+      .side-buttons {
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        .side-button {
+          height: 50px;
+          line-height: 2;
+          border-radius: 0 25px 25px 0;
+          margin-right: 0.7rem;
+          .side-icon {
+            min-width: 50px;
+          }
+          &:hover {
+          }
+        }
+      }
+    }
+  }
+}

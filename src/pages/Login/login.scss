@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
+@import "../../components/components.scss";
 .login-container {
   font-family: "Oswald", sans-serif;
   height: 100vh;
@@ -17,6 +18,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .form-header {
+    font-family: "Kdam Thmor Pro", sans-serif;
+    @include flexCenter;
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
   .login-button {
     width: 100%;
     height: 50px;

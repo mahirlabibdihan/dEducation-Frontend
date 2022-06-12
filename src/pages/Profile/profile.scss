@@ -18,11 +18,38 @@
     width: 25vw;
     height: 100vh;
     padding: 2rem;
-    padding-top: 5.5%;
+    padding-top: 3.3rem;
     display: flex;
     flex-direction: column;
     // height: 91vh;
     .profile-banner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .profile-picture {
+        img {
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          width: 140px;
+          height: 140px;
+          object-fit: cover;
+          object-position: center;
+          &:hover {
+          }
+        }
+        input {
+          opacity: 0;
+          position: absolute;
+          height: 140px;
+          width: 140px;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          cursor: pointer;
+        }
+      }
       display: flex;
       flex-direction: column;
       align-items: center;

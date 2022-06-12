@@ -1,5 +1,6 @@
 import { createContext } from "react";
 const AuthContext = createContext({
-  isLoggedIn: false,
+  loggedInAs: "",
+  setLoggedInAs: () => {},
 });
 export default AuthContext;

@@ -4,16 +4,18 @@ import Box from "@mui/material/Box";
 import { Sidebar } from "../../components";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "../../store/auth-context";
+import AuthContext from "../../store/AuthContext";
 import Layout from "../../components/Layout";
 import { Divider, Typography } from "@mui/material";
 import { FormControl, OutlinedInput, InputLabel } from "@mui/material";
 import InputField from "../../components/InputField";
 import { Button } from "@mui/material";
 import { getProfile } from "../../api/profile";
+import { uploadImage } from "../../api/profile";
 // import InputField from "../../components/InputField";
 import "./profile.scss";
 const Login = () => {
+  const [file, setFile] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   // const params = useParams();
@@ -27,6 +29,31 @@ const Login = () => {
     };
     getProfileData();
   }, []);
+
+  useEffect(() => {
+    const setProfileImage = async () => {
+      if (file > "") {
+        console.log(file);
+        const formData = new FormData();
+        formData.append("file", file);
+        const result = await uploadImage(formData);
+        if (result.success) {
+          const data = await getProfile();
+          if (data.success === true) {
+            console.log(data);
+            setName(data.name);
+            setImage(data.image);
+          }
+        }
+      }
+    };
+    setProfileImage();
+  }, [file]);
+
+  const ImageUpload = (e) => {
+    setFile(e.target.files[0]);
+    // console.log(formData.files.file.name);
+  };
   return (
     <Layout>
       <Grid className="profile-container ">
@@ -34,12 +61,15 @@ const Login = () => {
           <div className="profile-banner">
             <div className="profile-picture">
               <img
-                src={`http://localhost:5000/${image}`}
+                src={`http://localhost:5000/assets/images/${image}`}
                 // http://localhost:5000/assets/images/dihan.jpg
+                onClick={() => ImageUpload()}
                 alt="Admin"
-                width="140"
+                // width="140"/
               />
+              <input type="file" onChange={ImageUpload}></input>
             </div>
+
             <div className="banner-details">
               <h1 className="">{name}</h1>
             </div>

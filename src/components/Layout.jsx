@@ -28,6 +28,7 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { Button } from "@mui/material";
 import { logout } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import "./Layout.scss";
 const drawerWidth = 240;
 
 const Layout = (props) => {

@@ -1,5 +1,5 @@
 // import styles from "../styles/_Home.module.scss";
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -8,10 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Background } from "../../components";
 import "./landing.scss";
 import Button from "@mui/material/Button";
+import AuthContext from "../../store/AuthContext";
 // import background from "../../public/images/home-background.jpg";
 // import { StyledEngineProvider } from "@mui/material/styles";
 // import Background from "../components/background/Background";
 const Home = () => {
+  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <Background>
@@ -19,6 +21,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
+              authCtx.setLoggedInAs("STUDENT");
               navigate("/login");
             }, 300);
           }}
@@ -30,6 +33,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
+              authCtx.setLoggedInAs("TUTOR");
               navigate("/login");
             }, 300);
           }}

@@ -8,6 +8,7 @@ export const login = async (data) => {
     let res = await axios.post(api_base_url + "/auth/login", {
       email: data.email,
       pass: data.pass,
+      type: data.type,
     });
     if (res.status === 200) {
       cookies.set("token", res.data.token, { path: "/", maxAge: COOKIE_AGE });
@@ -32,6 +33,7 @@ export const signup = async (data) => {
       name: data.name,
       email: data.email,
       pass: data.pass,
+      type: data.type,
     });
     if (res.status === 200) {
       return {

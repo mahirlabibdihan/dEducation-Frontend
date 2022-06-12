@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
 import { signup } from "../../api/auth";
+import AuthContext from "../../store/AuthContext";
 import "./signUp.scss";
 const SignUpForm = (props) => {
   const navigate = useNavigate();
@@ -14,6 +15,12 @@ const SignUpForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    if (authCtx.loggedInAs === "") {
+      navigate("/");
+    }
+  }, [authCtx.loggedInAs]);
   const LoginLink = () => {
     return (
       <Typography
@@ -32,6 +39,7 @@ const SignUpForm = (props) => {
       name: name,
       email: email,
       pass: pass,
+      type: authCtx.loggedInAs,
     });
     if (result.success) {
       navigate("/login");
@@ -62,8 +70,9 @@ const SignUpForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
     >
+      <h1 className="form-header">{authCtx.loggedInAs}</h1>
       <InputField
-        label="Name"
+        label="Full Name"
         type="text"
         value={name}
         setValue={setName}

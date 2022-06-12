@@ -16,21 +16,15 @@ export const getProfile = async () => {
     };
   }
 };
-export const logout = async (data) => {
+
+export const uploadImage = async (formData) => {
   const cookies = new Cookies();
-  cookies.remove("token", { path: "/" });
-};
-export const signup = async (data) => {
   try {
-    let res = await axios.post(api_base_url + "/auth/signup", {
-      name: data.name,
-      email: data.email,
-      pass: data.pass,
+    let res = await axios.post(`${api_base_url}/profile/upload`, formData, {
+      headers: { authorization: "Bearer " + cookies.get("token") },
     });
     if (res.status === 200) {
-      return {
-        success: true,
-      };
+      return { success: true };
     }
   } catch (err) {
     return {
