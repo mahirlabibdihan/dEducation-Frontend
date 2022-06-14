@@ -24,7 +24,10 @@ export const uploadImage = async (formData) => {
       headers: { authorization: "Bearer " + cookies.get("token") },
     });
     if (res.status === 200) {
-      return { success: true };
+      return {
+        success: true,
+        image: res.data.image,
+      };
     }
   } catch (err) {
     return {

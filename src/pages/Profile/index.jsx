@@ -1,23 +1,49 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import { Sidebar } from "../../components";
-import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import AuthContext from "../../store/AuthContext";
 import Layout from "../../components/Layout";
 import { Divider, Typography } from "@mui/material";
-import { FormControl, OutlinedInput, InputLabel } from "@mui/material";
-import InputField from "../../components/InputField";
+import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import { getProfile } from "../../api/profile";
 import { uploadImage } from "../../api/profile";
+import { logout } from "../../api/auth";
+import { useNavigate, useLocation } from "react-router-dom";
+import EyeIcon from "../../components/EyeIcon";
 // import InputField from "../../components/InputField";
 import "./profile.scss";
 const Login = () => {
+  const navigate = useNavigate();
+  const [values, setValues] = useState({
+    name: "",
+    gender: "",
+    dob: "",
+    institution: "",
+    phone: "",
+    city: "",
+    district: "",
+  });
+
+  // const [profile, setProfile] = useState({
+  //   name: "",
+  //   file: "",
+  //   image: "",
+  //   currPass: "",
+  //   newPass: "",
+  //   currShowPass: "",
+  //   district: "",
+  // });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   const [file, setFile] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+  const [currPass, setCurrPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [currShowPass, setCurrShowPass] = useState(false);
+  const [newShowPass, setNewShowPass] = useState(false);
   // const params = useParams();
   useEffect(() => {
     const getProfileData = async () => {
@@ -25,6 +51,9 @@ const Login = () => {
       if (data.success === true) {
         setName(data.name);
         setImage(data.image);
+      } else {
+        logout();
+        navigate("/login");
       }
     };
     getProfileData();
@@ -37,13 +66,9 @@ const Login = () => {
         const formData = new FormData();
         formData.append("file", file);
         const result = await uploadImage(formData);
+        console.log(result);
         if (result.success) {
-          const data = await getProfile();
-          if (data.success === true) {
-            console.log(data);
-            setName(data.name);
-            setImage(data.image);
-          }
+          setImage(result.image);
         }
       }
     };
@@ -60,13 +85,18 @@ const Login = () => {
         <div className="profile-card">
           <div className="profile-banner">
             <div className="profile-picture">
-              <img
-                src={`http://localhost:5000/assets/images/${image}`}
-                // http://localhost:5000/assets/images/dihan.jpg
-                onClick={() => ImageUpload()}
-                alt="Admin"
-                // width="140"/
-              />
+              {image !== "" ? (
+                <img
+                  src={`http://localhost:5000/assets/images/${image}`}
+                  // http://localhost:5000/assets/images/dihan.jpg
+                  onClick={() => ImageUpload()}
+                  alt=" "
+                  // width="140"/
+                />
+              ) : (
+                <img></img>
+              )}
+
               <input type="file" onChange={ImageUpload}></input>
             </div>
 
@@ -79,16 +109,36 @@ const Login = () => {
             {/* <h1 className="header">Change Password</h1> */}
             {/* <Divider /> */}
             <div className="input-fields">
-              {["Current Password", "New Password", "Confirm New Password"].map(
-                (text, index) => (
-                  <InputField
-                    label={text}
-                    type="text"
-                    value={name}
-                    setValue={setName}
-                  />
-                )
-              )}
+              {[
+                {
+                  label: "Current Password",
+                  value: currPass,
+                  setValue: setCurrPass,
+                  showPassword: newShowPass,
+                  setShowPassword: setNewShowPass,
+                },
+                {
+                  label: "New Password",
+                  value: newPass,
+                  setValue: setNewPass,
+                  showPassword: currShowPass,
+                  setShowPassword: setCurrShowPass,
+                },
+              ].map((field, index) => (
+                <InputField
+                  label={field.label}
+                  type={field.showPassword ? "text" : "password"}
+                  value={field.value}
+                  setValue={field.setValue}
+                  endAdornment={
+                    <EyeIcon
+                      isVisible={field.value.length > 0}
+                      showPassword={field.showPassword}
+                      setShowPassword={field.setShowPassword}
+                    />
+                  }
+                />
+              ))}
             </div>
           </div>
           <Button className="save-button">Change</Button>
@@ -98,18 +148,48 @@ const Login = () => {
           <Divider />
           <div className="input-fields">
             {[
-              "Full Name",
-              "Email Address",
-              "Phone Number",
-              "Institution",
-              "City",
-              "District",
-            ].map((text, index) => (
-              <InputField
-                label={text}
+              {
+                label: "Full Name",
+                id: "name",
+                value: values.name,
+              },
+              {
+                label: "Gender",
+                id: "gender",
+                value: values.gender,
+              },
+              {
+                label: "Date Of Birth",
+                id: "dob",
+                value: values.dob,
+              },
+              {
+                label: "Institution",
+                id: "institution",
+                value: values.institution,
+              },
+              {
+                label: "Phone Number",
+                id: "phone",
+                value: values.phone,
+              },
+              {
+                label: "City",
+                id: "city",
+                value: values.city,
+              },
+              {
+                label: "District",
+                id: "ditrict",
+                value: values.district,
+              },
+            ].map((field, index) => (
+              <InputField2
+                label={field.label}
                 type="text"
-                value={name}
-                setValue={setName}
+                value={field.value}
+                id={field.id}
+                onChange={handleChange}
               />
             ))}
           </div>

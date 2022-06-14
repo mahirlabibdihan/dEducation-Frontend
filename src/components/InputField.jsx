@@ -22,4 +22,24 @@ const InputField = (props) => {
   );
 };
 
+export const InputField2 = (props) => {
+  return (
+    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+      <InputLabel htmlFor="outlined-adornment" className="input-label">
+        {props.label}
+      </InputLabel>
+      <OutlinedInput
+        required
+        id="outlined-adornment"
+        className="outlined-input"
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange(props.id)}
+        label={props.label}
+        endAdornment={props.endAdornment}
+      />
+    </FormControl>
+  );
+};
+
 export default InputField;
