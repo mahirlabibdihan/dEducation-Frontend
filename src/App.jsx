@@ -7,7 +7,6 @@ import { Background } from "./components";
 import Cookies from "universal-cookie";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 const Private = () => {
   const cookies = new Cookies();
   const isLoggedIn = !!cookies.get("token");

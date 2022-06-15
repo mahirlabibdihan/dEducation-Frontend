@@ -43,11 +43,16 @@
           line-height: 2;
           border-radius: 0 25px 25px 0;
           margin-right: 0.7rem;
+          transition: 0.5s;
           .side-icon {
             min-width: 50px;
           }
           &:hover {
+            padding-left: 1.5rem;
           }
+        }
+        .active {
+          background-color: rgb(204, 221, 236);
         }
       }
     }

@@ -28,12 +28,16 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { Button } from "@mui/material";
 import { logout } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./Layout.scss";
+import AuthController from "../controller/authController";
 const drawerWidth = 240;
-
+const authController = new AuthController();
 const Layout = (props) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const drawer = <div>{/* <Toolbar /> */}</div>;
+  console.log(location.pathname);
   return (
     <Grid className="layout-container">
       {/* <AppBar className="nav-bar">
@@ -55,32 +59,40 @@ const Layout = (props) => {
               { label: "Home", icon: <HomeIcon sx={{ fontSize: "2rem" }} /> },
               {
                 label: "Request Tutor",
+                path: "/req_tutor",
                 icon: <EditLocationAltIcon sx={{ fontSize: "2rem" }} />,
               },
               {
                 label: "My tutors",
+                path: "/my_tutors",
                 icon: <HailIcon sx={{ fontSize: "2rem" }} />,
               },
               {
                 label: "My coachings",
+                path: "/my_coachings",
                 icon: <LocationCityIcon sx={{ fontSize: "2rem" }} />,
               },
               {
                 label: "Profile",
+                path: "/profile",
                 icon: <AccountCircleIcon sx={{ fontSize: "2rem" }} />,
               },
               {
                 label: "Logout",
+                path: "/login",
                 icon: <LogoutIcon sx={{ fontSize: "2rem" }} />,
               },
             ].map((button, index) => (
               <ListItemButton
-                className="side-button"
+                className={
+                  (button.path === location.pathname ? "active " : "") +
+                  "side-button"
+                }
                 component={Button}
                 onClick={() => {
                   setTimeout(() => {
-                    // logout();
-                    // navigate("/login");
+                    authController.logout();
+                    navigate("/login");
                   }, 300);
                 }}
               >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import Layout from "../../components/Layout";
 import { Divider, Typography } from "@mui/material";
@@ -6,11 +6,13 @@ import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import { getProfile } from "../../api/profile";
 import { uploadImage } from "../../api/profile";
-import { logout } from "../../api/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import EyeIcon from "../../components/EyeIcon";
-// import InputField from "../../components/InputField";
+import AuthController from "../../controller/authController";
 import "./profile.scss";
+const authController = new AuthController();
+// import InputField from "../../components/InputField";
+
 const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -36,7 +38,7 @@ const Login = () => {
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
-
+  var displayName = useRef("");
   const [file, setFile] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -49,10 +51,11 @@ const Login = () => {
     const getProfileData = async () => {
       const data = await getProfile();
       if (data.success === true) {
+        displayName.current = data.name;
         setName(data.name);
         setImage(data.image);
       } else {
-        logout();
+        authController.logout();
         navigate("/login");
       }
     };
@@ -79,6 +82,13 @@ const Login = () => {
     setFile(e.target.files[0]);
     // console.log(formData.files.file.name);
   };
+  const changePass = async (e) => {
+    const result = await authController.changePass(currPass, newPass);
+    if (result) {
+      setCurrPass("");
+      setNewPass("");
+    }
+  };
   return (
     <Layout>
       <Grid className="profile-container ">
@@ -101,7 +111,7 @@ const Login = () => {
             </div>
 
             <div className="banner-details">
-              <h1 className="">{name}</h1>
+              <h1 className="">{displayName.current}</h1>
             </div>
           </div>
           <Divider />
@@ -141,7 +151,9 @@ const Login = () => {
               ))}
             </div>
           </div>
-          <Button className="save-button">Change</Button>
+          <Button className="save-button" onClick={changePass}>
+            Change
+          </Button>
         </div>
         <div className="profile-details">
           <h1 className="header">Profile Settings</h1>
