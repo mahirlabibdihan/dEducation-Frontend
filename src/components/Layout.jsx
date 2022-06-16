@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -27,29 +27,24 @@ import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import ManIcon from "@mui/icons-material/Man";
 import { Button } from "@mui/material";
-import { logout } from "../api/auth";
+import { logout } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { getProfile } from "../api/profile";
 import "./Layout.scss";
 import AuthController from "../controller/authController";
-const drawerWidth = 240;
+import ProfileController from "../controller/profileController";
+// import AuthContext from "../../store/AuthContext";
 const authController = new AuthController();
+const profileController = new ProfileController();
 const Layout = (props) => {
+  // const authCtx = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [type, setType] = useState("");
   useEffect(() => {
     const getProfileData = async () => {
-      const data = await getProfile();
-      console.log(data);
-      if (data.success === true) {
-        setType(data.type);
-        console.log(type);
-      } else {
-        // authController.logout();
-        // navigate("/login");
-      }
+      const data = await profileController.getProfile();
+      setType(data.type);
     };
     getProfileData();
   }, []);

@@ -7,18 +7,17 @@ import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
-import { login } from "../../api/auth";
+import { login } from "../../api/authApi";
 import AuthContext from "../../store/AuthContext";
+import AuthController from "../../controller/authController";
 
-// import styles from "./_LoginForm.module.scss";
-// import { StyledEngineProvider } from "@mui/material/styles";
-// const server =
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
+  const authController = new AuthController();
   useEffect(() => {
     if (authCtx.loggedInAs === "") {
       navigate("/");
@@ -26,13 +25,13 @@ const LoginForm = (props) => {
   }, [authCtx.loggedInAs]);
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = await login({
-      email: email,
-      pass: pass,
-      type: authCtx.loggedInAs,
-    });
-    console.log(result);
-    if (result.success) {
+    if (
+      await authController.login({
+        email: email,
+        pass: pass,
+        type: authCtx.loggedInAs,
+      })
+    ) {
       navigate("/profile");
     }
   };

@@ -1,9 +1,6 @@
 // import styles from "../styles/_Home.module.scss";
 import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import MuiLink from "@mui/material/Link";
 import { Link, useNavigate } from "react-router-dom";
 import { Background } from "../../components";
 import "./landing.scss";

@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
-import { signup } from "../../api/auth";
+import AuthController from "../../controller/authController";
 import AuthContext from "../../store/AuthContext";
 import "./signUp.scss";
+const authController = new AuthController();
 const SignUpForm = (props) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -35,7 +36,7 @@ const SignUpForm = (props) => {
   };
   const handleSignup = async (e) => {
     e.preventDefault();
-    const result = await signup({
+    const result = await authController.signup({
       name: name,
       email: email,
       pass: pass,
