@@ -8,7 +8,12 @@ export const getProfile = async () => {
       headers: { authorization: "Bearer " + cookies.get("token") },
     });
     if (res.status === 200) {
-      return { success: true, name: res.data.name, image: res.data.image };
+      return {
+        success: true,
+        name: res.data.name,
+        image: res.data.image,
+        type: res.data.type,
+      };
     }
   } catch (err) {
     return {
