@@ -1,0 +1,2 @@
+1. Admin can see all the members(Students/Tutors) in the coaching.
+2. Can assign courses to the members.

@@ -1,0 +1,3 @@
+1. User can change/upload his profile picture.
+2. Can change his password.
+3. Can edit his profile details.

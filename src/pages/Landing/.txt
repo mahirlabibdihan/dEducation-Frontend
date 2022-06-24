@@ -1,0 +1,2 @@
+1. User type(Student/Tutor) will be determined in this page.
+2. Will send the user to his type of page.

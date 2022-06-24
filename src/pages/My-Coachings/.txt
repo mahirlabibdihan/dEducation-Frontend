@@ -1,0 +1,2 @@
+1. Students/Tutors can see a list of coachings they are member of.
+2. Can go to coaching home page from here.

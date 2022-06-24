@@ -1,0 +1,2 @@
+1. Admin can see the join requests.
+2. Can accept/delete requests.

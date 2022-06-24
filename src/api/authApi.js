@@ -49,8 +49,8 @@ class AuthApi extends Api {
       let res = await axios.post(
         API_BASE_URL + "/auth/change_pass",
         {
-          currPass: data.currPass,
-          newPass: data.newPass,
+          curr_pass: data.currPass,
+          new_pass: data.newPass,
         },
         {
           headers: { authorization: "Bearer " + token },

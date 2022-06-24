@@ -1,0 +1,2 @@
+1. Tutors can see the list of students they are teaching.
+2. Can go to students profile.

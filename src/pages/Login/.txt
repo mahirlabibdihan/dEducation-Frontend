@@ -1,0 +1,5 @@
+1. Can login with email and password.
+2. Can show/hide password to check for any typo.
+3. Can go to sign up page if he is already not a member.
+4. Can go to forgot password page if he can't remember the password.
+5. On login, user will be prompted to home page.

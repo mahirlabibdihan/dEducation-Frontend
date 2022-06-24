@@ -1,0 +1,2 @@
+1. Tutors can see received offer.
+2. Can accept/reject an offer.

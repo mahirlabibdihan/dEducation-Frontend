@@ -1,0 +1,5 @@
+1. Student details will be extracted from his profile,student can only customize tuition details like days_per_week, desired_tutor_gender, subjects, salary. So if a users profile is not completed he can't post.
+2. Student can see applied tutors under his post. Student can offer at most one tutor at a time. He needs to cancel offer to make an offer to another tutor.
+4. Once student gets a teacher,tuition post will be booked.
+5. Student can see his past posts.
+6. Student/tutor can only see each others phone number once a tuition is settled between them, so that they can contact each other.

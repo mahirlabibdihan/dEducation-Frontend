@@ -1,0 +1,4 @@
+1. Can sign up with full name,email and password.
+2. Can show/hide password to ensure.
+3. Can go to login page if he is already a member.
+4. On sign up user will be prompted to login page.

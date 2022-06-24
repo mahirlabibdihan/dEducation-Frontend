@@ -1,0 +1,7 @@
+1. Student: 
+i) See all tutors,coachings in the platform.
+ii) Can search for specific tutor/coaching.
+
+2. Tutor:
+i) Can see all the tuition posts.
+ii) Can apply to tuition posts.

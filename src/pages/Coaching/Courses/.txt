@@ -1,0 +1,2 @@
+1. Admin can see a list of courses available in the coaching.
+2. Can add courses.
