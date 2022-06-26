@@ -18,6 +18,19 @@ class ProfileController extends Controller {
       // navigate("/login");
     }
   };
+  getProfilePicture = async () => {
+    const token = this.cookies.get("token");
+    const data = await this.profileApi.getProfilePicture(token);
+    console.log(data);
+    if (data.success === true) {
+      //   setType(data.type);
+      //   console.log(type);
+      return data;
+    } else {
+      // authController.logout();
+      // navigate("/login");
+    }
+  };
   uploadImage = async (formData) => {
     const token = this.cookies.get("token");
     console.log(token);
