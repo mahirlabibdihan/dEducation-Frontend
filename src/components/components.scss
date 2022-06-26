@@ -1,3 +1,4 @@
+@import "../images.scss";
 @mixin flexCenter {
   display: flex;
   justify-content: center;
@@ -5,7 +6,7 @@
 }
 .background {
   height: 100vh;
-  background-image: url("../assets/images/home-background-logo.png");
+  background-image: url("../assets/images/" + $background-image);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;

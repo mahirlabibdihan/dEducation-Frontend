@@ -23,3 +23,16 @@ yarn-debug.log*
 yarn-error.log*
 
 todo.txt
+
+/src/constants.js
+/src/images.js
+/src/images.scss
+
+*.png
+*.svg
+*.jpg
+*.jpeg
+*.pptx
+*.docx
+*.pdf
+*.txt

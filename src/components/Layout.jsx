@@ -17,7 +17,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
-import Logo from "../assets/images/Logo-small.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HailIcon from "@mui/icons-material/Hail";
@@ -33,6 +32,10 @@ import { useLocation } from "react-router-dom";
 import "./Layout.scss";
 import AuthController from "../controller/authController";
 import ProfileController from "../controller/profileController";
+import * as IMAGES from "../images";
+import * as CONSTANTS from "../constants";
+import Logo from "../assets/images/Logo-small.svg";
+
 // import AuthContext from "../../store/AuthContext";
 const authController = new AuthController();
 const profileController = new ProfileController();
@@ -165,7 +168,9 @@ const Layout = (props) => {
         <div className="side-bar">
           <div className="logo">
             <img src={Logo} className="logo-image" alt="logo"></img>
-            <Typography className="logo-name">HIDDEN BRAIN</Typography>
+            <Typography className="logo-name">
+              {CONSTANTS.BRAND_NAME}
+            </Typography>
           </div>
           <Divider />
           <List className="side-buttons">
