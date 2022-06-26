@@ -36,3 +36,4 @@ todo.txt
 *.docx
 *.pdf
 *.txt
+*.env
