@@ -53,7 +53,7 @@ const PasswordChange = () => {
           />
         ))}
       </div>
-      <Button className="save-button" onClick={changePass}>
+      <Button className="save-button change-button" onClick={changePass}>
         Change
       </Button>
     </div>

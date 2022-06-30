@@ -95,8 +95,8 @@ const Layout = (props) => {
             component={Button}
             onClick={() => {
               setTimeout(() => {
-                authController.logout();
-                navigate("/login");
+                if (button.path === "/login") authController.logout();
+                navigate(button.path);
               }, 300);
             }}
           >
@@ -150,8 +150,8 @@ const Layout = (props) => {
             component={Button}
             onClick={() => {
               setTimeout(() => {
-                authController.logout();
-                navigate("/login");
+                if (button.path === "/login") authController.logout();
+                navigate(button.path);
               }, 300);
             }}
           >

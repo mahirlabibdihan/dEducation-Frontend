@@ -17,7 +17,7 @@ const ProfileSettings = () => {
   };
   return (
     <div className="profile-details">
-      <h1 className="header">Profile Settings</h1>
+      <h2 className="header">Profile Settings</h2>
       <Divider />
       <div className="input-fields">
         {[
