@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
+@import "../../components/layout.scss";
+.my-students-container {
+  display: flex;
+  font-family: "Oswald", sans-serif;
+  height: 100vh;
+  width: 100%;
+}

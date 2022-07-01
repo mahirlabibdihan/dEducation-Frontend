@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ProfileController from "../../controller/profileController";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import CameraRoundedIcon from "@mui/icons-material/CameraRounded";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 const profileController = new ProfileController();
 const ProfilePic = () => {
   const [file, setFile] = useState("");
@@ -40,6 +43,9 @@ const ProfilePic = () => {
         alt=" "
       />
       <input type="file" onChange={ImageUpload}></input>
+      <div className="upload-image-icon">
+        <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
+      </div>
     </>
   );
 };

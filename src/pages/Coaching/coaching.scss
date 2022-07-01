@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
+@import "../../components/layout.scss";
+.coaching-container {
+  display: flex;
+  font-family: "Oswald", sans-serif;
+  height: 100vh;
+  width: 100%;
+  .coaching-home {
+    width: 100vw - 2 * $sidebar-width;
+    border-right: rgba(0, 0, 0, 0.12) solid 2px;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    .cover-photo {
+      padding-bottom: 2rem;
+      width: 90%;
+      // height: 40vh;
+      box-shadow: 0 4px 2px -2px gray;
+    }
+  }
+  .right-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.coaching-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  .header {
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  .apply-button {
+    @include my-button;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: rgb(232, 229, 229);
+    background-color: #164a4e;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}

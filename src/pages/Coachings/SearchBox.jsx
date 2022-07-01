@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
 import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
-const RequestForm = () => {
+const SearchBox = () => {
   const [values, setValues] = useState({
     type: "",
     desired_tutor_gender: "",
@@ -14,36 +14,26 @@ const RequestForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   return (
-    <div className="request-form">
-      <h1 className="header"> Need a tutor? </h1>
+    <div className="search-box">
+      <h1 className="header">Filter</h1>
       <Divider />
       <div className="input-fields">
         {[
-          {
-            label: "Tuition Type",
-            id: "type",
-            value: values.type,
-          },
-          {
-            label: "Desired Tutor Gender",
-            id: "desired_tutor_gender",
-            value: values.desired_tutor_gender,
-          },
           {
             label: "Subjects",
             id: "subjects",
             value: values.subjects,
           },
           {
-            label: "Days / Week",
-            id: "days_per_week",
-            value: values.days_per_week,
+            label: "Class",
+            id: "desired_tutor_gender",
+            value: values.desired_tutor_gender,
           },
           {
-            label: "Salary (BDT)",
-            id: "salary",
-            value: values.salary,
-          },
+            label: "Location",
+            id: "days_per_week",
+            value: values.days_per_week,
+          },  
         ].map((field, index) => (
           <InputField2
             label={field.label}
@@ -54,11 +44,11 @@ const RequestForm = () => {
           />
         ))}
       </div>
-      <Button variant="contained" className="post-button">
-        Post
+      <Button variant="contained" className="apply-button">
+        Apply
       </Button>
     </div>
   );
 };
 
-export default RequestForm;
+export default SearchBox;

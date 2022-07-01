@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
+@import "../../components/layout.scss";
+.home-container {
+  .student-home-container {
+    display: flex;
+    font-family: "Oswald", sans-serif;
+    height: 100vh;
+    width: 100%;
+    // gap: 0.5rem;
+    .dash-board {
+      width: 100vw - 2 * $sidebar-width;
+      border-right: rgba(0, 0, 0, 0.12) solid 2px;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .header {
+        // margin-bottom: 1rem;
+      }
+      .short-list-container {
+        // padding: 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        height: 50%;
+        .short-list-box {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding-top: 0.5rem;
+          .short-list {
+            width: 100%;
+            background-image: linear-gradient(
+              rgb(26, 72, 112, 0.05),
+              rgb(22, 53, 80, 0.05)
+            );
+            // border: rgba(0, 0, 0, 0.12) solid 4px;
+            // border-right: 0;
+            // border-color: #1a4870;
+            // border-radius: 0 10px 10px 0;
+          }
+          .next-button {
+            @include my-button;
+            min-width: 3vw;
+            width: 3vw;
+            border-radius: 0 5px 5px 0;
+          }
+        }
+      }
+    }
+    .search-filter {
+      display: flex;
+      padding: 2rem;
+      width: $sidebar-width;
+      flex-direction: column;
+      align-items: center;
+      .search-box {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        width: 100%;
+        .header {
+          margin: auto;
+          margin-bottom: 1rem;
+        }
+        .input-fields {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem 0;
+          width: 100%;
+        }
+        .apply-button {
+          @include my-button;
+          margin: 0 auto;
+          font-size: 2rem;
+          color: rgb(232, 229, 229);
+          background-color: #164a4e;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .tutor-home-container {
+    width: 100%;
+    height: 100vh;
+    .dash-board {
+      width: 100vw - 2 * $sidebar-width;
+      border-right: rgba(0, 0, 0, 0.12) solid 2px;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
+      gap: 0.5rem;
+    }
+    .search-filter {
+    }
+  }
+}

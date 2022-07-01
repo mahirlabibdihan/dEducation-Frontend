@@ -89,7 +89,7 @@ const Layout = (props) => {
         ].map((button, index) => (
           <ListItemButton
             className={
-              (button.path === location.pathname ? "active " : "") +
+              (button.path === location.pathname ? "active-" : "") +
               "side-button"
             }
             component={Button}
@@ -144,7 +144,7 @@ const Layout = (props) => {
         ].map((button, index) => (
           <ListItemButton
             className={
-              (button.path === location.pathname ? "active " : "") +
+              (button.path === location.pathname ? "active-" : "") +
               "side-button"
             }
             component={Button}

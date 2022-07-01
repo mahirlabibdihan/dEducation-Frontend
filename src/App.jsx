@@ -2,7 +2,22 @@ import React, { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Login, Landing, Signup, Profile, RequestTutor } from "./pages";
+import {
+  Login,
+  Landing,
+  Home,
+  Signup,
+  Profile,
+  RequestTutor,
+  Tutors,
+  Coachings,
+  MyTutors,
+  MyCoachings,
+  MyStudents,
+  TuitionOffers,
+  Coaching,
+  MyCourses,
+} from "./pages";
 import Layout from "./components/Layout";
 import { Background } from "./components";
 import Cookies from "universal-cookie";
@@ -28,17 +43,21 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
         <Route element={<Private />}>
-          <Route path="/home" element={<></>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/tutors" element={<Tutors />} />
+          <Route path="/coachings" element={<Coachings />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/req_tutor" element={<RequestTutor />} />
-          <Route path="/my_tutors" element={<></>} />
-          <Route path="/my_coachings" element={<></>} />
-          <Route path="/my_students" element={<></>} />
-          <Route path="/tuition_offers" element={<></>} />
+          <Route path="/my_tutors" element={<MyTutors />} />
+          <Route path="/my_coachings" element={<MyCoachings />} />
+          <Route path="/my_students" element={<MyStudents />} />
+          <Route path="/tuition_offers" element={<TuitionOffers />} />
+          <Route path="/coaching" element={<Coaching />} />
+          <Route path="/coaching/my_courses" element={<MyCourses />} />
         </Route>
         <Route element={<Public />}>
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>

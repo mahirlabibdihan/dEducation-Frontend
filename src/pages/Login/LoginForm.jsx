@@ -32,7 +32,7 @@ const LoginForm = (props) => {
         type: authCtx.loggedInAs,
       })
     ) {
-      navigate("/profile");
+      navigate("/home");
     }
   };
   const LoginButton = () => {

@@ -30,7 +30,7 @@ const Profile = () => {
         </div>
 
         <div className="banner-details">
-          <h1 className="">{name}</h1>
+          <h2 className="">{name}</h2>
         </div>
       </div>
     );
