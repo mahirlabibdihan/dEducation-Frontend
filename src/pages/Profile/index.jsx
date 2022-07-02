@@ -13,6 +13,7 @@ const profileController = new ProfileController();
 
 const Profile = () => {
   const [name, setName] = useState("");
+  const [type, setType] = useState("PRIVATE");
   useEffect(() => {
     console.log("EFFECT");
     const getProfileData = async () => {
@@ -31,6 +32,17 @@ const Profile = () => {
 
         <div className="banner-details">
           <h2 className="">{name}</h2>
+          {type === "PUBLIC" ? (
+            <div className="full-details">
+              <h6>{"Class: "}</h6>
+              <h6>{"Institution: "}</h6>
+              <h6>{"Gender: "}</h6>
+              <h6>{"Phone Number: "}</h6>
+              <h6>{"Address: "}</h6>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     );

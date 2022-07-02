@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import CoachingButtons from "../CoachingButtons";
 import { useNavigate } from "react-router";
-import ListContainer from "../../../components/ListContainer";
+import { List } from "../../../components/ListContainer";
 import "./my-courses.scss";
 
 // import InputField from "../../components/InputField";
@@ -17,7 +17,11 @@ const MyCourses = () => {
     console.log("ON MOUNT");
   }, []);
   const CoursesList = () => {
-    return <ListContainer header="My Courses" />;
+    return (
+      <div className="course-list">
+        <List list="" />
+      </div>
+    );
   };
   const RightPanel = () => {
     return (
@@ -29,7 +33,7 @@ const MyCourses = () => {
   return (
     <Grid className="my-courses-container">
       <CoursesList />
-      <RightPanel />
+      {/* <RightPanel /> */}
     </Grid>
   );
 };

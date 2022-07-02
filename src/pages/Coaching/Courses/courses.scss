@@ -1,0 +1,47 @@
+@import "../../../components/layout.scss";
+.my-courses-container {
+  display: flex;
+  font-family: "Oswald", sans-serif;
+  height: 100vh;
+  width: 100%;
+  .right-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    align-items: center;
+    .search-filter {
+      display: flex;
+      padding: 2rem;
+      width: $sidebar-width;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  .header {
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  .apply-button {
+    @include my-button;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: rgb(232, 229, 229);
+    background-color: #164a4e;
+    width: 100%;
+  }
+}

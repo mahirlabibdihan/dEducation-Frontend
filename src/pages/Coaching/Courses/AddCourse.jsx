@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
+import InputField, { InputField2 } from "../../../components/InputField";
 import { Button } from "@mui/material";
-const SearchBox = () => {
+import "./courses.scss";
+const AddCourse = () => {
   const [values, setValues] = useState({
     type: "",
     desired_tutor_gender: "",
@@ -15,10 +16,15 @@ const SearchBox = () => {
   };
   return (
     <div className="search-box">
-      <h1 className="header">Filter</h1>
+      <h1 className="header">New Course</h1>
       <Divider />
       <div className="input-fields">
         {[
+          {
+            label: "Title",
+            id: "days_per_week",
+            value: values.days_per_week,
+          },
           {
             label: "Subjects",
             id: "subjects",
@@ -28,11 +34,6 @@ const SearchBox = () => {
             label: "Class",
             id: "desired_tutor_gender",
             value: values.desired_tutor_gender,
-          },
-          {
-            label: "Location",
-            id: "days_per_week",
-            value: values.days_per_week,
           },
         ].map((field, index) => (
           <InputField2
@@ -45,10 +46,10 @@ const SearchBox = () => {
         ))}
       </div>
       <Button variant="contained" className="apply-button">
-        Apply
+        Add
       </Button>
     </div>
   );
 };
 
-export default SearchBox;
+export default AddCourse;

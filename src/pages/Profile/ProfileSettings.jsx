@@ -7,10 +7,10 @@ const ProfileSettings = () => {
     name: "",
     gender: "",
     dob: "",
+    class: "",
     institution: "",
     phone: "",
-    city: "",
-    district: "",
+    address: "",
   });
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -37,6 +37,11 @@ const ProfileSettings = () => {
             value: values.dob,
           },
           {
+            label: "Class",
+            id: "class",
+            value: values.class,
+          },
+          {
             label: "Institution",
             id: "institution",
             value: values.institution,
@@ -47,14 +52,9 @@ const ProfileSettings = () => {
             value: values.phone,
           },
           {
-            label: "City",
-            id: "city",
-            value: values.city,
-          },
-          {
-            label: "District",
-            id: "ditrict",
-            value: values.district,
+            label: "Address",
+            id: "address",
+            value: values.address,
           },
         ].map((field, index) => (
           <InputField2
