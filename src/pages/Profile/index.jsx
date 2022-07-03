@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Layout from "../../components/Layout";
 import { Divider, Typography } from "@mui/material";
@@ -7,18 +7,24 @@ import ProfileSettings from "./ProfileSettings";
 import PasswordChange from "./PasswordChange";
 import ProfilePic from "./ProfilePic";
 import "./profile.scss";
+import AuthContext from "../../store/AuthContext";
 const profileController = new ProfileController();
 
-// import InputField from "../../components/InputField";
+// import InputFieldsetName from "../../components/InputField";
 
 const Profile = () => {
+  // const [user, setUser] = useState({});
+  const authCtx = useContext(AuthContext);
   const [name, setName] = useState("");
   const [type, setType] = useState("PRIVATE");
   useEffect(() => {
     console.log("EFFECT");
     const getProfileData = async () => {
       const data = await profileController.getProfile();
-      setName(data.name);
+      setName(data.NAME);
+      // setUser(data);
+      console.log("USER: ", data);
+      authCtx.setLoggedInAs(data.TYPE);
     };
     getProfileData();
   }, []);

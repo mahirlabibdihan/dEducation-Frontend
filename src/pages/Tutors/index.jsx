@@ -8,21 +8,25 @@ import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router";
 import ListContainer from "../../components/ListContainer";
 import "./tutors.scss";
+import TutorsController from "../../controller/tutorsController";
+const tutorsController = new TutorsController();
 
 // import InputField from "../../components/InputField";
 
 const Tutors = () => {
   const navigate = useNavigate();
+  const [tutorsList, setTutorsList] = useState([{ name: "Mahir Labib Dihan" }]);
   useEffect(() => {
-    console.log("ON MOUNT");
+    const setList = async () => {
+      const list = await tutorsController.getTutorsList();
+      setTutorsList(list.data);
+    };
+    setList();
+    console.log(tutorsList);
   }, []);
-  const list = [];
 
-  //   for (let i = 0; i < 100; i++) {
-  //     list.push(<h4>Dihan</h4>);
-  //   }
   const TutorsList = () => {
-    return <ListContainer header="Tutors" />;
+    return <ListContainer header="Tutors" list={tutorsList} />;
   };
   const SearchFilter = () => {
     return (

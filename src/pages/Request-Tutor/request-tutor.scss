@@ -15,7 +15,14 @@
     flex-direction: column;
     // align-items: center;
     gap: 0.5rem;
+    .posts-list {
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
   }
+
   .post-request {
     display: flex;
     padding: 2rem;

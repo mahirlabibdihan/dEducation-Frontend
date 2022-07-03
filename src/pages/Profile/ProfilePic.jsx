@@ -38,7 +38,9 @@ const ProfilePic = () => {
   return (
     <>
       <img
-        src={`http://localhost:5000/assets/images/${image}`}
+        src={`http://localhost:5000/assets/images/${
+          image === null ? "sample.jpg" : image
+        }`}
         // onClick={() => ImageUpload()}
         alt=" "
       />

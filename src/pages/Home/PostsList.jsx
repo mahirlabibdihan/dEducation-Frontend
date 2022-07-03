@@ -11,7 +11,7 @@ const PostsList = () => {
   useEffect(() => {
     console.log("EFFECT");
     const getPosts = async () => {
-      const res = await tutionController.getMyList();
+      const res = await tutionController.getList();
       setPosts(res.data);
     };
     getPosts();

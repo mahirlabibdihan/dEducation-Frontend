@@ -7,16 +7,13 @@ class ProfileController extends Controller {
   cookies = new Cookies();
   getProfile = async () => {
     const token = this.cookies.get("token");
-    const data = await this.profileApi.getProfile(token);
-    console.log(data);
-    if (data.success === true) {
-      //   setType(data.type);
-      //   console.log(type);
-      return data;
-    } else {
-      // authController.logout();
-      // navigate("/login");
-    }
+    const result = await this.profileApi.getProfile(token);
+    // console.log(data);
+    return result.data;
+  };
+  setProfile = async (data) => {
+    const token = this.cookies.get("token");
+    await this.profileApi.setProfile(data, token);
   };
   getProfilePicture = async () => {
     const token = this.cookies.get("token");
@@ -27,8 +24,6 @@ class ProfileController extends Controller {
       //   console.log(type);
       return data;
     } else {
-      // authController.logout();
-      // navigate("/login");
     }
   };
   uploadImage = async (formData) => {

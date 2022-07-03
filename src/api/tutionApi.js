@@ -1,32 +1,15 @@
+import { data } from "autoprefixer";
 import axios from "axios";
 import { API_BASE_URL } from "../index";
 import Api from "./base";
-class ProfileApi extends Api {
-  getProfile = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/profile`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
-  setProfile = async (data, token) => {
-    console.log("Update Request");
-    console.log("SENDING:", data);
+class TutionApi extends Api {
+  post = async (data, token) => {
+    console.log("POST TUTION");
     try {
       let res = await axios.post(
-        `${API_BASE_URL}/profile`,
+        `${API_BASE_URL}/tution/post`,
         {
-          user: data,
+          tution: data,
         },
         {
           headers: { authorization: "Bearer " + token },
@@ -43,15 +26,15 @@ class ProfileApi extends Api {
       };
     }
   };
-  getProfilePicture = async (token) => {
+  getMyList = async (token) => {
     try {
-      let res = await axios.get(`${API_BASE_URL}/profile/picture`, {
+      let res = await axios.get(`${API_BASE_URL}/tution/my_list`, {
         headers: { authorization: "Bearer " + token },
       });
       if (res.status === 200) {
         return {
           success: true,
-          image: res.data.image,
+          data: res.data,
         };
       }
     } catch (err) {
@@ -60,17 +43,15 @@ class ProfileApi extends Api {
       };
     }
   };
-
-  uploadImage = async (data, token) => {
+  getList = async (token) => {
     try {
-      console.log(token);
-      let res = await axios.post(`${API_BASE_URL}/profile/upload`, data, {
+      let res = await axios.get(`${API_BASE_URL}/tution/list`, {
         headers: { authorization: "Bearer " + token },
       });
       if (res.status === 200) {
         return {
           success: true,
-          image: res.data.image,
+          data: res.data,
         };
       }
     } catch (err) {
@@ -81,4 +62,4 @@ class ProfileApi extends Api {
   };
 }
 
-export default ProfileApi;
+export default TutionApi;

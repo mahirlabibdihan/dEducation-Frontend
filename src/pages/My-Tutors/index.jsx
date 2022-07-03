@@ -12,16 +12,17 @@ import "./my-tutors.scss";
 // import InputField from "../../components/InputField";
 
 const MyTutors = () => {
+  const [tutorsList, setTutorsList] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     console.log("ON MOUNT");
   }, []);
-  const list = [];
+
   //   for (let i = 0; i < 100; i++) {
   //     list.push(<h4>Dihan</h4>);
   //   }
   const TutorsList = () => {
-    return <ListContainer header="My Tutors" />;
+    return <ListContainer header="My Tutors" list={tutorsList} />;
   };
   //   const SearchFilter = () => {
   //     return (

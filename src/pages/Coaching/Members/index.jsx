@@ -12,12 +12,13 @@ import "./my-courses.scss";
 // import InputField from "../../components/InputField";
 
 const Members = () => {
+  const [membersList, setMembersList] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     console.log("ON MOUNT");
   }, []);
   const CoursesList = () => {
-    return <ListContainer header="My Courses" />;
+    return <ListContainer header="My Courses" list={membersList} />;
   };
   const RightPanel = () => {
     return (

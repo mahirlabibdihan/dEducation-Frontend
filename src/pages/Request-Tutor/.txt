@@ -3,3 +3,5 @@
 4. Once student gets a teacher,tuition post will be booked.
 5. Student can see his past posts.
 6. Student/tutor can only see each others phone number once a tuition is settled between them, so that they can contact each other.
+
+7. If we select a previous post we will go to applicants list page

@@ -13,12 +13,13 @@ import "./my-coachings.scss";
 // import InputField from "../../components/InputField";
 
 const MyCoachings = () => {
+  const [coachingsList, setCoachingsList] = useState([]);
   const navigate = useNavigate();
   const [type, setType] = useState("TUTOR");
   useEffect(() => {
     console.log("ON MOUNT");
   }, []);
-  const list = [];
+
   //   for (let i = 0; i < 100; i++) {
   //     list.push(<h4>Dihan</h4>);
   //   }
@@ -30,7 +31,7 @@ const MyCoachings = () => {
     );
   };
   const CoachingsList = () => {
-    return <ListContainer header="My Coachings" />;
+    return <ListContainer header="My Coachings" list={coachingsList} />;
   };
   return (
     <Grid className="my-coachings-container">

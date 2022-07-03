@@ -47,8 +47,11 @@ const Layout = (props) => {
   useEffect(() => {
     const getProfileData = async () => {
       const data = await profileController.getProfile();
-      setType(data.type);
+      setType(data.TYPE);
+      // console.log(data.NAME);
     };
+    // authController
+    // authController.logout();
     getProfileData();
   }, []);
 
