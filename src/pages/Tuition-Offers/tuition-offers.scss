@@ -13,12 +13,60 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+  .student-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 0.5rem;
+    // padding: auto;
+    .profile-banner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      // align-items: center;
+      img {
+        margin: auto;
+      }
+      h2 {
+        @include flexCenter;
+      }
+      .banner-details {
+        // margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .vbox {
+        gap: 0.2rem;
+      }
+      .hbox {
+        justify-content: space-between;
+      }
+    }
+    .tution-offer {
+      .vbox {
+        gap: 0.2rem;
+      }
+    }
+    .accept-button {
+      @include my-button;
+      margin: 0 auto;
+      font-size: 2rem;
+      color: rgb(232, 229, 229);
+      background-color: #164a4e;
+      width: 100%;
+    }
+  }
   .search-filter {
     display: flex;
     padding: 2rem;
     width: $sidebar-width;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     .search-box {
       display: flex;
       flex-direction: column;

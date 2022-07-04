@@ -5,12 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Background } from "../../components";
 import "./landing.scss";
 import Button from "@mui/material/Button";
-import AuthContext from "../../store/AuthContext";
+import GlobalContext from "../../store/GlobalContext";
 // import background from "../../public/images/home-background.jpg";
 // import { StyledEngineProvider } from "@mui/material/styles";
 // import Background from "../components/background/Background";
 const Home = () => {
-  const authCtx = useContext(AuthContext);
+  const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   return (
     <Background>
@@ -18,7 +18,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
-              authCtx.setLoggedInAs("STUDENT");
+              globalCtx.setLoggedInAs("STUDENT");
               navigate("/login");
             }, 300);
           }}
@@ -30,7 +30,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
-              authCtx.setLoggedInAs("TUTOR");
+              globalCtx.setLoggedInAs("TUTOR");
               navigate("/login");
             }, 300);
           }}

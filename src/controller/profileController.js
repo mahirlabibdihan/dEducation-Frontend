@@ -1,6 +1,8 @@
 import Cookies from "universal-cookie";
 import ProfileApi from "../api/profileApi";
 import Controller from "./base";
+import AuthController from "./authController";
+const authController = new AuthController();
 
 class ProfileController extends Controller {
   profileApi = new ProfileApi();
@@ -9,6 +11,13 @@ class ProfileController extends Controller {
     const token = this.cookies.get("token");
     const result = await this.profileApi.getProfile(token);
     // console.log(data);
+    if (!result.success) authController.logout();
+    return result.data;
+  };
+  getProfileByID = async (id) => {
+    const token = this.cookies.get("token");
+    const result = await this.profileApi.getProfileByID(id, token);
+    console.log("GOT IT", result.data);
     return result.data;
   };
   setProfile = async (data) => {

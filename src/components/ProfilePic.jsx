@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ProfileController from "../../controller/profileController";
+import ProfileController from "../controller/profileController";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CameraRoundedIcon from "@mui/icons-material/CameraRounded";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import "./ProfilePic.scss";
 const profileController = new ProfileController();
 const ProfilePic = () => {
   const [file, setFile] = useState("");
@@ -52,4 +53,21 @@ const ProfilePic = () => {
   );
 };
 
+export const PublicProfilePic = (props) => {
+  const [image, setImage] = useState("");
+  useEffect(() => {
+    setImage(props.image);
+  }, []);
+  return (
+    <>
+      <img
+        src={`http://localhost:5000/assets/images/${
+          image === null ? "sample.jpg" : image
+        }`}
+        // onClick={() => ImageUpload()}
+        alt=" "
+      />
+    </>
+  );
+};
 export default ProfilePic;

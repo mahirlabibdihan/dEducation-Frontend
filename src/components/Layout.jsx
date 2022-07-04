@@ -35,19 +35,23 @@ import ProfileController from "../controller/profileController";
 import * as IMAGES from "../images";
 import * as CONSTANTS from "../constants";
 import Logo from "../assets/images/Logo-small.svg";
+import GlobalContext from "../store/GlobalContext";
 
-// import AuthContext from "../../store/AuthContext";
+// import GlobalContext from "../../store/GlobalContext";
 const authController = new AuthController();
 const profileController = new ProfileController();
 const Layout = (props) => {
-  // const authCtx = useContext(AuthContext);
+  // const globalCtx = useContext(GlobalContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [type, setType] = useState("");
+  const globalCtx = useContext(GlobalContext);
   useEffect(() => {
     const getProfileData = async () => {
       const data = await profileController.getProfile();
+      // if(data)
       setType(data.TYPE);
+      globalCtx.setLoggedInAs(data.TYPE);
       // console.log(data.NAME);
     };
     // authController
@@ -168,7 +172,11 @@ const Layout = (props) => {
   return (
     <Grid className="layout-container">
       <div className="body">
-        <div className="side-bar">
+        <div
+          className="side-bar"
+          onClick={() => globalCtx.setSelectedUser(-1)}
+          aria-hidden="true"
+        >
           <div className="logo">
             <img src={Logo} className="logo-image" alt="logo"></img>
             <Typography className="logo-name">

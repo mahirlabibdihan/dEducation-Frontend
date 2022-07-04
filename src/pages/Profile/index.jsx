@@ -5,16 +5,16 @@ import { Divider, Typography } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import ProfileSettings from "./ProfileSettings";
 import PasswordChange from "./PasswordChange";
-import ProfilePic from "./ProfilePic";
+import ProfilePic from "../../components/ProfilePic";
 import "./profile.scss";
-import AuthContext from "../../store/AuthContext";
+import GlobalContext from "../../store/GlobalContext";
 const profileController = new ProfileController();
 
 // import InputFieldsetName from "../../components/InputField";
 
 const Profile = () => {
   // const [user, setUser] = useState({});
-  const authCtx = useContext(AuthContext);
+  const globalCtx = useContext(GlobalContext);
   const [name, setName] = useState("");
   const [type, setType] = useState("PRIVATE");
   useEffect(() => {
@@ -24,7 +24,7 @@ const Profile = () => {
       setName(data.NAME);
       // setUser(data);
       console.log("USER: ", data);
-      authCtx.setLoggedInAs(data.TYPE);
+      globalCtx.setLoggedInAs(data.TYPE);
     };
     getProfileData();
   }, []);

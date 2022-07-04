@@ -5,13 +5,13 @@ import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import TutorProfileSettings from "./TutorProfileSettings";
 import StudentProfileSettings from "./StudentProfileSettings";
-import AuthContext from "../../store/AuthContext";
+import GlobalContext from "../../store/GlobalContext";
 const profileController = new ProfileController();
 const ProfileSettings = () => {
-  const authCtx = useContext(AuthContext);
+  const globalCtx = useContext(GlobalContext);
   return (
     <>
-      {authCtx.loggedInAs === "STUDENT" ? (
+      {globalCtx.loggedInAs === "STUDENT" ? (
         <StudentProfileSettings />
       ) : (
         <TutorProfileSettings />

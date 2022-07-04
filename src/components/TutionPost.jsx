@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Grid } from "@mui/material";
+import TutionController from "../controller/tutionController";
+import GlobalContext from "../store/GlobalContext";
+const tutionController = new TutionController();
 const TutionPost = (props) => {
+  const globalCtx = useContext(GlobalContext);
   const data = props.data;
+  const handleApply = async (event) => {
+    const result = await tutionController.apply(data.POST_ID);
+    console.log(result);
+    // if (result.success) {
+    //   window.location.reload();
+    // }
+  };
   const tutionPostDetails = [
     [
       { label: "Class", value: data.CLASS },
@@ -33,7 +44,16 @@ const TutionPost = (props) => {
           );
         })}
       </div>
-      <Button className="apply-button">Apply</Button>
+      <>
+        {globalCtx.loggedInAs === "STUDENT" ? (
+          <></>
+        ) : (
+          <Button className="apply-button" onClick={handleApply}>
+            Apply
+          </Button>
+        )}
+      </>
+
       {/* <h3>{data.title}</h3>
       <div className="vbox">
         <div className="hbox">

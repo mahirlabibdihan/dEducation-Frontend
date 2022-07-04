@@ -8,28 +8,28 @@ import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
 import { login } from "../../api/authApi";
-import AuthContext from "../../store/AuthContext";
+import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const authCtx = useContext(AuthContext);
+  const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   const authController = new AuthController();
   useEffect(() => {
-    if (authCtx.loggedInAs === "") {
+    if (globalCtx.loggedInAs === "") {
       navigate("/");
     }
-  }, [authCtx.loggedInAs]);
+  }, [globalCtx.loggedInAs]);
   const handleLogin = async (e) => {
     e.preventDefault();
     if (
       await authController.login({
         email: email,
         pass: pass,
-        type: authCtx.loggedInAs,
+        type: globalCtx.loggedInAs,
       })
     ) {
       navigate("/home");
@@ -77,7 +77,7 @@ const LoginForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow login-form ${props.className}`}
     >
-      <h1 className="form-header">{authCtx.loggedInAs}</h1>
+      <h1 className="form-header">{globalCtx.loggedInAs}</h1>
       <InputField
         label="Email Address"
         type="email"

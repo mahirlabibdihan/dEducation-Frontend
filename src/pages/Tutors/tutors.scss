@@ -11,6 +11,7 @@
     width: $sidebar-width;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     .search-box {
       display: flex;
       flex-direction: column;
@@ -28,6 +29,49 @@
         width: 100%;
       }
       .apply-button {
+        @include my-button;
+        margin: 0 auto;
+        font-size: 2rem;
+        color: rgb(232, 229, 229);
+        background-color: #164a4e;
+        width: 100%;
+      }
+    }
+  }
+  .tutor-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    .profile-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .profile-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .vbox {
+        gap: 0.2rem;
+      }
+    }
+    .offer-form {
+      .input-fields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        width: 100%;
+      }
+      .offer-button {
         @include my-button;
         margin: 0 auto;
         font-size: 2rem;
