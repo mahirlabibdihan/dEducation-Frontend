@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import GlobalContext from "../store/GlobalContext";
-import "./components.scss";
-const UserCard = (props) => {
+import GlobalContext from "../../store/GlobalContext";
+import "../../components/components.scss";
+const CourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
   //
   useEffect(() => {
@@ -11,7 +11,7 @@ const UserCard = (props) => {
     <div
       className={`${
         globalCtx.selectedIndex === props.id ? "active-" : ""
-      }user-card`}
+      }course-card`}
       aria-hidden="true"
       onClick={() => {
         if (globalCtx.selectedIndex === props.id)
@@ -19,14 +19,14 @@ const UserCard = (props) => {
         else globalCtx.setSelectedIndex(props.id);
       }}
     >
-      <img
-        src={`http://localhost:5000/assets/images/${props.user.IMAGE}`}
-        // onClick={() => ImageUpload()}
-        alt=" "
-      />
-      <h5>{props.user.NAME}</h5>
+      <h6>{`Coaching: ${props.course.NAME}`}</h6>
+      <h6>{`Class: ${props.course.CLASS}`}</h6>
+      <h6>{`Subject: ${props.course.SUBJECT}`}</h6>
+      <h6>{`Starting Date: ${props.course.START_DATE}`}</h6>
+      <h6>{`Days: ${props.course.CLASS_DAYS}`}</h6>
+      <h6>{`Time: ${props.course.CLASS_TIME}`}</h6>
     </div>
   );
 };
 
-export default UserCard;
+export default CourseCard;

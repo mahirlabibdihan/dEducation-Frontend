@@ -7,7 +7,7 @@ import TutorProfileSettings from "./TutorProfileSettings";
 import StudentProfileSettings from "./StudentProfileSettings";
 import GlobalContext from "../../store/GlobalContext";
 const profileController = new ProfileController();
-const ProfileSettings = () => {
+const ProfileSettings = (props) => {
   const globalCtx = useContext(GlobalContext);
   return (
     <>

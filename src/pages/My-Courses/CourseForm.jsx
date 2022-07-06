@@ -4,20 +4,22 @@ import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
-import "./my-coachings.scss";
+import CourseController from "../../controller/courseController";
+import "./my-courses.scss";
 const coachingController = new CoachingController();
+const courseController = new CourseController();
 
-const CoachingForm = () => {
+const CourseForm = () => {
   const [values, setValues] = useState({
-    name: "",
-    phone: "",
-    address: "",
+    class: "",
+    subject: "",
+    batch: "",
   });
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const createCoaching = async (event) => {
-    const result = await coachingController.create(values);
+    const result = await courseController.create(values);
   };
   return (
     <div className="coaching-form">
@@ -61,4 +63,4 @@ const CoachingForm = () => {
   );
 };
 
-export default CoachingForm;
+export default CourseForm;

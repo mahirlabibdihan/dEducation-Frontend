@@ -19,8 +19,6 @@ const PasswordChange = () => {
   };
   return (
     <div className="password-change">
-      {/* <h1 className="header">Change Password</h1> */}
-      {/* <Divider /> */}
       <div className="input-fields">
         {[
           {

@@ -20,9 +20,7 @@ const profileController = new ProfileController();
 
 const Applicants = () => {
   const globalCtx = useContext(GlobalContext);
-  const navigate = useNavigate();
   const [tutor, setTutor] = useState({});
-  const [tution, setTution] = useState({});
   const [tutorsList, setTutorsList] = useState([]);
   const setList = async () => {
     const list = await tutionController.getApplicants(globalCtx.postId);
@@ -31,24 +29,12 @@ const Applicants = () => {
   };
   useEffect(() => {
     setList();
-    console.log(tutorsList);
   }, []);
 
-  const setTutorProfile = async () => {
-    const data = await profileController.getProfileByID(globalCtx.selectedUser);
-    console.log("TUTOR", data);
-    setTutor(data);
-  };
-  const setTutionOffer = async () => {
-    const result = await tutionController.getOfferFromPost(globalCtx.postId);
-    console.log("OFFER", result);
-    setTution(result.data);
-  };
-
   useEffect(() => {
-    setTutorProfile();
-    setTutionOffer();
-  }, [globalCtx.selectedUser]);
+    if (globalCtx.selectedIndex !== -1)
+      setTutor(tutorsList[globalCtx.selectedIndex]);
+  }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="Applicants" list={tutorsList} />;
   };
@@ -62,12 +48,10 @@ const Applicants = () => {
   const RightPanel = () => {
     return (
       <div className="right-panel">
-        {tutor === undefined ||
-        tution === undefined ||
-        globalCtx.selectedUser === -1 ? (
+        {tutor === undefined || globalCtx.selectedIndex === -1 ? (
           <SearchFilter />
         ) : (
-          <TutorPanel tutor={tutor} tution={tution} />
+          <TutorPanel tutor={tutor} />
         )}
       </div>
     );

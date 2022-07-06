@@ -35,7 +35,6 @@ const StudentProfileSettings = () => {
   };
   useEffect(() => {
     setProfileData();
-    // console.log("EFFECT");
   }, []);
   const handleChange = (prop) => (event) => {
     setUser({ ...user, [prop]: event.target.value });

@@ -45,8 +45,6 @@ class ProfileApi extends Api {
     }
   };
   setProfile = async (data, token) => {
-    console.log("Update Request");
-    console.log("SENDING:", data);
     try {
       let res = await axios.post(
         `${API_BASE_URL}/profile`,

@@ -36,7 +36,7 @@ import * as IMAGES from "../images";
 import * as CONSTANTS from "../constants";
 import Logo from "../assets/images/Logo-small.svg";
 import GlobalContext from "../store/GlobalContext";
-
+import BookIcon from "@mui/icons-material/Book";
 // import GlobalContext from "../../store/GlobalContext";
 const authController = new AuthController();
 const profileController = new ProfileController();
@@ -82,6 +82,11 @@ const Layout = (props) => {
             label: "My coachings",
             path: "/my_coachings",
             icon: <LocationCityIcon sx={{ fontSize: "2rem" }} />,
+          },
+          {
+            label: "My courses",
+            path: "/my_courses",
+            icon: <BookIcon sx={{ fontSize: "2rem" }} />,
           },
           {
             label: "Profile",
@@ -139,6 +144,11 @@ const Layout = (props) => {
             icon: <LocationCityIcon sx={{ fontSize: "2rem" }} />,
           },
           {
+            label: "My courses",
+            path: "/my_courses",
+            icon: <BookIcon sx={{ fontSize: "2rem" }} />,
+          },
+          {
             label: "Profile",
             path: "/profile",
             icon: <AccountCircleIcon sx={{ fontSize: "2rem" }} />,
@@ -174,7 +184,7 @@ const Layout = (props) => {
       <div className="body">
         <div
           className="side-bar"
-          onClick={() => globalCtx.setSelectedUser(-1)}
+          onClick={() => globalCtx.setSelectedIndex(-1)}
           aria-hidden="true"
         >
           <div className="logo">

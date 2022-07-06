@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Button, Grid } from "@mui/material";
 import TutionController from "../controller/tutionController";
 import GlobalContext from "../store/GlobalContext";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const globalCtx = useContext(GlobalContext);
@@ -17,6 +17,12 @@ const TutionPost = (props) => {
   };
   const handleApplicants = async (event) => {
     globalCtx.setPostId(data.POST_ID);
+    // navigate({
+    //   pathname: "/req_tutor/applicants",
+    //   search: createSearchParams({
+    //     post_id: data.POST_ID,
+    //   }).toString(),
+    // });
     navigate("/req_tutor/applicants");
   };
   const tutionPostDetails = [
@@ -41,7 +47,6 @@ const TutionPost = (props) => {
     <Grid
       className="tution-post"
       onClick={globalCtx.loggedInAs === "STUDENT" ? handleApplicants : () => {}}
-      // aria-hidden={globalCtx.loggedInAs === "STUDENT" ? "true" : "false"}
       aria-hidden="true"
     >
       <div className="hbox">
@@ -55,30 +60,13 @@ const TutionPost = (props) => {
           );
         })}
       </div>
-      <>
-        {globalCtx.loggedInAs === "STUDENT" ? (
-          <></>
-        ) : (
-          <Button className="apply-button" onClick={handleApply}>
-            Apply
-          </Button>
-        )}
-      </>
-
-      {/* <h3>{data.title}</h3>
-      <div className="vbox">
-        <div className="hbox">
-          <h4>{`Tuition Type: ${data.TYPE}`}</h4>
-          <h4>{`Subject: ${data.SUBJECTS}`}</h4>
-        </div>
-        <div className="hbox">
-          <h4>{`Tutoring Days: ${data.DAYS_PER_WEEK}`}</h4>
-          <h4>{`Salary: ${data.SALARY}`}</h4>
-        </div>
-        <div className="hbox">
-          <h4>{`Desired Tutor Gender: ${data.DESIRED_TUTOR_GENDER}`}</h4>
-        </div>
-      </div> */}
+      {globalCtx.loggedInAs === "STUDENT" ? (
+        <></>
+      ) : (
+        <Button className="apply-button" onClick={handleApply}>
+          Apply
+        </Button>
+      )}
     </Grid>
   );
 };

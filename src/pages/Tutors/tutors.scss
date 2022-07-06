@@ -46,32 +46,6 @@
     justify-content: center;
     height: 100%;
     gap: 0.5rem;
-    .profile-banner {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
-      // align-items: center;
-      img {
-        margin: auto;
-      }
-      h3 {
-        @include flexCenter;
-      }
-      .banner-details {
-        // margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-        width: 100%;
-      }
-      .vbox {
-        gap: 0.2rem;
-      }
-      .hbox {
-        justify-content: space-between;
-      }
-    }
     .offer-form {
       width: 100%;
       .input-fields {

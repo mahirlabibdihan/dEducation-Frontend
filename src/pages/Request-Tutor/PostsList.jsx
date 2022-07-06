@@ -8,13 +8,12 @@ import TutionController from "../../controller/tutionController";
 const tutionController = new TutionController();
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
+  const setTutionPosts = async () => {
+    const res = await tutionController.getMyList();
+    setPosts(res.data);
+  };
   useEffect(() => {
-    console.log("EFFECT");
-    const getPosts = async () => {
-      const res = await tutionController.getMyList();
-      setPosts(res.data);
-    };
-    getPosts();
+    setTutionPosts();
   }, []);
   return (
     <div className="posts-list">

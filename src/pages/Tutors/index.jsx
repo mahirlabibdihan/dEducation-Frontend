@@ -1,44 +1,29 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Button } from "@mui/material";
 import SearchBox from "./SearchBox";
-import { useNavigate } from "react-router";
 import ListContainer from "../../components/ListContainer";
 import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
 import TutorPanel from "./TutorPanel";
-import ProfileController from "../../controller/profileController";
 const tutorsController = new TutorsController();
-const profileController = new ProfileController();
-// import InputField from "../../components/InputField";
 
 const Tutors = () => {
   const globalCtx = useContext(GlobalContext);
-  const navigate = useNavigate();
   const [tutor, setTutor] = useState({});
-  const [tutorsList, setTutorsList] = useState([{ name: "Mahir Labib Dihan" }]);
+  const [tutorsList, setTutorsList] = useState([]);
   const setList = async () => {
     const list = await tutorsController.getTutorsList();
     setTutorsList(list.data);
   };
   useEffect(() => {
     setList();
-    console.log(tutorsList);
   }, []);
 
-  const setTutorProfile = async () => {
-    const data = await profileController.getProfileByID(globalCtx.selectedUser);
-    console.log("TUTOR", data);
-    setTutor(data);
-  };
-
   useEffect(() => {
-    setTutorProfile();
-  }, [globalCtx.selectedUser]);
+    if (globalCtx.selectedIndex !== -1)
+      setTutor(tutorsList[globalCtx.selectedIndex]);
+  }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="Tutors" list={tutorsList} />;
   };
@@ -52,7 +37,7 @@ const Tutors = () => {
   const RightPanel = () => {
     return (
       <div className="right-panel">
-        {tutor === undefined || globalCtx.selectedUser === -1 ? (
+        {tutor === undefined || globalCtx.selectedIndex === -1 ? (
           <SearchFilter />
         ) : (
           <TutorPanel tutor={tutor} />

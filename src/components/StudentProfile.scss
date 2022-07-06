@@ -1,0 +1,25 @@
+@import "./components.scss";
+.student-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  // align-items: center;
+  img {
+    margin: auto;
+  }
+  h3 {
+    @include flexCenter;
+  }
+  .banner-details {
+    // margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .vbox {
+    gap: 0.2rem;
+  }
+  .hbox {
+    justify-content: space-between;
+  }
+}

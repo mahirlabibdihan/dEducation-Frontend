@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import "./ListContainer.scss";
-import UserCard from "./UserCard";
-import GlobalContext from "../store/GlobalContext";
+import CourseCard from "./CourseCard";
+import GlobalContext from "../../store/GlobalContext";
 
 // import InputField from "../../components/InputField";
 
@@ -11,13 +10,13 @@ export const List = (props) => {
   console.log(props);
   return (
     <div className="list">
-      {props.list.map((user, index) => (
-        <UserCard user={user} id={index} />
+      {props.list.map((course, index) => (
+        <CourseCard course={course} id={index} />
       ))}
     </div>
   );
 };
-const ListContainer = (props) => {
+const CourseContainer = (props) => {
   const globalCtx = useContext(GlobalContext);
   console.log(props);
   return (
@@ -33,4 +32,4 @@ const ListContainer = (props) => {
   );
 };
 
-export default ListContainer;
+export default CourseContainer;

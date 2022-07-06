@@ -2,8 +2,8 @@ import { createContext } from "react";
 const GlobalContext = createContext({
   loggedInAs: "",
   setLoggedInAs: () => {},
-  selectedUser: -1,
-  setSelectedUser: () => {},
+  selectedIndex: -1,
+  setSelectedIndex: () => {},
   postId: -1,
   setPostId: () => {},
 });

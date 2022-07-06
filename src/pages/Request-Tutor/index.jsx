@@ -30,12 +30,10 @@ const RequestTutor = () => {
     );
   };
   return (
-    // <Layout>
     <Grid className="tutor-request-container">
       <PostsFeed />
       <PostRequest />
     </Grid>
-    // </Layout>
   );
 };
 

@@ -43,27 +43,11 @@
     padding: 2rem;
     width: $sidebar-width;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     height: 100%;
-    .profile-banner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h3 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .profile-details {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .vbox {
-        gap: 0.2rem;
-      }
-    }
+    gap: 0.5rem;
     .offer-form {
+      width: 100%;
       .input-fields {
         display: flex;
         flex-direction: column;

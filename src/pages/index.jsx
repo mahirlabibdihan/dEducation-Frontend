@@ -12,4 +12,4 @@ export { default as Coaching } from "./Coaching";
 export { default as MyCoachings } from "./My-Coachings";
 export { default as MyStudents } from "./My-Students";
 export { default as TuitionOffers } from "./Tuition-Offers";
-export { default as MyCourses } from "./Coaching/My-Courses";
+export { default as MyCourses } from "./My-Courses";
