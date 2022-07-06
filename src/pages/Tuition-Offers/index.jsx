@@ -22,13 +22,14 @@ const TuitionOffers = () => {
   const [student, setStudent] = useState({});
   const [offers, setOffers] = useState([]);
   const getTutionOffers = async () => {
-    const result = await tutionController.getOffers();
+    const result = await tutionController.getMyOffers();
     setOffers(result.data);
   };
   useEffect(() => {
     getTutionOffers();
     console.log("ON MOUNT");
   }, []);
+
   const setStudentProfile = async () => {
     const data = await profileController.getProfileByID(globalCtx.selectedUser);
     console.log("TUTOR", data);

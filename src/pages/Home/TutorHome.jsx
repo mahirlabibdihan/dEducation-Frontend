@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import "./home.scss";
 import PostsList from "./PostsList";
+import SearchBox from "./SearchBox";
 
 // import InputField from "../../components/InputField";
 
@@ -21,11 +22,24 @@ const TutorHome = () => {
     );
   };
   // const DashBoard = () => {};
-  const SearchFilter = () => {};
+  const SearchFilter = () => {
+    return (
+      <div className="search-filter">
+        <SearchBox />
+      </div>
+    );
+  };
+  const RightPanel = () => {
+    return (
+      <div className="right-panel">
+        <SearchFilter />
+      </div>
+    );
+  };
   return (
     <Grid className="tutor-home-container">
       <PostsFeed />
-      <SearchFilter />
+      <RightPanel />
     </Grid>
   );
 };

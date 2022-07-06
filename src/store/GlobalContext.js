@@ -4,5 +4,7 @@ const GlobalContext = createContext({
   setLoggedInAs: () => {},
   selectedUser: -1,
   setSelectedUser: () => {},
+  postId: -1,
+  setPostId: () => {},
 });
 export default GlobalContext;

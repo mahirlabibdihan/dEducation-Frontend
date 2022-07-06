@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
@@ -8,32 +8,57 @@ import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router";
 import ListContainer from "../../components/ListContainer";
 import "./coachings.scss";
-
+import GlobalContext from "../../store/GlobalContext";
+import CoachingController from "../../controller/coachingController";
+import CoachingPanel from "./CoachingPanel";
+const coachingController = new CoachingController();
 // import InputField from "../../components/InputField";
 
 const Coachings = () => {
+  const globalCtx = useContext(GlobalContext);
+  const [coachingsList, setCoachingsList] = useState([]);
+  const [coaching, setCoaching] = useState({});
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log("ON MOUNT");
-  }, []);
-  const list = [];
-  //   for (let i = 0; i < 100; i++) {
-  //     list.push(<h4>Dihan</h4>);
-  //   }
-  const CoachingsList = () => {
-    return <ListContainer header="Coachings" />;
+  const [type, setType] = useState("TUTOR");
+  const setList = async () => {
+    const result = await coachingController.getList();
+    for (let i = 0; i < result.data.length; i++) {
+      result.data[i]["USER_ID"] = result.data[i].COACHING_ID;
+    }
+    setCoachingsList(result.data);
   };
-  const SearchFilter = () => {
+  useEffect(() => {
+    setList();
+    console.log(setCoachingsList);
+  }, []);
+
+  const setCoachingProfile = async () => {
+    const result = await coachingController.getInfo(globalCtx.selectedUser);
+    console.log("TUTOR", result.data);
+    setCoaching(result.data);
+  };
+
+  useEffect(() => {
+    setCoachingProfile();
+  }, [globalCtx.selectedUser]);
+  const CoachingsList = () => {
+    return <ListContainer header="Coachings" list={coachingsList} />;
+  };
+  const RightPanel = () => {
     return (
-      <div className="search-filter">
-        <SearchBox />
+      <div className="right-panel">
+        {coaching !== undefined && globalCtx.selectedUser !== -1 ? (
+          <CoachingPanel coaching={coaching} />
+        ) : (
+          <></>
+        )}
       </div>
     );
   };
   return (
     <Grid className="coachings-container">
       <CoachingsList />
-      <SearchFilter />
+      <RightPanel />
     </Grid>
   );
 };

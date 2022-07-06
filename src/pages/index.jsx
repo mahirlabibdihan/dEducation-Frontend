@@ -5,6 +5,7 @@ export { default as Signup } from "./Signup";
 export { default as Profile } from "./Profile";
 export { default as RequestTutor } from "./Request-Tutor";
 export { default as Tutors } from "./Tutors";
+export { default as Applicants } from "./Applicants";
 export { default as MyTutors } from "./My-Tutors";
 export { default as Coachings } from "./Coachings";
 export { default as Coaching } from "./Coaching";

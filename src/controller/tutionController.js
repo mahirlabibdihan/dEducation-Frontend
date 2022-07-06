@@ -25,14 +25,29 @@ class TutionController extends Controller {
     const result = await this.tutionApi.offer(data, tutor_id, token);
     return result;
   };
-  getOffers = async () => {
+  acceptOffer = async (student_id) => {
     const token = this.cookies.get("token");
-    const result = await this.tutionApi.getOffers(token);
+    const result = await this.tutionApi.acceptOffer(student_id, token);
     return result;
   };
-  getOffer = async (student_id) => {
+  rejectOffer = async (student_id) => {
     const token = this.cookies.get("token");
-    const result = await this.tutionApi.getOffer(student_id, token);
+    const result = await this.tutionApi.rejectOffer(student_id, token);
+    return result;
+  };
+  getMyOffers = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getMyOffers(token);
+    return result;
+  };
+  getOfferFromStudent = async (student_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getOfferFromStudent(student_id, token);
+    return result;
+  };
+  getOfferFromTutor = async (tutor_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getOfferFromTutor(tutor_id, token);
     return result;
   };
   apply = async (post_id) => {
@@ -40,9 +55,14 @@ class TutionController extends Controller {
     const result = await this.tutionApi.apply(post_id, token);
     return result;
   };
-  getApplicants = async (id) => {
+  getApplicants = async (post_id) => {
     const token = this.cookies.get("token");
-    const result = await this.tutionApi.getApplicants(id, token);
+    const result = await this.tutionApi.getApplicants(post_id, token);
+    return result;
+  };
+  getOfferFromPost = async (post_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getOfferFromPost(post_id, token);
     return result;
   };
 }

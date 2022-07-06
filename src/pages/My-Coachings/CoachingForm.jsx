@@ -4,23 +4,30 @@ import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
+import CoachingController from "../../controller/coachingController";
 // import SearchBox from "./SearchBox";
 import { useNavigate } from "react-router";
 import ListContainer from "../../components/ListContainer";
 import "./my-coachings.scss";
 
+const coachingController = new CoachingController();
 // import InputField from "../../components/InputField";
 
 const CoachingForm = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
-    type: "",
-    desired_tutor_gender: "",
-    subjects: "",
-    days_per_week: "",
-    salary: "",
+    name: "",
+    phone: "",
+    address: "",
   });
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
+  };
+  const createCoaching = async (event) => {
+    const result = await coachingController.create(values);
+    // if (result.success) navigate("/my_coachings");
+    // console.log("OFFER", result);
+    // setOffer(result.data);
   };
   return (
     <div className="coaching-form">
@@ -30,13 +37,18 @@ const CoachingForm = () => {
         {[
           {
             label: "Full Name",
-            id: "days_per_week",
-            value: values.days_per_week,
+            id: "name",
+            value: values.name,
           },
           {
-            label: "Location",
-            id: "subjects",
-            value: values.subjects,
+            label: "Phone Number",
+            id: "phone",
+            value: values.phone,
+          },
+          {
+            label: "Address",
+            id: "address",
+            value: values.address,
           },
         ].map((field, index) => (
           <InputField2
@@ -48,7 +60,11 @@ const CoachingForm = () => {
           />
         ))}
       </div>
-      <Button variant="contained" className="create-button">
+      <Button
+        variant="contained"
+        className="create-button"
+        onClick={createCoaching}
+      >
         Create
       </Button>
     </div>

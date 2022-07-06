@@ -11,12 +11,13 @@ const tutionController = new TutionController();
 const profileController = new ProfileController();
 
 const OfferForm = (props) => {
+  const globalCtx = useContext(GlobalContext);
   const [values, setValues] = useState({
-    type: "",
-    desired_tutor_gender: "",
-    subjects: "",
-    days_per_week: "",
-    salary: "",
+    type: props.tution.TYPE,
+    desired_tutor_gender: props.tution.DESIRED_TUTOR_GENDER,
+    subjects: props.tution.SUBJECTS,
+    days_per_week: props.tution.DAYS_PER_WEEK,
+    salary: props.tution.SALARY,
   });
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -88,7 +89,7 @@ const TutorPanel = (props) => {
         <>
           <TutorProfile tutor={tutor} />
           <Divider />
-          <OfferForm tutor_id={tutor.TUTOR_ID} />
+          <OfferForm tutor_id={tutor.TUTOR_ID} tution={props.tution} />
         </>
       )}
     </div>

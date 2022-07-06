@@ -11,6 +11,7 @@
     width: $sidebar-width;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     .coaching-form {
       display: flex;
       flex-direction: column;
@@ -34,6 +35,39 @@
         color: rgb(232, 229, 229);
         background-color: #164a4e;
         width: 100%;
+      }
+    }
+  }
+  .coaching-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 0.5rem;
+    .profile-banner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      // align-items: center;
+      img {
+        margin: auto;
+      }
+      h3 {
+        @include flexCenter;
+      }
+      .banner-details {
+        // margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .vbox {
+        gap: 0.2rem;
+      }
+      .hbox {
+        justify-content: space-between;
       }
     }
   }

@@ -17,6 +17,7 @@ import {
   TuitionOffers,
   Coaching,
   MyCourses,
+  Applicants,
 } from "./pages";
 import Layout from "./components/Layout";
 import { Background } from "./components";
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/coachings" element={<Coachings />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/req_tutor" element={<RequestTutor />} />
+          <Route path="/req_tutor/applicants" element={<Applicants />} />
           <Route path="/my_tutors" element={<MyTutors />} />
           <Route path="/my_coachings" element={<MyCoachings />} />
           <Route path="/my_students" element={<MyStudents />} />

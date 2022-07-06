@@ -8,7 +8,12 @@ class TutorsController extends Controller {
   getTutorsList = async () => {
     const token = this.cookies.get("token");
     const result = await this.tutorsApi.getTutorsList(token);
-    return result.data;
+    return result;
+  };
+  getMyTutorsList = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getMyTutorsList(token);
+    return result;
   };
 }
 export default TutorsController;

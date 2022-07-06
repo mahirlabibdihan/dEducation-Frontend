@@ -4,7 +4,25 @@ import Api from "./base";
 class TutorsApi extends Api {
   getTutorsList = async (token) => {
     try {
-      let res = await axios.get(`${API_BASE_URL}/tutors`, {
+      let res = await axios.get(`${API_BASE_URL}/tutors/list`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      console.log("GOT TUTORS: ", res.data);
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getMyTutorsList = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/tutors/my_list`, {
         headers: { authorization: "Bearer " + token },
       });
       console.log("GOT TUTORS: ", res.data);

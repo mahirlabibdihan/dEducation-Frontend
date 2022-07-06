@@ -44,6 +44,7 @@ const ProfilePic = () => {
         }`}
         // onClick={() => ImageUpload()}
         alt=" "
+        className="shadow"
       />
       <input type="file" onChange={ImageUpload}></input>
       <div className="upload-image-icon">
@@ -66,6 +67,7 @@ export const PublicProfilePic = (props) => {
         }`}
         // onClick={() => ImageUpload()}
         alt=" "
+        className="shadow"
       />
     </>
   );

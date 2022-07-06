@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { Button, Grid } from "@mui/material";
 import TutionController from "../controller/tutionController";
 import GlobalContext from "../store/GlobalContext";
+import { useNavigate } from "react-router-dom";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const globalCtx = useContext(GlobalContext);
+  const navigate = new useNavigate();
   const data = props.data;
   const handleApply = async (event) => {
     const result = await tutionController.apply(data.POST_ID);
@@ -12,6 +14,10 @@ const TutionPost = (props) => {
     // if (result.success) {
     //   window.location.reload();
     // }
+  };
+  const handleApplicants = async (event) => {
+    globalCtx.setPostId(data.POST_ID);
+    navigate("/req_tutor/applicants");
   };
   const tutionPostDetails = [
     [
@@ -32,7 +38,12 @@ const TutionPost = (props) => {
     ],
   ];
   return (
-    <Grid className="tution-post">
+    <Grid
+      className="tution-post"
+      onClick={globalCtx.loggedInAs === "STUDENT" ? handleApplicants : () => {}}
+      // aria-hidden={globalCtx.loggedInAs === "STUDENT" ? "true" : "false"}
+      aria-hidden="true"
+    >
       <div className="hbox">
         {tutionPostDetails.map((row) => {
           return (

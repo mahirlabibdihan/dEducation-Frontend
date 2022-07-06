@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 @import "../../components/layout.scss";
+@import "../../components/components.scss";
 .coachings-container {
   display: flex;
   font-family: "Oswald", sans-serif;
@@ -47,6 +48,47 @@
         color: rgb(232, 229, 229);
         background-color: #164a4e;
         width: 100%;
+      }
+    }
+  }
+  .coaching-panel {
+    display: flex;
+    padding: 2rem;
+    width: $sidebar-width;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 0.5rem;
+    .join-button {
+      @include my-button;
+      margin: 0 auto;
+      font-size: 2rem;
+      color: rgb(232, 229, 229);
+      background-color: #164a4e;
+      width: 100%;
+    }
+    .profile-banner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      // align-items: center;
+      img {
+        margin: auto;
+      }
+      h3 {
+        @include flexCenter;
+      }
+      .banner-details {
+        // margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .vbox {
+        gap: 0.2rem;
+      }
+      .hbox {
+        justify-content: space-between;
       }
     }
   }
