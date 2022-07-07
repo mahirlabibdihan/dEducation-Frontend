@@ -13,3 +13,4 @@ export { default as MyCoachings } from "./My-Coachings";
 export { default as MyStudents } from "./My-Students";
 export { default as TuitionOffers } from "./Tuition-Offers";
 export { default as MyCourses } from "./My-Courses";
+export { default as Batches } from "./Batches";

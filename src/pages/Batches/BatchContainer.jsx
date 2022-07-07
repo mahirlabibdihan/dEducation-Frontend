@@ -1,27 +1,23 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import { StudentCourseCard, TutorCourseCard } from "./CourseCard";
+import BatchCard from "./BatchCard";
 import GlobalContext from "../../store/GlobalContext";
 
 // import InputField from "../../components/InputField";
 
 export const List = (props) => {
-  const globalCtx = useContext(GlobalContext);
   console.log(props);
   return (
     <div className="list">
-      {props.list.map((course, index) =>
-        globalCtx.loggedInAs === "TUTOR" ? (
-          <TutorCourseCard course={course} id={index} />
-        ) : (
-          <StudentCourseCard course={course} id={index} />
-        )
-      )}
+      {props.list.map((course, index) => (
+        <BatchCard course={course} id={index} />
+      ))}
     </div>
   );
 };
-const CourseContainer = (props) => {
+const BatchContainer = (props) => {
+  const globalCtx = useContext(GlobalContext);
   console.log(props);
   return (
     <div
@@ -36,4 +32,4 @@ const CourseContainer = (props) => {
   );
 };
 
-export default CourseContainer;
+export default BatchContainer;

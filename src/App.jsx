@@ -18,6 +18,7 @@ import {
   Coaching,
   MyCourses,
   Applicants,
+  Batches,
 } from "./pages";
 import Layout from "./components/Layout";
 import { Background } from "./components";
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/tuition_offers" element={<TuitionOffers />} />
           <Route path="/coaching" element={<Coaching />} />
           <Route path="/my_courses" element={<MyCourses />} />
+          <Route path="/my_courses/batches" element={<Batches />} />
         </Route>
         <Route element={<Public />}>
           <Route path="/" element={<Landing />} />

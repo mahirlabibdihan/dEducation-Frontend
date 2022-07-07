@@ -4,6 +4,7 @@ const GlobalContextProvider = (props) => {
   const [loggedInAs, setLoggedInAs] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [postId, setPostId] = useState(-1);
+  const [courseId, setCourseId] = useState(-1);
   const val = {
     loggedInAs,
     setLoggedInAs,
@@ -11,6 +12,8 @@ const GlobalContextProvider = (props) => {
     setSelectedIndex,
     postId,
     setPostId,
+    courseId,
+    setCourseId,
   };
   return (
     <GlobalContext.Provider value={val}>

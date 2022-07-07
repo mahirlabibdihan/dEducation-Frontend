@@ -1,5 +1,5 @@
 export default class Controller {
   constructor() {
-    console.log("Base");
+    // console.log("Base");
   }
 }

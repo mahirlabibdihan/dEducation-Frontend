@@ -30,7 +30,7 @@ const TutorProfileSettings = () => {
       subjects: data.SUBJECTS,
       salary: data.PREFFERED_SALARY,
       experience: data.YEARS_OF_EXPERIENCE,
-      status: data.STATUS,
+      status: data.AVAILABILITY,
     });
   };
   useEffect(() => {

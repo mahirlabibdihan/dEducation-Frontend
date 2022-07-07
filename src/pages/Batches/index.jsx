@@ -8,26 +8,20 @@ import TutionController from "../../controller/tutionController";
 import ProfileController from "../../controller/profileController";
 import SearchBox from "../Tuition-Offers/SearchBox";
 import CourseController from "../../controller/courseController";
-import { StudentCourseForm, TutorCourseForm } from "./CourseForm";
-import CourseContainer from "./CourseContainer";
-import "./my-courses.scss";
+import { BatchForm } from "./BatchForm";
+import BatchContainer from "./BatchContainer";
+import "./batches.scss";
 const studentsController = new StudentsController();
 const courseController = new CourseController();
 
-const MyCourses = () => {
+const Batches = () => {
   const globalCtx = useContext(GlobalContext);
-  const [courseList, setCourseList] = useState([]);
+  const [batchList, setBatchList] = useState([]);
   const [course, setCourse] = useState({});
   const navigate = useNavigate();
   const setList = async () => {
-    if (globalCtx.loggedInAs === "TUTOR") {
-      const list = await courseController.getMyListAdmin();
-      setCourseList(list.data);
-    } else {
-      console.log("STUDENT");
-      const list = await courseController.getMyList();
-      setCourseList(list.data);
-    }
+    const list = await courseController.getBatches(globalCtx.courseId);
+    setBatchList(list.data);
   };
   useEffect(() => {
     setList();
@@ -35,29 +29,25 @@ const MyCourses = () => {
 
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
-      setCourse(courseList[globalCtx.selectedIndex]);
+      setCourse(batchList[globalCtx.selectedIndex]);
   }, [globalCtx.selectedIndex]);
 
-  const CourseList = () => {
-    return <CourseContainer header="My Courses" list={courseList} />;
+  const BatchList = () => {
+    return <BatchContainer header="Batches" list={batchList} />;
   };
   const RightPanel = () => {
     return (
       <div className="right-panel">
-        {globalCtx.loggedInAs === "TUTOR" ? (
-          <TutorCourseForm />
-        ) : (
-          <StudentCourseForm />
-        )}
+        <BatchForm />
       </div>
     );
   };
   return (
-    <Grid className="my-course-container">
-      <CourseList />
+    <Grid className="batch-container">
+      <BatchList />
       <RightPanel />
     </Grid>
   );
 };
 
-export default MyCourses;
+export default Batches;

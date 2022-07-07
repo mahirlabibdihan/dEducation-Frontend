@@ -21,13 +21,9 @@ const MyCoachings = () => {
     setList();
   }, []);
 
-  const setCoachingProfile = async () => {
+  useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setCoaching(coachingsList[globalCtx.selectedIndex]);
-  };
-
-  useEffect(() => {
-    setCoachingProfile();
   }, [globalCtx.selectedIndex]);
   const CoachingCreator = () => {
     return (

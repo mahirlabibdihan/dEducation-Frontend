@@ -40,14 +40,15 @@
       }
     }
   }
-  .search-filter {
+  .right-panel {
     display: flex;
     padding: 2rem;
     width: $sidebar-width;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    .search-box {
+    min-height: 100vh;
+    overflow: auto;
+    .course-form {
       display: flex;
       flex-direction: column;
       margin: auto;

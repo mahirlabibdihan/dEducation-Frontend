@@ -43,6 +43,7 @@ const profileController = new ProfileController();
 const Layout = (props) => {
   // const globalCtx = useContext(GlobalContext);
   const location = useLocation();
+  console.log("Location:", location.pathname.split("/")[1]);
   const navigate = useNavigate();
   const [type, setType] = useState("");
   const globalCtx = useContext(GlobalContext);
@@ -101,8 +102,9 @@ const Layout = (props) => {
         ].map((button, index) => (
           <ListItemButton
             className={
-              (button.path === location.pathname ? "active-" : "") +
-              "side-button"
+              (button.path.split("/")[1] === location.pathname.split("/")[1]
+                ? "active-"
+                : "") + "side-button"
             }
             component={Button}
             onClick={() => {
@@ -161,8 +163,9 @@ const Layout = (props) => {
         ].map((button, index) => (
           <ListItemButton
             className={
-              (button.path === location.pathname ? "active-" : "") +
-              "side-button"
+              (button.path.split("/")[1] === location.pathname.split("/")[1]
+                ? "active-"
+                : "") + "side-button"
             }
             component={Button}
             onClick={() => {

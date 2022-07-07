@@ -21,7 +21,7 @@ const Coachings = () => {
 
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
-      setCoaching(globalCtx.selectedIndex[globalCtx.selectedIndex]);
+      setCoaching(coachingsList[globalCtx.selectedIndex]);
   }, [globalCtx.selectedIndex]);
   const CoachingsList = () => {
     return <ListContainer header="Coachings" list={coachingsList} />;

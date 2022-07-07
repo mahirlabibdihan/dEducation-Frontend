@@ -21,6 +21,7 @@ class CoachingApi extends Api {
     }
   };
   getMyList = async (token) => {
+    console.log("GET COACHING");
     try {
       let result = await axios.get(`${API_BASE_URL}/coaching/my_list`, {
         headers: { authorization: "Bearer " + token },

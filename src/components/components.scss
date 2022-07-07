@@ -184,6 +184,7 @@ $bg-color: grey;
   }
   .apply-button {
     @include my-button;
+    margin-top: 0.8rem;
     font-size: 1.5rem;
     color: rgba(22, 52, 78, 1);
     background-image: linear-gradient(

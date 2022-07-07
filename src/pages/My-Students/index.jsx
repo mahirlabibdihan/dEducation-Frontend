@@ -8,7 +8,7 @@ import GlobalContext from "../../store/GlobalContext";
 import StudentPanel from "./StudentPanel";
 import TutionController from "../../controller/tutionController";
 import ProfileController from "../../controller/profileController";
-import SearchBox from "../Tuition-Offers/SearchBox";
+import SearchBox from "./SearchBox";
 const studentsController = new StudentsController();
 
 const MyStudents = () => {
@@ -36,7 +36,7 @@ const MyStudents = () => {
   };
   const SearchFilter = () => {
     return (
-      <div className="search-filter">
+      <div className="course-form">
         <SearchBox />
       </div>
     );
@@ -45,7 +45,7 @@ const MyStudents = () => {
     return (
       <div className="right-panel">
         {student === undefined || globalCtx.selectedIndex === -1 ? (
-          <SearchFilter />
+          <SearchBox />
         ) : (
           <StudentPanel student={student} />
         )}
