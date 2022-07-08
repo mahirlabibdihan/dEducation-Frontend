@@ -11,13 +11,16 @@ import "./my-courses.scss";
 import SelectionField from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import GlobalContext from "../../store/GlobalContext";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
 export const TutorCourseForm = () => {
+  const globalCtx = useContext(GlobalContext);
   const [coachingsList, setCoachingsList] = useState([]);
   const location = useLocation();
-  const [values, setValues] = useState({
+  const initValues = {
     coaching: "",
     class: "",
     subject: "",
@@ -25,7 +28,8 @@ export const TutorCourseForm = () => {
     days: "",
     time: "",
     seats: "",
-  });
+  };
+  const [values, setValues] = useState(initValues);
   const setList = async () => {
     const result = await coachingController.getMyList();
     setCoachingsList(result.data);
@@ -39,6 +43,10 @@ export const TutorCourseForm = () => {
   const createCourse = async (event) => {
     console.log(values);
     const result = await courseController.create(values);
+    if (result.success) {
+      globalCtx.setPendingUpdate(true);
+      setValues(initValues);
+    }
     // if (result.success) location.reload();
   };
   return (
@@ -171,19 +179,20 @@ export const CoachingSelectionField = (props) => {
 };
 
 export const StudentCourseForm = () => {
+  const globalCtx = useContext(GlobalContext);
   const [coachingsList, setCoachingsList] = useState([
     // { NAME: "None", COACHING_ID: -1 },
   ]);
-  const [coaching, setCoaching] = useState();
   const [classList, setClassList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [batchList, setBatchList] = useState([]);
-  const [values, setValues] = useState({
+  const initValues = {
     coaching: "",
     class: "",
     subject: "",
     batch: "",
-  });
+  };
+  const [values, setValues] = useState(initValues);
   const setCoachingOptions = async () => {
     var result = await coachingController.getMyList();
     setCoachingsList(result.data);
@@ -221,13 +230,13 @@ export const StudentCourseForm = () => {
     // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
-    setClassOptions();
+    if (values.coaching !== "") setClassOptions();
   }, [values.coaching]);
   useEffect(() => {
-    setSubjectOptions();
+    if (values.class !== "") setSubjectOptions();
   }, [values.class]);
   useEffect(() => {
-    setBatchOptions();
+    if (values.subject !== "") setBatchOptions();
   }, [values.subject]);
 
   const handleChange = (prop) => (event) => {
@@ -244,6 +253,13 @@ export const StudentCourseForm = () => {
       course.data.COURSE_ID,
       values.batch
     );
+    if (result.success) {
+      globalCtx.setPendingUpdate(true);
+      setValues(initValues);
+      setClassList([]);
+      setSubjectList([]);
+      setBatchList([]);
+    }
   };
   return (
     <div className="course-form">

@@ -34,7 +34,7 @@ const SearchBox = () => {
             id: "days_per_week",
             value: values.days_per_week,
           },
-        ].map((field, index) => (
+        ].map((field) => (
           <InputField2
             label={field.label}
             type="text"

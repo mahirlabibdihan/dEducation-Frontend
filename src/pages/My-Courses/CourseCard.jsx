@@ -2,30 +2,31 @@ import React, { useState, useContext, useEffect } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "../../components/components.scss";
 import CourseController from "../../controller/courseController";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 const courseController = new CourseController();
 export const StudentCourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log("Clicked");
-    // if (globalCtx.selectedIndex === props.id) globalCtx.setSelectedIndex(-1);
-    // else globalCtx.setSelectedIndex(props.id);
-    if (globalCtx.loggedInAs === "TUTOR") {
-      globalCtx.setCourseId(props.course.COURSE_ID);
-      navigate("/my_courses/batches");
-    }
+    // console.log("Clicked");
+    // // if (globalCtx.selectedIndex === props.id) globalCtx.setSelectedIndex(-1);
+    // // else globalCtx.setSelectedIndex(props.id);
+    // if (globalCtx.loggedInAs === "TUTOR") {
+    //   globalCtx.setCourseId(props.course.COURSE_ID);
+    //   navigate("/my_courses/batches");
+    // }
   };
   useEffect(() => {
     // console.log(globalCtx.selectedIndex, props.user.USER_ID);
   }, [globalCtx.selectedIndex]);
   return (
     <div
-      className={`${
-        globalCtx.selectedIndex === props.id ? "active-" : ""
-      }course-card student`}
+      // `${
+      //   globalCtx.selectedIndex === props.id ? "active-" : ""
+      // }
+      className={`course-card student`}
       aria-hidden="true"
-      onClick={handleClick}
+      // onClick={handleClick}
     >
       <h6>{`Coaching: ${props.course.NAME}`}</h6>
       <h6>{`Class: ${props.course.CLASS}`}</h6>
@@ -45,8 +46,14 @@ export const TutorCourseCard = (props) => {
     // if (globalCtx.selectedIndex === props.id) globalCtx.setSelectedIndex(-1);
     // else globalCtx.setSelectedIndex(props.id);
     if (globalCtx.loggedInAs === "TUTOR") {
-      globalCtx.setCourseId(props.course.COURSE_ID);
-      navigate("/my_courses/batches");
+      // globalCtx.setCourseId(props.course.COURSE_ID);
+      // navigate("/my_courses/batches");
+      navigate({
+        pathname: "/my_courses/batches",
+        search: createSearchParams({
+          course_id: props.course.COURSE_ID,
+        }).toString(),
+      });
     }
   };
   useEffect(() => {
@@ -54,9 +61,10 @@ export const TutorCourseCard = (props) => {
   }, [globalCtx.selectedIndex]);
   return (
     <div
-      className={`${
-        globalCtx.selectedIndex === props.id ? "active-" : ""
-      }course-card tutor`}
+      // ${
+      //   globalCtx.selectedIndex === props.id ? "active-" : ""
+      // }
+      className={`course-card tutor`}
       aria-hidden="true"
       onClick={handleClick}
     >

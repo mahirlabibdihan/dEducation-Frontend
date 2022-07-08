@@ -6,6 +6,7 @@ import { Background } from "../../components";
 import "./landing.scss";
 import Button from "@mui/material/Button";
 import GlobalContext from "../../store/GlobalContext";
+import { createSearchParams } from "react-router-dom";
 // import background from "../../public/images/home-background.jpg";
 // import { StyledEngineProvider } from "@mui/material/styles";
 // import Background from "../components/background/Background";
@@ -19,7 +20,13 @@ const Home = () => {
           onClick={() => {
             setTimeout(() => {
               globalCtx.setLoggedInAs("STUDENT");
-              navigate("/login");
+              // navigate("/login");
+              navigate({
+                pathname: "/login",
+                search: createSearchParams({
+                  type: "STUDENT",
+                }).toString(),
+              });
             }, 300);
           }}
           variant="contained"
@@ -31,7 +38,13 @@ const Home = () => {
           onClick={() => {
             setTimeout(() => {
               globalCtx.setLoggedInAs("TUTOR");
-              navigate("/login");
+              // navigate("/login");
+              navigate({
+                pathname: "/login",
+                search: createSearchParams({
+                  type: "TUTOR",
+                }).toString(),
+              });
             }, 300);
           }}
           variant="contained"

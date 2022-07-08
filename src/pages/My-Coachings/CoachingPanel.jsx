@@ -37,17 +37,7 @@ const CoachingPanel = (props) => {
       {props.coaching === undefined ? (
         <></>
       ) : (
-        <>
-          <CoachingBanner coaching={props.coaching} />
-          {/* <Divider /> */}
-          {/* <Button
-            variant="contained"
-            className="courses-button"
-            onClick={handleCourse}
-          >
-            Courses
-          </Button> */}
-        </>
+        <CoachingBanner coaching={props.coaching} />
       )}
     </div>
   );

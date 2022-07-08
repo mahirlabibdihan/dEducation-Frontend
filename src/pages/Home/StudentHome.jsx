@@ -71,10 +71,10 @@ const StudentHome = () => {
   const DashBoard = () => {
     return (
       <div className="dash-board">
-        <ListContainer header="Tutors" path="/tutors" list={tutorsList} />
+        <ListContainer header="Tutors" path="/home/tutors" list={tutorsList} />
         <ListContainer
           header="Coachings"
-          path="/coachings"
+          path="/home/coachings"
           list={coachingsList}
         />
       </div>

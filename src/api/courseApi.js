@@ -157,6 +157,29 @@ class CourseApi extends Api {
       };
     }
   };
+  getStudents = async (data, token) => {
+    try {
+      let result = await axios.post(
+        `${API_BASE_URL}/courses/students`,
+        {
+          data: data,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (result.status === 200) {
+        return {
+          success: true,
+          data: result.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
   getMyListAdmin = async (token) => {
     try {
       let result = await axios.get(`${API_BASE_URL}/courses/my_list_admin`, {

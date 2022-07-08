@@ -10,6 +10,7 @@ import SearchBox from "../Tuition-Offers/SearchBox";
 import CourseController from "../../controller/courseController";
 import { BatchForm } from "./BatchForm";
 import BatchContainer from "./BatchContainer";
+import { useSearchParams } from "react-router-dom";
 import "./batches.scss";
 const studentsController = new StudentsController();
 const courseController = new CourseController();
@@ -18,14 +19,23 @@ const Batches = () => {
   const globalCtx = useContext(GlobalContext);
   const [batchList, setBatchList] = useState([]);
   const [course, setCourse] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const setList = async () => {
-    const list = await courseController.getBatches(globalCtx.courseId);
+    const list = await courseController.getBatches(
+      searchParams.get("course_id")
+    );
     setBatchList(list.data);
   };
   useEffect(() => {
     setList();
   }, []);
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
 
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)

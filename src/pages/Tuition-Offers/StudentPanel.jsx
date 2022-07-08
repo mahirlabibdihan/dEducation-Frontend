@@ -30,9 +30,15 @@ const StudentPanel = (props) => {
   const offer = props.offer;
   const acceptOffer = async () => {
     const result = await tutionController.acceptOffer(offer.STUDENT_ID);
+    if (result.success) {
+      window.location.reload();
+    }
   };
   const rejectOffer = async () => {
     const result = await tutionController.rejectOffer(offer.STUDENT_ID);
+    if (result.success) {
+      window.location.reload();
+    }
   };
   return (
     <div className="student-panel">

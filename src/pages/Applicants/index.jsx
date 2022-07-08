@@ -5,7 +5,8 @@ import { InputField2 } from "../../components/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import SearchBox from "./SearchBox";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import ListContainer from "../../components/ListContainer";
 import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
@@ -16,18 +17,23 @@ import TutionController from "../../controller/tutionController";
 const tutionController = new TutionController();
 const tutorsController = new TutorsController();
 const profileController = new ProfileController();
+
 // import InputField from "../../components/InputField";
 
 const Applicants = () => {
   const globalCtx = useContext(GlobalContext);
   const [tutor, setTutor] = useState({});
   const [tutorsList, setTutorsList] = useState([]);
+  let [searchParams, setSearchParams] = useSearchParams();
   const setList = async () => {
-    const list = await tutionController.getApplicants(globalCtx.postId);
+    const list = await tutionController.getApplicants(
+      searchParams.get("post_id")
+    );
     console.log("APPLICANTS", list.data[0]);
     setTutorsList(list.data);
   };
   useEffect(() => {
+    console.log("ID:", searchParams.get("post_id"));
     setList();
   }, []);
 

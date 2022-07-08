@@ -9,9 +9,12 @@ import StudentPanel from "./StudentPanel";
 import TutionController from "../../controller/tutionController";
 import ProfileController from "../../controller/profileController";
 import SearchBox from "./SearchBox";
+import { useSearchParams } from "react-router-dom";
+import CourseController from "../../controller/courseController";
 const studentsController = new StudentsController();
-
+const courseController = new CourseController();
 const MyStudents = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
   const [studentsList, setStudentsList] = useState([]);
   const [student, setStudent] = useState({});
@@ -21,11 +24,34 @@ const MyStudents = () => {
     const list = await studentsController.getMyStudentsList();
     setStudentsList(list.data);
   };
+  const setFilteredList = async (data) => {
+    const list = await courseController.getStudents(data);
+    console.log("NEW:", list.data);
+    setStudentsList(list.data);
+  };
   useEffect(() => {
     setList();
     console.log(studentsList);
   }, []);
 
+  useEffect(() => {
+    console.log("###NEEDS UPDATE###");
+    console.log("Coaching:", searchParams.get("coaching"));
+    console.log("Class:", searchParams.get("class"));
+    globalCtx.setPendingUpdate(false);
+  }, globalCtx.pendingUpdate);
+  useEffect(() => {
+    if (searchParams.get("coaching") === null) {
+      setList();
+    } else {
+      setFilteredList({
+        coaching: searchParams.get("coaching"),
+        class: searchParams.get("class"),
+        subject: searchParams.get("subject"),
+        batch: searchParams.get("batch"),
+      });
+    }
+  }, [searchParams]);
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setStudent(studentsList[globalCtx.selectedIndex]);

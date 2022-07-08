@@ -18,6 +18,9 @@ const CoachingForm = () => {
   };
   const createCoaching = async (event) => {
     const result = await coachingController.create(values);
+    if (result.success) {
+      window.location.reload();
+    }
   };
   return (
     <div className="coaching-form">

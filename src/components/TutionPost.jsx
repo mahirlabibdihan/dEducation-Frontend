@@ -16,14 +16,14 @@ const TutionPost = (props) => {
     // }
   };
   const handleApplicants = async (event) => {
-    globalCtx.setPostId(data.POST_ID);
-    // navigate({
-    //   pathname: "/req_tutor/applicants",
-    //   search: createSearchParams({
-    //     post_id: data.POST_ID,
-    //   }).toString(),
-    // });
-    navigate("/req_tutor/applicants");
+    // globalCtx.setPostId(data.POST_ID);
+    navigate({
+      pathname: "/req_tutor/applicants",
+      search: createSearchParams({
+        post_id: data.POST_ID,
+      }).toString(),
+    });
+    // navigate("/req_tutor/applicants");
   };
   const tutionPostDetails = [
     [

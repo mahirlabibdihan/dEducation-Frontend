@@ -23,6 +23,7 @@ const SelectionField = (props) => {
           <MenuItem
             key={value}
             value={value}
+            // sx={{ height: "2rem" }}
             // style={getStyles(name, personName, theme)}
           >
             {value}

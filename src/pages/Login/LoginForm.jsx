@@ -10,6 +10,7 @@ import EyeIcon from "../../components/EyeIcon";
 import { login } from "../../api/authApi";
 import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
+import { useSearchParams } from "react-router-dom";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -18,10 +19,11 @@ const LoginForm = (props) => {
   const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   const authController = new AuthController();
+  let [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
-    if (globalCtx.loggedInAs === "") {
-      navigate("/");
-    }
+    // if (globalCtx.loggedInAs === "") {
+    //   navigate("/");
+    // }
   }, [globalCtx.loggedInAs]);
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ const LoginForm = (props) => {
       await authController.login({
         email: email,
         pass: pass,
-        type: globalCtx.loggedInAs,
+        type: searchParams.get("type"),
       })
     ) {
       navigate("/home");
@@ -77,7 +79,7 @@ const LoginForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow login-form ${props.className}`}
     >
-      <h1 className="form-header">{globalCtx.loggedInAs}</h1>
+      <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField
         label="Email Address"
         type="email"

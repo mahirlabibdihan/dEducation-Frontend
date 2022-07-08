@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Divider, Typography } from "@mui/material";
 import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
@@ -9,12 +9,16 @@ import {
 } from "../My-Courses/CourseForm";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
+import { useSearchParams } from "react-router-dom";
+import GlobalContext from "../../store/GlobalContext";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 const SearchBox = () => {
+  const globalCtx = useContext(GlobalContext);
   const [coachingsList, setCoachingsList] = useState([
     { NAME: "Tution", COACHING_ID: -1 },
   ]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [coaching, setCoaching] = useState();
   const [classList, setClassList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
@@ -39,11 +43,16 @@ const SearchBox = () => {
       values.class,
       values.subject
     );
-    setBatchList(result.data);
+    // const list = [{ NAME: "Tution", BATCH_ID: -1 }];
+    const list = [];
+    for (let i = 0; i < result.data.length; i++) {
+      list.push(result.data[i]);
+    }
+    setBatchList(list);
   };
   const setClassOptions = async () => {
     const result = await courseController.getClassOptions(values.coaching);
-    const list = [];
+    const list = [""];
     for (let i = 0; i < result.data.length; i++) {
       list.push(result.data[i].CLASS);
     }
@@ -55,7 +64,7 @@ const SearchBox = () => {
       values.coaching,
       values.class
     );
-    const list = [];
+    const list = [""];
     for (let i = 0; i < result.data.length; i++) {
       list.push(result.data[i].SUBJECT);
     }
@@ -66,29 +75,67 @@ const SearchBox = () => {
     // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
-    setClassOptions();
+    setValues({
+      coaching: values.coaching,
+      class: "",
+      subject: "",
+      batch: "",
+    });
+    if (values.coaching !== -1) {
+      setClassOptions();
+    } else {
+      setClassList([]);
+    }
+    setSubjectList([]);
+    setBatchList([]);
   }, [values.coaching]);
   useEffect(() => {
-    setSubjectOptions();
+    setValues({
+      coaching: values.coaching,
+      class: values.class,
+      subject: "",
+      batch: "",
+    });
+    if (values.class !== "") setSubjectOptions();
+    else {
+      setSubjectList([]);
+    }
+    setBatchList([]);
   }, [values.class]);
   useEffect(() => {
-    setBatchOptions();
+    setValues({
+      coaching: values.coaching,
+      class: values.class,
+      subject: values.subject,
+      batch: "",
+    });
+    if (values.subject !== "") setBatchOptions();
+    else {
+      setBatchList([]);
+    }
   }, [values.subject]);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
-  const enrollCourse = async (event) => {
-    // const course = await courseController.getCourseId(
-    //   values.coaching,
-    //   values.class,
-    //   values.subject
-    // );
-    // console.log("ID", course);
-    // const result = await courseController.enroll(
-    //   course.data.COURSE_ID,
-    //   values.batch
-    // );
+  const handleSearch = async (event) => {
+    let result;
+    console.log(values);
+    const tmp = new URLSearchParams();
+    if (values.coaching !== -1) {
+      tmp.set("coaching", values.coaching);
+    }
+    if (values.class !== "") {
+      tmp.set("class", values.class);
+    }
+    if (values.subject !== "") {
+      tmp.set("subject", values.subject);
+    }
+    if (values.batch !== "") {
+      tmp.set("batch", values.batch);
+    }
+    setSearchParams(tmp);
+    globalCtx.setPendingUpdate(true);
   };
   return (
     <div className="course-form">
@@ -131,7 +178,7 @@ const SearchBox = () => {
       <Button
         variant="contained"
         className="apply-button"
-        // onClick={enrollCourse}
+        onClick={handleSearch}
       >
         Apply
       </Button>

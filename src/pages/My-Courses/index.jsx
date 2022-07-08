@@ -11,6 +11,10 @@ import CourseController from "../../controller/courseController";
 import { StudentCourseForm, TutorCourseForm } from "./CourseForm";
 import CourseContainer from "./CourseContainer";
 import "./my-courses.scss";
+import Cookies from "universal-cookie";
+
+// import InputField from "../../components/InputField";
+const cookies = new Cookies();
 const studentsController = new StudentsController();
 const courseController = new CourseController();
 
@@ -19,8 +23,9 @@ const MyCourses = () => {
   const [courseList, setCourseList] = useState([]);
   const [course, setCourse] = useState({});
   const navigate = useNavigate();
+  const type = cookies.get("type");
   const setList = async () => {
-    if (globalCtx.loggedInAs === "TUTOR") {
+    if (type === "TUTOR") {
       const list = await courseController.getMyListAdmin();
       setCourseList(list.data);
     } else {
@@ -30,6 +35,7 @@ const MyCourses = () => {
     }
   };
   useEffect(() => {
+    console.log("TYPE: ", type);
     setList();
   }, []);
 
@@ -37,6 +43,13 @@ const MyCourses = () => {
     if (globalCtx.selectedIndex !== -1)
       setCourse(courseList[globalCtx.selectedIndex]);
   }, [globalCtx.selectedIndex]);
+
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
 
   const CourseList = () => {
     return <CourseContainer header="My Courses" list={courseList} />;

@@ -40,7 +40,7 @@ const TuitionOffers = () => {
     return (
       <div className="right-panel">
         {offer === undefined || globalCtx.selectedIndex === -1 ? (
-          <SearchFilter />
+          <></>
         ) : (
           <StudentPanel offer={offer} />
         )}

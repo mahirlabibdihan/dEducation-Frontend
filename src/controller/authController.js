@@ -6,10 +6,15 @@ class AuthController extends Controller {
   authApi = new AuthApi();
   cookies = new Cookies();
   login = async (data) => {
+    console.log(data);
     const result = await this.authApi.login(data);
     console.log(result);
     if (result.success) {
       this.cookies.set("token", result.token, {
+        path: "/",
+        maxAge: COOKIE_AGE,
+      });
+      this.cookies.set("type", data.type, {
         path: "/",
         maxAge: COOKIE_AGE,
       });

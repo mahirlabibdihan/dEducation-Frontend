@@ -55,6 +55,11 @@ class CourseController extends Controller {
     );
     return result;
   };
+  getStudents = async (data) => {
+    const token = this.cookies.get("token");
+    const result = await this.courseApi.getStudents(data, token);
+    return result;
+  };
   getBatches = async (course_id) => {
     const token = this.cookies.get("token");
     const result = await this.courseApi.getBatches(course_id, token);

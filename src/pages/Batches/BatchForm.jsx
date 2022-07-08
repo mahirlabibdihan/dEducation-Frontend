@@ -11,17 +11,20 @@ import "./batches.scss";
 import SelectionField from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
 import GlobalContext from "../../store/GlobalContext";
+import { useSearchParams } from "react-router-dom";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
 export const BatchForm = () => {
   const globalCtx = useContext(GlobalContext);
-  const [values, setValues] = useState({
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initValues = {
     start: "",
     days: "",
     time: "",
     seats: "",
-  });
+  };
+  const [values, setValues] = useState(initValues);
   useEffect(() => {
     // setList();
   }, []);
@@ -29,7 +32,14 @@ export const BatchForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const addBatch = async (event) => {
-    const result = await courseController.addBatch(globalCtx.courseId, values);
+    const result = await courseController.addBatch(
+      searchParams.get("course_id"),
+      values
+    );
+    if (result.success) {
+      globalCtx.setPendingUpdate(true);
+      setValues(initValues);
+    }
   };
   return (
     <div className="batch-form">
