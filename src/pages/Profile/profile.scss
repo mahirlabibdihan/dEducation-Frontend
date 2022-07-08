@@ -77,6 +77,9 @@
           }
         }
       }
+      .h2 {
+        text-align: center;
+      }
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,8 +95,14 @@
         font-size: x-large;
       }
       .input-fields {
-        padding-bottom: 1.5rem;
-        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // padding: 1rem 0;
+        gap: 1rem;
+        width: 100%;
+        padding-bottom: 1rem;
+        // padding-top: 1rem;
       }
       .change-button {
         width: 100%;
@@ -115,6 +124,7 @@
       flex-direction: column;
       align-items: center;
       padding: 1rem 0;
+      gap: 1rem;
     }
   }
   .save-button {

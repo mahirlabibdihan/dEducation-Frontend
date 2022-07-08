@@ -109,6 +109,30 @@ class CoachingApi extends Api {
       };
     }
   };
+  getStudents = async (coaching_id, token) => {
+    try {
+      const result = await axios.post(
+        `${API_BASE_URL}/coaching/students`,
+        {
+          coaching_id: coaching_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      console.log("GOT STUDENT: ", result.data);
+      if (result.status === 200) {
+        return {
+          success: true,
+          data: result.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
 }
 
 export default CoachingApi;

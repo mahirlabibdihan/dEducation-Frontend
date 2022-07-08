@@ -33,7 +33,7 @@ const Private = () => {
       <Outlet />
     </Layout>
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/" />
   );
 };
 const Public = () => {

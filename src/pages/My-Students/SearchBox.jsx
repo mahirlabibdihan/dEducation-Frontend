@@ -36,6 +36,37 @@ const SearchBox = () => {
       list.push(result.data[i]);
     }
     setCoachingsList(list);
+    // const coaching_id = searchParams.get("coaching");
+    // const class_name = searchParams.get("class");
+    // const subject = searchParams.get("subject");
+    // const batch = searchParams.get("batch");
+    // console.log("BATCH: ", batch);
+    // if (coaching_id !== null) {
+    //   if (coachingsList.length > 1)
+    //     setValues({ ...values, coaching: coaching_id });
+    //   if (class_name !== null) {
+    //     await setClassOptions();
+    //     if (classList.length > 0) setValues({ ...values, class: class_name });
+    //     if (subject !== null) {
+    //       await setSubjectOptions();
+    //       if (subjectList.length > 0)
+    //         setValues({ ...values, subject: subject });
+    //       if (batch !== null) {
+    //         await setBatchOptions();
+    //         if (batchList.length > 0) setValues({ ...values, batch: batch });
+    //       }
+    //     }
+    //   }
+    // }
+    // setValues({ ...values, class: class_name === null ? "" : class_name });
+    // setValues({ ...values, subject: subject === null ? "" : subject });
+    // setValues({ ...values, batch: batch === null ? "" : batch });
+    // setValues({
+    //   coaching: coaching_id === null ? -1 : coaching_id,
+    //   class: class_name === null ? "" : class_name,
+    //   subject: subject === null ? "" : subject,
+    //   batch: batch === null ? "" : batch,
+    // });
   };
   const setBatchOptions = async () => {
     var result = await courseController.getBatchOptions(
@@ -71,10 +102,12 @@ const SearchBox = () => {
     setSubjectList(list);
   };
   useEffect(() => {
-    setCoachingOptions();
+    console.log("MOunt");
+    if (coachingsList.length === 1) setCoachingOptions();
     // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
+    console.log("Update", values.coaching);
     setValues({
       coaching: values.coaching,
       class: "",
@@ -136,6 +169,7 @@ const SearchBox = () => {
     }
     setSearchParams(tmp);
     globalCtx.setPendingUpdate(true);
+    console.log("->", values.coaching);
   };
   return (
     <div className="course-form">

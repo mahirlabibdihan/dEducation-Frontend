@@ -54,7 +54,7 @@ export const TutorCourseForm = () => {
       <h1 className="header">New Course</h1>
       <Divider />
       <div className="input-fields">
-        <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+        <FormControl fullWidth className="input-field" variant="outlined">
           <InputLabel htmlFor="outlined-adornment" className="input-label">
             {"Coaching"}
           </InputLabel>
@@ -113,7 +113,7 @@ export const TutorCourseForm = () => {
 
 export const BatchSelectionField = (props) => {
   return (
-    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+    <FormControl fullWidth className="input-field" variant="outlined">
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {"Batch"}
       </InputLabel>
@@ -150,7 +150,7 @@ export const BatchSelectionField = (props) => {
 };
 export const CoachingSelectionField = (props) => {
   return (
-    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+    <FormControl fullWidth className="input-field" variant="outlined">
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {"Coaching"}
       </InputLabel>

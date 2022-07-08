@@ -11,8 +11,10 @@ import ProfileController from "../../controller/profileController";
 import SearchBox from "./SearchBox";
 import { useSearchParams } from "react-router-dom";
 import CourseController from "../../controller/courseController";
+import CoachingController from "../../controller/coachingController";
 const studentsController = new StudentsController();
 const courseController = new CourseController();
+const coachingController = new CoachingController();
 const MyStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
@@ -25,25 +27,36 @@ const MyStudents = () => {
     setStudentsList(list.data);
   };
   const setFilteredList = async (data) => {
-    const list = await courseController.getStudents(data);
-    console.log("NEW:", list.data);
-    setStudentsList(list.data);
+    if (data.class === null) {
+      const list = await coachingController.getStudents(data.coaching);
+      console.log("NEW:", list.data);
+      setStudentsList(list.data);
+    } else {
+      const list = await courseController.getStudents(data);
+      console.log("NEW:", list.data);
+      setStudentsList(list.data);
+    }
   };
-  useEffect(() => {
-    setList();
-    console.log(studentsList);
-  }, []);
 
-  useEffect(() => {
-    console.log("###NEEDS UPDATE###");
-    console.log("Coaching:", searchParams.get("coaching"));
-    console.log("Class:", searchParams.get("class"));
-    globalCtx.setPendingUpdate(false);
-  }, globalCtx.pendingUpdate);
   useEffect(() => {
     if (searchParams.get("coaching") === null) {
       setList();
     } else {
+      console.log("APPLY");
+      setFilteredList({
+        coaching: searchParams.get("coaching"),
+        class: searchParams.get("class"),
+        subject: searchParams.get("subject"),
+        batch: searchParams.get("batch"),
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (searchParams.get("coaching") === null) {
+      setList();
+    } else {
+      console.log("APPLY");
       setFilteredList({
         coaching: searchParams.get("coaching"),
         class: searchParams.get("class"),

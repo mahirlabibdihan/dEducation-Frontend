@@ -33,9 +33,13 @@
     }
   }
   .login-link {
-    text-decoration-color: none;
+    cursor: pointer;
+    color: grey;
+    text-decoration: underline;
+    text-decoration-color: grey;
     &:hover {
-      text-decoration-color: grey;
+      // text-decoration-color: black;
+      color: rgb(88, 88, 88);
     }
   }
 }

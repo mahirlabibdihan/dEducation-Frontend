@@ -3,8 +3,11 @@ import { Divider, Typography } from "@mui/material";
 import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import TutionController from "../../controller/tutionController";
+import { useContext } from "react";
+import GlobalContext from "../../store/GlobalContext";
 const tutionController = new TutionController();
 const RequestForm = () => {
+  const globalCtx = useContext(GlobalContext);
   const [values, setValues] = useState({
     type: "",
     desired_tutor_gender: "",
@@ -19,7 +22,7 @@ const RequestForm = () => {
     const result = await tutionController.post(values);
     console.log(result);
     if (result.success) {
-      window.location.reload();
+      globalCtx.setPendingUpdate(true);
     }
   };
   const tutorRequestForm = [

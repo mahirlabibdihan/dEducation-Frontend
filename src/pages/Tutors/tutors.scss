@@ -26,6 +26,7 @@
         flex-direction: column;
         align-items: center;
         padding: 1rem 0;
+        gap: 1rem;
         width: 100%;
       }
       .apply-button {
@@ -50,6 +51,7 @@
       width: 100%;
       .input-fields {
         display: flex;
+        gap: 1rem;
         flex-direction: column;
         align-items: center;
         padding: 1rem 0;

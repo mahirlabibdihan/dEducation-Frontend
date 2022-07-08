@@ -23,6 +23,7 @@ import * as IMAGES from "../images";
 import * as CONSTANTS from "../constants";
 import Logo from "../assets/images/Logo-small.svg";
 import GlobalContext from "../store/GlobalContext";
+import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import BookIcon from "@mui/icons-material/Book";
 // import GlobalContext from "../../store/GlobalContext";
 const authController = new AuthController();
@@ -54,7 +55,7 @@ const Layout = (props) => {
             ? {
                 label: "Tuition offers",
                 path: "/tuition_offers",
-                icon: <EditLocationAltIcon sx={{ fontSize: "2rem" }} />,
+                icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
               }
             : {
                 label: "Request Tutor",

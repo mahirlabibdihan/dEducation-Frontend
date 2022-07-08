@@ -9,8 +9,11 @@ import EyeIcon from "../../components/EyeIcon";
 import AuthController from "../../controller/authController";
 import GlobalContext from "../../store/GlobalContext";
 import "./signUp.scss";
+import { createSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 const authController = new AuthController();
 const SignUpForm = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,16 +25,24 @@ const SignUpForm = (props) => {
       navigate("/");
     }
   }, [globalCtx.loggedInAs]);
+  const handleLogin = () => {
+    navigate({
+      pathname: "/login",
+      search: createSearchParams({
+        type: searchParams.get("type"),
+      }).toString(),
+    });
+  };
   const LoginLink = () => {
     return (
-      <Typography
-        component={Link}
-        to="/login"
+      <h6
+        // component={Button}
         align="center"
-        className="pt-2 text-secondary"
+        className="pt-2 login-link"
+        onClick={handleLogin}
       >
         Already have an account?
-      </Typography>
+      </h6>
     );
   };
   const handleSignup = async (e) => {
@@ -40,11 +51,9 @@ const SignUpForm = (props) => {
       name: name,
       email: email,
       pass: pass,
-      type: globalCtx.loggedInAs,
+      type: searchParams.get("type"),
     });
-    if (result.success) {
-      navigate("/login");
-    }
+    handleLogin();
   };
   const SignUpButton = () => {
     return (

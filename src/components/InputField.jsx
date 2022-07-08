@@ -4,7 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 const InputField = (props) => {
   return (
-    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+    <FormControl fullWidth className="input-field" variant="outlined">
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -24,7 +24,7 @@ const InputField = (props) => {
 
 export const InputField2 = (props) => {
   return (
-    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+    <FormControl fullWidth className="input-field" variant="outlined">
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>

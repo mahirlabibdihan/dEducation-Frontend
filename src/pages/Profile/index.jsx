@@ -27,7 +27,7 @@ const Profile = () => {
         </div>
 
         <div className="banner-details">
-          <h2 className="">{user.NAME}</h2>
+          <h2 className="text-center">{user.NAME}</h2>
         </div>
       </div>
     );

@@ -27,6 +27,7 @@
         align-items: center;
         padding: 1rem 0;
         width: 100%;
+        gap: 1rem;
       }
       .apply-button {
         @include my-button;
@@ -58,6 +59,7 @@
         align-items: center;
         padding: 1rem 0;
         width: 100%;
+        gap: 1rem;
       }
       .offer-button {
         @include my-button;

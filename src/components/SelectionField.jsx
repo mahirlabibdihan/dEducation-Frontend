@@ -6,7 +6,7 @@ import { Select, MenuItem } from "@mui/material";
 import "./components.scss";
 const SelectionField = (props) => {
   return (
-    <FormControl fullWidth className="mb-3 input-field" variant="outlined">
+    <FormControl fullWidth className=" input-field" variant="outlined">
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>

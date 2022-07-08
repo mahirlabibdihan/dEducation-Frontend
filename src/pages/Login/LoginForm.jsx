@@ -10,7 +10,7 @@ import EyeIcon from "../../components/EyeIcon";
 import { login } from "../../api/authApi";
 import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, createSearchParams } from "react-router-dom";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -61,11 +61,20 @@ const LoginForm = (props) => {
       </Typography>
     );
   };
+  const handleSignup = () => {
+    navigate({
+      pathname: "/signup",
+      search: createSearchParams({
+        type: searchParams.get("type"),
+      }).toString(),
+    });
+  };
   const SignUpButton = () => {
     return (
       <Button
-        component={Link}
-        to="/signup"
+        // component={Link}
+        // to="/signup"
+        onClick={handleSignup}
         variant="contained"
         color="success"
         className="rounded mt-3 sign-up-button"
