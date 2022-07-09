@@ -12,7 +12,7 @@ const TutorPanel = (props) => {
     <div className="tutor-panel">
       <TutorProfile tutor={props.tutor} />
       <Divider />
-      <OfferForm tution={props.tutor} />
+      <OfferForm tution={props.tutor} tutor_id={props.tutor.TUTOR_ID} />
     </div>
   );
 };

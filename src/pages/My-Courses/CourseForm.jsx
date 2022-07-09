@@ -12,6 +12,7 @@ import SelectionField from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
+import { format } from "date-fns";
 import GlobalContext from "../../store/GlobalContext";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -132,7 +133,10 @@ export const BatchSelectionField = (props) => {
             <MenuItem key={batch.BATCH_ID} value={batch.BATCH_ID}>
               {`Batch ${index + 1}: `}
               <br></br>
-              {`Starting date: ${batch.START_DATE.substring(0, 10)}`}
+              {`Starting date:  ${format(
+                new Date(batch.START_DATE),
+                "do MMMM, yyyy"
+              )}`}
               <br></br>
               {`Days: ${batch.CLASS_DAYS}`}
               <br></br>
@@ -203,6 +207,7 @@ export const StudentCourseForm = () => {
       values.class,
       values.subject
     );
+    console.log("Batches", result.data);
     setBatchList(result.data);
   };
   const setClassOptions = async () => {

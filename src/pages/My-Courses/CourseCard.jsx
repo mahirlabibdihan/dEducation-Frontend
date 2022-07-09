@@ -3,6 +3,7 @@ import GlobalContext from "../../store/GlobalContext";
 import "../../components/components.scss";
 import CourseController from "../../controller/courseController";
 import { useNavigate, createSearchParams } from "react-router-dom";
+import { format } from "date-fns";
 const courseController = new CourseController();
 export const StudentCourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
@@ -31,7 +32,10 @@ export const StudentCourseCard = (props) => {
       <h6>{`Coaching: ${props.course.NAME}`}</h6>
       <h6>{`Class: ${props.course.CLASS}`}</h6>
       <h6>{`Subject: ${props.course.SUBJECT}`}</h6>
-      <h6>{`Starting Date: ${props.course.START_DATE.substring(0, 10)}`}</h6>
+      <h6>{`Starting Date:  ${format(
+        new Date(props.course.START_DATE),
+        "do MMMM, yyyy"
+      )}`}</h6>
       <h6>{`Days: ${props.course.CLASS_DAYS}`}</h6>
       <h6>{`Time: ${props.course.CLASS_TIME}`}</h6>
     </div>

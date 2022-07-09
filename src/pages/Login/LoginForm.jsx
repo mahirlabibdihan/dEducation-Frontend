@@ -77,7 +77,7 @@ const LoginForm = (props) => {
         onClick={handleSignup}
         variant="contained"
         color="success"
-        className="rounded mt-3 sign-up-button"
+        className="rounded sign-up-button"
       >
         Create New Account
       </Button>

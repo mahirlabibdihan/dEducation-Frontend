@@ -25,6 +25,12 @@ const MyCoachings = () => {
     if (globalCtx.selectedIndex !== -1)
       setCoaching(coachingsList[globalCtx.selectedIndex]);
   }, [globalCtx.selectedIndex]);
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
   const CoachingCreator = () => {
     return (
       <div className="coaching-creator">

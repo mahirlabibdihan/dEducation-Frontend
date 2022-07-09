@@ -44,11 +44,7 @@ const TutionPost = (props) => {
     ],
   ];
   return (
-    <Grid
-      className="tution-post"
-      onClick={globalCtx.loggedInAs === "STUDENT" ? handleApplicants : () => {}}
-      aria-hidden="true"
-    >
+    <Grid className="tution-post">
       <div className="hbox">
         {tutionPostDetails.map((row) => {
           return (
@@ -61,7 +57,11 @@ const TutionPost = (props) => {
         })}
       </div>
       {globalCtx.loggedInAs === "STUDENT" ? (
-        <></>
+        <>
+          <Button className="apply-button" onClick={handleApplicants}>
+            Applicants
+          </Button>
+        </>
       ) : (
         <Button className="apply-button" onClick={handleApply}>
           Apply

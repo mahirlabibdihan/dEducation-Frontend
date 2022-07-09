@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "../../components/components.scss";
+import { format } from "date-fns";
 const BatchCard = (props) => {
   const globalCtx = useContext(GlobalContext);
   //
@@ -20,7 +21,10 @@ const BatchCard = (props) => {
       }}
     >
       <h6>{`Batch No: ${props.id + 1}`}</h6>
-      <h6>{`Starting Date: ${props.course.START_DATE.substring(0, 10)}`}</h6>
+      <h6>{`Starting Date: ${format(
+        new Date(props.course.START_DATE),
+        "do MMMM, yyyy"
+      )}`}</h6>
       <h6>{`Days: ${props.course.CLASS_DAYS}`}</h6>
       <h6>{`Time: ${props.course.CLASS_TIME}`}</h6>
       <h6>{`Total seats: ${props.course.SEATS}`}</h6>

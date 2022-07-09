@@ -49,7 +49,7 @@ const OfferForm = (props) => {
     },
   ];
   const handleOffer = async (event) => {
-    const result = await tutionController.offer(values, props.tution.TUTOR_ID);
+    const result = await tutionController.offer(values, props.tutor_id);
     // if (result.success) {
     //   window.location.reload();
     // }

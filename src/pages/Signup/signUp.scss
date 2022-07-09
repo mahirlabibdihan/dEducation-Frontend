@@ -15,12 +15,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   .form-header {
     font-family: "Kdam Thmor Pro", sans-serif;
     @include flexCenter;
     font-size: large;
     font-weight: 600;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0;
   }
   .sign-up-button {
     font-family: "Kdam Thmor Pro", sans-serif;

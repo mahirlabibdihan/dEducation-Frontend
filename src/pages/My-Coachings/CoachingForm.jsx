@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import "./my-coachings.scss";
+import GlobalContext from "../../store/GlobalContext";
 const coachingController = new CoachingController();
 
 const CoachingForm = () => {
+  const globalCtx = useContext(GlobalContext);
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -19,7 +21,7 @@ const CoachingForm = () => {
   const createCoaching = async (event) => {
     const result = await coachingController.create(values);
     if (result.success) {
-      window.location.reload();
+      globalCtx.setPendingUpdate(true);
     }
   };
   return (
