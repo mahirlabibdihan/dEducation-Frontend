@@ -3,11 +3,14 @@ import { Button, Grid } from "@mui/material";
 import TutionController from "../controller/tutionController";
 import GlobalContext from "../store/GlobalContext";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
+  const cookies = new Cookies();
   const globalCtx = useContext(GlobalContext);
   const navigate = new useNavigate();
   const data = props.data;
+  const type = cookies.get("type");
   const handleApply = async (event) => {
     const result = await tutionController.apply(data.POST_ID);
     console.log(result);
@@ -56,7 +59,7 @@ const TutionPost = (props) => {
           );
         })}
       </div>
-      {globalCtx.loggedInAs === "STUDENT" ? (
+      {type === "STUDENT" ? (
         <>
           <Button className="apply-button" onClick={handleApplicants}>
             Applicants

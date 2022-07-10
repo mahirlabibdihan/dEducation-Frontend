@@ -6,12 +6,15 @@ import ProfileController from "../../controller/profileController";
 import TutorProfileSettings from "./TutorProfileSettings";
 import StudentProfileSettings from "./StudentProfileSettings";
 import GlobalContext from "../../store/GlobalContext";
+import Cookies from "universal-cookie";
 const profileController = new ProfileController();
+const cookies = new Cookies();
 const ProfileSettings = (props) => {
   const globalCtx = useContext(GlobalContext);
+  const type = cookies.get("type");
   return (
     <>
-      {globalCtx.loggedInAs === "STUDENT" ? (
+      {type === "STUDENT" ? (
         <StudentProfileSettings />
       ) : (
         <TutorProfileSettings />

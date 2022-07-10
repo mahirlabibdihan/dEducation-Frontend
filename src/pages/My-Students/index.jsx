@@ -68,6 +68,7 @@ const MyStudents = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setStudent(studentsList[globalCtx.selectedIndex]);
+    else setStudent({});
   }, [globalCtx.selectedIndex]);
 
   const StudentsList = () => {

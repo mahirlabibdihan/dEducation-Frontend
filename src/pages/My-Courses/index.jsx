@@ -42,6 +42,7 @@ const MyCourses = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setCourse(courseList[globalCtx.selectedIndex]);
+    else setCourse({});
   }, [globalCtx.selectedIndex]);
 
   useEffect(() => {
@@ -57,11 +58,7 @@ const MyCourses = () => {
   const RightPanel = () => {
     return (
       <div className="right-panel">
-        {globalCtx.loggedInAs === "TUTOR" ? (
-          <TutorCourseForm />
-        ) : (
-          <StudentCourseForm />
-        )}
+        {type === "TUTOR" ? <TutorCourseForm /> : <StudentCourseForm />}
       </div>
     );
   };

@@ -10,7 +10,7 @@ import TutorProfile from "../../components/TutorProfile";
 const tutionController = new TutionController();
 const profileController = new ProfileController();
 
-const TutionDetails = (props) => {
+export const TutionDetails = (props) => {
   const OfferDetails = [
     { label: "Tution Type", value: props.tution.TYPE },
     { label: "Salary (BDT)", value: props.tution.SALARY },

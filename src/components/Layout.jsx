@@ -25,7 +25,9 @@ import Logo from "../assets/images/Logo-small.svg";
 import GlobalContext from "../store/GlobalContext";
 import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import BookIcon from "@mui/icons-material/Book";
+import Cookies from "universal-cookie";
 // import GlobalContext from "../../store/GlobalContext";
+const cookies = new Cookies();
 const authController = new AuthController();
 const profileController = new ProfileController();
 const Layout = (props) => {
@@ -33,11 +35,10 @@ const Layout = (props) => {
   console.log("Location:", location.pathname.split("/")[1]);
   const navigate = useNavigate();
   const globalCtx = useContext(GlobalContext);
+  const type = cookies.get("type");
   useEffect(() => {
     const getProfileData = async () => {
       const data = await profileController.getProfile();
-      globalCtx.setLoggedInAs(data.TYPE);
-      console.log("RELOAD", globalCtx.loggedInAs);
     };
     getProfileData();
   }, []);
@@ -51,7 +52,7 @@ const Layout = (props) => {
             path: "/home",
             icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
           },
-          globalCtx.loggedInAs === "TUTOR"
+          type === "TUTOR"
             ? {
                 label: "Tuition offers",
                 path: "/tuition_offers",
@@ -62,7 +63,7 @@ const Layout = (props) => {
                 path: "/req_tutor",
                 icon: <EditLocationAltIcon sx={{ fontSize: "2rem" }} />,
               },
-          globalCtx.loggedInAs === "TUTOR"
+          type === "TUTOR"
             ? {
                 label: "My students",
                 path: "/my_students",

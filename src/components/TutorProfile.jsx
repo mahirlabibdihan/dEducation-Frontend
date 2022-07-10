@@ -38,7 +38,7 @@ const TutorProfile = (props) => {
             })}
           </div>
           <h6>{`Phone Number: ${tutor.PHONE_NUMBER}`}</h6>
-          <h6>{`Subjects: ${tutor.SUBJECTS}`}</h6>
+          <h6>{`Subjects: ${tutor.EXPERTISE}`}</h6>
         </div>
       </div>
     </div>

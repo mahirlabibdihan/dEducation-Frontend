@@ -35,6 +35,11 @@ class TutionController extends Controller {
     const result = await this.tutionApi.rejectOffer(student_id, token);
     return result;
   };
+  cancelOffer = async (tutor_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.cancelOffer(tutor_id, token);
+    return result;
+  };
   getMyOffers = async () => {
     const token = this.cookies.get("token");
     const result = await this.tutionApi.getMyOffers(token);

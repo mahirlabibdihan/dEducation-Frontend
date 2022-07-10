@@ -21,8 +21,16 @@ const Tutors = () => {
   }, []);
 
   useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
+  useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setTutor(tutorsList[globalCtx.selectedIndex]);
+    else setTutor({});
+    console.log("SElceted");
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="Tutors" list={tutorsList} />;

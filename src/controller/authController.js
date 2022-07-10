@@ -24,6 +24,7 @@ class AuthController extends Controller {
   };
   logout = async (data) => {
     this.cookies.remove("token", { path: "/" });
+    this.cookies.remove("type", { path: "/" });
   };
 
   signup = async (data) => {

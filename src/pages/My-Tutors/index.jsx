@@ -23,6 +23,7 @@ const MyTutors = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setTutor(tutorsList[globalCtx.selectedIndex]);
+    else setTutor({});
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="My Tutors" list={tutorsList} />;
@@ -38,7 +39,7 @@ const MyTutors = () => {
     return (
       <div className="right-panel">
         {tutor === undefined || globalCtx.selectedIndex === -1 ? (
-          <SearchFilter />
+          <></>
         ) : (
           <TutorPanel tutor={tutor} />
         )}

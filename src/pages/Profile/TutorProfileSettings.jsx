@@ -27,7 +27,7 @@ const TutorProfileSettings = () => {
       phone: data.PHONE_NUMBER,
       email: data.EMAIL,
       type: data.TYPE,
-      subjects: data.SUBJECTS,
+      subjects: data.EXPERTISE,
       salary: data.PREFFERED_SALARY,
       experience: data.YEARS_OF_EXPERIENCE,
       status: data.AVAILABILITY,

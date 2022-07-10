@@ -6,13 +6,14 @@ import CoachingController from "../../controller/coachingController";
 import "./my-coachings.scss";
 import CoachingPanel from "./CoachingPanel";
 import GlobalContext from "../../store/GlobalContext";
+import Cookies from "universal-cookie";
 const coachingController = new CoachingController();
-
+const cookies = new Cookies();
 const MyCoachings = () => {
   const globalCtx = useContext(GlobalContext);
   const [coachingsList, setCoachingsList] = useState([]);
   const [coaching, setCoaching] = useState({});
-  const type = globalCtx.loggedInAs;
+  const type = cookies.get("type");
   const setList = async () => {
     const result = await coachingController.getMyList();
     setCoachingsList(result.data);
@@ -24,6 +25,7 @@ const MyCoachings = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setCoaching(coachingsList[globalCtx.selectedIndex]);
+    else setCoaching({});
   }, [globalCtx.selectedIndex]);
   useEffect(() => {
     if (globalCtx.pendingUpdate) {

@@ -23,7 +23,7 @@ const TuitionOffers = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setOffer(offers[globalCtx.selectedIndex]);
-    }
+    } else setOffer({});
   }, [globalCtx.selectedIndex]);
 
   const OffersList = () => {

@@ -4,19 +4,12 @@ import "../../components/components.scss";
 import CourseController from "../../controller/courseController";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { format } from "date-fns";
+import Cookies from "universal-cookie";
 const courseController = new CourseController();
+const cookies = new Cookies();
 export const StudentCourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
-  const handleClick = () => {
-    // console.log("Clicked");
-    // // if (globalCtx.selectedIndex === props.id) globalCtx.setSelectedIndex(-1);
-    // // else globalCtx.setSelectedIndex(props.id);
-    // if (globalCtx.loggedInAs === "TUTOR") {
-    //   globalCtx.setCourseId(props.course.COURSE_ID);
-    //   navigate("/my_courses/batches");
-    // }
-  };
   useEffect(() => {
     // console.log(globalCtx.selectedIndex, props.user.USER_ID);
   }, [globalCtx.selectedIndex]);
@@ -45,11 +38,12 @@ export const StudentCourseCard = (props) => {
 export const TutorCourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
+  const type = cookies.get("type");
   const handleClick = () => {
-    console.log("Clicked");
+    // console.log("Clicked");
     // if (globalCtx.selectedIndex === props.id) globalCtx.setSelectedIndex(-1);
     // else globalCtx.setSelectedIndex(props.id);
-    if (globalCtx.loggedInAs === "TUTOR") {
+    if (type === "TUTOR") {
       // globalCtx.setCourseId(props.course.COURSE_ID);
       // navigate("/my_courses/batches");
       navigate({

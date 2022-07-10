@@ -3,9 +3,11 @@ import InputField, { InputField2 } from "./InputField";
 import { Button } from "@mui/material";
 import "./OfferForm.scss";
 import TutionController from "../controller/tutionController";
+import GlobalContext from "../store/GlobalContext";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
+  const globalCtx = useContext(GlobalContext);
   const [values, setValues] = useState(
     props.tution === undefined
       ? {
@@ -50,9 +52,10 @@ const OfferForm = (props) => {
   ];
   const handleOffer = async (event) => {
     const result = await tutionController.offer(values, props.tutor_id);
-    // if (result.success) {
-    //   window.location.reload();
-    // }
+    if (result.success) {
+      globalCtx.setPendingUpdate(true);
+      globalCtx.setSelectedIndex(-1);
+    }
   };
   return (
     <div className="offer-form">

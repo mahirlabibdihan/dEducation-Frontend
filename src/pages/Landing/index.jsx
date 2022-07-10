@@ -19,7 +19,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
-              globalCtx.setLoggedInAs("STUDENT");
+              // globalCtx.setLoggedInAs("STUDENT");
               // navigate("/login");
               navigate({
                 pathname: "/login",
@@ -37,7 +37,7 @@ const Home = () => {
         <Button
           onClick={() => {
             setTimeout(() => {
-              globalCtx.setLoggedInAs("TUTOR");
+              // globalCtx.setLoggedInAs("TUTOR");
               // navigate("/login");
               navigate({
                 pathname: "/login",

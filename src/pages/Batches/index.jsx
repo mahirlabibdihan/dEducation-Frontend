@@ -40,6 +40,7 @@ const Batches = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1)
       setCourse(batchList[globalCtx.selectedIndex]);
+    else setCourse({});
   }, [globalCtx.selectedIndex]);
 
   const BatchList = () => {

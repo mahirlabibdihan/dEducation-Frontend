@@ -153,6 +153,31 @@ class TutionApi extends Api {
     }
   };
 
+  cancelOffer = async (tutor_id, token) => {
+    console.log("OFFER TUTION");
+    console.log("ID:", tutor_id);
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/cancel`,
+        {
+          tutor_id: tutor_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+
   getMyOffers = async (token) => {
     console.log("OFFER TUTION");
     try {

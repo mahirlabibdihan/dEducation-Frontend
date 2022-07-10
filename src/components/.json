@@ -1,0 +1,6 @@
+{
+    "day": ["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],
+    "gender": ["Male","Female"],
+    "subject": ["Bangla","English","Math","Physics","Chemistry","Biology","ICT","Science"],
+    "class": ["Class 1","Class 2","Class 3","Class 4","Class 5","Class 6","Class 7","Class 8","Class 9","Class 10","HSC - 1st year","HSC - 2nd year","Engineering Admission","Medical Admission","Versity Admission"]
+}

@@ -57,14 +57,16 @@
         padding: 1rem 0;
         width: 100%;
       }
-      .offer-button {
-        @include my-button;
-        margin: 0 auto;
-        font-size: 2rem;
-        color: rgb(232, 229, 229);
-        background-color: #164a4e;
-        width: 100%;
-      }
     }
   }
+}
+
+.offer-button,
+.cancel-button {
+  @include my-button;
+  margin: 0 auto;
+  font-size: 2rem;
+  color: rgb(232, 229, 229);
+  background-color: #164a4e;
+  width: 100%;
 }

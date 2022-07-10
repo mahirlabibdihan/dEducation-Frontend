@@ -11,7 +11,9 @@ import GlobalContext from "../../store/GlobalContext";
 import "./signUp.scss";
 import { createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import Cookies from "universal-cookie";
 const authController = new AuthController();
+const cookies = new Cookies();
 const SignUpForm = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -20,11 +22,7 @@ const SignUpForm = (props) => {
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const globalCtx = useContext(GlobalContext);
-  useEffect(() => {
-    if (globalCtx.loggedInAs === "") {
-      navigate("/");
-    }
-  }, [globalCtx.loggedInAs]);
+  const type = cookies.get("type");
   const handleLogin = () => {
     navigate({
       pathname: "/login",
@@ -80,7 +78,7 @@ const SignUpForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
     >
-      <h1 className="form-header">{globalCtx.loggedInAs}</h1>
+      <h1 className="form-header">{type}</h1>
       <InputField
         label="Full Name"
         type="text"

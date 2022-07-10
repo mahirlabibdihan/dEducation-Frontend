@@ -20,11 +20,6 @@ const LoginForm = (props) => {
   const navigate = useNavigate();
   const authController = new AuthController();
   let [searchParams, setSearchParams] = useSearchParams();
-  useEffect(() => {
-    // if (globalCtx.loggedInAs === "") {
-    //   navigate("/");
-    // }
-  }, [globalCtx.loggedInAs]);
   const handleLogin = async (e) => {
     e.preventDefault();
     if (

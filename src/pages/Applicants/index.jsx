@@ -36,13 +36,19 @@ const Applicants = () => {
     console.log("ID:", searchParams.get("post_id"));
     setList();
   }, []);
-
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+      // globalCtx.setSelectedIndex(-1);
+    }
+  }, [globalCtx.pendingUpdate]);
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);
       console.log(tutor.TUTOR_ID);
-    }
-    // console.log("SELECTED");
+    } else setTutor({});
+    console.log("SELECTED");
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="Applicants" list={tutorsList} />;

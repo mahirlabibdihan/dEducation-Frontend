@@ -5,14 +5,41 @@ import { Button } from "@mui/material";
 import TutionController from "../../controller/tutionController";
 import TutorProfile from "../../components/TutorProfile";
 import OfferForm from "../../components/OfferForm";
+import { TutionDetails } from "../My-Tutors/TutorPanel";
+import GlobalContext from "../../store/GlobalContext";
 const tutionController = new TutionController();
 
 const TutorPanel = (props) => {
+  const globalCtx = useContext(GlobalContext);
+  const handleCancel = async () => {
+    const result = await tutionController.cancelOffer(props.tutor.TUTOR_ID);
+    if (result.success) {
+      globalCtx.setPendingUpdate(true);
+      globalCtx.setSelectedIndex(-1);
+    }
+  };
   return (
     <div className="tutor-panel">
       <TutorProfile tutor={props.tutor} />
       <Divider />
-      <OfferForm tution={props.tutor} tutor_id={props.tutor.TUTOR_ID} />
+      {props.tutor.STATUS === null ? (
+        <OfferForm tution={props.tutor} tutor_id={props.tutor.TUTOR_ID} />
+      ) : (
+        <>
+          <TutionDetails tution={props.tutor} />
+          {props.tutor.STATUS === "PENDING" ? (
+            <Button
+              variant="Contained"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          ) : (
+            <></>
+          )}
+        </>
+      )}
     </div>
   );
 };
