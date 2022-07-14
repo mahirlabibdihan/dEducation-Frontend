@@ -4,6 +4,36 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { Select, MenuItem } from "@mui/material";
 import "./components.scss";
+export const MultiSelectionField = (props) => {
+  return (
+    <FormControl fullWidth className=" input-field" variant="outlined">
+      <InputLabel htmlFor="outlined-adornment" className="input-label">
+        {props.label}
+      </InputLabel>
+      <Select
+        required
+        multiple
+        id="outlined-adornment"
+        className="outlined-input"
+        value={props.value}
+        onChange={props.onChange(props.id)}
+        input={<OutlinedInput label={props.label} />}
+        // MenuProps={MenuProps}
+      >
+        {props.list.map((value) => (
+          <MenuItem
+            key={value}
+            value={value}
+            // sx={{ height: "2rem" }}
+            // style={getStyles(name, personName, theme)}
+          >
+            {value}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
 const SelectionField = (props) => {
   return (
     <FormControl fullWidth className=" input-field" variant="outlined">

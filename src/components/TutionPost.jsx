@@ -14,9 +14,12 @@ const TutionPost = (props) => {
   const handleApply = async (event) => {
     const result = await tutionController.apply(data.POST_ID);
     console.log(result);
-    // if (result.success) {
-    //   window.location.reload();
-    // }
+    globalCtx.setPendingUpdate(true);
+  };
+  const handleCancel = async (event) => {
+    const result = await tutionController.cancelApplication(data.POST_ID);
+    console.log(result);
+    globalCtx.setPendingUpdate(true);
   };
   const handleApplicants = async (event) => {
     // globalCtx.setPostId(data.POST_ID);
@@ -65,9 +68,13 @@ const TutionPost = (props) => {
             Applicants
           </Button>
         </>
-      ) : (
+      ) : data.TUTOR_ID === null ? (
         <Button className="apply-button" onClick={handleApply}>
           Apply
+        </Button>
+      ) : (
+        <Button className="apply-button" onClick={handleCancel}>
+          Applied
         </Button>
       )}
     </Grid>

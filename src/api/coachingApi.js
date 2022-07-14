@@ -133,6 +133,46 @@ class CoachingApi extends Api {
       };
     }
   };
+  updateInfo = async (data, token) => {
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/coaching/update_info`,
+        {
+          coaching: data,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  uploadImage = async (data, token) => {
+    try {
+      // console.log(token, data, coaching_id);
+      let res = await axios.post(`${API_BASE_URL}/coaching/upload`, data, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          image: res.data.image,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
 }
 
 export default CoachingApi;

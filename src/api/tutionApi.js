@@ -51,6 +51,29 @@ class TutionApi extends Api {
       };
     }
   };
+  cancelApplication = async (post_id, token) => {
+    console.log("APPLY TUTION");
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/apply/cancel`,
+        {
+          post_id: post_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
 
   getApplicants = async (post_id, token) => {
     console.log("OFFER TUTION");
@@ -108,7 +131,7 @@ class TutionApi extends Api {
     console.log("ID:", student_id);
     try {
       let res = await axios.post(
-        `${API_BASE_URL}/tution/accept`,
+        `${API_BASE_URL}/tution/offer/accept`,
         {
           student_id: student_id,
         },
@@ -133,7 +156,7 @@ class TutionApi extends Api {
     console.log("ID:", student_id);
     try {
       let res = await axios.post(
-        `${API_BASE_URL}/tution/reject`,
+        `${API_BASE_URL}/tution/offer/reject`,
         {
           student_id: student_id,
         },
@@ -158,7 +181,7 @@ class TutionApi extends Api {
     console.log("ID:", tutor_id);
     try {
       let res = await axios.post(
-        `${API_BASE_URL}/tution/cancel`,
+        `${API_BASE_URL}/tution/offer/cancel`,
         {
           tutor_id: tutor_id,
         },

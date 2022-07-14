@@ -40,5 +40,18 @@ class CoachingController extends Controller {
     const result = await this.coachingApi.getMyCourseList(coaching_id, token);
     return result;
   };
+  updateInfo = async (data, coaching_id) => {
+    const token = this.cookies.get("token");
+    data["coaching_id"] = coaching_id;
+    const result = await this.coachingApi.updateInfo(data, token);
+    return result;
+  };
+  uploadImage = async (formData) => {
+    // console.log("Upload", coaching_id);
+    const token = this.cookies.get("token");
+    console.log(token);
+    const result = await this.coachingApi.uploadImage(formData, token);
+    return result;
+  };
 }
 export default CoachingController;

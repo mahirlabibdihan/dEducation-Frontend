@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
+import { InputField2, MultiLineField } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import "./my-coachings.scss";
@@ -40,11 +40,6 @@ const CoachingForm = () => {
             id: "phone",
             value: values.phone,
           },
-          {
-            label: "Address",
-            id: "address",
-            value: values.address,
-          },
         ].map((field, index) => (
           <InputField2
             label={field.label}
@@ -54,6 +49,19 @@ const CoachingForm = () => {
             onChange={handleChange}
           />
         ))}
+        {/* {
+            label: "Address",
+            id: "address",
+            value: values.address,
+          }, */}
+        <MultiLineField
+          rows={3}
+          label={"Address"}
+          type="text"
+          value={values.address}
+          id={"address"}
+          onChange={handleChange}
+        />
       </div>
       <Button
         variant="contained"

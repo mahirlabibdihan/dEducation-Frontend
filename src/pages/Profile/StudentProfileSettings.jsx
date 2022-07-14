@@ -3,6 +3,7 @@ import { Divider, Typography } from "@mui/material";
 import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
+import SelectionField from "../../components/SelectionField";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -87,6 +88,20 @@ const StudentProfileSettings = () => {
       <h2 className="header">Profile Settings</h2>
       <Divider />
       <div className="input-fields">
+        {/* <SelectionField
+          label="Gender"
+          value={user.gender}
+          id="gender"
+          onChange={handleChange}
+          list={["Male", "Female"]}
+        ></SelectionField>
+        <SelectionField
+          label="Version"
+          value={user.version}
+          id="version"
+          onChange={handleChange}
+          list={["Bangla", "English"]}
+        ></SelectionField> */}
         {inputFields.map((field, index) => (
           <InputField2
             label={field.label}

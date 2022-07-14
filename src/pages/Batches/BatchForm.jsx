@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
+import { InputField2, NumberField } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
@@ -35,7 +35,7 @@ export const BatchForm = () => {
     time: "",
     start_time: new Date("2014-08-18T00:00:00"),
     end_time: new Date("2014-08-18T00:00:00"),
-    seats: "",
+    seats: 0,
   };
   const [values, setValues] = useState(initValues);
   useEffect(() => {
@@ -164,12 +164,21 @@ export const BatchForm = () => {
               ))}
             </Select>
           </FormControl>
+          <NumberField
+            label="Total Seats"
+            min={0}
+            max={1000}
+            step={10}
+            value={values.seats}
+            id="seats"
+            onChange={handleChange}
+          />
           {/* {
               label: "Starting Date",
               id: "start",
               value: values.start,
             }, */}
-          {[
+          {/* {[
             {
               label: "Total Seats",
               id: "seats",
@@ -183,7 +192,7 @@ export const BatchForm = () => {
               id={field.id}
               onChange={handleChange}
             />
-          ))}
+          ))} */}
           {/* <DatePicker
           className="date-picker"
           selected={values.start_date}

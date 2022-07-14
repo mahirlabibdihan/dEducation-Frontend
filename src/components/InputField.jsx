@@ -42,4 +42,51 @@ export const InputField2 = (props) => {
   );
 };
 
+export const MultiLineField = (props) => {
+  return (
+    <FormControl fullWidth className="input-field" variant="outlined">
+      <InputLabel htmlFor="outlined-adornment" className="input-label">
+        {props.label}
+      </InputLabel>
+      <OutlinedInput
+        required
+        multiline={true}
+        rows={props.rows}
+        id="outlined-adornment"
+        className="outlined-input"
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange(props.id)}
+        label={props.label}
+        endAdornment={props.endAdornment}
+      />
+    </FormControl>
+  );
+};
+
+export const NumberField = (props) => {
+  return (
+    <FormControl fullWidth className="input-field" variant="outlined">
+      <InputLabel htmlFor="outlined-adornment" className="input-label">
+        {props.label}
+      </InputLabel>
+      <OutlinedInput
+        required
+        placeholder="0"
+        inputProps={{
+          step: props.step,
+          min: props.min,
+          max: props.max,
+        }}
+        id="outlined-adornment"
+        className="outlined-input"
+        type="number"
+        value={props.value}
+        onChange={props.onChange(props.id)}
+        label={props.label}
+        endAdornment={props.endAdornment}
+      />
+    </FormControl>
+  );
+};
 export default InputField;

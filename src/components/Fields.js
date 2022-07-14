@@ -1,0 +1,36 @@
+const Fields = {
+  day: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+  gender: ["Male", "Female"],
+  tution_type: ["Online", "Offline"],
+  version: ["Bangla", "English"],
+  subject: [
+    "Bangla",
+    "English",
+    "Math",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "ICT",
+    "Science",
+  ],
+  days_per_week: [1, 2, 3, 4, 5, 6, 7],
+  class: [
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "HSC - 1st year",
+    "HSC - 2nd year",
+    "Engineering Admission",
+    "Medical Admission",
+    "Versity Admission",
+  ],
+};
+
+export default Fields;

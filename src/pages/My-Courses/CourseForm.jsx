@@ -8,12 +8,15 @@ import CourseController from "../../controller/courseController";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { InputLabel, OutlinedInput, MenuItem } from "@mui/material";
 import "./my-courses.scss";
-import SelectionField from "../../components/SelectionField";
+import SelectionField, {
+  MultiSelectionField,
+} from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { format } from "date-fns";
 import GlobalContext from "../../store/GlobalContext";
+import Fields from "../../components/Fields";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
@@ -59,7 +62,6 @@ export const TutorCourseForm = () => {
           <InputLabel htmlFor="outlined-adornment" className="input-label">
             {"Coaching"}
           </InputLabel>
-
           <Select
             required
             id="outlined-adornment"
@@ -80,6 +82,20 @@ export const TutorCourseForm = () => {
             )}
           </Select>
         </FormControl>
+        {/* <SelectionField
+          label="Class"
+          value={values.class}
+          id="class"
+          onChange={handleChange}
+          list={Fields.class}
+        ></SelectionField>
+        <SelectionField
+          label="Subject"
+          value={values.subject}
+          id="subject"
+          onChange={handleChange}
+          list={Fields.subject}
+        ></SelectionField> */}
         {[
           {
             label: "Class",
