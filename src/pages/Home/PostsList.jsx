@@ -11,12 +11,12 @@ const tutionController = new TutionController();
 const PostsList = () => {
   const globalCtx = useContext(GlobalContext);
   const [posts, setPosts] = useState([]);
-  const [isApplied, setIsAppled] = useState([]);
+  const [isApplied, setIsApplied] = useState([]);
   const setTutionPosts = async () => {
     const res = await tutionController.getList();
     setPosts(res.data);
     const res2 = await tutionController.getApplyList();
-    setIsAppled(res2.data);
+    setIsApplied(res2.data);
     console.log(res2.data);
   };
   useEffect(() => {
