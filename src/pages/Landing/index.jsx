@@ -1,9 +1,11 @@
 // import styles from "../styles/_Home.module.scss";
 import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Link, useNavigate } from "react-router-dom";
 import { Background } from "../../components";
 import "./landing.scss";
+import { CircularProgress } from "@mui/material";
 import Button from "@mui/material/Button";
 import GlobalContext from "../../store/GlobalContext";
 import { createSearchParams } from "react-router-dom";
@@ -17,6 +19,7 @@ const Home = () => {
     <Background>
       <Grid className="landing-container">
         <Button
+          variant="contained"
           onClick={() => {
             setTimeout(() => {
               // globalCtx.setLoggedInAs("STUDENT");
@@ -29,10 +32,10 @@ const Home = () => {
               });
             }, 300);
           }}
-          variant="contained"
           className="rounded mt-3 student-button"
         >
           Student?
+          {/* <CircularProgress /> */}
         </Button>
         <Button
           onClick={() => {

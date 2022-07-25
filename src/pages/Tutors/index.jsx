@@ -6,17 +6,26 @@ import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
 import TutorPanel from "./TutorPanel";
+import TutionController from "../../controller/tutionController";
 const tutorsController = new TutorsController();
+const tutionController = new TutionController();
 
 const Tutors = () => {
   const globalCtx = useContext(GlobalContext);
   const [tutor, setTutor] = useState({});
+  const [tution, setTution] = useState({});
+  const [tutionsList, setTutionsList] = useState([]);
   const [tutorsList, setTutorsList] = useState([]);
   const setList = async () => {
-    const list = await tutorsController.getTutorsList();
-    setTutorsList(list.data);
+    const list1 = await tutorsController.getTutorsList();
+    setTutorsList(list1.data);
+    console.log("Tutors=", list1);
+    const list2 = await tutionController.getTutionsList();
+    console.log("Tutions=", list2);
+    setTutionsList(list2.data);
   };
   useEffect(() => {
+    console.log("GET TUTION DETAILS");
     setList();
   }, []);
 
@@ -27,9 +36,13 @@ const Tutors = () => {
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1)
+    if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);
-    else setTutor({});
+      setTution(tutionsList[globalCtx.selectedIndex]);
+    } else {
+      setTutor({});
+      setTution({});
+    }
     console.log("SElceted");
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
@@ -45,10 +58,12 @@ const Tutors = () => {
   const RightPanel = () => {
     return (
       <div className="right-panel">
-        {tutor === undefined || globalCtx.selectedIndex === -1 ? (
+        {tutor === undefined ||
+        tution === undefined ||
+        globalCtx.selectedIndex === -1 ? (
           <SearchFilter />
         ) : (
-          <TutorPanel tutor={tutor} />
+          <TutorPanel tutor={tutor} tution={tution} />
         )}
       </div>
     );

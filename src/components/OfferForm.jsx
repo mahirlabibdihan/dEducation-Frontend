@@ -50,7 +50,6 @@ const OfferForm = (props) => {
         days_per_week: values.days_per_week,
         salary: values.salary,
       },
-
       props.tutor_id
     );
     if (result.success) {
@@ -103,7 +102,7 @@ const OfferForm = (props) => {
           type="number"
           min={0}
           max={100000}
-          step={100}
+          step={1000}
           value={values.salary}
           id="salary"
           onChange={handleChange}

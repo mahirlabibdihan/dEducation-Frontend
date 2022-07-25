@@ -39,7 +39,7 @@ const TutorPanel = (props) => {
         <>
           <TutorProfile tutor={props.tutor} />
           <Divider />
-          <TutionDetails tution={props.tutor} />
+          <TutionDetails tution={props.tution} />
         </>
       )}
     </div>

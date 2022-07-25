@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "iostream": "cpp",
+        "utility": "cpp",
+        "cstdlib": "cpp",
+        "map": "cpp",
+        "vector": "cpp",
+        "xiosbase": "cpp",
+        "queue": "cpp",
+        "ostream": "cpp",
+        "xstring": "cpp",
+        "ios": "cpp",
+        "xlocale": "cpp",
+        "xlocnum": "cpp"
+    }
+}

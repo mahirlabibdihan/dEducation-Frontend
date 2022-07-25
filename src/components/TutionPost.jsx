@@ -4,6 +4,7 @@ import TutionController from "../controller/tutionController";
 import GlobalContext from "../store/GlobalContext";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { format } from "date-fns";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const cookies = new Cookies();
@@ -62,21 +63,24 @@ const TutionPost = (props) => {
           );
         })}
       </div>
-      {type === "STUDENT" ? (
-        <>
+      <div className="hbox">
+        <h6 className="time-stamp">
+          {format(new Date(data.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
+        </h6>
+        {type === "STUDENT" ? (
           <Button className="apply-button" onClick={handleApplicants}>
             Applicants
           </Button>
-        </>
-      ) : data.TUTOR_ID === null ? (
-        <Button className="apply-button" onClick={handleApply}>
-          Apply
-        </Button>
-      ) : (
-        <Button className="apply-button" onClick={handleCancel}>
-          Applied
-        </Button>
-      )}
+        ) : props.isApplied === undefined || props.isApplied === "NO" ? (
+          <Button className="apply-button" onClick={handleApply}>
+            Apply
+          </Button>
+        ) : (
+          <Button className="apply-button" onClick={handleCancel}>
+            Applied
+          </Button>
+        )}
+      </div>
     </Grid>
   );
 };

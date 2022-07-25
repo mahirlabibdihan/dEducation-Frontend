@@ -17,7 +17,7 @@ const RequestForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [values, setValues] = useState({
     type: "Offline",
-    desired_tutor_gender: "Male",
+    desired_tutor_gender: "Any Gender",
     subjects: "",
     days_per_week: 1,
     salary: 0,
@@ -67,7 +67,7 @@ const RequestForm = () => {
           value={values.desired_tutor_gender}
           id="desired_tutor_gender"
           onChange={handleChange}
-          list={Fields.gender}
+          list={["Any Gender", "Male", "Female"]}
         ></SelectionField>
         {/* <MultiSelectionField
           label="Subjects"
@@ -104,7 +104,7 @@ const RequestForm = () => {
           type="number"
           min={0}
           max={100000}
-          step={100}
+          step={1000}
           value={values.salary}
           id="salary"
           onChange={handleChange}

@@ -55,7 +55,7 @@ const SearchBox = () => {
         ))}
       </div>
       <Button variant="contained" className="apply-button">
-        Apply
+        Search
       </Button>
     </div>
   );

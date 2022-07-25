@@ -24,13 +24,24 @@ const Applicants = () => {
   const globalCtx = useContext(GlobalContext);
   const [tutor, setTutor] = useState({});
   const [tutorsList, setTutorsList] = useState([]);
+  const [tution, setTution] = useState({});
+  const [tutionsList, setTutionsList] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
   const setList = async () => {
-    const list = await tutionController.getApplicants(
+    // Get all the applicants id first
+    // Then get their profile details using user_id
+    // If there is 'PENDING' or 'ACCEPTED' offer, then get tution informations also
+    // Else get tution post informations
+    const list1 = await tutionController.getApplicants(
       searchParams.get("post_id")
     );
-    console.log("APPLICANTS", list.data[0]);
-    setTutorsList(list.data);
+    console.log("APPLICANTS", list1.data[0]);
+    setTutorsList(list1.data);
+    const list2 = await tutionController.getApplicantsTutionDetails(
+      searchParams.get("post_id")
+    );
+    console.log("APPLICANTS TUTIONS", list2.data[0]);
+    setTutionsList(list2.data);
   };
   useEffect(() => {
     console.log("ID:", searchParams.get("post_id"));
@@ -46,8 +57,12 @@ const Applicants = () => {
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);
-      console.log(tutor.TUTOR_ID);
-    } else setTutor({});
+      setTution(tutionsList[globalCtx.selectedIndex]);
+      console.log(tutor.USER_ID);
+    } else {
+      setTution({});
+      setTutor({});
+    }
     console.log("SELECTED");
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
@@ -66,7 +81,7 @@ const Applicants = () => {
         {tutor === undefined || globalCtx.selectedIndex === -1 ? (
           <SearchFilter />
         ) : (
-          <TutorPanel tutor={tutor} />
+          <TutorPanel tutor={tutor} tution={tution} />
         )}
       </div>
     );

@@ -12,6 +12,7 @@ import "./signUp.scss";
 import { createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { CircularProgress } from "@mui/material";
 const authController = new AuthController();
 const cookies = new Cookies();
 const SignUpForm = (props) => {
@@ -23,6 +24,7 @@ const SignUpForm = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const globalCtx = useContext(GlobalContext);
   const type = cookies.get("type");
+  const [loading, setLoading] = useState(false);
   const handleLogin = () => {
     navigate({
       pathname: "/login",
@@ -45,31 +47,38 @@ const SignUpForm = (props) => {
   };
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const result = await authController.signup({
       name: name,
       email: email,
       pass: pass,
       type: searchParams.get("type"),
     });
-    handleLogin();
+    if (result.success) {
+      handleLogin();
+    }
   };
   const SignUpButton = () => {
-    return (
+    return loading === true ? (
       <Button
         type="submit"
         variant="contained"
         color="success"
         className="rounded sign-up-button"
         onClick={handleSignup}
-        sx={{
-          bgcolor: "#36a420",
-          "&:hover": {
-            color: "white",
-            bgcolor: "#25842d",
-          },
-        }}
+        disabled
       >
-        Sign Up
+        <CircularProgress color="inherit" size="1.5rem" />
+      </Button>
+    ) : (
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        className="rounded sign-up-button"
+        onClick={handleSignup}
+      >
+        Login
       </Button>
     );
   };
@@ -78,7 +87,7 @@ const SignUpForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
     >
-      <h1 className="form-header">{type}</h1>
+      <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField
         label="Full Name"
         type="text"

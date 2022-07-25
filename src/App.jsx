@@ -39,7 +39,7 @@ const Private = () => {
 const Public = () => {
   const cookies = new Cookies();
   const isLoggedIn = !!cookies.get("token");
-  return isLoggedIn ? <Navigate to="/profile" /> : <Outlet />;
+  return isLoggedIn ? <Navigate to="/home" /> : <Outlet />;
 };
 const App = () => {
   return (

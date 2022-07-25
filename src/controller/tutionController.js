@@ -70,9 +70,37 @@ class TutionController extends Controller {
     const result = await this.tutionApi.getApplicants(post_id, token);
     return result;
   };
+  getApplyList = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getApplyList(token);
+    return result;
+  };
   getOfferFromPost = async (post_id) => {
     const token = this.cookies.get("token");
     const result = await this.tutionApi.getOfferFromPost(post_id, token);
+    return result;
+  };
+  getTutionDetails = async (user_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getTutionDetails(user_id, token);
+    return result.data;
+  };
+  getApplicantsTutionDetails = async (post_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getApplicantsTutionDetails(
+      post_id,
+      token
+    );
+    return result;
+  };
+  getTutionsList = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getTutionsList(token);
+    return result;
+  };
+  getMyTutionsList = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getMyTutionsList(token);
     return result;
   };
 }

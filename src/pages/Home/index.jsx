@@ -4,7 +4,9 @@ import { Divider, Typography } from "@mui/material";
 import StudentHome from "./StudentHome";
 import TutorHome from "./TutorHome";
 import ProfileController from "../../controller/profileController";
+import Cookies from "universal-cookie";
 import "./home.scss";
+const cookies = new Cookies();
 const profileController = new ProfileController();
 
 // import InputField from "../../components/InputField";
@@ -13,7 +15,7 @@ const Home = () => {
   const [type, setType] = useState("");
   const setHomeType = async () => {
     const data = await profileController.getProfile();
-    setType(data.TYPE);
+    setType(cookies.get("type"));
   };
   useEffect(() => {
     setHomeType();

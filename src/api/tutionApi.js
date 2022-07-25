@@ -324,6 +324,104 @@ class TutionApi extends Api {
       };
     }
   };
+  getTutionDetails = async (user_id, token) => {
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/get_details`,
+        {
+          id: user_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getApplicantsTutionDetails = async (post_id, token) => {
+    console.log("SENT APP");
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/get_applicants_tution_details`,
+        {
+          post_id: post_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getTutionsList = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/tution/get_all_details`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getMyTutionsList = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/tution/get_my_details`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getApplyList = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/tution/get_apply_list`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
 }
 
 export default TutionApi;

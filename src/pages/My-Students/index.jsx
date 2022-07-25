@@ -15,16 +15,21 @@ import CoachingController from "../../controller/coachingController";
 const studentsController = new StudentsController();
 const courseController = new CourseController();
 const coachingController = new CoachingController();
+const tutionController = new TutionController();
 const MyStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
   const [studentsList, setStudentsList] = useState([]);
   const [student, setStudent] = useState({});
+  const [tutionsList, setTutionsList] = useState([]);
+  const [tution, setTution] = useState({});
   const [offers, setOffers] = useState([]);
   const navigate = useNavigate();
   const setList = async () => {
-    const list = await studentsController.getMyStudentsList();
-    setStudentsList(list.data);
+    const list1 = await studentsController.getMyStudentsList();
+    setStudentsList(list1.data);
+    const list2 = await tutionController.getMyTutionsList();
+    setTutionsList(list2.data);
   };
   const setFilteredList = async (data) => {
     if (data.class === null) {
@@ -66,9 +71,13 @@ const MyStudents = () => {
     }
   }, [searchParams]);
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1)
+    if (globalCtx.selectedIndex !== -1) {
       setStudent(studentsList[globalCtx.selectedIndex]);
-    else setStudent({});
+      setTution(tutionsList[globalCtx.selectedIndex]);
+    } else {
+      setStudent({});
+      setTution({});
+    }
   }, [globalCtx.selectedIndex]);
 
   const StudentsList = () => {
@@ -87,7 +96,7 @@ const MyStudents = () => {
         {student === undefined || globalCtx.selectedIndex === -1 ? (
           <SearchBox />
         ) : (
-          <StudentPanel student={student} />
+          <StudentPanel student={student} tution={tution} />
         )}
       </div>
     );

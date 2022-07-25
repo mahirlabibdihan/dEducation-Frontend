@@ -12,7 +12,7 @@ const tutionController = new TutionController();
 const TutorPanel = (props) => {
   const globalCtx = useContext(GlobalContext);
   const handleCancel = async () => {
-    const result = await tutionController.cancelOffer(props.tutor.TUTOR_ID);
+    const result = await tutionController.cancelOffer(props.tutor.USER_ID);
     if (result.success) {
       globalCtx.setPendingUpdate(true);
       globalCtx.setSelectedIndex(-1);
@@ -22,12 +22,12 @@ const TutorPanel = (props) => {
     <div className="tutor-panel">
       <TutorProfile tutor={props.tutor} />
       <Divider />
-      {props.tutor.STATUS === null ? (
-        <OfferForm tution={props.tutor} tutor_id={props.tutor.TUTOR_ID} />
+      {props.tution.STATUS === null ? (
+        <OfferForm tution={props.tution} tutor_id={props.tutor.USER_ID} />
       ) : (
         <>
-          <TutionDetails tution={props.tutor} />
-          {props.tutor.STATUS === "PENDING" ? (
+          <TutionDetails tution={props.tution} />
+          {props.tution.STATUS === "PENDING" ? (
             <Button
               variant="Contained"
               className="cancel-button"

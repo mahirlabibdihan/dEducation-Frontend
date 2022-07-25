@@ -5,6 +5,7 @@
   height: 100vh;
   background-color: #f0f2f5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-image: url("../../assets/images/home-background.jpg");
@@ -46,6 +47,15 @@
     }
   }
   .reset-password {
+    width: 100%;
+    cursor: pointer;
+    color: grey;
+    text-decoration: underline;
+    text-decoration-color: grey;
+    &:hover {
+      // text-decoration-color: black;
+      color: rgb(88, 88, 88);
+    }
     &:hover {
       text-decoration-color: grey;
     }

@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
@@ -11,6 +12,7 @@ import { login } from "../../api/authApi";
 import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -20,7 +22,10 @@ const LoginForm = (props) => {
   const navigate = useNavigate();
   const authController = new AuthController();
   let [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
   const handleLogin = async (e) => {
+    setLoading(true);
+    console.log(email);
     e.preventDefault();
     if (
       await authController.login({
@@ -33,7 +38,18 @@ const LoginForm = (props) => {
     }
   };
   const LoginButton = () => {
-    return (
+    console.log(loading);
+    return loading === true ? (
+      <Button
+        type="submit"
+        variant="contained"
+        className="login-button"
+        onClick={handleLogin}
+        disabled
+      >
+        <CircularProgress color="inherit" size="1.5rem" />
+      </Button>
+    ) : (
       <Button
         type="submit"
         variant="contained"
@@ -50,7 +66,7 @@ const LoginForm = (props) => {
         component={Link}
         to="/"
         align="center"
-        className="pt-2 pb-3 border-bottom text-secondary"
+        className="pt-2 pb-3 border-bottom reset-password"
       >
         Forgot Password?
       </Typography>

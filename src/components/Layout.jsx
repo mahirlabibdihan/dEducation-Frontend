@@ -26,6 +26,7 @@ import GlobalContext from "../store/GlobalContext";
 import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import BookIcon from "@mui/icons-material/Book";
 import Cookies from "universal-cookie";
+import MessageIcon from "@mui/icons-material/Message";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -83,6 +84,11 @@ const Layout = (props) => {
             label: "My courses",
             path: "/my_courses",
             icon: <BookIcon sx={{ fontSize: "2rem" }} />,
+          },
+          {
+            label: "Notice Board",
+            path: "/notice_board",
+            icon: <MessageIcon sx={{ fontSize: "2rem" }} />,
           },
           {
             label: "Profile",

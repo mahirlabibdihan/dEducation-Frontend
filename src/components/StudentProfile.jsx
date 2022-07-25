@@ -6,9 +6,11 @@ import "./StudentProfile.scss";
 const StudentProfile = (props) => {
   const student = props.student;
   const profileDetails = [
-    [{ label: "Class", value: student.CLASS }],
+    [
+      { label: "Class", value: student.CLASS },
+      { label: "Gender", value: student.GENDER },
+    ],
     [{ label: "Version", value: student.VERSION }],
-    [{ label: "Gender", value: student.GENDER }],
   ];
   return (
     <div className="student-profile">

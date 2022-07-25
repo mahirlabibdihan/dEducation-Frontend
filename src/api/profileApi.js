@@ -68,13 +68,13 @@ class ProfileApi extends Api {
   };
   getProfilePicture = async (token) => {
     try {
-      let res = await axios.get(`${API_BASE_URL}/profile/picture`, {
+      let res = await axios.get(`${API_BASE_URL}/profile`, {
         headers: { authorization: "Bearer " + token },
       });
       if (res.status === 200) {
         return {
           success: true,
-          image: res.data.image,
+          image: res.data.IMAGE,
         };
       }
     } catch (err) {

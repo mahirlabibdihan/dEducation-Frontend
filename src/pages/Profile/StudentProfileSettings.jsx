@@ -4,6 +4,11 @@ import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import SelectionField from "../../components/SelectionField";
+import { format } from "date-fns";
+import { MobileDatePicker } from "@mui/x-date-pickers";
+import { TextField } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -12,7 +17,6 @@ const StudentProfileSettings = () => {
     dob: "",
     phone: "",
     email: "",
-    type: "",
     class: "",
     version: "",
     institution: "",
@@ -20,14 +24,14 @@ const StudentProfileSettings = () => {
   });
   const setProfileData = async () => {
     const data = await profileController.getProfile();
-    console.log("CHILD: ", data.EMAIL);
+    console.log("CHILD: ", data.DATE_OF_BIRTH);
     setUser({
       name: data.NAME,
       gender: data.GENDER,
-      dob: data.DATE_OF_BIRTH,
+      // dob: format(, "MM/dd/yyyy"),
+      dob: data.DATE_OF_BIRTH == null ? "" : new Date(data.DATE_OF_BIRTH),
       phone: data.PHONE_NUMBER,
       email: data.EMAIL,
-      type: data.TYPE,
       class: data.CLASS,
       version: data.VERSION,
       institution: data.INSTITUTION,
@@ -41,32 +45,48 @@ const StudentProfileSettings = () => {
     setUser({ ...user, [prop]: event.target.value });
   };
   const handleSave = async (event) => {
-    await profileController.setProfile(user);
+    await profileController.setProfile({
+      name: user.name,
+      gender: user.gender,
+      dob: format(user.dob, "MM/dd/yyyy"),
+      phone: user.phone,
+      email: user.email,
+      class: user.class,
+      version: user.version,
+      institution: user.institution,
+      address: user.address,
+    });
     console.log("UPDATED", user);
     await setProfileData();
   };
 
   const inputFields = [
-    {
-      label: "Full Name",
-      id: "name",
-      value: user.name,
-    },
-    {
-      label: "Gender",
-      id: "gender",
-      value: user.gender,
-    },
-    {
-      label: "Class",
-      id: "class",
-      value: user.class,
-    },
-    {
-      label: "Version",
-      id: "version",
-      value: user.version,
-    },
+    // {
+    //   label: "Full Name",
+    //   id: "name",
+    //   value: user.name,
+    // },
+    // {
+    //   label: "Gender",
+    //   id: "gender",
+    //   value: user.gender,
+    // },
+    // {
+    //   label: "Date of Birth",
+    //   id: "dob",
+    //   // value: format(new Date(user.DATE_OF_BIRTH), "do MMMM, yyyy"),
+    //   value: user.dob,
+    // },
+    // {
+    //   label: "Class",
+    //   id: "class",
+    //   value: user.class,
+    // },
+    // {
+    //   label: "Version",
+    //   id: "version",
+    //   value: user.version,
+    // },
     {
       label: "Institution",
       id: "institution",
@@ -88,13 +108,56 @@ const StudentProfileSettings = () => {
       <h2 className="header">Profile Settings</h2>
       <Divider />
       <div className="input-fields">
-        {/* <SelectionField
+        <InputField2
+          label="Full Name"
+          type="text"
+          value={user.name}
+          id="name"
+          onChange={handleChange}
+        />
+        <SelectionField
           label="Gender"
           value={user.gender}
           id="gender"
           onChange={handleChange}
           list={["Male", "Female"]}
-        ></SelectionField>
+        />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <MobileDatePicker
+            label="Date of Birth"
+            inputFormat="MM/dd/yyyy"
+            value={user.dob}
+            onChange={(date) => {
+              console.log(date);
+              setUser({ ...user, dob: date });
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                sx={{
+                  width: "100%",
+                }}
+              />
+            )}
+            className="date-picker"
+          />
+        </LocalizationProvider>
+        <InputField2
+          label="Class"
+          type="text"
+          value={user.class}
+          id="class"
+          onChange={handleChange}
+        />
+        <SelectionField
+          label="Version"
+          value={user.version}
+          id="version"
+          onChange={handleChange}
+          list={["Bangla", "English"]}
+        />
+
+        {/* 
         <SelectionField
           label="Version"
           value={user.version}
