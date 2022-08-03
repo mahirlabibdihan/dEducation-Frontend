@@ -13,6 +13,7 @@ import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { InputField2, MultiLineField } from "../../components/InputField";
 import "./my-coachings.scss";
+import { showToast } from "../../App";
 
 const profileController = new ProfileController();
 const coachingController = new CoachingController();
@@ -72,6 +73,7 @@ const ImageUploader = (props) => {
         const result = await coachingController.uploadImage(formData);
         console.log(result);
         if (result.success) {
+          showToast("Image changed");
           setImage(result.image);
           globalCtx.setPendingUpdate(true);
         }
@@ -112,6 +114,7 @@ const EditCoaching = (props) => {
       props.coaching.COACHING_ID
     );
     if (result.success) {
+      showToast("Coaching details updated");
       globalCtx.setPendingUpdate(true);
     }
   };

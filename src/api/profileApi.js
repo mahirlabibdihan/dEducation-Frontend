@@ -19,19 +19,34 @@ class ProfileApi extends Api {
       };
     }
   };
-  getProfileByID = async (id, token) => {
-    console.log(id);
+  getEducation = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/profile/education`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  setEducation = async (list, token) => {
     try {
       let res = await axios.post(
-        `${API_BASE_URL}/profile/by_id`,
+        `${API_BASE_URL}/profile/education`,
         {
-          profile_id: id,
+          list: list,
         },
         {
           headers: { authorization: "Bearer " + token },
         }
       );
-      console.log(res);
       if (res.status === 200) {
         return {
           success: true,

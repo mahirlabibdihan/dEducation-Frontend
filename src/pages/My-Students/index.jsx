@@ -33,11 +33,11 @@ const MyStudents = () => {
   };
   const setFilteredList = async (data) => {
     if (data.class === null) {
-      const list = await coachingController.getStudents(data.coaching);
+      const list = await studentsController.getMembersList(data.coaching);
       console.log("NEW:", list.data);
       setStudentsList(list.data);
     } else {
-      const list = await courseController.getStudents(data);
+      const list = await studentsController.getEnrolledStudentsList(data);
       console.log("NEW:", list.data);
       setStudentsList(list.data);
     }

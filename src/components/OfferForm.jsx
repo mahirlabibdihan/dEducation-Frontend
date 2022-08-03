@@ -6,6 +6,7 @@ import TutionController from "../controller/tutionController";
 import GlobalContext from "../store/GlobalContext";
 import SelectionField, { MultiSelectionField } from "./SelectionField";
 import Fields from "./Fields";
+import { showToast } from "../App";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
@@ -53,6 +54,7 @@ const OfferForm = (props) => {
       props.tutor_id
     );
     if (result.success) {
+      showToast("Tution offered", "success");
       globalCtx.setPendingUpdate(true);
       globalCtx.setSelectedIndex(-1);
     }

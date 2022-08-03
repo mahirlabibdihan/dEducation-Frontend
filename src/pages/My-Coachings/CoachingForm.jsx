@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import "./my-coachings.scss";
 import GlobalContext from "../../store/GlobalContext";
+import { showToast } from "../../App";
 const coachingController = new CoachingController();
 
 const CoachingForm = () => {
@@ -21,7 +22,10 @@ const CoachingForm = () => {
   const createCoaching = async (event) => {
     const result = await coachingController.create(values);
     if (result.success) {
+      showToast("New coaching created");
       globalCtx.setPendingUpdate(true);
+    } else {
+      showToast("Server error occured", "error");
     }
   };
   return (

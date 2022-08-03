@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { PublicProfilePic } from "./ProfilePic";
 import "./TutorProfile.scss";
 
@@ -8,7 +8,7 @@ const TutorProfile = (props) => {
   const profileDetails = [
     [
       { label: "Gender", value: tutor.GENDER },
-      { label: "Salary", value: tutor.PREFFERED_SALARY },
+      { label: "Preffered Salary", value: tutor.PREFFERED_SALARY },
     ],
 
     [
@@ -39,6 +39,7 @@ const TutorProfile = (props) => {
           </div>
           <h6>{`Phone Number: ${tutor.PHONE_NUMBER}`}</h6>
           <h6>{`Subjects: ${tutor.EXPERTISE}`}</h6>
+          {/* <Button class="my-button">Education</Button> */}
         </div>
       </div>
     </div>

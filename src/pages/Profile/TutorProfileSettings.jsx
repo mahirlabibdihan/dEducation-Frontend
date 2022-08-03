@@ -12,6 +12,9 @@ import { MobileDatePicker } from "@mui/x-date-pickers";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { showToast } from "../../App";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {
   const [user, setUser] = useState({
@@ -25,6 +28,15 @@ const TutorProfileSettings = () => {
     experience: "",
     status: "",
   });
+  const [newEducation, setNewEducation] = useState({
+    eq_id: null,
+    institute: "",
+    field_of_study: "",
+    degree: "",
+    passing_year: "",
+  });
+
+  const [educationsList, setEducationsList] = useState([]);
   const setProfileData = async () => {
     const data = await profileController.getProfile();
     console.log("CHILD: ", data.EMAIL);
@@ -39,16 +51,70 @@ const TutorProfileSettings = () => {
       experience: data.YEARS_OF_EXPERIENCE,
       status: data.AVAILABILITY,
     });
+    const result = await profileController.getEducation();
+    console.log("EDU", result);
+    const list = [];
+    const fields = [];
+    for (let i = 0; i < result.data.length; i++) {
+      list.push({
+        eq_id: result.data[i].EQ_ID,
+        institute: result.data[i].INSTITUTE,
+        field_of_study: result.data[i].FIELD_OF_STUDY,
+        degree: result.data[i].DEGREE,
+        passing_year: result.data[i].PASSING_YEAR,
+      });
+      fields.push(getEducationField(list[list.length - 1]));
+    }
+    setEducationsList(list);
+    setEducationFields(fields);
   };
   useEffect(() => {
     setProfileData();
     // console.log("EFFECT");
   }, []);
+  const [educationFields, setEducationFields] = useState([]);
   const handleChange = (prop) => (event) => {
+    console.log("WHY!!!!!");
     setUser({ ...user, [prop]: event.target.value });
   };
+
+  const handleAdd = (e) => {
+    educationsList.push(newEducation);
+    setEducationsList(educationsList);
+    setNewEducation({
+      eq_id: null,
+      institute: "",
+      field_of_study: "",
+      degree: "",
+      passing_year: "",
+    });
+    educationFields.push(getEducationField(newEducation));
+    setEducationFields(educationFields);
+    console.log(educationsList, educationFields);
+  };
+  const handleDelete = (index) => (e) => {
+    const list1 = [];
+    for (let i = 0; i < educationsList.length; i++) {
+      if (i !== index) {
+        list1.push(educationsList[i]);
+      }
+    }
+    setEducationsList(list1);
+    const list2 = [];
+    for (let i = 0; i < educationFields.length; i++) {
+      if (i !== index) {
+        list2.push(educationFields[i]);
+      }
+    }
+    setEducationFields(list2);
+    console.log(educationsList, educationFields);
+  };
+  const handleEducationChange = (prop) => (event) => {
+    console.log(prop, "->", event.target.value, "::", newEducation);
+    setNewEducation({ ...newEducation, [prop]: event.target.value });
+  };
   const handleSave = async (event) => {
-    await profileController.setProfile({
+    const result1 = await profileController.setProfile({
       name: user.name,
       gender: user.gender,
       dob: format(user.dob, "MM/dd/yyyy"),
@@ -60,7 +126,13 @@ const TutorProfileSettings = () => {
       status: user.status,
     });
     console.log("UPDATED", user);
+    const result2 = await profileController.setEducation(educationsList);
     await setProfileData();
+    if (result1.success && result2.success) {
+      showToast("Profile update");
+    } else {
+      showToast("Server error occured", "error");
+    }
   };
   const inputFields = [
     // {
@@ -78,11 +150,11 @@ const TutorProfileSettings = () => {
     //   id: "dob",
     //   value: user.dob,
     // },
-    {
-      label: "Phone Number",
-      id: "phone",
-      value: user.phone,
-    },
+    // {
+    //   label: "Phone Number",
+    //   id: "phone",
+    //   value: user.phone,
+    // },
     {
       label: "Teaching Subjects",
       id: "subjects",
@@ -104,6 +176,32 @@ const TutorProfileSettings = () => {
     //   value: user.status,
     // },
   ];
+  const getEducationField = (education) => {
+    console.log("---->", education);
+    return [
+      {
+        label: "Institute",
+        id: "institute",
+        value: education.institute,
+      },
+      {
+        label: "Field of Study",
+        id: "field_of_study",
+        value: education.field_of_study,
+      },
+      {
+        label: "Degree",
+        id: "degree",
+        value: education.degree,
+      },
+      {
+        label: "Passing Year",
+        id: "passing_year",
+        value: education.passing_year,
+      },
+    ];
+  };
+  const newEducationFields = getEducationField(newEducation);
   return (
     <div className="profile-details">
       <h2 className="header">Profile Settings</h2>
@@ -116,33 +214,43 @@ const TutorProfileSettings = () => {
           id="name"
           onChange={handleChange}
         />
-        <SelectionField
-          label="Gender"
-          value={user.gender}
-          id="gender"
-          onChange={handleChange}
-          list={["Male", "Female"]}
-        />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <MobileDatePicker
-            label="Date of Birth"
-            inputFormat="MM/dd/yyyy"
-            value={user.dob}
-            onChange={(date) => {
-              console.log(date);
-              setUser({ ...user, dob: date });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                sx={{
-                  width: "100%",
-                }}
-              />
-            )}
-            className="date-picker"
+        <div className="hbox">
+          <SelectionField
+            label="Gender"
+            value={user.gender}
+            id="gender"
+            onChange={handleChange}
+            list={["Male", "Female"]}
           />
-        </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileDatePicker
+              label="Date of Birth"
+              inputFormat="MM/dd/yyyy"
+              value={user.dob}
+              onChange={(date) => {
+                console.log(date);
+                setUser({ ...user, dob: date });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  sx={{
+                    width: "100%",
+                  }}
+                />
+              )}
+              className="date-picker"
+            />
+          </LocalizationProvider>
+          <InputField2
+            label="Phone Number"
+            type="text"
+            value={user.phone}
+            id="phone"
+            onChange={handleChange}
+          />
+        </div>
+
         {inputFields.map((field, index) => (
           <InputField2
             label={field.label}
@@ -152,34 +260,76 @@ const TutorProfileSettings = () => {
             onChange={handleChange}
           />
         ))}
-        <NumberField
-          label="Preffered Salary (BDT)"
-          type="number"
-          min={0}
-          max={100000}
-          step={1000}
-          value={user.salary}
-          id="salary"
-          onChange={handleChange}
-        />
-        <NumberField
-          label="Years of Experience"
-          type="number"
-          min={0}
-          max={100}
-          step={1}
-          value={user.experience}
-          id="experience"
-          onChange={handleChange}
-        />
-        <SelectionField
-          label="Status"
-          value={user.status}
-          id="status"
-          onChange={handleChange}
-          list={["Available", "Unavailable"]}
-        />
+
+        <div className="hbox">
+          <NumberField
+            label="Preffered Salary (BDT)"
+            type="number"
+            min={0}
+            max={100000}
+            step={1000}
+            value={user.salary}
+            id="salary"
+            onChange={handleChange}
+          />
+          <NumberField
+            label="Years of Experience"
+            type="number"
+            min={0}
+            max={100}
+            step={1}
+            value={user.experience}
+            id="experience"
+            onChange={handleChange}
+          />
+          <SelectionField
+            label="Status"
+            value={user.status}
+            id="status"
+            onChange={handleChange}
+            list={["Available", "Unavailable"]}
+          />
+        </div>
       </div>
+      <h4>Educational Qualification</h4>
+      {/* <Divider /> */}
+
+      {educationFields.map((row, index) => (
+        <div className="hbox">
+          {row.map((col) => (
+            <InputField2
+              label={col.label}
+              type="text"
+              value={col.value}
+              id={col.id}
+              onChange={handleEducationChange}
+            />
+          ))}
+          <Button
+            variant="contained"
+            className="delete-button"
+            onClick={handleDelete(index)}
+          >
+            <DeleteOutlineIcon />
+          </Button>
+        </div>
+      ))}
+
+      <div className="hbox">
+        {newEducationFields.map((field) => (
+          <InputField2
+            label={field.label}
+            type="text"
+            value={field.value}
+            id={field.id}
+            onChange={handleEducationChange}
+          />
+        ))}
+        <Button variant="contained" className="add-button" onClick={handleAdd}>
+          <AddIcon />
+        </Button>
+      </div>
+
       <Button variant="contained" className="save-button" onClick={handleSave}>
         Save
       </Button>

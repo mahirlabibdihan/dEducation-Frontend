@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
@@ -13,6 +14,7 @@ import { createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { CircularProgress } from "@mui/material";
+import { showToast } from "../../App";
 const authController = new AuthController();
 const cookies = new Cookies();
 const SignUpForm = (props) => {
@@ -55,7 +57,10 @@ const SignUpForm = (props) => {
       type: searchParams.get("type"),
     });
     if (result.success) {
+      showToast("New account created", "success");
       handleLogin();
+    } else {
+      showToast("Error occured", "error");
     }
   };
   const SignUpButton = () => {
@@ -87,6 +92,9 @@ const SignUpForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
     >
+      <div className="exit-button" onClick={() => navigate("/")}>
+        <CancelIcon sx={{ fontSize: "2rem" }} />
+      </div>
       <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField
         label="Full Name"

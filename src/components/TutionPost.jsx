@@ -5,6 +5,7 @@ import GlobalContext from "../store/GlobalContext";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
+import { showToast } from "../App";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const cookies = new Cookies();
@@ -14,12 +15,17 @@ const TutionPost = (props) => {
   const type = cookies.get("type");
   const handleApply = async (event) => {
     const result = await tutionController.apply(data.POST_ID);
+    if (result.success) {
+      showToast("Applied to tution post");
+    }
     console.log(result);
     globalCtx.setPendingUpdate(true);
   };
   const handleCancel = async (event) => {
     const result = await tutionController.cancelApplication(data.POST_ID);
-    console.log(result);
+    if (result.success) {
+      showToast("Application cancelled");
+    }
     globalCtx.setPendingUpdate(true);
   };
   const handleApplicants = async (event) => {

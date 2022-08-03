@@ -4,6 +4,7 @@ import InputField, { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import AuthController from "../../controller/authController";
 import EyeIcon from "../../components/EyeIcon";
+import { showToast } from "../../App";
 const authController = new AuthController();
 const PasswordChange = () => {
   const [currPass, setCurrPass] = useState("");
@@ -15,6 +16,9 @@ const PasswordChange = () => {
     if (result) {
       setCurrPass("");
       setNewPass("");
+      showToast("Password changed", "success");
+    } else {
+      showToast("Incorrect password", "error");
     }
   };
   return (

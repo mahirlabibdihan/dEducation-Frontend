@@ -32,7 +32,7 @@ const Applicants = () => {
     // Then get their profile details using user_id
     // If there is 'PENDING' or 'ACCEPTED' offer, then get tution informations also
     // Else get tution post informations
-    const list1 = await tutionController.getApplicants(
+    const list1 = await tutorsController.getApplicantsList(
       searchParams.get("post_id")
     );
     console.log("APPLICANTS", list1.data[0]);

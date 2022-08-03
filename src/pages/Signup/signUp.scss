@@ -16,6 +16,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  position: relative;
   .form-header {
     font-family: "Kdam Thmor Pro", sans-serif;
     @include flexCenter;
@@ -41,6 +42,16 @@
     &:hover {
       // text-decoration-color: black;
       color: rgb(88, 88, 88);
+    }
+  }
+  .exit-button {
+    position: absolute;
+    right: 4%;
+    top: 4%;
+    transition: 0.5s;
+    color: rgb(220, 220, 220);
+    &:hover {
+      color: black;
     }
   }
 }

@@ -17,6 +17,7 @@ import { useContext } from "react";
 import { format } from "date-fns";
 import GlobalContext from "../../store/GlobalContext";
 import Fields from "../../components/Fields";
+import { showToast } from "../../App";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
@@ -48,6 +49,7 @@ export const TutorCourseForm = () => {
     console.log(values);
     const result = await courseController.create(values);
     if (result.success) {
+      showToast("New course created");
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
     }
@@ -117,13 +119,26 @@ export const TutorCourseForm = () => {
           />
         ))}
       </div>
-      <Button
-        variant="contained"
-        className="create-button"
-        onClick={createCourse}
-      >
-        Create
-      </Button>
+      {values.coaching === "" ||
+      values.class === "" ||
+      values.subject === "" ? (
+        <Button
+          variant="contained"
+          className="create-button disabled-button"
+          onClick={createCourse}
+          disabled
+        >
+          Create
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          className="create-button"
+          onClick={createCourse}
+        >
+          Create
+        </Button>
+      )}
     </div>
   );
 };
@@ -230,7 +245,7 @@ export const StudentCourseForm = () => {
     const result = await courseController.getClassOptions(values.coaching);
     const list = [];
     for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i].CLASS);
+      list.push(result.data[i]);
     }
     // console.log(result.data) ;
     setClassList(list);
@@ -242,7 +257,7 @@ export const StudentCourseForm = () => {
     );
     const list = [];
     for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i].SUBJECT);
+      list.push(result.data[i]);
     }
     setSubjectList(list);
   };
@@ -251,35 +266,60 @@ export const StudentCourseForm = () => {
     // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
-    if (values.coaching !== "") setClassOptions();
+    setValues({
+      coaching: values.coaching,
+      class: "",
+      subject: "",
+      batch: "",
+    });
+    if (values.coaching !== -1) {
+      setClassOptions();
+    } else {
+      setClassList([]);
+    }
+    setSubjectList([]);
+    setBatchList([]);
   }, [values.coaching]);
   useEffect(() => {
+    setValues({
+      coaching: values.coaching,
+      class: values.class,
+      subject: "",
+      batch: "",
+    });
     if (values.class !== "") setSubjectOptions();
+    else {
+      setSubjectList([]);
+    }
+    setBatchList([]);
   }, [values.class]);
   useEffect(() => {
+    setValues({
+      coaching: values.coaching,
+      class: values.class,
+      subject: values.subject,
+      batch: "",
+    });
     if (values.subject !== "") setBatchOptions();
+    else {
+      setBatchList([]);
+    }
   }, [values.subject]);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const enrollCourse = async (event) => {
-    const course = await courseController.getCourseId(
-      values.coaching,
-      values.class,
-      values.subject
-    );
-    console.log("ID", course);
-    const result = await courseController.enroll(
-      course.data.COURSE_ID,
-      values.batch
-    );
+    const result = await courseController.enroll(values.batch);
     if (result.success) {
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
       setClassList([]);
       setSubjectList([]);
       setBatchList([]);
+      showToast("Enrolled in course", "success");
+    } else {
+      showToast("Already enrolled in this course", "error");
     }
   };
   return (
@@ -320,13 +360,24 @@ export const StudentCourseForm = () => {
           onChange={handleChange}
         />
       </div>
-      <Button
-        variant="contained"
-        className="create-button"
-        onClick={enrollCourse}
-      >
-        Enroll
-      </Button>
+      {values.batch === "" ? (
+        <Button
+          variant="contained"
+          className="create-button disabled-button"
+          onClick={enrollCourse}
+          disabled
+        >
+          Enroll
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          className="create-button"
+          onClick={enrollCourse}
+        >
+          Enroll
+        </Button>
+      )}
     </div>
   );
 };

@@ -38,6 +38,30 @@ class TutorsApi extends Api {
       };
     }
   };
+  getApplicantsList = async (post_id, token) => {
+    console.log("OFFER TUTION");
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tutors/applicants_list`,
+        {
+          post_id: post_id,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
 }
 
 export default TutorsApi;

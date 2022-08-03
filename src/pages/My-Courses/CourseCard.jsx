@@ -22,7 +22,7 @@ export const StudentCourseCard = (props) => {
       aria-hidden="true"
       // onClick={handleClick}
     >
-      <h6>{`Coaching: ${props.course.NAME}`}</h6>
+      <h6>{`Coaching: ${props.course.COACHING_NAME}`}</h6>
       <h6>{`Class: ${props.course.CLASS}`}</h6>
       <h6>{`Subject: ${props.course.SUBJECT}`}</h6>
       <h6>{`Starting Date:  ${format(
@@ -66,7 +66,7 @@ export const TutorCourseCard = (props) => {
       aria-hidden="true"
       onClick={handleClick}
     >
-      <h6>{`Coaching: ${props.course.NAME}`}</h6>
+      <h6>{`Coaching: ${props.course.COACHING_NAME}`}</h6>
       <h6>{`Class: ${props.course.CLASS}`}</h6>
       <h6>{`Subject: ${props.course.SUBJECT}`}</h6>
     </div>

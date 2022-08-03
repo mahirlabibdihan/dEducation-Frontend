@@ -20,6 +20,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { MobileDatePicker } from "@mui/x-date-pickers";
+import { showToast } from "../../App";
 // import mobileDa
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -60,8 +61,11 @@ export const BatchForm = () => {
       }
     );
     if (result.success) {
+      showToast("New batch added");
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
+    } else {
+      showToast("Invalid batch", "error");
     }
   };
   return (

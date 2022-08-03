@@ -30,11 +30,6 @@ class CoachingController extends Controller {
     const result = await this.coachingApi.joinCoaching(coaching_id, token);
     return result;
   };
-  getStudents = async (coaching_id) => {
-    const token = this.cookies.get("token");
-    const result = await this.coachingApi.getStudents(coaching_id, token);
-    return result;
-  };
   getMyCourseList = async (coaching_id) => {
     const token = this.cookies.get("token");
     const result = await this.coachingApi.getMyCourseList(coaching_id, token);

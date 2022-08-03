@@ -155,3 +155,8 @@ $bg-color: grey;
   padding: 1rem 0;
   width: 100%;
 }
+
+.disabled-button {
+  color: rgb(232, 229, 229);
+  background-image: linear-gradient(#464a4d, #151616);
+}

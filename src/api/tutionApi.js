@@ -75,31 +75,6 @@ class TutionApi extends Api {
     }
   };
 
-  getApplicants = async (post_id, token) => {
-    console.log("OFFER TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_applicants`,
-        {
-          post_id: post_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
-
   offer = async (data, tutor_id, token) => {
     console.log("OFFER TUTION");
     console.log("ID:", tutor_id);
@@ -192,25 +167,6 @@ class TutionApi extends Api {
       if (res.status === 200) {
         return {
           success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
-
-  getMyOffers = async (token) => {
-    console.log("OFFER TUTION");
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/offer`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
         };
       }
     } catch (err) {
@@ -391,6 +347,23 @@ class TutionApi extends Api {
   getMyTutionsList = async (token) => {
     try {
       let res = await axios.get(`${API_BASE_URL}/tution/get_my_details`, {
+        headers: { authorization: "Bearer " + token },
+      });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getPendingTutionsList = async (token) => {
+    try {
+      let res = await axios.get(`${API_BASE_URL}/tution/get_pending_details`, {
         headers: { authorization: "Bearer " + token },
       });
       if (res.status === 200) {

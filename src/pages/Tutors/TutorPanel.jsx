@@ -4,6 +4,7 @@ import TutorProfile from "../../components/TutorProfile";
 import OfferForm from "../../components/OfferForm";
 import { TutionDetails } from "../My-Tutors/TutorPanel";
 import { Button } from "@mui/material";
+import { showToast } from "../../App";
 import TutionController from "../../controller/tutionController";
 import GlobalContext from "../../store/GlobalContext";
 const tutionController = new TutionController();
@@ -14,6 +15,7 @@ const TutorPanel = (props) => {
     if (result.success) {
       globalCtx.setPendingUpdate(true);
       globalCtx.setSelectedIndex(-1);
+      showToast("Tution offer cancelled");
     }
   };
   return (

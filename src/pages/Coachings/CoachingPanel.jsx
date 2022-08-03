@@ -6,6 +6,7 @@ import { PublicProfilePic } from "../../components/ProfilePic";
 import CoachingController from "../../controller/coachingController";
 import "./coachings.scss";
 import Cookies from "universal-cookie";
+import { showToast } from "../../App";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 
@@ -32,6 +33,11 @@ const CoachingPanel = (props) => {
     const result = await coachingController.joinCoaching(
       props.coaching.COACHING_ID
     );
+    if (result.success) {
+      showToast("New coaching joined");
+    } else {
+      showToast("Already joined", "error");
+    }
   };
 
   return (

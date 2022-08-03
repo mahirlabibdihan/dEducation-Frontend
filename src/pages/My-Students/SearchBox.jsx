@@ -85,7 +85,7 @@ const SearchBox = () => {
     const result = await courseController.getClassOptions(values.coaching);
     const list = [""];
     for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i].CLASS);
+      list.push(result.data[i]);
     }
     // console.log(result.data) ;
     setClassList(list);
@@ -97,7 +97,7 @@ const SearchBox = () => {
     );
     const list = [""];
     for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i].SUBJECT);
+      list.push(result.data[i]);
     }
     setSubjectList(list);
   };

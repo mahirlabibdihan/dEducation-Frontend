@@ -10,19 +10,23 @@ class ProfileController extends Controller {
   getProfile = async () => {
     const token = this.cookies.get("token");
     const result = await this.profileApi.getProfile(token);
-    // console.log(data);
     if (!result.success) authController.logout();
     return result.data;
   };
-  getProfileByID = async (id) => {
+  getEducation = async () => {
     const token = this.cookies.get("token");
-    const result = await this.profileApi.getProfileByID(id, token);
-    console.log("GOT IT", result.data);
-    return result.data;
+    const result = await this.profileApi.getEducation(token);
+    return result;
+  };
+  setEducation = async (list) => {
+    const token = this.cookies.get("token");
+    const result = await this.profileApi.setEducation(list, token);
+    return result;
   };
   setProfile = async (data) => {
     const token = this.cookies.get("token");
-    await this.profileApi.setProfile(data, token);
+    const result = await this.profileApi.setProfile(data, token);
+    return result;
   };
   getProfilePicture = async () => {
     const token = this.cookies.get("token");

@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import "./login.scss";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
@@ -13,6 +14,7 @@ import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import { showToast } from "../../App";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -35,6 +37,9 @@ const LoginForm = (props) => {
       })
     ) {
       navigate("/home");
+    } else {
+      showToast("Invalid email address/password", "error");
+      setLoading(false);
     }
   };
   const LoginButton = () => {
@@ -99,6 +104,9 @@ const LoginForm = (props) => {
       component="form"
       className={`w-25 p-5 rounded shadow login-form ${props.className}`}
     >
+      <div className="exit-button" onClick={() => navigate("/")}>
+        <CancelIcon sx={{ fontSize: "2rem" }} />
+      </div>
       <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField
         label="Email Address"

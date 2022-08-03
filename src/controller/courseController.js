@@ -10,9 +10,9 @@ class CourseController extends Controller {
     const result = await this.courseApi.addBatch(course_id, batch, token);
     return result;
   };
-  enroll = async (course_id, batch_id) => {
+  enroll = async (batch_id) => {
     const token = this.cookies.get("token");
-    const result = await this.courseApi.enroll(course_id, batch_id, token);
+    const result = await this.courseApi.enroll(batch_id, token);
     return result;
   };
   create = async (data) => {
@@ -55,25 +55,20 @@ class CourseController extends Controller {
     );
     return result;
   };
-  getStudents = async (data) => {
-    const token = this.cookies.get("token");
-    const result = await this.courseApi.getStudents(data, token);
-    return result;
-  };
   getBatches = async (course_id) => {
     const token = this.cookies.get("token");
     const result = await this.courseApi.getBatches(course_id, token);
     return result;
   };
-  getCourseId = async (coaching_id, class_name, subject) => {
-    const token = this.cookies.get("token");
-    const result = await this.courseApi.getCourseId(
-      coaching_id,
-      class_name,
-      subject,
-      token
-    );
-    return result;
-  };
+  // getCourseId = async (coaching_id, class_name, subject) => {
+  //   const token = this.cookies.get("token");
+  //   const result = await this.courseApi.getCourseId(
+  //     coaching_id,
+  //     class_name,
+  //     subject,
+  //     token
+  //   );
+  //   return result;
+  // };
 }
 export default CourseController;

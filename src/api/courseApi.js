@@ -2,49 +2,6 @@ import axios from "axios";
 import { API_BASE_URL } from "../index";
 import Api from "./base";
 class CourseApi extends Api {
-  getCourseId = async (coaching_id, class_name, subject, token) => {
-    try {
-      let result = await axios.post(
-        `${API_BASE_URL}/courses/get_id`,
-        {
-          coaching_id: coaching_id,
-          class: class_name,
-          subject: subject,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (result.status === 200) {
-        return {
-          success: true,
-          data: result.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
-  getList = async (token) => {
-    try {
-      let result = await axios.get(`${API_BASE_URL}/coaching/list`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      console.log("GOT STUDENT: ", result.data);
-      if (result.status === 200) {
-        return {
-          success: true,
-          data: result.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
   getMyList = async (token) => {
     try {
       let result = await axios.get(`${API_BASE_URL}/courses/my_list`, {
@@ -157,29 +114,6 @@ class CourseApi extends Api {
       };
     }
   };
-  getStudents = async (data, token) => {
-    try {
-      let result = await axios.post(
-        `${API_BASE_URL}/courses/students`,
-        {
-          data: data,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (result.status === 200) {
-        return {
-          success: true,
-          data: result.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
-  };
   getMyListAdmin = async (token) => {
     try {
       let result = await axios.get(`${API_BASE_URL}/courses/my_list_admin`, {
@@ -246,12 +180,11 @@ class CourseApi extends Api {
       };
     }
   };
-  enroll = async (course_id, batch_id, token) => {
+  enroll = async (batch_id, token) => {
     try {
       let result = await axios.post(
         `${API_BASE_URL}/courses/enroll`,
         {
-          course_id: course_id,
           batch_id: batch_id,
         },
         {

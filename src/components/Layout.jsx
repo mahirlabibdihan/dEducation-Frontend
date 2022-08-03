@@ -85,11 +85,11 @@ const Layout = (props) => {
             path: "/my_courses",
             icon: <BookIcon sx={{ fontSize: "2rem" }} />,
           },
-          {
+          /*{
             label: "Notice Board",
             path: "/notice_board",
             icon: <MessageIcon sx={{ fontSize: "2rem" }} />,
-          },
+          },*/
           {
             label: "Profile",
             path: "/profile",

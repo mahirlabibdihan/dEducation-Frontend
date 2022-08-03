@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Divider, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import TutionController from "../../controller/tutionController";
 import StudentProfile from "../../components/StudentProfile";
+import { showToast } from "../../App";
+import GlobalContext from "../../store/GlobalContext";
+import { useSearchParams } from "react-router-dom";
 const tutionController = new TutionController();
 
 const OfferDetails = (props) => {
@@ -27,22 +30,36 @@ const OfferDetails = (props) => {
 };
 
 const StudentPanel = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const globalCtx = useContext(GlobalContext);
   const offer = props.offer;
   const acceptOffer = async () => {
-    const result = await tutionController.acceptOffer(offer.STUDENT_ID);
+    console.log(offer);
+    const result = await tutionController.acceptOffer(props.student.USER_ID);
     if (result.success) {
-      window.location.reload();
+      showToast("Accepted tution offer");
+      // window.location.reload();
+      globalCtx.setPendingUpdate(true);
+      globalCtx.setSelectedIndex(-1);
+      // searchParams.set
+    } else {
+      showToast("Server error occured", "error");
     }
   };
   const rejectOffer = async () => {
-    const result = await tutionController.rejectOffer(offer.STUDENT_ID);
+    const result = await tutionController.rejectOffer(props.student.USER_ID);
     if (result.success) {
-      window.location.reload();
+      showToast("Rejected tution offer");
+      globalCtx.setPendingUpdate(true);
+      globalCtx.setSelectedIndex(-1);
+      // window.location.reload();
+    } else {
+      showToast("Server error occured", "error");
     }
   };
   return (
     <div className="student-panel">
-      <StudentProfile student={offer} />
+      <StudentProfile student={props.student} />
       <Divider />
       <OfferDetails offer={props.offer} />
       <Button

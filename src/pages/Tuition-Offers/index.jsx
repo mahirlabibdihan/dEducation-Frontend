@@ -6,28 +6,43 @@ import TutionController from "../../controller/tutionController";
 import "./tuition-offers.scss";
 import GlobalContext from "../../store/GlobalContext";
 import StudentPanel from "./StudentPanel";
+import StudentsController from "../../controller/studentsController";
 const tutionController = new TutionController();
-
+const studentsController = new StudentsController();
 const TuitionOffers = () => {
   const globalCtx = useContext(GlobalContext);
-  const [offers, setOffers] = useState([]);
+  const [offersList, setOffersList] = useState([]);
   const [offer, setOffer] = useState({});
+  const [student, setStudent] = useState({});
+  const [studentsList, setStudentsList] = useState([]);
   const getTutionOffers = async () => {
-    const result = await tutionController.getMyOffers();
-    setOffers(result.data);
+    const list1 = await studentsController.getPendingStudentsList();
+    setStudentsList(list1.data);
+    const list2 = await tutionController.getPendingTutionsList();
+    setOffersList(list2.data);
   };
   useEffect(() => {
     getTutionOffers();
     console.log("ON MOUNT");
   }, []);
   useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      getTutionOffers();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
+  useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
-      setOffer(offers[globalCtx.selectedIndex]);
-    } else setOffer({});
+      setStudent(studentsList[globalCtx.selectedIndex]);
+      setOffer(offersList[globalCtx.selectedIndex]);
+    } else {
+      setStudent({});
+      setOffer({});
+    }
   }, [globalCtx.selectedIndex]);
 
   const OffersList = () => {
-    return <ListContainer header="Tuition Offers" list={offers} />;
+    return <ListContainer header="Tuition Offers" list={studentsList} />;
   };
   const SearchFilter = () => {
     return (
@@ -42,7 +57,7 @@ const TuitionOffers = () => {
         {offer === undefined || globalCtx.selectedIndex === -1 ? (
           <></>
         ) : (
-          <StudentPanel offer={offer} />
+          <StudentPanel student={student} offer={offer} />
         )}
       </div>
     );

@@ -15,5 +15,10 @@ class TutorsController extends Controller {
     const result = await this.tutorsApi.getMyTutorsList(token);
     return result;
   };
+  getApplicantsList = async (post_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getApplicantsList(post_id, token);
+    return result;
+  };
 }
 export default TutorsController;

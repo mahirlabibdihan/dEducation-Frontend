@@ -39,8 +39,14 @@ const StudentPanel = (props) => {
       ) : (
         <>
           <StudentProfile student={props.student} />
-          <Divider />
-          <OfferDetails tution={props.tution} />
+          {props.tution === undefined ? (
+            <></>
+          ) : (
+            <>
+              <Divider />
+              <OfferDetails tution={props.tution} />
+            </>
+          )}
         </>
       )}
     </div>

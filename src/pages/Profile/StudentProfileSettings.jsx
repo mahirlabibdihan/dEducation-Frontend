@@ -9,6 +9,8 @@ import { MobileDatePicker } from "@mui/x-date-pickers";
 import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { setLoading } from "../../App";
+import { showToast } from "../../App";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -39,13 +41,14 @@ const StudentProfileSettings = () => {
     });
   };
   useEffect(() => {
+    // setLoading(true);
     setProfileData();
   }, []);
   const handleChange = (prop) => (event) => {
     setUser({ ...user, [prop]: event.target.value });
   };
   const handleSave = async (event) => {
-    await profileController.setProfile({
+    const result = await profileController.setProfile({
       name: user.name,
       gender: user.gender,
       dob: format(user.dob, "MM/dd/yyyy"),
@@ -56,8 +59,10 @@ const StudentProfileSettings = () => {
       institution: user.institution,
       address: user.address,
     });
-    console.log("UPDATED", user);
-    await setProfileData();
+    if (result.success) {
+      await setProfileData();
+      showToast("Profile updated");
+    }
   };
 
   const inputFields = [

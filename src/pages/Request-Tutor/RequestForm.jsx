@@ -12,6 +12,7 @@ import Fields from "../../components/Fields";
 import SelectionField, {
   MultiSelectionField,
 } from "../../components/SelectionField";
+import { showToast } from "../../App";
 const tutionController = new TutionController();
 const RequestForm = () => {
   const globalCtx = useContext(GlobalContext);
@@ -35,6 +36,7 @@ const RequestForm = () => {
     });
     console.log(result);
     if (result.success) {
+      showToast("New tutor requested", "success");
       globalCtx.setPendingUpdate(true);
     }
   };
