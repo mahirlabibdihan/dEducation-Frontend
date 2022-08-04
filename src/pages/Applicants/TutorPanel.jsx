@@ -26,7 +26,7 @@ const TutorPanel = (props) => {
         <OfferForm tution={props.tution} tutor_id={props.tutor.USER_ID} />
       ) : (
         <>
-          <TutionDetails tution={props.tution} />
+          <TutionDetails tution={props.tution} tutorName={props.tutor.NAME} />
           {props.tution.STATUS === "PENDING" ? (
             <Button
               variant="Contained"

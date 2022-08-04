@@ -16,17 +16,17 @@ const TutionPost = (props) => {
   const handleApply = async (event) => {
     const result = await tutionController.apply(data.POST_ID);
     if (result.success) {
+      globalCtx.setPendingUpdate(true);
       showToast("Applied to tution post");
+      console.log(result);
     }
-    console.log(result);
-    globalCtx.setPendingUpdate(true);
   };
   const handleCancel = async (event) => {
     const result = await tutionController.cancelApplication(data.POST_ID);
     if (result.success) {
+      globalCtx.setPendingUpdate(true);
       showToast("Application cancelled");
     }
-    globalCtx.setPendingUpdate(true);
   };
   const handleApplicants = async (event) => {
     // globalCtx.setPostId(data.POST_ID);
@@ -73,6 +73,9 @@ const TutionPost = (props) => {
         <h6 className="time-stamp">
           {format(new Date(data.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
         </h6>
+        <h6 className="time-stamp">
+          {`Applications: ${data.APPLICANT_COUNT}`}
+        </h6>
         {type === "STUDENT" ? (
           <Button className="apply-button" onClick={handleApplicants}>
             Applicants
@@ -82,8 +85,8 @@ const TutionPost = (props) => {
             Apply
           </Button>
         ) : (
-          <Button className="apply-button" onClick={handleCancel}>
-            Applied
+          <Button className="cancel-apply-button" onClick={handleCancel}>
+            Cancel
           </Button>
         )}
       </div>

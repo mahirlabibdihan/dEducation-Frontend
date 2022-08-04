@@ -10,6 +10,26 @@ class TutorsController extends Controller {
     const result = await this.tutorsApi.getTutorsList(token);
     return result;
   };
+  getEducation = async (tutor_id) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getEducation(tutor_id, token);
+    return result;
+  };
+  getEducationsList = async () => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getEducationsList(token);
+    return result;
+  };
+  getFilteredTutorsList = async (query) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getFilteredTutorsList(query, token);
+    return result;
+  };
+  getFilteredEducationsList = async (query) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutorsApi.getFilteredEducationsList(query, token);
+    return result;
+  };
   getMyTutorsList = async () => {
     const token = this.cookies.get("token");
     const result = await this.tutorsApi.getMyTutorsList(token);

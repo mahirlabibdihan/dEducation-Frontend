@@ -280,6 +280,29 @@ class TutionApi extends Api {
       };
     }
   };
+  getFilteredList = async (filter, token) => {
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/filtered_list`,
+        {
+          filter: filter,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
   getTutionDetails = async (user_id, token) => {
     try {
       let res = await axios.post(
@@ -344,6 +367,29 @@ class TutionApi extends Api {
       };
     }
   };
+  getFilteredTutionsList = async (query, token) => {
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/get_filtered_details`,
+        {
+          filter: query,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
   getMyTutionsList = async (token) => {
     try {
       let res = await axios.get(`${API_BASE_URL}/tution/get_my_details`, {
@@ -383,6 +429,29 @@ class TutionApi extends Api {
       let res = await axios.get(`${API_BASE_URL}/tution/get_apply_list`, {
         headers: { authorization: "Bearer " + token },
       });
+      if (res.status === 200) {
+        return {
+          success: true,
+          data: res.data,
+        };
+      }
+    } catch (err) {
+      return {
+        success: false,
+      };
+    }
+  };
+  getFilteredApplyList = async (query, token) => {
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/tution/get_filtered_apply_list`,
+        {
+          filter: query,
+        },
+        {
+          headers: { authorization: "Bearer " + token },
+        }
+      );
       if (res.status === 200) {
         return {
           success: true,

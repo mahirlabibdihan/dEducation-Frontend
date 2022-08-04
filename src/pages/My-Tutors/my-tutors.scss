@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 @import "../../components/layout.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
 .my-tutors-container {
   display: flex;
   font-family: "Oswald", sans-serif;
@@ -47,11 +48,6 @@
     justify-content: center;
     height: 100%;
     gap: 0.5rem;
-    .tution-offer {
-      .vbox {
-        gap: 0.2rem;
-      }
-    }
     .offer-form {
       .input-fields {
         display: flex;
@@ -70,5 +66,15 @@
         width: 100%;
       }
     }
+  }
+}
+
+.tution-offer {
+  .vbox {
+    gap: 0.2rem;
+  }
+  h6 {
+    font-size: 0.9 rem;
+    font-family: "Poppins", sans-serif;
   }
 }

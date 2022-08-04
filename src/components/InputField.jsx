@@ -34,7 +34,11 @@ export const InputField2 = (props) => {
         className="outlined-input"
         type={props.type}
         value={props.value}
-        onChange={props.onChange(props.id)}
+        onChange={
+          props.index === undefined
+            ? props.onChange(props.id)
+            : props.onChange(props.id, props.index)
+        }
         label={props.label}
         endAdornment={props.endAdornment}
       />

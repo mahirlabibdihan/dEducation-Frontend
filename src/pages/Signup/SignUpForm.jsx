@@ -83,7 +83,7 @@ const SignUpForm = (props) => {
         className="rounded sign-up-button"
         onClick={handleSignup}
       >
-        Login
+        Sign Up
       </Button>
     );
   };

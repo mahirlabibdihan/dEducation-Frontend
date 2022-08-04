@@ -20,6 +20,11 @@ class TutionController extends Controller {
     const result = await this.tutionApi.getList(token);
     return result;
   };
+  getFilteredList = async (query) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getFilteredList(query, token);
+    return result;
+  };
   offer = async (data, tutor_id) => {
     const token = this.cookies.get("token");
     const result = await this.tutionApi.offer(data, tutor_id, token);
@@ -65,6 +70,11 @@ class TutionController extends Controller {
     const result = await this.tutionApi.getApplyList(token);
     return result;
   };
+  getFilteredApplyList = async (query) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getFilteredApplyList(query, token);
+    return result;
+  };
   getOfferFromPost = async (post_id) => {
     const token = this.cookies.get("token");
     const result = await this.tutionApi.getOfferFromPost(post_id, token);
@@ -86,6 +96,11 @@ class TutionController extends Controller {
   getTutionsList = async () => {
     const token = this.cookies.get("token");
     const result = await this.tutionApi.getTutionsList(token);
+    return result;
+  };
+  getFilteredTutionsList = async (query) => {
+    const token = this.cookies.get("token");
+    const result = await this.tutionApi.getFilteredTutionsList(query, token);
     return result;
   };
   getMyTutionsList = async () => {

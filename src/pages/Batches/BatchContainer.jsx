@@ -3,17 +3,18 @@ import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import BatchCard from "./BatchCard";
 import GlobalContext from "../../store/GlobalContext";
-
+import { BatchesTable } from "../../components/table";
 // import InputField from "../../components/InputField";
 
 export const List = (props) => {
   console.log(props);
   return (
-    <div className="list">
+    <BatchesTable list={props.list} />
+    /* <div className="list">
       {props.list.map((course, index) => (
         <BatchCard course={course} id={index} />
       ))}
-    </div>
+    </div> */
   );
 };
 const BatchContainer = (props) => {

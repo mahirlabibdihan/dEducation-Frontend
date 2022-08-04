@@ -109,10 +109,37 @@ const TutorProfileSettings = () => {
     setEducationFields(list2);
     console.log(educationsList, educationFields);
   };
-  const handleEducationChange = (prop) => (event) => {
+  const handleNewEducationChange = (prop) => (event) => {
     console.log(prop, "->", event.target.value, "::", newEducation);
     setNewEducation({ ...newEducation, [prop]: event.target.value });
   };
+  const handleOldEducationChange = (prop, index) => (event) => {
+    console.log(prop, "->", event.target.value, "::", index);
+    console.log("BEFORE", educationsList);
+    educationsList[index][prop] = event.target.value;
+    // setEducationsList(educationsList);
+    // setEducationsList({ ...educationsList[index], [prop]: event.target.value });
+    setEducationsList((current) =>
+      current.map((obj, id) => {
+        if (id === index) {
+          console.log("FOUND");
+          return { ...obj, [prop]: event.target.value };
+        }
+        return obj;
+      })
+    );
+    console.log("AFTER", educationsList[index]);
+    educationFields[index] = getEducationField(educationsList[index]);
+    setEducationFields(educationFields);
+    // setNewEducation({ ...newEducation, [prop]: event.target.value });
+  };
+  // useEffect(() => {
+  //   const fields = [];
+  //   for (let i = 0; i < educationsList.length; i++) {
+  //     fields.push(getEducationField(educationsList[i]));
+  //   }
+  //   setEducationFields(fields);
+  // }, educationsList);
   const handleSave = async (event) => {
     const result1 = await profileController.setProfile({
       name: user.name,
@@ -125,11 +152,11 @@ const TutorProfileSettings = () => {
       experience: user.experience,
       status: user.status,
     });
-    console.log("UPDATED", user);
+    console.log("EDUCATION BEFORE SAVE", educationsList);
     const result2 = await profileController.setEducation(educationsList);
-    await setProfileData();
+    // await setProfileData();
     if (result1.success && result2.success) {
-      showToast("Profile update");
+      showToast("Profile updated");
     } else {
       showToast("Server error occured", "error");
     }
@@ -292,37 +319,38 @@ const TutorProfileSettings = () => {
         </div>
       </div>
       <h4>Educational Qualification</h4>
-      {/* <Divider /> */}
+      <div className="education-list">
+        {educationFields.map((row, index) => (
+          <div className="hbox">
+            {row.map((col) => (
+              <InputField2
+                label={col.label}
+                type="text"
+                value={col.value}
+                id={col.id}
+                index={index}
+                onChange={handleOldEducationChange}
+              />
+            ))}
+            <Button
+              variant="contained"
+              className="delete-button"
+              onClick={handleDelete(index)}
+            >
+              <DeleteOutlineIcon />
+            </Button>
+          </div>
+        ))}
+      </div>
 
-      {educationFields.map((row, index) => (
-        <div className="hbox">
-          {row.map((col) => (
-            <InputField2
-              label={col.label}
-              type="text"
-              value={col.value}
-              id={col.id}
-              onChange={handleEducationChange}
-            />
-          ))}
-          <Button
-            variant="contained"
-            className="delete-button"
-            onClick={handleDelete(index)}
-          >
-            <DeleteOutlineIcon />
-          </Button>
-        </div>
-      ))}
-
-      <div className="hbox">
+      <div className="hbox new-education">
         {newEducationFields.map((field) => (
           <InputField2
             label={field.label}
             type="text"
             value={field.value}
             id={field.id}
-            onChange={handleEducationChange}
+            onChange={handleNewEducationChange}
           />
         ))}
         <Button variant="contained" className="add-button" onClick={handleAdd}>

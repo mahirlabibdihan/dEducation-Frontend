@@ -54,9 +54,9 @@ const OfferForm = (props) => {
       props.tutor_id
     );
     if (result.success) {
-      showToast("Tution offered", "success");
       globalCtx.setPendingUpdate(true);
-      globalCtx.setSelectedIndex(-1);
+      // globalCtx.setSelectedIndex(-1);
+      showToast("Tution offered", "success");
     }
   };
   return (

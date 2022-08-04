@@ -19,10 +19,24 @@ const StudentProfile = (props) => {
       </div>
 
       <div className="banner-details">
-        <h3 className="">{student.NAME}</h3>
+        <h3 className="text-center">{student.NAME}</h3>
         <Divider />
         <div className="full-details">
-          <div className="hbox">
+          <h6 className="about-details">
+            {`${student.NAME} is a `}
+            <b>{student.GENDER}</b>
+            {` student of `}
+            <b>{`class ${student.CLASS}`}</b>
+            {`(${student.VERSION} version). Studies at `}
+            <b>{student.INSTITUTION}</b>
+            {` and lives at `}
+            <b>{student.ADDRESS}</b>
+            {`.`}
+            <br></br>
+            {`Phone number: `}
+            <b>{student.PHONE_NUMBER}</b>
+          </h6>
+          {/* <div className="hbox">
             {profileDetails.map((row) => {
               return (
                 <div className="vbox">
@@ -35,7 +49,7 @@ const StudentProfile = (props) => {
           </div>
           <h6>{`Institution: ${student.INSTITUTION}`}</h6>
           <h6>{`Phone Number: ${student.PHONE_NUMBER}`}</h6>
-          <h6>{`Address: ${student.ADDRESS}`}</h6>
+          <h6>{`Address: ${student.ADDRESS}`}</h6> */}
         </div>
       </div>
     </div>

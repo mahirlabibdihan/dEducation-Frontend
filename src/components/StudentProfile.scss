@@ -22,4 +22,14 @@
   .hbox {
     justify-content: space-between;
   }
+  .about-details {
+    padding-bottom: 0.2rem;
+    // min-height: 16vh;
+    max-height: 21vh;
+    overflow: auto;
+    margin-bottom: 0;
+    font-size: 0.9 rem;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.2;
+  }
 }

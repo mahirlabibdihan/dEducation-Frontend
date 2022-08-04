@@ -6,6 +6,7 @@ import StudentProfile from "../../components/StudentProfile";
 import { showToast } from "../../App";
 import GlobalContext from "../../store/GlobalContext";
 import { useSearchParams } from "react-router-dom";
+import { TutionDetails } from "../My-Tutors/TutorPanel";
 const tutionController = new TutionController();
 
 const OfferDetails = (props) => {
@@ -61,7 +62,11 @@ const StudentPanel = (props) => {
     <div className="student-panel">
       <StudentProfile student={props.student} />
       <Divider />
-      <OfferDetails offer={props.offer} />
+      <TutionDetails
+        tution={props.offer}
+        studentName={props.student.NAME}
+        type="tutor"
+      />
       <Button
         variant="contained"
         className="accept-button"

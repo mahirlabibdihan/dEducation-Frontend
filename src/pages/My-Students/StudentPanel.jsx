@@ -7,6 +7,7 @@ import { PublicProfilePic } from "../../components/ProfilePic";
 import TutionController from "../../controller/tutionController";
 import ProfileController from "../../controller/profileController";
 import StudentProfile from "../../components/StudentProfile";
+import { TutionDetails } from "../My-Tutors/TutorPanel";
 const tutionController = new TutionController();
 const profileController = new ProfileController();
 
@@ -44,7 +45,11 @@ const StudentPanel = (props) => {
           ) : (
             <>
               <Divider />
-              <OfferDetails tution={props.tution} />
+              <TutionDetails
+                tution={props.tution}
+                studentName={props.student.NAME}
+                type="tutor"
+              />
             </>
           )}
         </>
