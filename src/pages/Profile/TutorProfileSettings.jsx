@@ -231,7 +231,7 @@ const TutorProfileSettings = () => {
   const newEducationFields = getEducationField(newEducation);
   return (
     <div className="profile-details">
-      <h2 className="header">Profile Settings</h2>
+      <h2 className="header">Profile</h2>
       <Divider />
       <div className="input-fields">
         <InputField2

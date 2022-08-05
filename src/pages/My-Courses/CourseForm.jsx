@@ -320,6 +320,7 @@ export const StudentCourseForm = () => {
       showToast("Enrolled in course", "success");
     } else {
       showToast("Already enrolled in this course", "error");
+      // showToast("Batch is full","error");
     }
   };
   return (

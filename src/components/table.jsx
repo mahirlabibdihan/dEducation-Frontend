@@ -46,13 +46,18 @@ export function TutorCoursesTable(props) {
       align: "center",
     },
     {
+      id: "students",
+      label: "Total Students",
+      align: "center",
+    },
+    {
       id: "batches",
-      label: "Number of Batches",
+      label: "Total Batches",
       align: "center",
     },
   ];
-  function createData(coaching, class_no, subject, batches) {
-    return { coaching, class_no, subject, batches };
+  function createData(coaching, class_no, subject, students, batches) {
+    return { coaching, class_no, subject, students, batches };
   }
   const navigate = useNavigate();
   const type = cookies.get("type");
@@ -74,6 +79,7 @@ export function TutorCoursesTable(props) {
       course.COACHING_NAME,
       course.CLASS,
       course.SUBJECT,
+      course.STUDENT_COUNT,
       course.BATCH_COUNT
     )
   );
@@ -236,10 +242,11 @@ export function BatchesTable(props) {
       label: "Class Time",
       align: "center",
     },
+    { id: "students", label: "Total students", align: "center" },
     { id: "seats", label: "Total seats", align: "center" },
   ];
-  function createData(batch_no, start_date, days, time, seats) {
-    return { batch_no, start_date, days, time, seats };
+  function createData(batch_no, start_date, days, time, seats, students) {
+    return { batch_no, start_date, days, time, seats, students };
   }
   const rows = props.list.map((course, idx) =>
     createData(
@@ -247,7 +254,8 @@ export function BatchesTable(props) {
       format(new Date(course.START_DATE), "do MMMM, yyyy"),
       course.CLASS_DAYS,
       course.CLASS_TIME,
-      course.SEATS
+      course.SEATS,
+      course.STUDENT_COUNT
     )
   );
   console.log("=>", rows);
