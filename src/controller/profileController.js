@@ -8,35 +8,35 @@ const authController = new AuthController();
 class ProfileController extends Controller {
   profileApi = new ProfileApi();
   getProfile = async () => {
-    const result = await this.profileApi.getProfile();
-    if (!result.success) authController.logout();
-    return result;
+    const res = await this.profileApi.getProfile();
+    if (!res.success) authController.logout();
+    return res;
   };
   getEducation = async () => {
-    const result = await this.profileApi.getEducation();
-    return result;
+    const res = await this.profileApi.getEducation();
+    return res;
   };
   setEducation = async (list) => {
-    const result = await this.profileApi.setEducation(list);
-    this.showMessage("Education updated", result);
-    return result;
+    const res = await this.profileApi.setEducation(list);
+    this.showMessage("Education updated", res);
+    return res;
   };
   setProfile = async (data) => {
-    const result = await this.profileApi.setProfile(data);
-    this.showMessage("Profile updated", result);
-    return result;
+    const res = await this.profileApi.setProfile(data);
+    this.showMessage("Profile updated", res);
+    return res;
   };
   getProfilePicture = async () => {
-    const result = await this.profileApi.getProfilePicture();
+    const res = await this.profileApi.getProfilePicture();
     return {
       success: true,
-      image: result.data.IMAGE,
+      image: res.data.IMAGE,
     };
   };
   uploadImage = async (formData) => {
-    const result = await this.profileApi.uploadImage(formData);
-    this.showMessage("Image changed", result);
-    return result;
+    const res = await this.profileApi.uploadImage(formData);
+    this.showMessage("Image changed", res);
+    return res;
   };
 }
 export default ProfileController;

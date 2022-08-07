@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
-import { useNavigate, useParams } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import ListContainer from "../../components/ListContainer";
-import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
 import TutorPanel from "../../components/TutorPanel";
-import ProfileController from "../../controller/profileController";
 import TutionController from "../../controller/tutionController";
+import "./applicants.scss";
 const tutionController = new TutionController();
 const tutorsController = new TutorsController();
-const profileController = new ProfileController();
-
-// import InputField from "../../components/InputField";
 
 const Applicants = () => {
   const globalCtx = useContext(GlobalContext);
@@ -34,12 +25,10 @@ const Applicants = () => {
     const list1 = await tutorsController.getApplicantsList(
       searchParams.get("post_id")
     );
-    console.log("APPLICANTS", list1.data[0]);
     setTutorsList(list1.data);
     const list2 = await tutionController.getApplicantsTutionDetails(
       searchParams.get("post_id")
     );
-    console.log("APPLICANTS TUTIONS", list2.data);
     setTutionsList(list2.data);
   };
   useEffect(() => {
@@ -49,19 +38,16 @@ const Applicants = () => {
     if (globalCtx.pendingUpdate) {
       setList();
       globalCtx.setPendingUpdate(false);
-      // globalCtx.setSelectedIndex(-1);
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);
       setTution(tutionsList[globalCtx.selectedIndex]);
-      console.log(tutor.USER_ID);
     } else {
       setTution({});
       setTutor({});
     }
-    console.log("SELECTED");
   }, [globalCtx.selectedIndex, tutorsList, tutionsList]);
   const TutorsList = () => {
     return <ListContainer header="Applicants" list={tutorsList} />;

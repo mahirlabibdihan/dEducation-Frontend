@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
-import BatchCard from "./BatchCard";
+import React, { useContext } from "react";
+import { Divider } from "@mui/material";
 import GlobalContext from "../../store/GlobalContext";
 import { BatchesTable } from "../../components/table";
-// import InputField from "../../components/InputField";
 
 export const List = (props) => {
   console.log(props);
@@ -18,8 +15,6 @@ export const List = (props) => {
   );
 };
 const BatchContainer = (props) => {
-  const globalCtx = useContext(GlobalContext);
-  console.log(props);
   return (
     <div
       className="list-container"

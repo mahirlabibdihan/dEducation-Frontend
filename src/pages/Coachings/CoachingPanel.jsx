@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
 import GlobalContext from "../../store/GlobalContext";
@@ -29,10 +29,10 @@ const CoachingPanel = (props) => {
   const globalCtx = useContext(GlobalContext);
   const type = cookies.get("type");
   const joinCoaching = async () => {
-    const result = await coachingController.joinCoaching(
+    const res = await coachingController.joinCoaching(
       props.coaching.COACHING_ID
     );
-    if (result.success) {
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };

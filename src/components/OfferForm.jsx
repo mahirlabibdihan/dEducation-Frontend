@@ -44,7 +44,7 @@ const OfferForm = (props) => {
     },
   ];
   const handleOffer = async (event) => {
-    const result = await tutionController.offer(
+    const res = await tutionController.offer(
       {
         type: values.type,
         subjects: values.subjects,
@@ -53,7 +53,7 @@ const OfferForm = (props) => {
       },
       props.tutor_id
     );
-    if (result.success) {
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };

@@ -1,22 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
 import AuthController from "../../controller/authController";
-import GlobalContext from "../../store/GlobalContext";
-import "./signUp.scss";
 import { createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { CircularProgress } from "@mui/material";
-import { showToast } from "../../App";
+import "./signUp.scss";
 const authController = new AuthController();
-const cookies = new Cookies();
 const SignUpForm = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -24,8 +18,6 @@ const SignUpForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const globalCtx = useContext(GlobalContext);
-  const type = cookies.get("type");
   const [loading, setLoading] = useState(false);
   const handleLogin = () => {
     navigate({
@@ -50,13 +42,13 @@ const SignUpForm = (props) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const result = await authController.signup({
+    const res = await authController.signup({
       name: name,
       email: email,
       pass: pass,
       type: searchParams.get("type"),
     });
-    if (result.success) {
+    if (res.success) {
       handleLogin();
     } else {
       setLoading(false);

@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, {
-  InputField2,
-  NumberField,
-} from "../../components/InputField";
+import { Divider } from "@mui/material";
+import { NumberField } from "../../components/InputField";
 import SelectionField from "../../components/SelectionField";
 import { Button } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
@@ -114,42 +111,6 @@ const SearchBox = () => {
           onChange={handleChange}
           list={["Any", "Male", "Female"]}
         />
-
-        {/* {[
-          {
-            label: "Lowest Salary (BDT)",
-            id: "days_per_week",
-            value: values.days_per_week,
-          },
-          {
-            label: "Highest Salary (BDT)",
-            id: "days_per_week",
-            value: values.days_per_week,
-          },
-          {
-            label: "Student Gender",
-            id: "desired_tutor_gender",
-            value: values.desired_tutor_gender,
-          },
-          {
-            label: "Version",
-            id: "type",
-            value: values.type,
-          },
-          {
-            label: "Tutoring Days",
-            id: "salary",
-            value: values.salary,
-          },
-        ].map((field, index) => (
-          <InputField2
-            label={field.label}
-            type="text"
-            value={field.value}
-            id={field.id}
-            onChange={handleChange}
-          />
-        ))} */}
       </div>
       <Button
         variant="contained"

@@ -22,7 +22,6 @@ const TuitionOffers = () => {
   };
   useEffect(() => {
     getTutionOffers();
-    console.log("ON MOUNT");
   }, []);
   useEffect(() => {
     if (globalCtx.pendingUpdate) {

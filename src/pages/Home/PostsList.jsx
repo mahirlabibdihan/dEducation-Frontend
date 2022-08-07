@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
-import { Button } from "@mui/material";
-import { Grid } from "@mui/material";
 import TutionPost from "../../components/TutionPost";
 import TutionController from "../../controller/tutionController";
 import { useContext } from "react";
@@ -19,13 +15,11 @@ const PostsList = () => {
     setPosts(res.data);
     const res2 = await tutionController.getApplyList();
     setIsApplied(res2.data);
-    console.log(res2.data);
   };
   useEffect(() => {
     if (searchParams.get("gender") === null) {
       setTutionPosts();
     } else {
-      console.log("REQ FILTER");
       setFilteredList();
     }
   }, []);
@@ -48,7 +42,6 @@ const PostsList = () => {
       if (searchParams.get("gender") === null) {
         setTutionPosts();
       } else {
-        console.log("REQ FILTER");
         setFilteredList();
       }
       globalCtx.setPendingUpdate(false);

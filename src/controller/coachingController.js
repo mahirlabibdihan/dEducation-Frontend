@@ -6,45 +6,45 @@ import { showToast } from "../App";
 class CoachingController extends Controller {
   coachingApi = new CoachingApi();
   create = async (data) => {
-    const result = await this.coachingApi.create(data);
-    this.showMessage("New coaching created", result);
-    return result;
+    const res = await this.coachingApi.create(data);
+    this.showMessage("New coaching created", res);
+    return res;
   };
   getList = async () => {
-    const result = await this.coachingApi.getList();
-    return result;
+    const res = await this.coachingApi.getList();
+    return res;
   };
   getJoinList = async () => {
-    const result = await this.coachingApi.getJoinList();
-    return result;
+    const res = await this.coachingApi.getJoinList();
+    return res;
   };
   getMyList = async () => {
-    const result = await this.coachingApi.getMyList();
-    return result;
+    const res = await this.coachingApi.getMyList();
+    return res;
   };
   getInfo = async (coaching_id) => {
-    const result = await this.coachingApi.getInfo(coaching_id);
-    return result;
+    const res = await this.coachingApi.getInfo(coaching_id);
+    return res;
   };
   joinCoaching = async (coaching_id) => {
-    const result = await this.coachingApi.joinCoaching(coaching_id);
-    this.showMessage("New coaching joined", result);
-    return result;
+    const res = await this.coachingApi.joinCoaching(coaching_id);
+    this.showMessage("New coaching joined", res);
+    return res;
   };
   getMyCourseList = async (coaching_id) => {
-    const result = await this.coachingApi.getMyCourseList(coaching_id);
-    return result;
+    const res = await this.coachingApi.getMyCourseList(coaching_id);
+    return res;
   };
   updateInfo = async (data, coaching_id) => {
     data["coaching_id"] = coaching_id;
-    const result = await this.coachingApi.updateInfo(data);
-    this.showMessage("Coaching details updated", result);
-    return result;
+    const res = await this.coachingApi.updateInfo(data);
+    this.showMessage("Coaching details updated", res);
+    return res;
   };
   uploadImage = async (formData) => {
-    const result = await this.coachingApi.uploadImage(formData);
-    this.showMessage("Image changed", result);
-    return result;
+    const res = await this.coachingApi.uploadImage(formData);
+    this.showMessage("Image changed", res);
+    return res;
   };
 }
 export default CoachingController;

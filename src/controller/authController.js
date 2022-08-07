@@ -7,9 +7,9 @@ class AuthController extends Controller {
   authApi = new AuthApi();
   cookies = new Cookies();
   login = async (data) => {
-    const result = await this.authApi.login(data);
-    if (result.success) {
-      this.cookies.set("token", result.token, {
+    const res = await this.authApi.login(data);
+    if (res.success) {
+      this.cookies.set("token", res.token, {
         path: "/",
         maxAge: COOKIE_AGE,
       });
@@ -18,9 +18,9 @@ class AuthController extends Controller {
         maxAge: COOKIE_AGE,
       });
     } else {
-      showToast(result.error, "error");
+      showToast(res.error, "error");
     }
-    return result;
+    return res;
   };
   logout = async () => {
     this.cookies.remove("token", { path: "/" });
@@ -28,28 +28,28 @@ class AuthController extends Controller {
   };
 
   signup = async (data) => {
-    const result = await this.authApi.signup(data);
-    this.showSuccess("New account created", result);
-    return result;
+    const res = await this.authApi.signup(data);
+    this.showSuccess("New account created", res);
+    return res;
   };
 
   changePass = async (currPass, newPass) => {
     const token = this.cookies.get("token");
-    const result = await this.authApi.changePass(
+    const res = await this.authApi.changePass(
       {
         currPass: currPass,
         newPass: newPass,
       },
       token
     );
-    if (result.success) {
-      this.cookies.set("token", result.data.token, {
+    if (res.success) {
+      this.cookies.set("token", res.data.token, {
         path: "/",
         maxAge: COOKIE_AGE,
       });
     }
-    this.showSuccess("Password changed", result);
-    return result;
+    this.showSuccess("Password changed", res);
+    return res;
   };
 }
 export default AuthController;

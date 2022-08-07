@@ -55,7 +55,7 @@ const TutorProfile = (props) => {
   return (
     <div className="tutor-profile">
       <div className="profile-picture">
-        <PublicProfilePic image={tutor.IMAGE} />
+        <PublicProfilePic image={tutor.IMAGE} rating={tutor.RATING} />
       </div>
 
       <div className="banner-details">

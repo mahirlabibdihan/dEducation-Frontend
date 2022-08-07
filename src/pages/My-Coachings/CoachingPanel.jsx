@@ -1,21 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
-import ProfilePic, { PublicProfilePic } from "../../components/ProfilePic";
-import TutionController from "../../controller/tutionController";
-import ProfileController from "../../controller/profileController";
-import { createSearchParams, useNavigate } from "react-router-dom";
-import "./my-coachings.scss";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import CameraRoundedIcon from "@mui/icons-material/CameraRounded";
+import { PublicProfilePic } from "../../components/ProfilePic";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { InputField2, MultiLineField } from "../../components/InputField";
 import "./my-coachings.scss";
-import { showToast } from "../../App";
-
-const profileController = new ProfileController();
 const coachingController = new CoachingController();
 
 const CoachingBanner = (props) => {
@@ -70,10 +61,10 @@ const ImageUploader = (props) => {
         formData.append("document", blob);
         // formData.append("coaching_id", JSON.stringify(props.coaching));
         console.log("Upload request", formData.file);
-        const result = await coachingController.uploadImage(formData);
-        console.log(result);
-        if (result.success) {
-          setImage(result.data.image);
+        const res = await coachingController.uploadImage(formData);
+        console.log(res);
+        if (res.success) {
+          setImage(res.data.image);
           globalCtx.setPendingUpdate(true);
         }
       }
@@ -108,11 +99,11 @@ const EditCoaching = (props) => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const updateCoaching = async (event) => {
-    const result = await coachingController.updateInfo(
+    const res = await coachingController.updateInfo(
       values,
       props.coaching.COACHING_ID
     );
-    if (result.success) {
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };
@@ -143,11 +134,6 @@ const EditCoaching = (props) => {
             onChange={handleChange}
           />
         ))}
-        {/* {
-            label: "Address",
-            id: "address",
-            value: values.address,
-          }, */}
         <MultiLineField
           rows={3}
           label={"Address"}

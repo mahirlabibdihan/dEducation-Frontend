@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, {
-  InputField2,
-  NumberField,
-} from "../../components/InputField";
+import { Divider } from "@mui/material";
+import { InputField2, NumberField } from "../../components/InputField";
 import { Button } from "@mui/material";
 import TutionController from "../../controller/tutionController";
 import { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import Fields from "../../components/Fields";
-import SelectionField, {
-  MultiSelectionField,
-} from "../../components/SelectionField";
-import { showToast } from "../../App";
+import SelectionField from "../../components/SelectionField";
 const tutionController = new TutionController();
 const RequestForm = () => {
   const globalCtx = useContext(GlobalContext);
@@ -27,30 +21,17 @@ const RequestForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const handlePost = async (event) => {
-    const result = await tutionController.post({
+    const res = await tutionController.post({
       type: values.type,
       desired_tutor_gender: values.desired_tutor_gender,
       subjects: values.subjects,
       days_per_week: values.days_per_week,
       salary: values.salary,
     });
-    console.log(result);
-    if (result.success) {
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };
-  const tutorRequestForm = [
-    {
-      label: "Subjects",
-      id: "subjects",
-      value: values.subjects,
-    },
-    {
-      label: "Salary (BDT)",
-      id: "salary",
-      value: values.salary,
-    },
-  ];
   return (
     <div className="request-form">
       <h1 className="header"> Need a tutor? </h1>
@@ -93,13 +74,6 @@ const RequestForm = () => {
           id="days_per_week"
           onChange={handleChange}
         />
-        {/* <SelectionField
-          label="Days / Week"
-          value={values.days_per_week}
-          id="days_per_week"
-          onChange={handleChange}
-          list={Fields.days_per_week}
-        ></SelectionField> */}
         <NumberField
           label="Salary (BDT)"
           type="number"
@@ -110,13 +84,6 @@ const RequestForm = () => {
           id="salary"
           onChange={handleChange}
         />
-        {/* <InputField2
-          label="Salary (BDT)"
-          type="number"
-          value={values.salary}
-          id="salary"
-          onChange={handleChange}
-        /> */}
       </div>
       <Button variant="contained" className="post-button" onClick={handlePost}>
         Post

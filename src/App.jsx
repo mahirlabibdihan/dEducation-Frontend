@@ -28,7 +28,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog, DialogContent } from "@mui/material";
-import { Audio } from "react-loader-spinner";
+import { Circles } from "react-loader-spinner";
 
 const showToast = (message, type) => {
   if (type === "success") toast.success(message, {});
@@ -59,7 +59,7 @@ const App = () => {
     <div>
       <Dialog open={loading}>
         <DialogContent>
-          <Audio color="#00BFFF" height={100} width={100} />
+          <Circles color="#00BFFF" height={100} width={100} />
         </DialogContent>
       </Dialog>
       <ToastContainer

@@ -6,50 +6,47 @@ import { showToast } from "../App";
 class CourseController extends Controller {
   courseApi = new CourseApi();
   addBatch = async (course_id, batch) => {
-    const result = await this.courseApi.addBatch(course_id, batch);
-    this.showMessage("New batch added", result);
-    return result;
+    const res = await this.courseApi.addBatch(course_id, batch);
+    this.showMessage("New batch added", res);
+    return res;
   };
   enroll = async (batch_id) => {
-    const result = await this.courseApi.enroll(batch_id);
-    this.showSuccess("Enrolled in course", result);
-    return result;
+    const res = await this.courseApi.enroll(batch_id);
+    this.showSuccess("Enrolled in course", res);
+    return res;
   };
   create = async (data) => {
-    const result = await this.courseApi.create(data);
-    this.showMessage("New course created", result);
-    return result;
+    const res = await this.courseApi.create(data);
+    this.showMessage("New course created", res);
+    return res;
   };
   getMyList = async () => {
-    const result = await this.courseApi.getMyList();
-    return result;
+    const res = await this.courseApi.getMyList();
+    return res;
   };
   getMyListAdmin = async () => {
-    const result = await this.courseApi.getMyListAdmin();
-    return result;
+    const res = await this.courseApi.getMyListAdmin();
+    return res;
   };
   getClassOptions = async (coaching_id) => {
-    const result = await this.courseApi.getClassOptions(coaching_id);
-    return result;
+    const res = await this.courseApi.getClassOptions(coaching_id);
+    return res;
   };
   getSubjectOptions = async (coaching_id, class_name) => {
-    const result = await this.courseApi.getSubjectOptions(
-      coaching_id,
-      class_name
-    );
-    return result;
+    const res = await this.courseApi.getSubjectOptions(coaching_id, class_name);
+    return res;
   };
   getBatchOptions = async (coaching_id, class_name, subject) => {
-    const result = await this.courseApi.getBatchOptions(
+    const res = await this.courseApi.getBatchOptions(
       coaching_id,
       class_name,
       subject
     );
-    return result;
+    return res;
   };
   getBatches = async (course_id) => {
-    const result = await this.courseApi.getBatches(course_id);
-    return result;
+    const res = await this.courseApi.getBatches(course_id);
+    return res;
   };
 }
 export default CourseController;

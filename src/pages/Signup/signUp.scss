@@ -1,11 +1,12 @@
 @import "../../components/components.scss";
+@import "../../images.scss";
 .signUpContainer {
   height: 100vh;
   background-color: #f0f2f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../assets/images/home-background.jpg");
+  background-image: url("../../assets/images/" + $background-image);
   background-size: cover;
   width: 100vw;
 }

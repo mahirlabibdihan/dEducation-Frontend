@@ -3,7 +3,11 @@ import ProfileController from "../controller/profileController";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CameraRoundedIcon from "@mui/icons-material/CameraRounded";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import StarIcon from "@mui/icons-material/Star";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./ProfilePic.scss";
+
 const profileController = new ProfileController();
 const ProfilePic = () => {
   const [file, setFile] = useState("");
@@ -12,8 +16,8 @@ const ProfilePic = () => {
     setFile(e.target.files[0]);
   };
   const setProfilePicture = async () => {
-    const result = await profileController.getProfilePicture();
-    if (result.success) setImage(result.image);
+    const res = await profileController.getProfilePicture();
+    if (res.success) setImage(res.image);
   };
   useEffect(() => {
     setProfilePicture();
@@ -24,10 +28,10 @@ const ProfilePic = () => {
       const formData = new FormData();
       formData.append("file", file);
       console.log("Upload request");
-      const result = await profileController.uploadImage(formData);
-      console.log("IMAGE", result);
-      if (result.success) {
-        setImage(result.data.image);
+      const res = await profileController.uploadImage(formData);
+      console.log("IMAGE", res);
+      if (res.success) {
+        setImage(res.data.image);
       }
     }
   };
@@ -67,6 +71,15 @@ export const PublicProfilePic = (props) => {
         alt=" "
         className="shadow"
       />
+      {props.rating !== undefined ? (
+        <div className="avg-rating">
+          {/* <StarIcon sx={{ color: "orange" }} /> */}
+          <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
+          {props.rating === -1 ? "N/A" : props.rating}
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

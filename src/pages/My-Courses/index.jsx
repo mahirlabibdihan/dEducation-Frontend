@@ -1,46 +1,39 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
-import { useNavigate } from "react-router";
-import ListContainer from "../../components/ListContainer";
-import StudentsController from "../../controller/studentsController";
 import GlobalContext from "../../store/GlobalContext";
 import CourseController from "../../controller/courseController";
 import { StudentCourseForm, TutorCourseForm } from "./CourseForm";
 import CourseContainer from "./CourseContainer";
-import "./my-courses.scss";
 import Cookies from "universal-cookie";
-
-// import InputField from "../../components/InputField";
+import "./my-courses.scss";
 const cookies = new Cookies();
-const studentsController = new StudentsController();
 const courseController = new CourseController();
 
 const MyCourses = () => {
   const globalCtx = useContext(GlobalContext);
   const [courseList, setCourseList] = useState([]);
   const [course, setCourse] = useState({});
-  const navigate = useNavigate();
   const type = cookies.get("type");
   const setList = async () => {
     if (type === "TUTOR") {
       const list = await courseController.getMyListAdmin();
       setCourseList(list.data);
     } else {
-      console.log("STUDENT");
       const list = await courseController.getMyList();
       setCourseList(list.data);
     }
   };
   useEffect(() => {
-    console.log("TYPE: ", type);
     setList();
   }, []);
 
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1)
+    if (globalCtx.selectedIndex !== -1) {
       setCourse(courseList[globalCtx.selectedIndex]);
-    else setCourse({});
-  }, [globalCtx.selectedIndex]);
+    } else {
+      setCourse({});
+    }
+  }, [globalCtx.selectedIndex, courseList]);
 
   useEffect(() => {
     if (globalCtx.pendingUpdate) {

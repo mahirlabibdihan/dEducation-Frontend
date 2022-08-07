@@ -1,28 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
-import { InputField2, NumberField } from "../../components/InputField";
+import React, { useState, useContext } from "react";
+import { Divider } from "@mui/material";
+import { NumberField } from "../../components/InputField";
 import { Button } from "@mui/material";
-import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { InputLabel, OutlinedInput, MenuItem } from "@mui/material";
 import "./batches.scss";
-import SelectionField from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
 import GlobalContext from "../../store/GlobalContext";
 import { useSearchParams } from "react-router-dom";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { TextField } from "@mui/material";
-import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { MobileDatePicker } from "@mui/x-date-pickers";
-import { showToast } from "../../App";
-// import mobileDa
-const coachingController = new CoachingController();
+
 const courseController = new CourseController();
 
 export const BatchForm = () => {
@@ -39,28 +33,20 @@ export const BatchForm = () => {
     seats: 0,
   };
   const [values, setValues] = useState(initValues);
-  useEffect(() => {
-    // setList();
-  }, []);
   const handleChange = (prop) => (event) => {
-    // console.log(prop, event);
     setValues({ ...values, [prop]: event.target.value });
   };
   const addBatch = async (event) => {
-    // setValues({ ...values, start: format(values.start_date, "MM/dd/yyyy") });
-    const result = await courseController.addBatch(
-      searchParams.get("course_id"),
-      {
-        start: format(values.start_date, "MM/dd/yyyy"),
-        days: values.days.toString(),
-        time:
-          format(values.start_time, "h:mm a") +
-          "-" +
-          format(values.end_time, "h:mm a"),
-        seats: values.seats,
-      }
-    );
-    if (result.success) {
+    const res = await courseController.addBatch(searchParams.get("course_id"), {
+      start: format(values.start_date, "MM/dd/yyyy"),
+      days: values.days.toString(),
+      time:
+        format(values.start_time, "h:mm a") +
+        "-" +
+        format(values.end_time, "h:mm a"),
+      seats: values.seats,
+    });
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
     }
@@ -71,19 +57,11 @@ export const BatchForm = () => {
       <Divider />
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="input-fields">
-          {/* <MobileDatePicker
-          label="Date mobile"
-          inputFormat="MM/dd/yyyy"
-          value={value}
-          onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
-        /> */}
           <MobileDatePicker
             label="Starting Date"
             inputFormat="MM/dd/yyyy"
             value={values.start_date}
             onChange={(date) => {
-              console.log(date);
               setValues({ ...values, start_date: date });
             }}
             renderInput={(params) => (
@@ -100,13 +78,7 @@ export const BatchForm = () => {
             label="Start Time"
             value={values.start_time}
             onChange={(time) => {
-              console.log(time);
               setValues({ ...values, start_time: time });
-              console.log(
-                format(values.start_time, "h:mm a") +
-                  "-" +
-                  format(values.end_time, "h:mm a")
-              );
             }}
             renderInput={(params) => (
               <TextField
@@ -155,11 +127,7 @@ export const BatchForm = () => {
               // MenuProps={MenuProps}
             >
               {days.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  // style={getStyles(name, personName, theme)}
-                >
+                <MenuItem key={name} value={name}>
                   {name}
                 </MenuItem>
               ))}
@@ -174,36 +142,6 @@ export const BatchForm = () => {
             id="seats"
             onChange={handleChange}
           />
-          {/* {
-              label: "Starting Date",
-              id: "start",
-              value: values.start,
-            }, */}
-          {/* {[
-            {
-              label: "Total Seats",
-              id: "seats",
-              value: values.seats,
-            },
-          ].map((field, index) => (
-            <InputField2
-              label={field.label}
-              type="text"
-              value={field.value}
-              id={field.id}
-              onChange={handleChange}
-            />
-          ))} */}
-          {/* <DatePicker
-          className="date-picker"
-          selected={values.start_date}
-          onChange={(date) => {
-            // console.log(
-            //   `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-            // );
-            setValues({ ...values, start_date: date });
-          }}
-        /> */}
         </div>
       </LocalizationProvider>
       <Button variant="contained" className="create-button" onClick={addBatch}>

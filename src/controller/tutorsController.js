@@ -5,32 +5,33 @@ import Controller from "./base";
 class TutorsController extends Controller {
   tutorsApi = new TutorsApi();
   getTutorsList = async () => {
-    const result = await this.tutorsApi.getTutorsList();
-    return result;
+    const res = await this.tutorsApi.getTutorsList();
+    return res;
   };
   getEducation = async (tutor_id) => {
-    const result = await this.tutorsApi.getEducation(tutor_id);
-    return result;
+    const res = await this.tutorsApi.getEducation(tutor_id);
+    return res;
   };
   getEducationsList = async () => {
-    const result = await this.tutorsApi.getEducationsList();
-    return result;
+    const res = await this.tutorsApi.getEducationsList();
+    return res;
   };
   getFilteredTutorsList = async (query) => {
-    const result = await this.tutorsApi.getFilteredTutorsList(query);
-    return result;
+    const res = await this.tutorsApi.getFilteredTutorsList(query);
+    return res;
   };
   getFilteredEducationsList = async (query) => {
-    const result = await this.tutorsApi.getFilteredEducationsList(query);
-    return result;
+    const res = await this.tutorsApi.getFilteredEducationsList(query);
+    return res;
   };
   getMyTutorsList = async () => {
-    const result = await this.tutorsApi.getMyTutorsList();
-    return result;
+    const res = await this.tutorsApi.getMyTutorsList();
+    return res;
   };
   getApplicantsList = async (post_id) => {
-    const result = await this.tutorsApi.getApplicantsList(post_id);
-    return result;
+    const res = await this.tutorsApi.getApplicantsList(post_id);
+    return res;
   };
+
 }
 export default TutorsController;

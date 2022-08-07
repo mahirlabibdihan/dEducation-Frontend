@@ -12,9 +12,9 @@ const ChangeablePicture = (props) => {
     if (file > "") {
       const formData = new FormData();
       formData.append("file", file);
-      const result = await profileController.uploadImage(formData);
-      if (result.success) {
-        props.setImage(result.image);
+      const res = await profileController.uploadImage(formData);
+      if (res.success) {
+        props.setImage(res.image);
       }
     }
   };

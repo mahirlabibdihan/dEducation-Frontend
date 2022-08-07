@@ -4,9 +4,8 @@ import { Divider, Typography } from "@mui/material";
 import { InputField2, MultiLineField } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
-import "./my-coachings.scss";
 import GlobalContext from "../../store/GlobalContext";
-import { showToast } from "../../App";
+import "./my-coachings.scss";
 const coachingController = new CoachingController();
 
 const CoachingForm = () => {
@@ -20,8 +19,8 @@ const CoachingForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const createCoaching = async (event) => {
-    const result = await coachingController.create(values);
-    if (result.success) {
+    const res = await coachingController.create(values);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };
@@ -50,11 +49,6 @@ const CoachingForm = () => {
             onChange={handleChange}
           />
         ))}
-        {/* {
-            label: "Address",
-            id: "address",
-            value: values.address,
-          }, */}
         <MultiLineField
           rows={3}
           label={"Address"}

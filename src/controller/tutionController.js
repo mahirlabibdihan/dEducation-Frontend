@@ -5,95 +5,99 @@ import { showToast } from "../App";
 class TutionController extends Controller {
   tutionApi = new TutionApi();
   post = async (data) => {
-    const result = await this.tutionApi.post_tution(data);
-    this.showSuccess("New tutor requested", result);
-    return result;
+    const res = await this.tutionApi.post_tution(data);
+    this.showSuccess("New tutor requested", res);
+    return res;
   };
   getMyList = async () => {
-    const result = await this.tutionApi.getMyList();
-    return result;
+    const res = await this.tutionApi.getMyList();
+    return res;
   };
   getList = async () => {
-    const result = await this.tutionApi.getList();
-    return result;
+    const res = await this.tutionApi.getList();
+    return res;
   };
   getFilteredList = async (query) => {
-    const result = await this.tutionApi.getFilteredList(query);
-    return result;
+    const res = await this.tutionApi.getFilteredList(query);
+    return res;
   };
   offer = async (data, tutor_id) => {
-    const result = await this.tutionApi.offer(data, tutor_id);
-    this.showSuccess("Tution offered", result);
-    return result;
+    const res = await this.tutionApi.offer(data, tutor_id);
+    this.showSuccess("Tution offered", res);
+    return res;
   };
   acceptOffer = async (student_id) => {
-    const result = await this.tutionApi.acceptOffer(student_id);
-    this.showMessage("Accepted tution offer", result);
-    return result;
+    const res = await this.tutionApi.acceptOffer(student_id);
+    this.showMessage("Accepted tution offer", res);
+    return res;
   };
   rejectOffer = async (student_id) => {
-    const result = await this.tutionApi.rejectOffer(student_id);
-    this.showMessage("Rejected tution offer", result);
-    return result;
+    const res = await this.tutionApi.rejectOffer(student_id);
+    this.showMessage("Rejected tution offer", res);
+    return res;
   };
   cancelOffer = async (tutor_id) => {
-    const result = await this.tutionApi.cancelOffer(tutor_id);
-    this.showMessage("Tution offer cancelled", result);
-    return result;
+    const res = await this.tutionApi.cancelOffer(tutor_id);
+    this.showMessage("Tution offer cancelled", res);
+    return res;
   };
   getOfferFromStudent = async (student_id) => {
-    const result = await this.tutionApi.getOfferFromStudent(student_id);
-    return result;
+    const res = await this.tutionApi.getOfferFromStudent(student_id);
+    return res;
   };
   getOfferFromTutor = async (tutor_id) => {
-    const result = await this.tutionApi.getOfferFromTutor(tutor_id);
-    return result;
+    const res = await this.tutionApi.getOfferFromTutor(tutor_id);
+    return res;
   };
   apply = async (post_id) => {
-    const result = await this.tutionApi.apply(post_id);
-    this.showMessage("Applied to tution post", result);
-    return result;
+    const res = await this.tutionApi.apply(post_id);
+    this.showMessage("Applied to tution post", res);
+    return res;
   };
   cancelApplication = async (post_id) => {
-    const result = await this.tutionApi.cancelApplication(post_id);
-    this.showMessage("Application cancelled", result);
-    return result;
+    const res = await this.tutionApi.cancelApplication(post_id);
+    this.showMessage("Application cancelled", res);
+    return res;
   };
   getApplyList = async () => {
-    const result = await this.tutionApi.getApplyList();
-    return result;
+    const res = await this.tutionApi.getApplyList();
+    return res;
   };
   getFilteredApplyList = async (query) => {
-    const result = await this.tutionApi.getFilteredApplyList(query);
-    return result;
+    const res = await this.tutionApi.getFilteredApplyList(query);
+    return res;
   };
   getOfferFromPost = async (post_id) => {
-    const result = await this.tutionApi.getOfferFromPost(post_id);
-    return result;
+    const res = await this.tutionApi.getOfferFromPost(post_id);
+    return res;
   };
   getTutionDetails = async (user_id) => {
-    const result = await this.tutionApi.getTutionDetails(user_id);
-    return result.data;
+    const res = await this.tutionApi.getTutionDetails(user_id);
+    return res.data;
   };
   getApplicantsTutionDetails = async (post_id) => {
-    const result = await this.tutionApi.getApplicantsTutionDetails(post_id);
-    return result;
+    const res = await this.tutionApi.getApplicantsTutionDetails(post_id);
+    return res;
   };
   getTutionsList = async () => {
-    const result = await this.tutionApi.getTutionsList();
-    return result;
+    const res = await this.tutionApi.getTutionsList();
+    return res;
   };
   getFilteredTutionsList = async (query) => {
-    const result = await this.tutionApi.getFilteredTutionsList(query);
-    return result;
+    const res = await this.tutionApi.getFilteredTutionsList(query);
+    return res;
   };
   getMyTutionsList = async () => {
-    const result = await this.tutionApi.getMyTutionsList();
-    return result;
+    const res = await this.tutionApi.getMyTutionsList();
+    return res;
   };
   getPendingTutionsList = async () => {
-    const result = await this.tutionApi.getPendingTutionsList();
-    return result;
+    const res = await this.tutionApi.getPendingTutionsList();
+    return res;
+  };
+  rate = async (tutor_id, rating) => {
+    const res = await this.tutionApi.rate(tutor_id, rating);
+    return res;
   };
 }
 export default TutionController;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import ListContainer from "../../components/ListContainer";
 import CoachingForm from "./CoachingForm";
@@ -15,28 +15,25 @@ const MyCoachings = () => {
   const [coaching, setCoaching] = useState({});
   const type = cookies.get("type");
   const setList = async () => {
-    const result = await coachingController.getMyList();
-    setCoachingsList(result.data);
+    const res = await coachingController.getMyList();
+    setCoachingsList(res.data);
   };
   useEffect(() => {
     setList();
   }, []);
-
-  useEffect(() => {
-    if (globalCtx.selectedIndex !== -1)
-      setCoaching(coachingsList[globalCtx.selectedIndex]);
-    else setCoaching({});
-  }, [globalCtx.selectedIndex]);
   useEffect(() => {
     if (globalCtx.pendingUpdate) {
-      console.log("UPDATE");
       setList();
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
-    setCoaching(coachingsList[globalCtx.selectedIndex]);
-  }, [coachingsList]);
+    if (globalCtx.selectedIndex !== -1) {
+      setCoaching(coachingsList[globalCtx.selectedIndex]);
+    } else {
+      setCoaching({});
+    }
+  }, [globalCtx.selectedIndex, coachingsList]);
   const CoachingCreator = () => {
     return (
       <div className="coaching-creator">

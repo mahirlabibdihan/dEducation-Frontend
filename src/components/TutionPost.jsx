@@ -14,14 +14,14 @@ const TutionPost = (props) => {
   const data = props.data;
   const type = cookies.get("type");
   const handleApply = async (event) => {
-    const result = await tutionController.apply(data.POST_ID);
-    if (result.success) {
+    const res = await tutionController.apply(data.POST_ID);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };
   const handleCancel = async (event) => {
-    const result = await tutionController.cancelApplication(data.POST_ID);
-    if (result.success) {
+    const res = await tutionController.cancelApplication(data.POST_ID);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
   };

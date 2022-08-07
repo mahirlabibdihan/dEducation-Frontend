@@ -18,9 +18,7 @@ const MyTutors = () => {
   const setList = async () => {
     const list1 = await tutorsController.getMyTutorsList();
     setTutorsList(list1.data);
-    console.log("Tutors=", list1);
     const list2 = await tutionController.getMyTutionsList();
-    console.log("Tutions=", list2);
     setTutionsList(list2.data);
   };
   useEffect(() => {
@@ -35,8 +33,13 @@ const MyTutors = () => {
       setTutor({});
       setTution({});
     }
-    console.log("SElceted");
-  }, [globalCtx.selectedIndex]);
+  }, [globalCtx.selectedIndex, tutorsList, tutionsList]);
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setList();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
   const TutorsList = () => {
     return <ListContainer header="My Tutors" list={tutorsList} />;
   };

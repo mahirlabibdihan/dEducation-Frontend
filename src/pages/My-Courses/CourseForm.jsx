@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { InputLabel, OutlinedInput, MenuItem } from "@mui/material";
 import "./my-courses.scss";
-import SelectionField, {
-  MultiSelectionField,
-} from "../../components/SelectionField";
+import SelectionField from "../../components/SelectionField";
 import { FormControl } from "@mui/material";
-import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { format } from "date-fns";
 import GlobalContext from "../../store/GlobalContext";
-import Fields from "../../components/Fields";
-import { showToast } from "../../App";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
 export const TutorCourseForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [coachingsList, setCoachingsList] = useState([]);
-  const location = useLocation();
   const initValues = {
     coaching: "",
     class: "",
@@ -36,8 +29,8 @@ export const TutorCourseForm = () => {
   };
   const [values, setValues] = useState(initValues);
   const setList = async () => {
-    const result = await coachingController.getMyList();
-    setCoachingsList(result.data);
+    const res = await coachingController.getMyList();
+    setCoachingsList(res.data);
   };
   useEffect(() => {
     setList();
@@ -47,8 +40,8 @@ export const TutorCourseForm = () => {
   };
   const createCourse = async (event) => {
     console.log(values);
-    const result = await courseController.create(values);
-    if (result.success) {
+    const res = await courseController.create(values);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
     }
@@ -227,41 +220,38 @@ export const StudentCourseForm = () => {
   };
   const [values, setValues] = useState(initValues);
   const setCoachingOptions = async () => {
-    var result = await coachingController.getMyList();
-    setCoachingsList(result.data);
+    var res = await coachingController.getMyList();
+    setCoachingsList(res.data);
   };
   const setBatchOptions = async () => {
-    var result = await courseController.getBatchOptions(
+    var res = await courseController.getBatchOptions(
       values.coaching,
       values.class,
       values.subject
     );
-    console.log("Batches", result.data);
-    setBatchList(result.data);
+    setBatchList(res.data);
   };
   const setClassOptions = async () => {
-    const result = await courseController.getClassOptions(values.coaching);
+    const res = await courseController.getClassOptions(values.coaching);
     const list = [];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
-    // console.log(result.data) ;
     setClassList(list);
   };
   const setSubjectOptions = async () => {
-    const result = await courseController.getSubjectOptions(
+    const res = await courseController.getSubjectOptions(
       values.coaching,
       values.class
     );
     const list = [];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
     setSubjectList(list);
   };
   useEffect(() => {
     setCoachingOptions();
-    // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
     setValues({
@@ -285,8 +275,9 @@ export const StudentCourseForm = () => {
       subject: "",
       batch: "",
     });
-    if (values.class !== "") setSubjectOptions();
-    else {
+    if (values.class !== "") {
+      setSubjectOptions();
+    } else {
       setSubjectList([]);
     }
     setBatchList([]);
@@ -298,8 +289,9 @@ export const StudentCourseForm = () => {
       subject: values.subject,
       batch: "",
     });
-    if (values.subject !== "") setBatchOptions();
-    else {
+    if (values.subject !== "") {
+      setBatchOptions();
+    } else {
       setBatchList([]);
     }
   }, [values.subject]);
@@ -308,8 +300,8 @@ export const StudentCourseForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const enrollCourse = async (event) => {
-    const result = await courseController.enroll(values.batch);
-    if (result.success) {
+    const res = await courseController.enroll(values.batch);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
       setClassList([]);

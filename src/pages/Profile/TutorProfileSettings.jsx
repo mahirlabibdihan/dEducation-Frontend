@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, {
-  InputField2,
-  NumberField,
-} from "../../components/InputField";
+import { Divider } from "@mui/material";
+import { InputField2, NumberField } from "../../components/InputField";
 import SelectionField from "../../components/SelectionField";
 import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
@@ -14,7 +11,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { showToast } from "../../App";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {
   const [user, setUser] = useState({
@@ -38,9 +34,8 @@ const TutorProfileSettings = () => {
 
   const [educationsList, setEducationsList] = useState([]);
   const setProfileData = async () => {
-    const result = await profileController.getProfile();
-    const data = result.data;
-    console.log("CHILD: ", data.EMAIL);
+    const res = await profileController.getProfile();
+    const data = res.data;
     setUser({
       name: data.NAME,
       gender: data.GENDER,
@@ -52,17 +47,16 @@ const TutorProfileSettings = () => {
       experience: data.YEARS_OF_EXPERIENCE,
       status: data.AVAILABILITY,
     });
-    const result2 = await profileController.getEducation();
-    console.log("EDU", result2);
+    const res2 = await profileController.getEducation();
     const list = [];
     const fields = [];
-    for (let i = 0; i < result2.data.length; i++) {
+    for (let i = 0; i < res2.data.length; i++) {
       list.push({
-        eq_id: result2.data[i].EQ_ID,
-        institute: result2.data[i].INSTITUTE,
-        field_of_study: result2.data[i].FIELD_OF_STUDY,
-        degree: result2.data[i].DEGREE,
-        passing_year: result2.data[i].PASSING_YEAR,
+        eq_id: res2.data[i].EQ_ID,
+        institute: res2.data[i].INSTITUTE,
+        field_of_study: res2.data[i].FIELD_OF_STUDY,
+        degree: res2.data[i].DEGREE,
+        passing_year: res2.data[i].PASSING_YEAR,
       });
       fields.push(getEducationField(list[list.length - 1]));
     }
@@ -71,11 +65,9 @@ const TutorProfileSettings = () => {
   };
   useEffect(() => {
     setProfileData();
-    // console.log("EFFECT");
   }, []);
   const [educationFields, setEducationFields] = useState([]);
   const handleChange = (prop) => (event) => {
-    console.log("WHY!!!!!");
     setUser({ ...user, [prop]: event.target.value });
   };
 
@@ -91,7 +83,6 @@ const TutorProfileSettings = () => {
     });
     educationFields.push(getEducationField(newEducation));
     setEducationFields(educationFields);
-    console.log(educationsList, educationFields);
   };
   const handleDelete = (index) => (e) => {
     const list1 = [];
@@ -108,28 +99,22 @@ const TutorProfileSettings = () => {
       }
     }
     setEducationFields(list2);
-    console.log(educationsList, educationFields);
   };
   const handleNewEducationChange = (prop) => (event) => {
-    console.log(prop, "->", event.target.value, "::", newEducation);
     setNewEducation({ ...newEducation, [prop]: event.target.value });
   };
   const handleOldEducationChange = (prop, index) => (event) => {
-    console.log(prop, "->", event.target.value, "::", index);
-    console.log("BEFORE", educationsList);
     educationsList[index][prop] = event.target.value;
     // setEducationsList(educationsList);
     // setEducationsList({ ...educationsList[index], [prop]: event.target.value });
     setEducationsList((current) =>
       current.map((obj, id) => {
         if (id === index) {
-          console.log("FOUND");
           return { ...obj, [prop]: event.target.value };
         }
         return obj;
       })
     );
-    console.log("AFTER", educationsList[index]);
     educationFields[index] = getEducationField(educationsList[index]);
     setEducationFields(educationFields);
     // setNewEducation({ ...newEducation, [prop]: event.target.value });
@@ -142,7 +127,7 @@ const TutorProfileSettings = () => {
   //   setEducationFields(fields);
   // }, educationsList);
   const handleSave = async (event) => {
-    const result1 = await profileController.setProfile({
+    const res1 = await profileController.setProfile({
       name: user.name,
       gender: user.gender,
       dob: format(user.dob, "MM/dd/yyyy"),
@@ -153,53 +138,16 @@ const TutorProfileSettings = () => {
       experience: user.experience,
       status: user.status,
     });
-    console.log("EDUCATION BEFORE SAVE", educationsList);
-    const result2 = await profileController.setEducation(educationsList);
+    const res2 = await profileController.setEducation(educationsList);
   };
   const inputFields = [
-    // {
-    //   label: "Full Name",
-    //   id: "name",
-    //   value: user.name,
-    // },
-    // {
-    //   label: "Gender",
-    //   id: "gender",
-    //   value: user.gender,
-    // },
-    // {
-    //   label: "Date of Birth",
-    //   id: "dob",
-    //   value: user.dob,
-    // },
-    // {
-    //   label: "Phone Number",
-    //   id: "phone",
-    //   value: user.phone,
-    // },
     {
       label: "Teaching Subjects",
       id: "subjects",
       value: user.subjects,
     },
-    // {
-    //   label: "Preffered Salary",
-    //   id: "salary",
-    //   value: user.salary,
-    // },
-    // {
-    //   label: "Years of Experience",
-    //   id: "experience",
-    //   value: user.experience,
-    // },
-    // {
-    //   label: "Status",
-    //   id: "status",
-    //   value: user.status,
-    // },
   ];
   const getEducationField = (education) => {
-    console.log("---->", education);
     return [
       {
         label: "Institute",

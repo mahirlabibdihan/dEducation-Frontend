@@ -30,22 +30,29 @@
           flex-direction: row;
           justify-content: space-between;
           padding-top: 0.5rem;
+          overflow: hidden;
           .short-list {
+            // animation: slideshow 20s infinite linear alternate;
             width: 100%;
             background-image: linear-gradient(
               rgb(26, 72, 112, 0.05),
               rgb(22, 53, 80, 0.05)
             );
-            // padding: 0 2rem;
+            pointer-events: none;
+            padding: 0 2rem;
             display: flex;
             gap: 2rem;
             align-items: center;
             overflow: auto;
-            justify-content: center;
+            justify-content: flex-start;
             // border: rgba(0, 0, 0, 0.12) solid 4px;
             // border-right: 0;
             // border-color: #1a4870;
             // border-radius: 0 10px 10px 0;
+            overflow: hidden;
+            .user-card {
+              animation: slideshow 30s infinite linear alternate;
+            }
           }
           .next-button {
             @include my-button;
@@ -53,6 +60,14 @@
             width: 3vw;
             border-radius: 0 5px 5px 0;
           }
+        }
+      }
+      @keyframes slideshow {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-540%);
         }
       }
     }

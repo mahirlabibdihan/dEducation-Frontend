@@ -1,19 +1,12 @@
 // import styles from "../styles/_Home.module.scss";
-import React, { useContext } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Background } from "../../components";
 import "./landing.scss";
-import { CircularProgress } from "@mui/material";
 import Button from "@mui/material/Button";
-import GlobalContext from "../../store/GlobalContext";
 import { createSearchParams } from "react-router-dom";
-// import background from "../../public/images/home-background.jpg";
-// import { StyledEngineProvider } from "@mui/material/styles";
-// import Background from "../components/background/Background";
 const Home = () => {
-  const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   return (
     <Background>
@@ -22,8 +15,6 @@ const Home = () => {
           variant="contained"
           onClick={() => {
             setTimeout(() => {
-              // globalCtx.setLoggedInAs("STUDENT");
-              // navigate("/login");
               navigate({
                 pathname: "/login",
                 search: createSearchParams({
@@ -35,13 +26,10 @@ const Home = () => {
           className="rounded mt-3 student-button"
         >
           Student?
-          {/* <CircularProgress /> */}
         </Button>
         <Button
           onClick={() => {
             setTimeout(() => {
-              // globalCtx.setLoggedInAs("TUTOR");
-              // navigate("/login");
               navigate({
                 pathname: "/login",
                 search: createSearchParams({

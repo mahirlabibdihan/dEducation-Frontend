@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
+import InputField from "../../components/InputField";
 import { Button } from "@mui/material";
 import AuthController from "../../controller/authController";
 import EyeIcon from "../../components/EyeIcon";
-import { showToast } from "../../App";
 const authController = new AuthController();
 const PasswordChange = () => {
   const [currPass, setCurrPass] = useState("");
@@ -12,8 +10,8 @@ const PasswordChange = () => {
   const [currShowPass, setCurrShowPass] = useState(false);
   const [newShowPass, setNewShowPass] = useState(false);
   const changePass = async (e) => {
-    const result = await authController.changePass(currPass, newPass);
-    if (result) {
+    const res = await authController.changePass(currPass, newPass);
+    if (res) {
       setCurrPass("");
       setNewPass("");
     }

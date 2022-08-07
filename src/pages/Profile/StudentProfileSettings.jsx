@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
+import { Divider } from "@mui/material";
+import { InputField2 } from "../../components/InputField";
 import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import SelectionField from "../../components/SelectionField";
@@ -10,7 +10,6 @@ import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { setLoading } from "../../App";
-import { showToast } from "../../App";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -25,8 +24,8 @@ const StudentProfileSettings = () => {
     address: "",
   });
   const setProfileData = async () => {
-    const result = await profileController.getProfile();
-    const data = result.data;
+    const res = await profileController.getProfile();
+    const data = res.data;
     console.log("CHILD: ", data.DATE_OF_BIRTH);
     setUser({
       name: data.NAME,
@@ -49,7 +48,7 @@ const StudentProfileSettings = () => {
     setUser({ ...user, [prop]: event.target.value });
   };
   const handleSave = async (event) => {
-    const result = await profileController.setProfile({
+    const res = await profileController.setProfile({
       name: user.name,
       gender: user.gender,
       dob: format(user.dob, "MM/dd/yyyy"),
@@ -60,7 +59,7 @@ const StudentProfileSettings = () => {
       institution: user.institution,
       address: user.address,
     });
-    if (result.success) {
+    if (res.success) {
       await setProfileData();
     }
   };

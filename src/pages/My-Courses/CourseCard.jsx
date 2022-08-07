@@ -1,15 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "../../components/components.scss";
-import CourseController from "../../controller/courseController";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { format } from "date-fns";
 import Cookies from "universal-cookie";
-const courseController = new CourseController();
 const cookies = new Cookies();
 export const StudentCourseCard = (props) => {
   const globalCtx = useContext(GlobalContext);
-  const navigate = useNavigate();
   useEffect(() => {
     // console.log(globalCtx.selectedIndex, props.user.USER_ID);
   }, [globalCtx.selectedIndex]);

@@ -1,13 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "../../components/components.scss";
 import { format } from "date-fns";
 const BatchCard = (props) => {
   const globalCtx = useContext(GlobalContext);
-  //
-  useEffect(() => {
-    // console.log(globalCtx.selectedIndex, props.user.USER_ID);
-  }, [globalCtx.selectedIndex]);
   return (
     <div
       className={`${

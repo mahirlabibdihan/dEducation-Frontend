@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
+import { Divider } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import SearchBox from "./SearchBox";
@@ -12,10 +11,10 @@ import CoachingController from "../../controller/coachingController";
 import UserCard from "../../components/UserCard";
 import ProfileController from "../../controller/profileController";
 import StudentPanel from "./StudentPanel";
+import { setLoading } from "../../App";
 const tutorsController = new TutorsController();
 const coachingController = new CoachingController();
 const profileController = new ProfileController();
-// import InputField from "../../components/InputField";
 
 const StudentHome = () => {
   const [tutorsList, setTutorsList] = useState([]);
@@ -23,36 +22,48 @@ const StudentHome = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const setProfileData = async () => {
-    const result = await profileController.getProfile();
-    setUser(result.data);
+    const res = await profileController.getProfile();
+    if (res.success) {
+      setUser(res.data);
+    }
   };
   useEffect(() => {
+    console.log("ON MOUNT");
+    setList();
     setProfileData();
   }, []);
 
+  useEffect(() => {
+    console.log("ON RENDER");
+    if (
+      tutorsList !== undefined &&
+      coachingsList !== undefined &&
+      user !== undefined
+    ) {
+      setLoading(false);
+    }
+  }, [tutorsList, coachingsList, user]);
   const setList = async () => {
     const list = await tutorsController.getTutorsList();
     var shortList = [];
-    for (let i = 0; i < Math.min(3, list.data.length); i++) {
-      console.log(i, list.data[i]);
+    // for (let i = 0; i < Math.min(3, list.data.length); i++) {
+    //   shortList.push(list.data[i]);
+    // }
+    for (let i = 0; i < list.data.length; i++) {
       shortList.push(list.data[i]);
     }
-    console.log(list);
     setTutorsList(shortList);
 
-    const result = await coachingController.getList();
+    const res = await coachingController.getList();
     var shortList2 = [];
-    for (let i = 0; i < Math.min(3, result.data.length); i++) {
-      // console.log(i, result.data[i]);
-      shortList2.push(result.data[i]);
+    // for (let i = 0; i < Math.min(3, res.data.length); i++) {
+    //   shortList2.push(res.data[i]);
+    // }
+    for (let i = 0; i < res.data.length; i++) {
+      shortList2.push(res.data[i]);
     }
-    console.log(list);
     setCoachingsList(shortList2);
   };
-  useEffect(() => {
-    setList();
-    console.log(tutorsList);
-  }, []);
 
   const ListContainer = (props) => {
     return (
@@ -62,7 +73,7 @@ const StudentHome = () => {
         <div className="short-list-box">
           <div className="short-list">
             {props.list.map((tutor, index) => (
-              <UserCard user={tutor} />
+              <UserCard className="scroll" user={tutor} />
             ))}
           </div>
           <Button
@@ -92,13 +103,6 @@ const StudentHome = () => {
       </div>
     );
   };
-  const SearchFilter = () => {
-    return (
-      <div className="search-filter">
-        <SearchBox />
-      </div>
-    );
-  };
   const RightPanel = () => {
     return (
       <div className="right-panel">
@@ -109,7 +113,6 @@ const StudentHome = () => {
   return (
     <Grid className="student-home-container">
       <DashBoard />
-      {/* <SearchFilter /> */}
       <RightPanel />
     </Grid>
   );

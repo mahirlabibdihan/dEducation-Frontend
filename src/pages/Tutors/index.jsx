@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import SearchBox from "./SearchBox";
 import ListContainer from "../../components/ListContainer";
-import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
 import TutorPanel from "../../components/TutorPanel";
 import TutionController from "../../controller/tutionController";
 import { useSearchParams } from "react-router-dom";
+import "./tutors.scss";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 
@@ -16,17 +16,13 @@ const Tutors = () => {
   const globalCtx = useContext(GlobalContext);
   const [tutor, setTutor] = useState({});
   const [tution, setTution] = useState({});
-  // const [education, setEducation] = useState([]);
   const [tutionsList, setTutionsList] = useState([]);
   const [tutorsList, setTutorsList] = useState([]);
-  // const [educationsList, setEducationsList] = useState([]);
   const setList = async () => {
     const list1 = await tutorsController.getTutorsList();
     setTutorsList(list1.data);
     const list2 = await tutionController.getTutionsList();
     setTutionsList(list2.data);
-    // const list3 = await tutorsController.getEducationsList();
-    // setEducationsList(list3.data);
   };
   const setFilteredList = async (data) => {
     const list = await tutorsController.getFilteredTutorsList(data);
@@ -61,7 +57,6 @@ const Tutors = () => {
     if (searchParams.get("gender") === null) {
       setList();
     } else {
-      console.log("FILTER");
       setFilteredList({
         gender: searchParams.get("gender"),
         start_salary: searchParams.get("start"),
@@ -70,8 +65,14 @@ const Tutors = () => {
         experience: searchParams.get("experience"),
       });
     }
+    // const selected_index = searchParams.get("id");
+    // if (selected_index !== null) {
+    //   setTutor(tutorsList[selected_index]);
+    //   setTution(tutionsList[selected_index]);
+    //   globalCtx.setSelectedIndex(selected_index);
+    //   console.log("FOUND SELECTION");
+    // }
   }, []);
-
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);
@@ -103,6 +104,7 @@ const Tutors = () => {
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate, searchParams]);
+
   useEffect(() => {
     if (globalCtx.selectedIndex !== -1) {
       setTutor(tutorsList[globalCtx.selectedIndex]);

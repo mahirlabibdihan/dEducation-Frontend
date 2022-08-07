@@ -1,8 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
-import { Button } from "@mui/material";
-import { Grid } from "@mui/material";
 import TutionPost from "../../components/TutionPost";
 import TutionController from "../../controller/tutionController";
 import GlobalContext from "../../store/GlobalContext";

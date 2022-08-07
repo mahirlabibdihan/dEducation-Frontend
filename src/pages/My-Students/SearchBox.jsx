@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
+import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
 import SelectionField from "../../components/SelectionField";
 import {
@@ -30,10 +29,10 @@ const SearchBox = () => {
     batch: "",
   });
   const setCoachingOptions = async () => {
-    var result = await coachingController.getMyList();
+    var res = await coachingController.getMyList();
     const list = [{ NAME: "Tution", COACHING_ID: -1 }];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
     setCoachingsList(list);
     // const coaching_id = searchParams.get("coaching");
@@ -69,42 +68,40 @@ const SearchBox = () => {
     // });
   };
   const setBatchOptions = async () => {
-    var result = await courseController.getBatchOptions(
+    var res = await courseController.getBatchOptions(
       values.coaching,
       values.class,
       values.subject
     );
     // const list = [{ NAME: "Tution", BATCH_ID: -1 }];
     const list = [];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
     setBatchList(list);
   };
   const setClassOptions = async () => {
-    const result = await courseController.getClassOptions(values.coaching);
+    const res = await courseController.getClassOptions(values.coaching);
     const list = [""];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
-    // console.log(result.data) ;
+    // console.log(res.data) ;
     setClassList(list);
   };
   const setSubjectOptions = async () => {
-    const result = await courseController.getSubjectOptions(
+    const res = await courseController.getSubjectOptions(
       values.coaching,
       values.class
     );
     const list = [""];
-    for (let i = 0; i < result.data.length; i++) {
-      list.push(result.data[i]);
+    for (let i = 0; i < res.data.length; i++) {
+      list.push(res.data[i]);
     }
     setSubjectList(list);
   };
   useEffect(() => {
-    console.log("MOunt");
     if (coachingsList.length === 1) setCoachingOptions();
-    // console.log("COaching list: ", coachingsList);
   }, []);
   useEffect(() => {
     console.log("Update", values.coaching);
@@ -152,7 +149,6 @@ const SearchBox = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const handleSearch = async (event) => {
-    let result;
     console.log(values);
     const tmp = new URLSearchParams();
     if (values.coaching !== -1) {
@@ -169,7 +165,6 @@ const SearchBox = () => {
     }
     setSearchParams(tmp);
     globalCtx.setPendingUpdate(true);
-    console.log("->", values.coaching);
   };
   return (
     <div className="course-form">
@@ -219,63 +214,4 @@ const SearchBox = () => {
     </div>
   );
 };
-/*const SearchBox = () => {
-  const [values, setValues] = useState({
-    type: "",
-    desired_tutor_gender: "",
-    subjects: "",
-    days_per_week: "",
-    salary: "",
-  });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  return (
-    <div className="search-box">
-      <h1 className="header">Filter</h1>
-      <Divider />
-      <div className="input-fields">
-        {[
-          {
-            label: "Location",
-            id: "type",
-            value: values.type,
-          },
-          {
-            label: "Salary",
-            id: "days_per_week",
-            value: values.days_per_week,
-          },
-          {
-            label: "Class",
-            id: "subjects",
-            value: values.subjects,
-          },
-          {
-            label: "Subjects",
-            id: "subjects",
-            value: values.subjects,
-          },
-          {
-            label: "Gender",
-            id: "desired_tutor_gender",
-            value: values.desired_tutor_gender,
-          },
-        ].map((field, index) => (
-          <InputField2
-            label={field.label}
-            type="text"
-            value={field.value}
-            id={field.id}
-            onChange={handleChange}
-          />
-        ))}
-      </div>
-      <Button variant="contained" className="apply-button">
-        Apply
-      </Button>
-    </div>
-  );
-};*/
-
 export default SearchBox;

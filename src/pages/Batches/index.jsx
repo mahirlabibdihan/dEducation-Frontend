@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router";
-import ListContainer from "../../components/ListContainer";
-import StudentsController from "../../controller/studentsController";
 import GlobalContext from "../../store/GlobalContext";
 import CourseController from "../../controller/courseController";
 import { BatchForm } from "./BatchForm";
 import BatchContainer from "./BatchContainer";
 import { useSearchParams } from "react-router-dom";
 import "./batches.scss";
-const studentsController = new StudentsController();
 const courseController = new CourseController();
 
 const Batches = () => {
@@ -17,7 +14,6 @@ const Batches = () => {
   const [batchList, setBatchList] = useState([]);
   const [course, setCourse] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const setList = async () => {
     const list = await courseController.getBatches(
       searchParams.get("course_id")
@@ -35,9 +31,11 @@ const Batches = () => {
   }, [globalCtx.pendingUpdate]);
 
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1)
+    if (globalCtx.selectedIndex !== -1) {
       setCourse(batchList[globalCtx.selectedIndex]);
-    else setCourse({});
+    } else {
+      setCourse({});
+    }
   }, [globalCtx.selectedIndex]);
 
   const BatchList = () => {

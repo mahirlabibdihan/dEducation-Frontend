@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider } from "@mui/material";
 import ProfileController from "../../controller/profileController";
@@ -6,27 +6,24 @@ import ProfileSettings from "./ProfileSettings";
 import PasswordChange from "./PasswordChange";
 import ProfilePic from "../../components/ProfilePic";
 import "./profile.scss";
-import GlobalContext from "../../store/GlobalContext";
 const profileController = new ProfileController();
 
 const Profile = () => {
   const [user, setUser] = useState({});
   const getProfileData = async () => {
-    const result = await profileController.getProfile();
-    setUser(result.data);
+    const res = await profileController.getProfile();
+    setUser(res.data);
   };
   useEffect(() => {
     getProfileData();
   }, []);
 
   const UserProfile = () => {
-    console.log("IMAGE", user);
     return (
       <div className="profile-banner">
         <div className="profile-picture">
           <ProfilePic image={user.IMAGE} />
         </div>
-
         <div className="banner-details">
           <h2 className="text-center">{user.NAME}</h2>
         </div>

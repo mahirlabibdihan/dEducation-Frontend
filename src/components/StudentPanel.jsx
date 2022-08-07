@@ -15,15 +15,15 @@ const StudentPanel = (props) => {
   const offer = props.offer;
   const acceptOffer = async () => {
     console.log(offer);
-    const result = await tutionController.acceptOffer(props.student.USER_ID);
-    if (result.success) {
+    const res = await tutionController.acceptOffer(props.student.USER_ID);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
       globalCtx.setSelectedIndex(-1);
     }
   };
   const rejectOffer = async () => {
-    const result = await tutionController.rejectOffer(props.student.USER_ID);
-    if (result.success) {
+    const res = await tutionController.rejectOffer(props.student.USER_ID);
+    if (res.success) {
       globalCtx.setPendingUpdate(true);
       globalCtx.setSelectedIndex(-1);
     }

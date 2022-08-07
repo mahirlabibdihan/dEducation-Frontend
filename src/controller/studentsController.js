@@ -5,20 +5,20 @@ import Controller from "./base";
 class StudentsController extends Controller {
   studentsApi = new StudentsApi();
   getMyStudentsList = async () => {
-    const result = await this.studentsApi.getMyStudentsList();
-    return result;
+    const res = await this.studentsApi.getMyStudentsList();
+    return res;
   };
   getPendingStudentsList = async () => {
-    const result = await this.studentsApi.getPendingStudentsList();
-    return result;
+    const res = await this.studentsApi.getPendingStudentsList();
+    return res;
   };
   getEnrolledStudentsList = async (data) => {
-    const result = await this.studentsApi.getEnrolledStudentsList(data);
-    return result;
+    const res = await this.studentsApi.getEnrolledStudentsList(data);
+    return res;
   };
   getMembersList = async (coaching_id) => {
-    const result = await this.studentsApi.getMembersList(coaching_id);
-    return result;
+    const res = await this.studentsApi.getMembersList(coaching_id);
+    return res;
   };
 }
 export default StudentsController;

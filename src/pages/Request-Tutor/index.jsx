@@ -1,17 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import RequestForm from "./RequestForm";
 import PostsList from "./PostsList";
 import "./request-tutor.scss";
 
-// import InputField from "../../components/InputField";
-
 const RequestTutor = () => {
-  useEffect(() => {
-    console.log("ON MOUNT");
-  }, []);
-
   const PostsFeed = () => {
     return (
       <div className="posts-feed">

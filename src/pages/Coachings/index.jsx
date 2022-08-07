@@ -14,18 +14,20 @@ const Coachings = () => {
   const [joinList, setJoinList] = useState([]);
   const [isJoined, setIsJoined] = useState({});
   const setList = async () => {
-    const result1 = await coachingController.getList();
-    setCoachingsList(result1.data);
-    const result2 = await coachingController.getJoinList();
-    setJoinList(result2.data);
+    const res1 = await coachingController.getList();
+    setCoachingsList(res1.data);
+    const res2 = await coachingController.getJoinList();
+    setJoinList(res2.data);
   };
   useEffect(() => {
     if (globalCtx.pendingUpdate) {
+      console.log("PENDING UPDATE");
       setList();
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
+    console.log("MOUNT UPDATE");
     setList();
   }, []);
 

@@ -1,4 +1,5 @@
 @import "../../components/components.scss";
+@import "../../images.scss";
 .login-container {
   font-family: "Oswald", sans-serif;
   height: 100vh;
@@ -8,7 +9,7 @@
   justify-content: center;
   align-items: center;
 
-  background-image: url("../../assets/images/home-background.jpg");
+  background-image: url("../../assets/images/" + $background-image);
   background-size: cover;
 }
 

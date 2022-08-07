@@ -3,24 +3,20 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { LoadingButton } from "@mui/lab";
 import "./login.scss";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import EyeIcon from "../../components/EyeIcon";
-import { login } from "../../api/authApi";
 import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import { showToast } from "../../App";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const globalCtx = useContext(GlobalContext);
   const navigate = useNavigate();
   const authController = new AuthController();
   let [searchParams, setSearchParams] = useSearchParams();
@@ -28,12 +24,12 @@ const LoginForm = (props) => {
   const handleLogin = async (e) => {
     setLoading(true);
     e.preventDefault();
-    const result = await authController.login({
+    const res = await authController.login({
       email: email,
       pass: pass,
       type: searchParams.get("type"),
     });
-    if (result.success) {
+    if (res.success) {
       navigate("/home");
     } else {
       setLoading(false);

@@ -7,6 +7,9 @@
   justify-content: center;
   height: 100%;
   gap: 0.5rem;
+  .profile-picture {
+    position: relative;
+  }
   .offer-form {
     width: 100%;
     .input-fields {
@@ -33,5 +36,8 @@
     &:hover {
       background-image: linear-gradient(#611919, #2e0f0f);
     }
+  }
+  .rating {
+    margin: 0 auto;
   }
 }

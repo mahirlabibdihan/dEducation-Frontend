@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
-import { Divider, Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 import "./home.scss";
 import PostsList from "./PostsList";
 import SearchBox from "./SearchBox";
@@ -8,10 +8,6 @@ import SearchBox from "./SearchBox";
 // import InputField from "../../components/InputField";
 
 const TutorHome = () => {
-  const [type, setType] = useState("STUDENT");
-  useEffect(() => {
-    console.log("ON MOUNT");
-  }, []);
   const PostsFeed = () => {
     return (
       <div className="posts-feed">
@@ -21,7 +17,7 @@ const TutorHome = () => {
       </div>
     );
   };
-  
+
   // const DashBoard = () => {};
   const SearchFilter = () => {
     return (

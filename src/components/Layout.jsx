@@ -27,6 +27,7 @@ import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import BookIcon from "@mui/icons-material/Book";
 import Cookies from "universal-cookie";
 import MessageIcon from "@mui/icons-material/Message";
+import { setLoading } from "../App";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -37,13 +38,6 @@ const Layout = (props) => {
   const navigate = useNavigate();
   const globalCtx = useContext(GlobalContext);
   const type = cookies.get("type");
-  useEffect(() => {
-    const getProfileData = async () => {
-      const data = await profileController.getProfile();
-    };
-    getProfileData();
-  }, []);
-
   const Buttons = () => {
     return (
       <>
@@ -111,6 +105,7 @@ const Layout = (props) => {
             onClick={() => {
               setTimeout(() => {
                 if (button.path === "/") authController.logout();
+                // if(setLoading(true);
                 navigate(button.path);
               }, 300);
             }}

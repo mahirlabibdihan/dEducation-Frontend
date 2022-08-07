@@ -1,12 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Divider, Typography } from "@mui/material";
-import InputField, {
-  InputField2,
-  NumberField,
-} from "../../components/InputField";
+import { Divider } from "@mui/material";
+import { NumberField } from "../../components/InputField";
 import SelectionField from "../../components/SelectionField";
 import { Button } from "@mui/material";
-import { Slider } from "@mui/material";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import GlobalContext from "../../store/GlobalContext";
@@ -69,13 +65,6 @@ const SearchBox = () => {
           onChange={handleChange}
           list={["Any", "Male", "Female"]}
         />
-        {/* <Slider
-          getAriaLabel={() => "Temperature range"}
-          value={values}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          // getAriaValueText={valuetext}
-        /> */}
         <NumberField
           label="Lowest Salary (BDT)"
           type="number"
