@@ -16,9 +16,6 @@ const PasswordChange = () => {
     if (result) {
       setCurrPass("");
       setNewPass("");
-      showToast("Password changed", "success");
-    } else {
-      showToast("Incorrect password", "error");
     }
   };
   return (

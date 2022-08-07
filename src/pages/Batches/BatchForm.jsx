@@ -61,11 +61,8 @@ export const BatchForm = () => {
       }
     );
     if (result.success) {
-      showToast("New batch added");
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
-    } else {
-      showToast("Invalid batch", "error");
     }
   };
   return (

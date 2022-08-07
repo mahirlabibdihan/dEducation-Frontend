@@ -17,15 +17,12 @@ const TutionPost = (props) => {
     const result = await tutionController.apply(data.POST_ID);
     if (result.success) {
       globalCtx.setPendingUpdate(true);
-      showToast("Applied to tution post");
-      console.log(result);
     }
   };
   const handleCancel = async (event) => {
     const result = await tutionController.cancelApplication(data.POST_ID);
     if (result.success) {
       globalCtx.setPendingUpdate(true);
-      showToast("Application cancelled");
     }
   };
   const handleApplicants = async (event) => {

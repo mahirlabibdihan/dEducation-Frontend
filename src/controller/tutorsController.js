@@ -4,40 +4,32 @@ import Controller from "./base";
 
 class TutorsController extends Controller {
   tutorsApi = new TutorsApi();
-  cookies = new Cookies();
   getTutorsList = async () => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getTutorsList(token);
+    const result = await this.tutorsApi.getTutorsList();
     return result;
   };
   getEducation = async (tutor_id) => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getEducation(tutor_id, token);
+    const result = await this.tutorsApi.getEducation(tutor_id);
     return result;
   };
   getEducationsList = async () => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getEducationsList(token);
+    const result = await this.tutorsApi.getEducationsList();
     return result;
   };
   getFilteredTutorsList = async (query) => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getFilteredTutorsList(query, token);
+    const result = await this.tutorsApi.getFilteredTutorsList(query);
     return result;
   };
   getFilteredEducationsList = async (query) => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getFilteredEducationsList(query, token);
+    const result = await this.tutorsApi.getFilteredEducationsList(query);
     return result;
   };
   getMyTutorsList = async () => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getMyTutorsList(token);
+    const result = await this.tutorsApi.getMyTutorsList();
     return result;
   };
   getApplicantsList = async (post_id) => {
-    const token = this.cookies.get("token");
-    const result = await this.tutorsApi.getApplicantsList(post_id, token);
+    const result = await this.tutorsApi.getApplicantsList(post_id);
     return result;
   };
 }

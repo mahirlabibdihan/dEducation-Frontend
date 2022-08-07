@@ -49,11 +49,9 @@ export const TutorCourseForm = () => {
     console.log(values);
     const result = await courseController.create(values);
     if (result.success) {
-      showToast("New course created");
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
     }
-    // if (result.success) location.reload();
   };
   return (
     <div className="course-form">
@@ -317,10 +315,6 @@ export const StudentCourseForm = () => {
       setClassList([]);
       setSubjectList([]);
       setBatchList([]);
-      showToast("Enrolled in course", "success");
-    } else {
-      showToast("Already enrolled in this course", "error");
-      // showToast("Batch is full","error");
     }
   };
   return (

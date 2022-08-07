@@ -1,80 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 @import "../../components/layout.scss";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+
 .my-tutors-container {
   display: flex;
   font-family: "Oswald", sans-serif;
   height: 100vh;
   width: 100%;
-  .search-filter {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    .search-box {
-      display: flex;
-      flex-direction: column;
-      margin: auto;
-      width: 100%;
-      .header {
-        margin: auto;
-        margin-bottom: 1rem;
-      }
-      .input-fields {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        width: 100%;
-        gap: 1rem;
-      }
-      .apply-button {
-        @include my-button;
-        margin: 0 auto;
-        font-size: 2rem;
-        color: rgb(232, 229, 229);
-        background-color: #164a4e;
-        width: 100%;
-      }
-    }
-  }
-  .tutor-panel {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    gap: 0.5rem;
-    .offer-form {
-      .input-fields {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        width: 100%;
-        gap: 1rem;
-      }
-      .offer-button {
-        @include my-button;
-        margin: 0 auto;
-        font-size: 2rem;
-        color: rgb(232, 229, 229);
-        background-color: #164a4e;
-        width: 100%;
-      }
-    }
-  }
-}
-
-.tution-offer {
-  .vbox {
-    gap: 0.2rem;
-  }
-  h6 {
-    font-size: 0.9 rem;
-    font-family: "Poppins", sans-serif;
-  }
 }

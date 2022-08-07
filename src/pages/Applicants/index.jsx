@@ -3,15 +3,14 @@ import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Button } from "@mui/material";
-import SearchBox from "./SearchBox";
+
 import { useNavigate, useParams } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import ListContainer from "../../components/ListContainer";
 import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
-import TutorPanel from "./TutorPanel";
+import TutorPanel from "../../components/TutorPanel";
 import ProfileController from "../../controller/profileController";
 import TutionController from "../../controller/tutionController";
 const tutionController = new TutionController();
@@ -40,11 +39,10 @@ const Applicants = () => {
     const list2 = await tutionController.getApplicantsTutionDetails(
       searchParams.get("post_id")
     );
-    console.log("APPLICANTS TUTIONS", list2.data[0]);
+    console.log("APPLICANTS TUTIONS", list2.data);
     setTutionsList(list2.data);
   };
   useEffect(() => {
-    console.log("ID:", searchParams.get("post_id"));
     setList();
   }, []);
   useEffect(() => {
@@ -64,22 +62,15 @@ const Applicants = () => {
       setTutor({});
     }
     console.log("SELECTED");
-  }, [globalCtx.selectedIndex]);
+  }, [globalCtx.selectedIndex, tutorsList, tutionsList]);
   const TutorsList = () => {
     return <ListContainer header="Applicants" list={tutorsList} />;
-  };
-  const SearchFilter = () => {
-    return (
-      <div className="search-filter">
-        <SearchBox />
-      </div>
-    );
   };
   const RightPanel = () => {
     return (
       <div className="right-panel">
         {tutor === undefined || globalCtx.selectedIndex === -1 ? (
-          <SearchFilter />
+          <></>
         ) : (
           <TutorPanel tutor={tutor} tution={tution} />
         )}

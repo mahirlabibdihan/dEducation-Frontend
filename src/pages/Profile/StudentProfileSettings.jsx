@@ -25,7 +25,8 @@ const StudentProfileSettings = () => {
     address: "",
   });
   const setProfileData = async () => {
-    const data = await profileController.getProfile();
+    const result = await profileController.getProfile();
+    const data = result.data;
     console.log("CHILD: ", data.DATE_OF_BIRTH);
     setUser({
       name: data.NAME,
@@ -61,7 +62,6 @@ const StudentProfileSettings = () => {
     });
     if (result.success) {
       await setProfileData();
-      showToast("Profile updated");
     }
   };
 

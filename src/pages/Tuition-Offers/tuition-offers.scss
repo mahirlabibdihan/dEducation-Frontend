@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
 @import "../../components/layout.scss";
 .tuition-offers-container {
   display: flex;
@@ -12,74 +11,5 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  .student-panel {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    gap: 0.5rem;
-    // padding: auto;
-    .tution-offer {
-      .vbox {
-        gap: 0.2rem;
-      }
-    }
-    .accept-button {
-      @include my-button;
-      margin: 0 auto;
-      font-size: 2rem;
-      color: rgb(232, 229, 229);
-      background-color: #164a4e;
-      width: 100%;
-    }
-    .reject-button {
-      @include my-button;
-      margin: 0 auto;
-      font-size: 2rem;
-      color: rgb(232, 229, 229);
-      background-color: #164a4e;
-      width: 100%;
-      background-image: linear-gradient(#701a1a, #4e1616);
-      &:hover {
-        background-image: linear-gradient(#611919, #2e0f0f);
-      }
-    }
-  }
-  .search-filter {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    .search-box {
-      display: flex;
-      flex-direction: column;
-      margin: auto;
-      width: 100%;
-      .header {
-        margin: auto;
-        margin-bottom: 1rem;
-      }
-      .input-fields {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        width: 100%;
-        gap: 1rem;
-      }
-      .apply-button {
-        @include my-button;
-        margin: 0 auto;
-        font-size: 2rem;
-        color: rgb(232, 229, 229);
-        background-color: #164a4e;
-        width: 100%;
-      }
-    }
   }
 }

@@ -113,41 +113,6 @@ const SearchBox = () => {
           id="experience"
           onChange={handleChange}
         />
-        {/*[
-          {
-            label: "Gender",
-            id: "desired_tutor_gender",
-            value: values.desired_tutor_gender,
-          },
-          {
-            label: "Salary",
-            id: "salary",
-            value: values.salary,
-          },
-          {
-            label: "Subjects",
-            id: "subjects",
-            value: values.subjects,
-          },
-          {
-            label: "Status",
-            id: "status",
-            value: values.status,
-          },
-          {
-            label: "Experience",
-            id: "experience",
-            value: values.experience,
-          },
-        ].map((field, index) => (
-          <InputField2
-            label={field.label}
-            type="text"
-            value={field.value}
-            id={field.id}
-            onChange={handleChange}
-          />
-        ))*/}
       </div>
       <Button
         variant="contained"

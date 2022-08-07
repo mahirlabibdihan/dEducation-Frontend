@@ -5,13 +5,14 @@ import ListContainer from "../../components/ListContainer";
 import "./my-students.scss";
 import StudentsController from "../../controller/studentsController";
 import GlobalContext from "../../store/GlobalContext";
-import StudentPanel from "./StudentPanel";
+import StudentPanel from "../../components/StudentPanel";
 import TutionController from "../../controller/tutionController";
 import ProfileController from "../../controller/profileController";
 import SearchBox from "./SearchBox";
 import { useSearchParams } from "react-router-dom";
 import CourseController from "../../controller/courseController";
 import CoachingController from "../../controller/coachingController";
+
 const studentsController = new StudentsController();
 const courseController = new CourseController();
 const coachingController = new CoachingController();
@@ -31,7 +32,13 @@ const MyStudents = () => {
     const list2 = await tutionController.getMyTutionsList();
     setTutionsList(list2.data);
   };
-  const setFilteredList = async (data) => {
+  const setFilteredList = async () => {
+    const data = {
+      coaching: searchParams.get("coaching"),
+      class: searchParams.get("class"),
+      subject: searchParams.get("subject"),
+      batch: searchParams.get("batch"),
+    };
     if (data.class === null) {
       const list = await studentsController.getMembersList(data.coaching);
       console.log("NEW:", list.data);
@@ -48,12 +55,7 @@ const MyStudents = () => {
       setList();
     } else {
       console.log("APPLY");
-      setFilteredList({
-        coaching: searchParams.get("coaching"),
-        class: searchParams.get("class"),
-        subject: searchParams.get("subject"),
-        batch: searchParams.get("batch"),
-      });
+      setFilteredList();
     }
   }, []);
 
@@ -62,12 +64,7 @@ const MyStudents = () => {
       setList();
     } else {
       console.log("APPLY");
-      setFilteredList({
-        coaching: searchParams.get("coaching"),
-        class: searchParams.get("class"),
-        subject: searchParams.get("subject"),
-        batch: searchParams.get("batch"),
-      });
+      setFilteredList();
     }
   }, [searchParams]);
   useEffect(() => {
@@ -82,13 +79,6 @@ const MyStudents = () => {
 
   const StudentsList = () => {
     return <ListContainer header="My Students" list={studentsList} />;
-  };
-  const SearchFilter = () => {
-    return (
-      <div className="course-form">
-        <SearchBox />
-      </div>
-    );
   };
   const RightPanel = () => {
     return (

@@ -6,7 +6,6 @@ import { PublicProfilePic } from "../../components/ProfilePic";
 import CoachingController from "../../controller/coachingController";
 import "./coachings.scss";
 import Cookies from "universal-cookie";
-import { showToast } from "../../App";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 
@@ -34,9 +33,7 @@ const CoachingPanel = (props) => {
       props.coaching.COACHING_ID
     );
     if (result.success) {
-      showToast("New coaching joined");
-    } else {
-      showToast("Already joined", "error");
+      globalCtx.setPendingUpdate(true);
     }
   };
 
@@ -47,7 +44,7 @@ const CoachingPanel = (props) => {
       ) : (
         <>
           <CoachingBanner coaching={props.coaching} />
-          {type === "STUDENT" ? (
+          {type === "STUDENT" && props.isJoined === "NO" ? (
             <Button
               variant="contained"
               className="join-button"

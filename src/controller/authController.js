@@ -2,13 +2,12 @@ import Cookies from "universal-cookie";
 import AuthApi from "../api/authApi";
 import Controller from "./base";
 import { COOKIE_AGE } from "../index";
+import { showToast } from "../App";
 class AuthController extends Controller {
   authApi = new AuthApi();
   cookies = new Cookies();
   login = async (data) => {
-    console.log(data);
     const result = await this.authApi.login(data);
-    console.log(result);
     if (result.success) {
       this.cookies.set("token", result.token, {
         path: "/",
@@ -18,17 +17,19 @@ class AuthController extends Controller {
         path: "/",
         maxAge: COOKIE_AGE,
       });
-      return true;
+    } else {
+      showToast(result.error, "error");
     }
-    return false;
+    return result;
   };
-  logout = async (data) => {
+  logout = async () => {
     this.cookies.remove("token", { path: "/" });
     this.cookies.remove("type", { path: "/" });
   };
 
   signup = async (data) => {
     const result = await this.authApi.signup(data);
+    this.showSuccess("New account created", result);
     return result;
   };
 
@@ -41,15 +42,14 @@ class AuthController extends Controller {
       },
       token
     );
-    console.log(result);
     if (result.success) {
-      this.cookies.set("token", result.token, {
+      this.cookies.set("token", result.data.token, {
         path: "/",
         maxAge: COOKIE_AGE,
       });
-      return true;
     }
-    return false;
+    this.showSuccess("Password changed", result);
+    return result;
   };
 }
 export default AuthController;

@@ -12,14 +12,15 @@ const profileController = new ProfileController();
 const Profile = () => {
   const [user, setUser] = useState({});
   const getProfileData = async () => {
-    const data = await profileController.getProfile();
-    setUser(data);
+    const result = await profileController.getProfile();
+    setUser(result.data);
   };
   useEffect(() => {
     getProfileData();
   }, []);
 
   const UserProfile = () => {
+    console.log("IMAGE", user);
     return (
       <div className="profile-banner">
         <div className="profile-picture">

@@ -4,26 +4,20 @@ import Controller from "./base";
 
 class StudentsController extends Controller {
   studentsApi = new StudentsApi();
-  cookies = new Cookies();
   getMyStudentsList = async () => {
-    const token = this.cookies.get("token");
-    const result = await this.studentsApi.getMyStudentsList(token);
+    const result = await this.studentsApi.getMyStudentsList();
     return result;
   };
   getPendingStudentsList = async () => {
-    const token = this.cookies.get("token");
-    const result = await this.studentsApi.getPendingStudentsList(token);
+    const result = await this.studentsApi.getPendingStudentsList();
     return result;
   };
   getEnrolledStudentsList = async (data) => {
-    const token = this.cookies.get("token");
-    const result = await this.studentsApi.getEnrolledStudentsList(data, token);
-    console.log("--->" + result.data);
+    const result = await this.studentsApi.getEnrolledStudentsList(data);
     return result;
   };
   getMembersList = async (coaching_id) => {
-    const token = this.cookies.get("token");
-    const result = await this.studentsApi.getMembersList(coaching_id, token);
+    const result = await this.studentsApi.getMembersList(coaching_id);
     return result;
   };
 }

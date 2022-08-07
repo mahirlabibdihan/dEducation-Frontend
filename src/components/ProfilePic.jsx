@@ -11,29 +11,27 @@ const ProfilePic = () => {
   const ImageUpload = (e) => {
     setFile(e.target.files[0]);
   };
-
+  const setProfilePicture = async () => {
+    const result = await profileController.getProfilePicture();
+    if (result.success) setImage(result.image);
+  };
   useEffect(() => {
-    const getProfileData = async () => {
-      const data = await profileController.getProfilePicture();
-      setImage(data.image);
-    };
-    getProfileData();
+    setProfilePicture();
   }, []);
-  useEffect(() => {
-    console.log("EFFECT");
-    const setProfileImage = async () => {
-      if (file > "") {
-        console.log(file);
-        const formData = new FormData();
-        formData.append("file", file);
-        console.log("Upload request");
-        const result = await profileController.uploadImage(formData);
-        console.log(result);
-        if (result.success) {
-          setImage(result.image);
-        }
+  const setProfileImage = async () => {
+    if (file > "") {
+      console.log(file);
+      const formData = new FormData();
+      formData.append("file", file);
+      console.log("Upload request");
+      const result = await profileController.uploadImage(formData);
+      console.log("IMAGE", result);
+      if (result.success) {
+        setImage(result.data.image);
       }
-    };
+    }
+  };
+  useEffect(() => {
     setProfileImage();
   }, [file]);
   return (

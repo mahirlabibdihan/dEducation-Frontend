@@ -3,8 +3,7 @@ import Grid from "@mui/material/Grid";
 import ListContainer from "../../components/ListContainer";
 import "./my-tutors.scss";
 import TutorsController from "../../controller/tutorsController";
-import SearchBox from "../Applicants/SearchBox";
-import TutorPanel from "./TutorPanel";
+import TutorPanel from "../../components/TutorPanel";
 import GlobalContext from "../../store/GlobalContext";
 import TutionController from "../../controller/tutionController";
 const tutorsController = new TutorsController();
@@ -40,13 +39,6 @@ const MyTutors = () => {
   }, [globalCtx.selectedIndex]);
   const TutorsList = () => {
     return <ListContainer header="My Tutors" list={tutorsList} />;
-  };
-  const SearchFilter = () => {
-    return (
-      <div className="search-filter">
-        <SearchBox />
-      </div>
-    );
   };
   const RightPanel = () => {
     return (

@@ -17,9 +17,7 @@ class AuthApi extends Api {
         };
       }
     } catch (err) {
-      return {
-        success: false,
-      };
+      return err.response.data;
     }
   };
 
@@ -38,35 +36,14 @@ class AuthApi extends Api {
         };
       }
     } catch (err) {
-      return {
-        success: false,
-      };
+      return err.response.data;
     }
   };
   changePass = async (data, token) => {
-    console.log(data);
-    try {
-      let res = await axios.post(
-        API_BASE_URL + "/auth/change_pass",
-        {
-          curr_pass: data.currPass,
-          new_pass: data.newPass,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          token: res.data.token,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+    return await this.post("/auth/change_pass", {
+      curr_pass: data.currPass,
+      new_pass: data.newPass,
+    });
   };
 }
 export default AuthApi;

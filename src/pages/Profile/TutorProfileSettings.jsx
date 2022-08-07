@@ -38,7 +38,8 @@ const TutorProfileSettings = () => {
 
   const [educationsList, setEducationsList] = useState([]);
   const setProfileData = async () => {
-    const data = await profileController.getProfile();
+    const result = await profileController.getProfile();
+    const data = result.data;
     console.log("CHILD: ", data.EMAIL);
     setUser({
       name: data.NAME,
@@ -51,17 +52,17 @@ const TutorProfileSettings = () => {
       experience: data.YEARS_OF_EXPERIENCE,
       status: data.AVAILABILITY,
     });
-    const result = await profileController.getEducation();
-    console.log("EDU", result);
+    const result2 = await profileController.getEducation();
+    console.log("EDU", result2);
     const list = [];
     const fields = [];
-    for (let i = 0; i < result.data.length; i++) {
+    for (let i = 0; i < result2.data.length; i++) {
       list.push({
-        eq_id: result.data[i].EQ_ID,
-        institute: result.data[i].INSTITUTE,
-        field_of_study: result.data[i].FIELD_OF_STUDY,
-        degree: result.data[i].DEGREE,
-        passing_year: result.data[i].PASSING_YEAR,
+        eq_id: result2.data[i].EQ_ID,
+        institute: result2.data[i].INSTITUTE,
+        field_of_study: result2.data[i].FIELD_OF_STUDY,
+        degree: result2.data[i].DEGREE,
+        passing_year: result2.data[i].PASSING_YEAR,
       });
       fields.push(getEducationField(list[list.length - 1]));
     }
@@ -154,12 +155,6 @@ const TutorProfileSettings = () => {
     });
     console.log("EDUCATION BEFORE SAVE", educationsList);
     const result2 = await profileController.setEducation(educationsList);
-    // await setProfileData();
-    if (result1.success && result2.success) {
-      showToast("Profile updated");
-    } else {
-      showToast("Server error occured", "error");
-    }
   };
   const inputFields = [
     // {

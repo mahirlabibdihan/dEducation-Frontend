@@ -27,18 +27,15 @@ const LoginForm = (props) => {
   const [loading, setLoading] = useState(false);
   const handleLogin = async (e) => {
     setLoading(true);
-    console.log(email);
     e.preventDefault();
-    if (
-      await authController.login({
-        email: email,
-        pass: pass,
-        type: searchParams.get("type"),
-      })
-    ) {
+    const result = await authController.login({
+      email: email,
+      pass: pass,
+      type: searchParams.get("type"),
+    });
+    if (result.success) {
       navigate("/home");
     } else {
-      showToast("Invalid email address/password", "error");
       setLoading(false);
     }
   };

@@ -14,7 +14,6 @@ const profileController = new ProfileController();
 const Home = () => {
   const [type, setType] = useState("");
   const setHomeType = async () => {
-    const data = await profileController.getProfile();
     setType(cookies.get("type"));
   };
   useEffect(() => {

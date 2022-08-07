@@ -73,8 +73,7 @@ const ImageUploader = (props) => {
         const result = await coachingController.uploadImage(formData);
         console.log(result);
         if (result.success) {
-          showToast("Image changed");
-          setImage(result.image);
+          setImage(result.data.image);
           globalCtx.setPendingUpdate(true);
         }
       }
@@ -114,7 +113,6 @@ const EditCoaching = (props) => {
       props.coaching.COACHING_ID
     );
     if (result.success) {
-      showToast("Coaching details updated");
       globalCtx.setPendingUpdate(true);
     }
   };

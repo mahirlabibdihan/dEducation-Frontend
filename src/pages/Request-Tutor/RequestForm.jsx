@@ -36,7 +36,6 @@ const RequestForm = () => {
     });
     console.log(result);
     if (result.success) {
-      showToast("New tutor requested", "success");
       globalCtx.setPendingUpdate(true);
     }
   };

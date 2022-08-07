@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Oswald";
+  src: url("./assets/fonts/Oswald/static/Oswald-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kdam Thmor Pro";
+  src: url("./assets/fonts/Kdam_Thmor_Pro/KdamThmorPro-Regular.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+}
 html,
 body {
   padding: 0;

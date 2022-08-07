@@ -23,8 +23,8 @@ const StudentHome = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const setProfileData = async () => {
-    const data = await profileController.getProfile();
-    setUser(data);
+    const result = await profileController.getProfile();
+    setUser(result.data);
   };
   useEffect(() => {
     setProfileData();

@@ -1,468 +1,92 @@
 import { data } from "autoprefixer";
-import axios from "axios";
-import { API_BASE_URL } from "../index";
 import Api from "./base";
 class TutionApi extends Api {
-  post = async (data, token) => {
-    console.log("POST TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/post`,
-        {
-          tution: data,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  post_tution = async (data) => {
+    return await this.post(`/tution/post`, { tution: data });
   };
 
-  apply = async (post_id, token) => {
-    console.log("APPLY TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/apply`,
-        {
-          // tutor_id: tutor_id,
-          post_id: post_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  apply = async (post_id) => {
+    return await this.post(`/tution/apply`, { post_id: post_id });
   };
-  cancelApplication = async (post_id, token) => {
-    console.log("APPLY TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/apply/cancel`,
-        {
-          post_id: post_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  cancelApplication = async (post_id) => {
+    return await this.post(`/tution/apply/cancel`, {
+      post_id: post_id,
+    });
   };
 
-  offer = async (data, tutor_id, token) => {
-    console.log("OFFER TUTION");
-    console.log("ID:", tutor_id);
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/offer`,
-        {
-          tution: data,
-          tutor_id: tutor_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  offer = async (data, tutor_id) => {
+    return await this.post(`/tution/offer`, {
+      tution: data,
+      tutor_id: tutor_id,
+    });
   };
 
-  acceptOffer = async (student_id, token) => {
-    console.log("ACCEPT OFFER");
-    console.log("ID:", student_id);
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/offer/accept`,
-        {
-          student_id: student_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  acceptOffer = async (student_id) => {
+    return await this.post(`/tution/offer/accept`, {
+      student_id: student_id,
+    });
   };
 
-  rejectOffer = async (student_id, token) => {
-    console.log("OFFER TUTION");
-    console.log("ID:", student_id);
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/offer/reject`,
-        {
-          student_id: student_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  rejectOffer = async (student_id) => {
+    return await this.post(`/tution/offer/reject`, {
+      student_id: student_id,
+    });
   };
 
-  cancelOffer = async (tutor_id, token) => {
-    console.log("OFFER TUTION");
-    console.log("ID:", tutor_id);
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/offer/cancel`,
-        {
-          tutor_id: tutor_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  cancelOffer = async (tutor_id) => {
+    return await this.post(`/tution/offer/cancel`, { tutor_id: tutor_id });
   };
-  getOfferFromStudent = async (student_id, token) => {
-    console.log("OFFER TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_offer_student`,
-        {
-          student_id: student_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getOfferFromStudent = async (student_id) => {
+    return await this.post(`/tution/get_offer_student`, {
+      student_id: student_id,
+    });
   };
-  getOfferFromTutor = async (tutor_id, token) => {
-    console.log("OFFER TUTION");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_offer_tutor`,
-        {
-          tutor_id: tutor_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getOfferFromTutor = async (tutor_id) => {
+    return await this.post(`/tution/get_offer_tutor`, {
+      tutor_id: tutor_id,
+    });
   };
-  getMyList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/my_list`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getMyList = async () => {
+    return await this.get(`/tution/my_list`);
   };
-  getOfferFromPost = async (post_id, token) => {
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/by_post`,
-        {
-          post_id: post_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getOfferFromPost = async (post_id) => {
+    return await this.post(`/tution/by_post`, { post_id: post_id });
   };
-  getList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/list`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getList = async () => {
+    return await this.get(`/tution/list`);
   };
-  getFilteredList = async (filter, token) => {
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/filtered_list`,
-        {
-          filter: filter,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getFilteredList = async (filter) => {
+    return await this.post(`/tution/filtered_list`, { filter: filter });
   };
-  getTutionDetails = async (user_id, token) => {
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_details`,
-        {
-          id: user_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getTutionDetails = async (user_id) => {
+    return await this.post(`/tution/get_details`, { id: user_id });
   };
-  getApplicantsTutionDetails = async (post_id, token) => {
-    console.log("SENT APP");
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_applicants_tution_details`,
-        {
-          post_id: post_id,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getApplicantsTutionDetails = async (post_id) => {
+    return await this.post(`/tution/get_applicants_tution_details`, {
+      post_id: post_id,
+    });
   };
-  getTutionsList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/get_all_details`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getTutionsList = async () => {
+    return await this.get(`/tution/get_all_details`);
   };
-  getFilteredTutionsList = async (query, token) => {
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_filtered_details`,
-        {
-          filter: query,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getFilteredTutionsList = async (query) => {
+    return await this.post(`/tution/get_filtered_details`, {
+      filter: query,
+    });
   };
-  getMyTutionsList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/get_my_details`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getMyTutionsList = async () => {
+    return await this.get(`/tution/get_my_details`);
   };
-  getPendingTutionsList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/get_pending_details`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getPendingTutionsList = async () => {
+    return await this.get(`/tution/get_pending_details`);
   };
-  getApplyList = async (token) => {
-    try {
-      let res = await axios.get(`${API_BASE_URL}/tution/get_apply_list`, {
-        headers: { authorization: "Bearer " + token },
-      });
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getApplyList = async () => {
+    return await this.get(`/tution/get_apply_list`);
   };
-  getFilteredApplyList = async (query, token) => {
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/tution/get_filtered_apply_list`,
-        {
-          filter: query,
-        },
-        {
-          headers: { authorization: "Bearer " + token },
-        }
-      );
-      if (res.status === 200) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      }
-    } catch (err) {
-      return {
-        success: false,
-      };
-    }
+  getFilteredApplyList = async (query) => {
+    return await this.post(`/tution/get_filtered_apply_list`, {
+      filter: query,
+    });
   };
 }
 

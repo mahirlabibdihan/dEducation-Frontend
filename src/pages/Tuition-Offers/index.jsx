@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Grid from "@mui/material/Grid";
-import SearchBox from "./SearchBox";
 import ListContainer from "../../components/ListContainer";
 import TutionController from "../../controller/tutionController";
 import "./tuition-offers.scss";
 import GlobalContext from "../../store/GlobalContext";
-import StudentPanel from "./StudentPanel";
+import StudentPanel from "../../components/StudentPanel";
 import StudentsController from "../../controller/studentsController";
 const tutionController = new TutionController();
 const studentsController = new StudentsController();
@@ -43,13 +42,6 @@ const TuitionOffers = () => {
 
   const OffersList = () => {
     return <ListContainer header="Tuition Offers" list={studentsList} />;
-  };
-  const SearchFilter = () => {
-    return (
-      <div className="search-filter">
-        <SearchBox />
-      </div>
-    );
   };
   const RightPanel = () => {
     return (

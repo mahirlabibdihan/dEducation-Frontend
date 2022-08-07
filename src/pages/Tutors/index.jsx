@@ -5,7 +5,7 @@ import ListContainer from "../../components/ListContainer";
 import "./tutors.scss";
 import TutorsController from "../../controller/tutorsController";
 import GlobalContext from "../../store/GlobalContext";
-import TutorPanel from "./TutorPanel";
+import TutorPanel from "../../components/TutorPanel";
 import TutionController from "../../controller/tutionController";
 import { useSearchParams } from "react-router-dom";
 const tutorsController = new TutorsController();

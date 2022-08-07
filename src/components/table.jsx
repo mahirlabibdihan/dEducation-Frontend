@@ -36,6 +36,63 @@ const cookies = new Cookies();
 //   createData("Brazil", "BR", 210147125, 8515767),
 // ];
 
+function StickyTable(props) {
+  return (
+    <Paper
+      sx={{
+        width: "100%",
+        overflow: "hidden",
+        height: "100%",
+        marginTop: "0.5rem",
+      }}
+    >
+      <TableContainer sx={{ maxHeight: "80vh" }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow sx={{ backgroundColor: "yellow" }}>
+              {props.columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{
+                    minWidth: column.minWidth,
+                    background: "linear-gradient(#1a4870, #16344e);",
+                    color: "white",
+                  }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {props.rows.map((row, idx) => {
+              return (
+                <TableRow
+                  hover
+                  role="checkbox"
+                  onClick={() => props.handleClick(idx)}
+                  tabIndex={-1}
+                  key={row.class}
+                  sx={{ cursor: "pointer" }}
+                >
+                  {props.columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+}
 export function TutorCoursesTable(props) {
   const columns = [
     { id: "coaching", label: "Coaching", align: "center" },
@@ -102,7 +159,7 @@ export function TutorCoursesTable(props) {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    background: "linear-gradient(#194061, #0f202e)",
+                    background: "linear-gradient(#1a4870, #16344e)",
                     color: "white",
                   }}
                 >
@@ -197,7 +254,7 @@ export function StudentCoursesTable(props) {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    background: "linear-gradient(#194061, #0f202e)",
+                    background: "linear-gradient(#1a4870, #16344e)",
                     color: "white",
                   }}
                 >
@@ -278,7 +335,7 @@ export function BatchesTable(props) {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    background: "linear-gradient(#194061, #0f202e)",
+                    background: "linear-gradient(#1a4870, #16344e)",
                     color: "white",
                   }}
                 >

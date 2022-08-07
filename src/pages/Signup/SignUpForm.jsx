@@ -57,10 +57,9 @@ const SignUpForm = (props) => {
       type: searchParams.get("type"),
     });
     if (result.success) {
-      showToast("New account created", "success");
       handleLogin();
     } else {
-      showToast("Error occured", "error");
+      setLoading(false);
     }
   };
   const SignUpButton = () => {
