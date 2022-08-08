@@ -4,36 +4,34 @@ import { PublicProfilePic } from "./ProfilePic";
 import "./TutorProfile.scss";
 
 const TutorProfile = (props) => {
-  const tutor = props.tutor;
   const [type, setType] = useState("about");
   const profileDetails = [
     [
-      { label: "Gender", value: tutor.GENDER },
-      { label: "Preffered Salary", value: tutor.PREFFERED_SALARY },
+      { label: "Gender", value: props.tutor.GENDER },
+      { label: "Preffered Salary", value: props.tutor.PREFFERED_SALARY },
     ],
 
     [
-      { label: "Status", value: tutor.AVAILABILITY },
-      { label: "Experience", value: tutor.YEARS_OF_EXPERIENCE },
+      { label: "Status", value: props.tutor.AVAILABILITY },
+      { label: "Experience", value: props.tutor.YEARS_OF_EXPERIENCE },
     ],
   ];
   const About = (props) => {
-    const tutor = props.tutor;
     return (
       <h6 className="about-details">
-        {`${tutor.NAME} is a `}
-        <b>{tutor.GENDER}</b>
+        {`${props.tutor.NAME} is a `}
+        <b>{props.tutor.GENDER}</b>
         {` tutor who teaches `}
-        <b>{tutor.EXPERTISE}</b>
+        <b>{props.tutor.EXPERTISE}</b>
         {`. Has `}
-        <b>{`${tutor.YEARS_OF_EXPERIENCE} years`}</b>
+        <b>{`${props.tutor.YEARS_OF_EXPERIENCE} years`}</b>
         {` of experience. Currently `}
-        <b>{tutor.AVAILABILITY}</b>
+        <b>{props.tutor.AVAILABILITY}</b>
         {` for new tution offers. Prefers a salary of `}
-        <b>{`${tutor.PREFFERED_SALARY} BDT `}</b>
+        <b>{`${props.tutor.PREFFERED_SALARY} BDT `}</b>
         {`per month. For more information
     please contact at `}
-        <b>{tutor.PHONE_NUMBER}</b>
+        <b>{props.tutor.PHONE_NUMBER}</b>
         {`.`}
       </h6>
     );
@@ -55,15 +53,18 @@ const TutorProfile = (props) => {
   return (
     <div className="tutor-profile">
       <div className="profile-picture">
-        <PublicProfilePic image={tutor.IMAGE} rating={tutor.RATING} />
+        <PublicProfilePic
+          image={props.tutor.IMAGE}
+          rating={props.tutor.RATING}
+        />
       </div>
 
       <div className="banner-details">
-        <h3 className="text-center">{tutor.NAME}</h3>
+        <h3 className="text-center">{props.tutor.NAME}</h3>
         <Divider />
         <div className="full-details vbox">
           {type === "about" ? (
-            <About tutor={tutor} />
+            <About tutor={props.tutor} />
           ) : (
             <Education education={props.education} />
           )}

@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 const TutorPanel = (props) => {
+  // console.log(props);
   const globalCtx = useContext(GlobalContext);
   const [rating, setRating] = useState(props.tution.RATING);
   const [education, setEducation] = useState([]);

@@ -6,14 +6,45 @@ import CoachingController from "../../controller/coachingController";
 import { StudentCoachingPanel, TutorCoachingPanel } from "./CoachingPanel";
 import GlobalContext from "../../store/GlobalContext";
 import Cookies from "universal-cookie";
+import { useSearchParams } from "react-router-dom";
 import "./my-coachings.scss";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
+const CoachingsList = ({ list }) => {
+  return <ListContainer header="My Coachings" list={list} />;
+};
+
+const CoachingCreator = () => {
+  return (
+    <div className="coaching-creator">
+      <CoachingForm />
+    </div>
+  );
+};
+const RightPanel = ({ coaching }) => {
+  const type = cookies.get("type");
+  return (
+    <div className="right-panel">
+      {coaching !== undefined ? (
+        type === "TUTOR" ? (
+          <TutorCoachingPanel coaching={coaching} />
+        ) : (
+          <StudentCoachingPanel coaching={coaching} />
+        )
+      ) : type === "TUTOR" ? (
+        <CoachingCreator />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
 const MyCoachings = () => {
   const globalCtx = useContext(GlobalContext);
+  let [searchParams, setSearchParams] = useSearchParams();
   const [coachingsList, setCoachingsList] = useState([]);
   const [coaching, setCoaching] = useState({});
-  const type = cookies.get("type");
+
   const setList = async () => {
     const res = await coachingController.getMyList();
     setCoachingsList(res.data);
@@ -27,44 +58,19 @@ const MyCoachings = () => {
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate]);
+
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setCoaching(coachingsList[globalCtx.selectedIndex]);
+    if (searchParams.get("id") !== null) {
+      setCoaching(coachingsList[Number(searchParams.get("id"))]);
     } else {
-      setCoaching({});
+      setCoaching(undefined);
     }
-  }, [globalCtx.selectedIndex, coachingsList]);
-  const CoachingCreator = () => {
-    return (
-      <div className="coaching-creator">
-        <CoachingForm />
-      </div>
-    );
-  };
-  const CoachingsList = () => {
-    return <ListContainer header="My Coachings" list={coachingsList} />;
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {coaching !== undefined && globalCtx.selectedIndex !== -1 ? (
-          type === "TUTOR" ? (
-            <TutorCoachingPanel coaching={coaching} />
-          ) : (
-            <StudentCoachingPanel coaching={coaching} />
-          )
-        ) : type === "TUTOR" ? (
-          <CoachingCreator />
-        ) : (
-          <></>
-        )}
-      </div>
-    );
-  };
+  }, [searchParams, coachingsList]);
+
   return (
     <Grid className="my-coachings-container">
-      <CoachingsList />
-      <RightPanel />
+      <CoachingsList list={coachingsList} />
+      <RightPanel coaching={coaching} />
     </Grid>
   );
 };

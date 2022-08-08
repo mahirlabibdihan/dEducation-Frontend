@@ -10,6 +10,7 @@ import { TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { setLoading } from "../../App";
+import Fields from "../../components/Fields";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -146,19 +147,19 @@ const StudentProfileSettings = () => {
             className="date-picker"
           />
         </LocalizationProvider>
-        <InputField2
+        <SelectionField
           label="Class"
-          type="text"
           value={user.class}
           id="class"
           onChange={handleChange}
+          list={Fields.class}
         />
         <SelectionField
           label="Version"
           value={user.version}
           id="version"
           onChange={handleChange}
-          list={["Bangla", "English"]}
+          list={["Bangla Medium", "English Medium", "English Version"]}
         />
 
         {/* 

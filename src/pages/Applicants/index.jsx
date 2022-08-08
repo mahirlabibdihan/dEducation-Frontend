@@ -10,6 +10,20 @@ import "./applicants.scss";
 const tutionController = new TutionController();
 const tutorsController = new TutorsController();
 
+const TutorsList = ({ list }) => {
+  return <ListContainer header="Applicants" list={list} />;
+};
+const RightPanel = ({ tutor, tution }) => {
+  return (
+    <div className="right-panel">
+      {tutor === undefined || tution === undefined ? (
+        <></>
+      ) : (
+        <TutorPanel tutor={tutor} tution={tution} />
+      )}
+    </div>
+  );
+};
 const Applicants = () => {
   const globalCtx = useContext(GlobalContext);
   const [tutor, setTutor] = useState({});
@@ -41,32 +55,18 @@ const Applicants = () => {
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setTutor(tutorsList[globalCtx.selectedIndex]);
-      setTution(tutionsList[globalCtx.selectedIndex]);
+    if (searchParams.get("id") !== null) {
+      setTutor(tutorsList[Number(searchParams.get("id"))]);
+      setTution(tutionsList[Number(searchParams.get("id"))]);
     } else {
-      setTution({});
-      setTutor({});
+      setTutor(undefined);
+      setTution(undefined);
     }
-  }, [globalCtx.selectedIndex, tutorsList, tutionsList]);
-  const TutorsList = () => {
-    return <ListContainer header="Applicants" list={tutorsList} />;
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {tutor === undefined || globalCtx.selectedIndex === -1 ? (
-          <></>
-        ) : (
-          <TutorPanel tutor={tutor} tution={tution} />
-        )}
-      </div>
-    );
-  };
+  }, [searchParams, tutorsList, tutionsList]);
   return (
     <Grid className="tutors-container">
-      <TutorsList />
-      <RightPanel />
+      <TutorsList list={tutorsList} />
+      <RightPanel tutor={tutor} tution={tution} />
     </Grid>
   );
 };

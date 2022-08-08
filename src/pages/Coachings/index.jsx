@@ -4,15 +4,32 @@ import ListContainer from "../../components/ListContainer";
 import GlobalContext from "../../store/GlobalContext";
 import CoachingController from "../../controller/coachingController";
 import CoachingPanel from "./CoachingPanel";
+import { useSearchParams } from "react-router-dom";
 import "./coachings.scss";
 const coachingController = new CoachingController();
 
+const CoachingsList = ({ list }) => {
+  return <ListContainer header="Coachings" list={list} />;
+};
+const RightPanel = ({ coaching, isJoined }) => {
+  return (
+    <div className="right-panel">
+      {coaching !== undefined && isJoined !== undefined ? (
+        <CoachingPanel coaching={coaching} isJoined={isJoined} />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
+
 const Coachings = () => {
   const globalCtx = useContext(GlobalContext);
+  let [searchParams, setSearchParams] = useSearchParams();
   const [coachingsList, setCoachingsList] = useState([]);
-  const [coaching, setCoaching] = useState({});
+  const [coaching, setCoaching] = useState(undefined);
   const [joinList, setJoinList] = useState([]);
-  const [isJoined, setIsJoined] = useState({});
+  const [isJoined, setIsJoined] = useState(undefined);
   const setList = async () => {
     const res1 = await coachingController.getList();
     setCoachingsList(res1.data);
@@ -21,44 +38,28 @@ const Coachings = () => {
   };
   useEffect(() => {
     if (globalCtx.pendingUpdate) {
-      console.log("PENDING UPDATE");
       setList();
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
-    console.log("MOUNT UPDATE");
     setList();
   }, []);
-
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setCoaching(coachingsList[globalCtx.selectedIndex]);
-      setIsJoined(joinList[globalCtx.selectedIndex]);
+    if (searchParams.get("id") !== null) {
+      setCoaching(coachingsList[Number(searchParams.get("id"))]);
+      setIsJoined(joinList[Number(searchParams.get("id"))]);
     } else {
-      setCoaching({});
-      setIsJoined({});
+      setCoaching(undefined);
+      setIsJoined(undefined);
     }
-  }, [globalCtx.selectedIndex, coachingsList, joinList]);
-  const CoachingsList = () => {
-    return <ListContainer header="Coachings" list={coachingsList} />;
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {coaching !== undefined && globalCtx.selectedIndex !== -1 ? (
-          <CoachingPanel coaching={coaching} isJoined={isJoined} />
-        ) : (
-          <></>
-        )}
-      </div>
-    );
-  };
+  }, [searchParams, coachingsList, joinList]);
+
   return (
-    <Grid className="coachings-container">
-      <CoachingsList />
-      <RightPanel />
-    </Grid>
+    <div className="coachings-container">
+      <CoachingsList list={coachingsList} />
+      <RightPanel coaching={coaching} isJoined={isJoined} />
+    </div>
   );
 };
 

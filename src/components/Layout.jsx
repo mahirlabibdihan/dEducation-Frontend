@@ -34,7 +34,7 @@ const authController = new AuthController();
 const profileController = new ProfileController();
 const Layout = (props) => {
   const location = useLocation();
-  console.log("Location:", location.pathname.split("/")[1]);
+  // console.log("Location:", location.pathname.split("/")[1]);
   const navigate = useNavigate();
   const globalCtx = useContext(GlobalContext);
   const type = cookies.get("type");
@@ -136,12 +136,12 @@ const Layout = (props) => {
     );
   };
   return (
-    <Grid className="layout-container">
+    <div className="layout-container">
       <div className="body">
         <LeftPanel />
         <div className="content">{props.children}</div>
       </div>
-    </Grid>
+    </div>
   );
 };
 

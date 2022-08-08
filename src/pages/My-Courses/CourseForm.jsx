@@ -12,6 +12,8 @@ import { FormControl } from "@mui/material";
 import { useContext } from "react";
 import { format } from "date-fns";
 import GlobalContext from "../../store/GlobalContext";
+import Fields from "../../components/Fields";
+// import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 
@@ -75,14 +77,14 @@ export const TutorCourseForm = () => {
             )}
           </Select>
         </FormControl>
-        {/* <SelectionField
+        <SelectionField
           label="Class"
           value={values.class}
           id="class"
           onChange={handleChange}
           list={Fields.class}
         ></SelectionField>
-        <SelectionField
+        {/* <SelectionField
           label="Subject"
           value={values.subject}
           id="subject"
@@ -90,11 +92,6 @@ export const TutorCourseForm = () => {
           list={Fields.subject}
         ></SelectionField> */}
         {[
-          {
-            label: "Class",
-            id: "class",
-            value: values.class,
-          },
           {
             label: "Subject",
             id: "subject",

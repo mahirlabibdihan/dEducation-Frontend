@@ -43,7 +43,7 @@ const TutionPost = (props) => {
     ],
 
     [
-      { label: "Version", value: data.VERSION },
+      { label: "Medium", value: data.VERSION },
       { label: "Desired Tutor", value: data.DESIRED_TUTOR_GENDER },
       { label: "Location", value: data.ADDRESS },
     ],

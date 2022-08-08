@@ -98,11 +98,11 @@ const SearchBox = () => {
           onChange={handleChange}
         />
         <SelectionField
-          label="Version"
+          label="Medium"
           value={values.version}
           id="version"
           onChange={handleChange}
-          list={["Any", "Bangla", "English"]}
+          list={["Any", "Bangla Medium", "English Medium", "English Version"]}
         />
         <SelectionField
           label="Student's Gender"

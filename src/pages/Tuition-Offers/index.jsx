@@ -6,9 +6,25 @@ import "./tuition-offers.scss";
 import GlobalContext from "../../store/GlobalContext";
 import StudentPanel from "../../components/StudentPanel";
 import StudentsController from "../../controller/studentsController";
+import { useSearchParams } from "react-router-dom";
 const tutionController = new TutionController();
 const studentsController = new StudentsController();
+const RightPanel = ({ student, offer }) => {
+  return (
+    <div className="right-panel">
+      {offer === undefined || student === undefined ? (
+        <></>
+      ) : (
+        <StudentPanel student={student} offer={offer} />
+      )}
+    </div>
+  );
+};
+const OffersList = ({ list }) => {
+  return <ListContainer header="Tuition Offers" list={list} />;
+};
 const TuitionOffers = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
   const [offersList, setOffersList] = useState([]);
   const [offer, setOffer] = useState({});
@@ -30,33 +46,19 @@ const TuitionOffers = () => {
     }
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setStudent(studentsList[globalCtx.selectedIndex]);
-      setOffer(offersList[globalCtx.selectedIndex]);
+    if (searchParams.get("id") !== null) {
+      setStudent(studentsList[Number(searchParams.get("id"))]);
+      setOffer(studentsList[Number(searchParams.get("id"))]);
     } else {
-      setStudent({});
-      setOffer({});
+      setStudent(undefined);
+      setOffer(undefined);
     }
-  }, [globalCtx.selectedIndex]);
+  }, [searchParams, studentsList, offersList]);
 
-  const OffersList = () => {
-    return <ListContainer header="Tuition Offers" list={studentsList} />;
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {offer === undefined || globalCtx.selectedIndex === -1 ? (
-          <></>
-        ) : (
-          <StudentPanel student={student} offer={offer} />
-        )}
-      </div>
-    );
-  };
   return (
     <Grid className="tuition-offers-container">
-      <OffersList />
-      <RightPanel />
+      <OffersList list={studentsList} />
+      <RightPanel student={student} offer={offer} />
     </Grid>
   );
 };

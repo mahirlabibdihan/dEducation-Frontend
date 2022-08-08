@@ -26,8 +26,8 @@ const StudentProfile = (props) => {
             {`${student.NAME} is a `}
             <b>{student.GENDER}</b>
             {` student of `}
-            <b>{`class ${student.CLASS}`}</b>
-            {`(${student.VERSION} version). Studies at `}
+            <b>{`${student.CLASS}`}</b>
+            {`(${student.VERSION}). Studies at `}
             <b>{student.INSTITUTION}</b>
             {` and lives at `}
             <b>{student.ADDRESS}</b>

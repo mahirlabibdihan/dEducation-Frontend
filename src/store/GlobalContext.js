@@ -10,5 +10,8 @@ const GlobalContext = createContext({
   // setCourseId: () => {},
   pendingUpdate: false,
   setPendingUpdate: () => {},
+  selected: -1,
+  searchQuery: "",
+  setSearchQuery: () => {},
 });
 export default GlobalContext;

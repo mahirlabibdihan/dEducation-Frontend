@@ -10,6 +10,20 @@ import SearchBox from "./SearchBox";
 import { useSearchParams } from "react-router-dom";
 const studentsController = new StudentsController();
 const tutionController = new TutionController();
+const StudentsList = ({ list }) => {
+  return <ListContainer header="My Students" list={list} />;
+};
+const RightPanel = ({ student, tution }) => {
+  return (
+    <div className="right-panel">
+      {student === undefined || tution === undefined ? (
+        <SearchBox />
+      ) : (
+        <StudentPanel student={student} tution={tution} />
+      )}
+    </div>
+  );
+};
 const MyStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
@@ -55,33 +69,18 @@ const MyStudents = () => {
     }
   }, [searchParams]);
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setStudent(studentsList[globalCtx.selectedIndex]);
-      setTution(tutionsList[globalCtx.selectedIndex]);
+    if (searchParams.get("id") !== null) {
+      setStudent(studentsList[Number(searchParams.get("id"))]);
+      setTution(studentsList[Number(searchParams.get("id"))]);
     } else {
-      setStudent({});
-      setTution({});
+      setStudent(undefined);
+      setTution(undefined);
     }
-  }, [globalCtx.selectedIndex]);
-
-  const StudentsList = () => {
-    return <ListContainer header="My Students" list={studentsList} />;
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {student === undefined || globalCtx.selectedIndex === -1 ? (
-          <SearchBox />
-        ) : (
-          <StudentPanel student={student} tution={tution} />
-        )}
-      </div>
-    );
-  };
+  }, [searchParams, studentsList, tutionsList]);
   return (
     <Grid className="my-students-container">
-      <StudentsList />
-      <RightPanel />
+      <StudentsList list={studentsList} />
+      <RightPanel student={student} tution={tution} />
     </Grid>
   );
 };

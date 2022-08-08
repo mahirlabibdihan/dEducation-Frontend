@@ -57,10 +57,10 @@ const ProfilePic = () => {
 };
 
 export const PublicProfilePic = (props) => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(props.image);
   useEffect(() => {
     setImage(props.image);
-  }, []);
+  }, [props]);
   return (
     <>
       <img
