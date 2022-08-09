@@ -4,6 +4,13 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { Select, MenuItem } from "@mui/material";
 import "./components.scss";
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: "30vh",
+    },
+  },
+};
 export const MultiSelectionField = (props) => {
   return (
     <FormControl fullWidth className=" input-field" variant="outlined">
@@ -18,7 +25,7 @@ export const MultiSelectionField = (props) => {
         value={props.value}
         onChange={props.onChange(props.id)}
         input={<OutlinedInput label={props.label} />}
-        // MenuProps={MenuProps}
+        MenuProps={MenuProps}
       >
         {props.list.map((value) => (
           <MenuItem
@@ -47,6 +54,7 @@ const SelectionField = (props) => {
         value={props.value}
         onChange={props.onChange(props.id)}
         input={<OutlinedInput label={props.label} />}
+        MenuProps={MenuProps}
         // MenuProps={MenuProps}
       >
         {props.list.map((value) => (

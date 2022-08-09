@@ -15,6 +15,11 @@ class CoachingApi extends Api {
   getInfo = async (coaching_id) => {
     return await this.post(`/coaching/get_info`, { coaching_id: coaching_id });
   };
+  getCourseList = async (coaching_id) => {
+    return await this.post(`/coaching/course_list`, {
+      coaching_id: coaching_id,
+    });
+  };
   joinCoaching = async (coaching_id) => {
     return await this.post(`/coaching/join`, {
       coaching_id: coaching_id,

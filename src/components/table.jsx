@@ -3,6 +3,7 @@ import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
+import TableFooter from "@mui/material/TableFooter";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
@@ -14,6 +15,7 @@ import { useEffect } from "react";
 import { Button } from "@mui/material";
 import GlobalContext from "../store/GlobalContext";
 import { format } from "date-fns";
+import "./table.scss";
 const cookies = new Cookies();
 
 // [
@@ -282,6 +284,87 @@ export function StudentCoursesTable(props) {
         </Table>
       </TableContainer>
     </Paper>
+  );
+}
+
+export function CoachingCoursesTable(props) {
+  const columns = [
+    { id: "class_no", label: "Class", align: "center" },
+    {
+      id: "subject",
+      label: "Subject",
+      align: "center",
+    },
+  ];
+  function createData(class_no, subject) {
+    return { class_no, subject };
+  }
+  const rows = props.list.map((course) =>
+    createData(course.CLASS, course.SUBJECT)
+  );
+  return (
+    <>
+      <Paper
+        sx={{
+          width: "100%",
+          height: "35vh",
+          marginTop: ".5rem",
+          overflow: "auto",
+        }}
+      >
+        <TableContainer style={{ height: "100%" }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{
+                      minWidth: column.minWidth,
+                      background: "linear-gradient(#1a4870, #16344e)",
+                      color: "white",
+                    }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody style={{ maxHeight: "27vh", overflow: "auto" }}>
+              {rows.map((row, idx) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.class}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+      <div
+        className="flex-center"
+        style={{
+          width: "100%",
+          background: "linear-gradient(#1a4870, #16344e)",
+          height: "7vh",
+          color: "white",
+          fontFamily: "sans-serif",
+          fontSize: ".9rem",
+          borderRadius: "0 0 5px 5px",
+        }}
+      >
+        Available Courses
+      </div>
+    </>
   );
 }
 

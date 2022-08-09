@@ -39,22 +39,25 @@ const filterData = (query, data) => {
 
 const SearchBar = ({ setSearchQuery }) => (
   <FormControl className="search-bar" variant="outlined">
-    {/* <InputLabel htmlFor="outlined-adornment" className="input-label">
-      Search
-    </InputLabel> */}
+    <InputLabel
+      htmlFor="outlined-size-small"
+      sx={{ shrink: true, margin: "dense" }}
+    >
+      {/* Search */}
+    </InputLabel>
     <OutlinedInput
-      required
-      id="outlined-adornment"
+      id="outlined-size-small"
       className="search-input"
       type="text"
-      place-holder="Search..."
+      // place-holder="Search..."
       onInput={(e) => {
         setSearchQuery(e.target.value);
       }}
-      label=" "
+      label="-"
       endAdornment={<SearchIcon />}
-      size="small"
-      sx={{ width: "26.5vw", display: "flex" }}
+      // size="small"
+      sx={{ width: "26.5vw", height: "5vh" }}
+      // InputLabelProps={{ shrink: true }}
     />
   </FormControl>
   // <form>

@@ -5,6 +5,7 @@ import SelectionField from "../../components/SelectionField";
 import { Button } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import GlobalContext from "../../store/GlobalContext";
+import Fields from "../../components/Fields";
 const SearchBox = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +16,7 @@ const SearchBox = () => {
     version: "Any",
     gender: "Any",
     tution_type: "Any",
+    class: "Any",
   };
   const [values, setValues] = useState(initValues);
   useEffect(() => {
@@ -32,6 +34,7 @@ const SearchBox = () => {
         days_per_week: searchParams.get("days"),
         version: searchParams.get("version"),
         tution_type: searchParams.get("type"),
+        class: searchParams.get("class"),
       });
     }
   }, []);
@@ -43,6 +46,7 @@ const SearchBox = () => {
     tmp.set("days", values.days_per_week);
     tmp.set("version", values.version);
     tmp.set("type", values.tution_type);
+    tmp.set("class", values.class);
     setSearchParams(tmp);
     globalCtx.setPendingUpdate(true);
   };
@@ -96,6 +100,13 @@ const SearchBox = () => {
           value={values.days_per_week}
           id="days_per_week"
           onChange={handleChange}
+        />
+        <SelectionField
+          label="Class"
+          value={values.class}
+          id="class"
+          onChange={handleChange}
+          list={["Any"].concat(Fields.class)}
         />
         <SelectionField
           label="Medium"

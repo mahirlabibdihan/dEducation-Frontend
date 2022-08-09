@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import ListContainer from "../../components/ListContainer";
 import GlobalContext from "../../store/GlobalContext";
 import CoachingController from "../../controller/coachingController";
-import CoachingPanel from "./CoachingPanel";
+import CoachingPanel from "../../components/CoachingPanel";
 import { useSearchParams } from "react-router-dom";
 import "./coachings.scss";
 const coachingController = new CoachingController();

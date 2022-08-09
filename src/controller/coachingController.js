@@ -31,8 +31,8 @@ class CoachingController extends Controller {
     this.showMessage("New coaching joined", res);
     return res;
   };
-  getMyCourseList = async (coaching_id) => {
-    const res = await this.coachingApi.getMyCourseList(coaching_id);
+  getCourseList = async (coaching_id) => {
+    const res = await this.coachingApi.getCourseList(coaching_id);
     return res;
   };
   updateInfo = async (data, coaching_id) => {

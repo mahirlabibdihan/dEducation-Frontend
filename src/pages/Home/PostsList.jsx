@@ -31,6 +31,7 @@ const PostsList = () => {
       days_per_week: searchParams.get("days"),
       version: searchParams.get("version"),
       type: searchParams.get("type"),
+      class: searchParams.get("class"),
     };
     const res = await tutionController.getFilteredList(data);
     setPosts(res.data);

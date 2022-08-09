@@ -8,6 +8,7 @@ import GlobalContext from "../../store/GlobalContext";
 import Cookies from "universal-cookie";
 import { useSearchParams } from "react-router-dom";
 import "./my-coachings.scss";
+import CoachingPanel from "../../components/CoachingPanel";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 const CoachingsList = ({ list }) => {
@@ -29,7 +30,7 @@ const RightPanel = ({ coaching }) => {
         type === "TUTOR" ? (
           <TutorCoachingPanel coaching={coaching} />
         ) : (
-          <StudentCoachingPanel coaching={coaching} />
+          <CoachingPanel coaching={coaching} />
         )
       ) : type === "TUTOR" ? (
         <CoachingCreator />
