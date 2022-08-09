@@ -10,6 +10,7 @@ import { createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import "./signUp.scss";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 const authController = new AuthController();
 const SignUpForm = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -50,6 +51,7 @@ const SignUpForm = (props) => {
     });
     if (res.success) {
       handleLogin();
+      setLoading(false);
     } else {
       setLoading(false);
     }
@@ -84,7 +86,7 @@ const SignUpForm = (props) => {
       className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
     >
       <div className="exit-button" onClick={() => navigate("/")}>
-        <CancelIcon sx={{ fontSize: "2rem" }} />
+        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
       </div>
       <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField

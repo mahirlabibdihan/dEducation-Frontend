@@ -11,7 +11,7 @@ const PasswordChange = () => {
   const [newShowPass, setNewShowPass] = useState(false);
   const changePass = async (e) => {
     const res = await authController.changePass(currPass, newPass);
-    if (res) {
+    if (res.success) {
       setCurrPass("");
       setNewPass("");
     }

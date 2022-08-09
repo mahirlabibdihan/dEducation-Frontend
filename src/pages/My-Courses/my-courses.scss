@@ -19,6 +19,14 @@
 }
 
 .my-course-container {
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .search-input {
+      align-items: center;
+    }
+  }
   display: flex;
   font-family: "Oswald", sans-serif;
   height: 100vh;

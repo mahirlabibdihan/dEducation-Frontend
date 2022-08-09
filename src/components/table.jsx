@@ -142,6 +142,7 @@ export function TutorCoursesTable(props) {
       course.BATCH_COUNT
     )
   );
+  console.log(rows);
   return (
     <Paper
       sx={{
@@ -172,7 +173,9 @@ export function TutorCoursesTable(props) {
           </TableHead>
           <TableBody>
             {rows.map((row, idx) => {
-              return (
+              return row.coaching
+                .toLowerCase()
+                .startsWith(props.query.toLowerCase()) ? (
                 <TableRow
                   hover
                   role="checkbox"
@@ -190,6 +193,8 @@ export function TutorCoursesTable(props) {
                     );
                   })}
                 </TableRow>
+              ) : (
+                <></>
               );
             })}
           </TableBody>
@@ -267,7 +272,9 @@ export function StudentCoursesTable(props) {
           </TableHead>
           <TableBody>
             {rows.map((row, idx) => {
-              return (
+              return row.coaching
+                .toLowerCase()
+                .startsWith(props.query.toLowerCase()) ? (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.class}>
                   {columns.map((column) => {
                     const value = row[column.id];
@@ -278,6 +285,8 @@ export function StudentCoursesTable(props) {
                     );
                   })}
                 </TableRow>
+              ) : (
+                <></>
               );
             })}
           </TableBody>

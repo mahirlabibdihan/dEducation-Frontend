@@ -29,7 +29,7 @@ const TutorPanel = (props) => {
   };
   useEffect(() => {
     setEducationList();
-  }, []);
+  }, [props]);
   const updateRating = async (newValue) => {
     setRating(newValue);
     const result = await tutionController.rate(props.tutor.USER_ID, newValue);
@@ -46,7 +46,7 @@ const TutorPanel = (props) => {
           <TutorProfile tutor={props.tutor} education={education} />
           <Divider />
           {props.tution.STATUS === null ? (
-            <OfferForm tutor_id={props.tutor.USER_ID} />
+            <OfferForm tutor_id={props.tutor.USER_ID} tution={props.tution} />
           ) : (
             <>
               <TutionDetails

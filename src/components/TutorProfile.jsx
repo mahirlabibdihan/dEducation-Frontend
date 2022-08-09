@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Divider } from "@mui/material";
 import { PublicProfilePic } from "./ProfilePic";
 import "./TutorProfile.scss";
@@ -16,6 +16,9 @@ const TutorProfile = (props) => {
       { label: "Experience", value: props.tutor.YEARS_OF_EXPERIENCE },
     ],
   ];
+  useEffect(() => {
+    setType("about");
+  }, [props]);
   const About = (props) => {
     return (
       <h6 className="about-details">

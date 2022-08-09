@@ -12,6 +12,7 @@ import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -98,7 +99,7 @@ const LoginForm = (props) => {
       className={`w-25 p-5 rounded shadow login-form ${props.className}`}
     >
       <div className="exit-button" onClick={() => navigate("/")}>
-        <CancelIcon sx={{ fontSize: "2rem" }} />
+        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
       </div>
       <h1 className="form-header">{searchParams.get("type")}</h1>
       <InputField
