@@ -71,7 +71,7 @@ const MyStudents = () => {
   useEffect(() => {
     if (searchParams.get("id") !== null) {
       setStudent(studentsList[Number(searchParams.get("id"))]);
-      setTution(studentsList[Number(searchParams.get("id"))]);
+      setTution(tutionsList[Number(searchParams.get("id"))]);
     } else {
       setStudent(undefined);
       setTution(undefined);

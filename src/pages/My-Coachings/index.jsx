@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import ListContainer from "../../components/ListContainer";
 import CoachingForm from "./CoachingForm";
 import CoachingController from "../../controller/coachingController";
-import { StudentCoachingPanel, TutorCoachingPanel } from "./CoachingPanel";
+import { TutorCoachingPanel } from "./CoachingPanel";
 import GlobalContext from "../../store/GlobalContext";
 import Cookies from "universal-cookie";
 import { useSearchParams } from "react-router-dom";

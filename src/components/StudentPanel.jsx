@@ -28,6 +28,7 @@ const StudentPanel = (props) => {
       globalCtx.setSelectedIndex(-1);
     }
   };
+  console.log(props);
   return (
     <div className="student-panel">
       <StudentProfile student={props.student} />

@@ -9,34 +9,6 @@ import { InputField2, MultiLineField } from "../../components/InputField";
 import "./my-coachings.scss";
 const coachingController = new CoachingController();
 
-const CoachingBanner = (props) => {
-  return (
-    <div className="profile-banner">
-      <div className="profile-picture">
-        <PublicProfilePic image={props.coaching.IMAGE} />
-      </div>
-
-      <div className="banner-details">
-        <h3 className="">{props.coaching.NAME}</h3>
-        <Divider />
-        <h6>{`Phone Number: ${props.coaching.PHONE_NUMBER}`}</h6>
-        <h6>{`Address: ${props.coaching.ADDRESS}`}</h6>
-      </div>
-    </div>
-  );
-};
-export const StudentCoachingPanel = (props) => {
-  return (
-    <div className="student-coaching-panel">
-      {props.coaching === undefined ? (
-        <></>
-      ) : (
-        <CoachingBanner coaching={props.coaching} />
-      )}
-    </div>
-  );
-};
-
 const ImageUploader = (props) => {
   const globalCtx = useContext(GlobalContext);
   const [file, setFile] = useState("");
@@ -44,6 +16,7 @@ const ImageUploader = (props) => {
   const ImageUpload = (e) => {
     setFile(e.target.files[0]);
   };
+
   useEffect(() => {
     // console.log("EFFECT");
     const setProfileImage = async () => {
@@ -71,6 +44,9 @@ const ImageUploader = (props) => {
     };
     setProfileImage();
   }, [file]);
+  useEffect(() => {
+    setImage(props.coaching.IMAGE);
+  }, [props]);
   return (
     <>
       <img
@@ -98,6 +74,13 @@ const EditCoaching = (props) => {
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+  useEffect(() => {
+    setValues({
+      name: props.coaching.NAME,
+      phone: props.coaching.PHONE_NUMBER,
+      address: props.coaching.ADDRESS,
+    });
+  }, [props]);
   const updateCoaching = async (event) => {
     const res = await coachingController.updateInfo(
       values,

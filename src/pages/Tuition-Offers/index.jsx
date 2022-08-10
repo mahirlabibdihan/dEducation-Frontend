@@ -48,7 +48,7 @@ const TuitionOffers = () => {
   useEffect(() => {
     if (searchParams.get("id") !== null) {
       setStudent(studentsList[Number(searchParams.get("id"))]);
-      setOffer(studentsList[Number(searchParams.get("id"))]);
+      setOffer(offersList[Number(searchParams.get("id"))]);
     } else {
       setStudent(undefined);
       setOffer(undefined);
