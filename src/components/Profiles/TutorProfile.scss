@@ -1,0 +1,66 @@
+@import "../components.scss";
+.tutor-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  // align-items: center;
+  img {
+    margin: auto;
+  }
+  h3 {
+    @include flexCenter;
+  }
+  h6 {
+    font-size: 0.9 rem;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.2;
+    // font-weight: bolder;
+  }
+  .banner-details {
+    // margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.7rem;
+    width: 100%;
+    .full-details {
+      min-height: 22vh;
+      .hbox {
+        margin-top: auto;
+      }
+    }
+  }
+  .vbox {
+    gap: 0.2rem;
+  }
+  .hbox {
+    // justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .about-button,
+  .education-button {
+    // @include my-button;
+    // margin: 0 auto;
+    // margin-left: auto;
+    // font-size: 1.2rem;
+    // color: rgb(232, 229, 229);
+    // background-color: #164a4e;
+    // width: 100%;
+    // min-width: 5vw;
+    // border: 0;
+    // width: 100%;
+  }
+  .about-details,
+  .education-details {
+    padding-bottom: 0.2rem;
+    // min-height: 19vh;
+    max-height: 22vh;
+    overflow: auto;
+    margin-bottom: 0;
+    font-size: 0.9 rem;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.2;
+  }
+}

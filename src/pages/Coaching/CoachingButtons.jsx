@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputField";
+import InputField, { InputField2 } from "../../components/InputFields/InputField";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 const CoachingButtons = () => {
@@ -49,7 +49,7 @@ const CoachingButtons = () => {
       {(type === "MEMBER" ? MemberButtons() : AdminButtons()).map((button) => (
         <Button
           variant="contained"
-          className="apply-button"
+          className="blue-button full-width"
           onClick={() => {
             setTimeout(() => {
               navigate(button.path);

@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
 import GlobalContext from "../../store/GlobalContext";
 import CourseController from "../../controller/courseController";
-import { StudentCourseForm, TutorCourseForm } from "./CourseForm";
-import CourseContainer from "./CourseContainer";
+import CourseContainer from "../../components/Containers/CourseContainer";
 import Cookies from "universal-cookie";
-import "./my-courses.scss";
+import RightPanel from "../../components/Panels/RightPanel";
+import MainContainer from "../../components/Containers/MainContainer";
+import AddCourseForm from "../../components/Forms/AddCourseForm";
+import CreateCourseForm from "../../components/Forms/CreateCourseForm";
 const cookies = new Cookies();
 const courseController = new CourseController();
 
 const MyCourses = () => {
   const globalCtx = useContext(GlobalContext);
   const [courseList, setCourseList] = useState([]);
-  const [course, setCourse] = useState({});
   const type = cookies.get("type");
   const setList = async () => {
     if (type === "TUTOR") {
@@ -28,14 +28,6 @@ const MyCourses = () => {
   }, []);
 
   useEffect(() => {
-    if (globalCtx.selectedIndex !== -1) {
-      setCourse(courseList[globalCtx.selectedIndex]);
-    } else {
-      setCourse({});
-    }
-  }, [globalCtx.selectedIndex, courseList]);
-
-  useEffect(() => {
     if (globalCtx.pendingUpdate) {
       setList();
       globalCtx.setPendingUpdate(false);
@@ -45,18 +37,14 @@ const MyCourses = () => {
   const CourseList = () => {
     return <CourseContainer header="My Courses" list={courseList} />;
   };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        {type === "TUTOR" ? <TutorCourseForm /> : <StudentCourseForm />}
-      </div>
-    );
-  };
+
   return (
-    <Grid className="my-course-container">
+    <MainContainer className="my-course-container">
       <CourseList />
-      <RightPanel />
-    </Grid>
+      <RightPanel>
+        {type === "TUTOR" ? <CreateCourseForm /> : <AddCourseForm />}
+      </RightPanel>
+    </MainContainer>
   );
 };
 

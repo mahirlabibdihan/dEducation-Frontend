@@ -1,0 +1,10 @@
+@import "../variables.scss";
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: $sidebar-width;
+  min-height: 100vh;
+  overflow: auto;
+}

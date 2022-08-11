@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../../components/InputField";
+import InputField, { InputField2 } from "../../../components/InputFields/InputField";
 import { Button } from "@mui/material";
 import "./courses.scss";
 const AddCourse = () => {
@@ -45,7 +45,7 @@ const AddCourse = () => {
           />
         ))}
       </div>
-      <Button variant="contained" className="apply-button">
+      <Button variant="contained" className="blue-button full-width">
         Add
       </Button>
     </div>

@@ -1,0 +1,96 @@
+@import "./Layout.scss";
+@import "../components.scss";
+.table-container {
+  border-right: rgba(0, 0, 0, 0.12) solid 2px;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100vw - 2 * $sidebar-width;
+}
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .search-input {
+    align-items: center;
+  }
+}
+.posts-feed {
+  width: 100vw - 2 * $sidebar-width;
+  border-right: rgba(0, 0, 0, 0.12) solid 2px;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  gap: 0.5rem;
+  .posts-list {
+    overflow: auto;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.short-list-container {
+  // padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 50%;
+  .short-list-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    overflow: hidden;
+    .short-list {
+      // animation: slideshow 20s infinite linear alternate;
+      width: 100%;
+      background-image: linear-gradient(
+        rgb(26, 72, 112, 0.05),
+        rgb(22, 53, 80, 0.05)
+      );
+      pointer-events: none;
+      padding: 0 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      overflow: auto;
+      justify-content: flex-start;
+      // border: rgba(0, 0, 0, 0.12) solid 4px;
+      // border-right: 0;
+      // border-color: #1a4870;
+      // border-radius: 0 10px 10px 0;
+      overflow: hidden;
+      .user-card {
+        animation: slideshow 40s infinite linear alternate;
+      }
+    }
+    .next-button {
+      @include my-button;
+      min-width: 3vw;
+      width: 3vw;
+      border-radius: 0 5px 5px 0;
+    }
+  }
+}
+@keyframes slideshow {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-540%);
+  }
+}
+
+.notifications-list,
+.notices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}

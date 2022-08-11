@@ -1,4 +1,4 @@
-@import "../../components/layout.scss";
+@import "../../components/Containers/Layout.scss";
 .coaching-container {
   display: flex;
   // flex-direction: column;
@@ -41,14 +41,6 @@
         margin-bottom: 2rem;
       }
     }
-  }
-
-  .right-panel {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    align-items: center;
   }
 }
 

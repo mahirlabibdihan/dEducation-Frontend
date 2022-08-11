@@ -1,0 +1,255 @@
+import React, { useState, useContext, useEffect } from "react";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { useNavigate } from "react-router-dom";
+import InputField from "../InputFields/InputField";
+import EyeIcon from "../Icons/EyeIcon";
+import GlobalContext from "../../store/GlobalContext";
+import AuthController from "../../controller/authController";
+import { useSearchParams, createSearchParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import "./Forms.scss";
+const authController = new AuthController();
+
+const ResetPassword = () => {
+  return (
+    <Typography
+      component={Link}
+      to="/"
+      align="center"
+      className="pt-2 pb-3 border-bottom reset-password"
+    >
+      Forgot Password?
+    </Typography>
+  );
+};
+
+const PasswordField = ({ pass, setPass }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  return (
+    <InputField
+      label="Password"
+      type={showPassword ? "text" : "password"}
+      value={pass}
+      setValue={setPass}
+      endAdornment={
+        <EyeIcon
+          isVisible={pass.length > 0}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
+      }
+    />
+  );
+};
+
+const LoginButton = ({ email, pass, type }) => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const handleLogin = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+    const res = await authController.login({
+      email: email,
+      pass: pass,
+      type: type,
+    });
+    if (res.success) {
+      navigate("/home");
+    } else {
+      setLoading(false);
+    }
+  };
+
+  return loading === true ? (
+    <Button
+      type="submit"
+      variant="contained"
+      className="login-button"
+      onClick={handleLogin}
+      disabled
+    >
+      <CircularProgress color="inherit" size="1.5rem" />
+    </Button>
+  ) : (
+    <Button
+      type="submit"
+      variant="contained"
+      className="login-button"
+      onClick={handleLogin}
+    >
+      Login
+    </Button>
+  );
+};
+
+const EmailField = ({ email, setEmail }) => (
+  <InputField
+    label="Email Address"
+    type="email"
+    value={email}
+    setValue={setEmail}
+  />
+);
+export const LoginForm = (props) => {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [type, setType] = useState();
+  const SignUpButton = ({ type }) => {
+    const navigate = useNavigate();
+    const handleSignup = () => {
+      navigate({
+        pathname: "/signup",
+        search: createSearchParams({
+          type: type,
+        }).toString(),
+      });
+    };
+    return (
+      <Button
+        // component={Link}
+        // to="/signup"
+        onClick={handleSignup}
+        variant="contained"
+        color="success"
+        className="rounded sign-up-button"
+      >
+        Create New Account
+      </Button>
+    );
+  };
+  useEffect(() => {
+    if (searchParams.get("type") === null) navigate("/");
+    else setType(searchParams.get("type"));
+  }, [searchParams]);
+
+  return (
+    <Box
+      component="form"
+      className={`w-25 p-5 rounded shadow login-form ${props.className}`}
+    >
+      <div className="exit-button" onClick={() => navigate("/")}>
+        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
+      </div>
+      <h1 className="form-header">{type}</h1>
+      <EmailField email={email} setEmail={setEmail} />
+      <PasswordField pass={pass} setPass={setPass} />
+      <LoginButton email={email} pass={pass} type={type} />
+      <ResetPassword />
+      <SignUpButton type={type} />
+    </Box>
+  );
+};
+
+const NameField = ({ name, setName }) => (
+  <InputField
+    label="Full Name"
+    type="text"
+    value={name}
+    setValue={setName}
+  ></InputField>
+);
+
+const LoginLink = ({ type, handleLogin }) => {
+  return (
+    <h6
+      // component={Button}
+      align="center"
+      className="pt-2 login-link"
+      onClick={handleLogin}
+    >
+      Already have an account?
+    </h6>
+  );
+};
+
+export const SignUpForm = (props) => {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [type, setType] = useState();
+  const SignUpButton = ({ name, email, pass, type, handleLogin }) => {
+    const [loading, setLoading] = useState(false);
+    const handleSignup = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      const res = await authController.signup({
+        name: name,
+        email: email,
+        pass: pass,
+        type: type,
+      });
+      if (res.success) {
+        handleLogin();
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    };
+    return loading === true ? (
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        className="rounded sign-up-button"
+        onClick={handleSignup}
+        disabled
+      >
+        <CircularProgress color="inherit" size="1.5rem" />
+      </Button>
+    ) : (
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        className="rounded sign-up-button"
+        onClick={handleSignup}
+      >
+        Sign Up
+      </Button>
+    );
+  };
+  useEffect(() => {
+    if (searchParams.get("type") === null) navigate("/");
+    else setType(searchParams.get("type"));
+  }, [searchParams]);
+
+  const handleLogin = () => {
+    navigate({
+      pathname: "/login",
+      search: createSearchParams({
+        type: type,
+      }).toString(),
+    });
+  };
+  return (
+    <Box
+      component="form"
+      className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
+    >
+      <div className="exit-button" onClick={() => navigate("/")}>
+        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
+      </div>
+      <h1 className="form-header">{type}</h1>
+      <NameField name={name} setName={setName} />
+      <EmailField email={email} setEmail={setEmail} />
+      <PasswordField pass={pass} setPass={setPass} />
+      <SignUpButton
+        name={name}
+        email={email}
+        pass={pass}
+        type={type}
+        handleLogin={handleLogin}
+      />
+      <LoginLink type={type} handleLogin={handleLogin} />
+    </Box>
+  );
+};

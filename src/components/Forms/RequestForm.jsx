@@ -1,0 +1,51 @@
+import React, { useState } from "react";
+import { Divider } from "@mui/material";
+import { Button } from "@mui/material";
+import TutionController from "../../controller/tutionController";
+import { useContext } from "react";
+import GlobalContext from "../../store/GlobalContext";
+import "./RequestForm.scss";
+import { RequestFormFields } from "../InputFields";
+
+const tutionController = new TutionController();
+const RequestForm = () => {
+  const globalCtx = useContext(GlobalContext);
+  const [values, setValues] = useState({
+    tution_type: "Offline",
+    desired_tutor_gender: "Any",
+    subjects: "",
+    days_per_week: 1,
+    salary: 0,
+  });
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+  const handlePost = async (event) => {
+    const res = await tutionController.post({
+      tution_type: values.type,
+      desired_tutor_gender: values.desired_tutor_gender,
+      subjects: values.subjects,
+      days_per_week: values.days_per_week,
+      salary: values.salary,
+    });
+    if (res.success) {
+      globalCtx.setPendingUpdate(true);
+    }
+  };
+  return (
+    <div className="request-form">
+      <h1 className="header"> Need a tutor? </h1>
+      <Divider />
+      <RequestFormFields values={values} handleChange={handleChange} />
+      <Button
+        variant="contained"
+        className="blue-button full-width"
+        onClick={handlePost}
+      >
+        Post
+      </Button>
+    </div>
+  );
+};
+
+export default RequestForm;

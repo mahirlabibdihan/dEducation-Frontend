@@ -3,8 +3,9 @@ import Grid from "@mui/material/Grid";
 import { Divider } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import ProfileSettings from "./ProfileSettings";
-import PasswordChange from "./PasswordChange";
-import ProfilePic from "../../components/ProfilePic";
+import PasswordChangeForm from "../../components/Forms/PasswordChangeForm";
+import ProfilePic from "../../components/Images/ProfilePic";
+import RightPanel from "../../components/Panels/RightPanel";
 import "./profile.scss";
 const profileController = new ProfileController();
 
@@ -30,19 +31,21 @@ const Profile = () => {
       </div>
     );
   };
-  const RightPanel = () => {
+  const Right = () => {
     return (
-      <div className="profile-card">
-        <UserProfile />
-        <Divider />
-        <PasswordChange />
-      </div>
+      <RightPanel>
+        <div className="profile-card">
+          <UserProfile />
+          <Divider />
+          <PasswordChangeForm />
+        </div>
+      </RightPanel>
     );
   };
   return (
     <Grid className="profile-container ">
       <ProfileSettings />
-      <RightPanel />
+      <Right />
     </Grid>
   );
 };

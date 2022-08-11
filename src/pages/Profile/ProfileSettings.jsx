@@ -1,6 +1,6 @@
 import React from "react";
-import TutorProfileSettings from "./TutorProfileSettings";
-import StudentProfileSettings from "./StudentProfileSettings";
+import TutorProfileSettings from "../../components/Forms/TutorProfileSettings";
+import StudentProfileSettings from "../../components/Forms/StudentProfileSettings";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const ProfileSettings = (props) => {

@@ -14,3 +14,5 @@ export { default as MyStudents } from "./My-Students";
 export { default as TuitionOffers } from "./Tuition-Offers";
 export { default as MyCourses } from "./My-Courses";
 export { default as Batches } from "./Batches";
+export { default as Notifications } from "./Notifications";
+export { default as NoticeBoard } from "./NoticeBoard";

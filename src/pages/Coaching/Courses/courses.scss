@@ -1,22 +1,14 @@
-@import "../../../components/layout.scss";
+@import "../../../components/Containers/layout.scss";
 .my-courses-container {
   display: flex;
   font-family: "Oswald", sans-serif;
   height: 100vh;
   width: 100%;
-  .right-panel {
+  .search-filter {
     display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
     flex-direction: column;
     align-items: center;
-    .search-filter {
-      display: flex;
-      padding: 2rem;
-      width: $sidebar-width;
-      flex-direction: column;
-      align-items: center;
-    }
+    width: 100%;
   }
 }
 

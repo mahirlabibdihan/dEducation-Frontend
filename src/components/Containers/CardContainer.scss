@@ -1,0 +1,28 @@
+@import "./layout.scss";
+.card-container {
+  width: 100vw - 2 * $sidebar-width;
+  border-right: rgba(0, 0, 0, 0.12) solid 2px;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  // flex-wrap: wrap;
+  gap: 0.5rem;
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .search-input {
+      align-items: center;
+    }
+  }
+  .cards {
+    padding-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+    width: 100%;
+    // min-height: 100%;
+    overflow: auto;
+  }
+}

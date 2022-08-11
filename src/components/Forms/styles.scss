@@ -1,0 +1,45 @@
+.course-form,
+.student-search,
+.batch-form,
+.coaching-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  .header {
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
+    gap: 1rem;
+  }
+}
+
+.password-change {
+  // padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  .header {
+    font-size: x-large;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // padding: 1rem 0;
+    gap: 1rem;
+    width: 100%;
+    padding-bottom: 1rem;
+    // padding-top: 1rem;
+  }
+  .change-button {
+    width: 100%;
+  }
+}

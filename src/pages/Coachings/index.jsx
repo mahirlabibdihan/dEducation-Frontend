@@ -1,31 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import ListContainer from "../../components/ListContainer";
+import CardContainer from "../../components/Containers/CardContainer";
 import GlobalContext from "../../store/GlobalContext";
 import CoachingController from "../../controller/coachingController";
-import CoachingPanel from "../../components/CoachingPanel";
+import CoachingPanel from "../../components/Panels/CoachingPanel";
 import { useSearchParams } from "react-router-dom";
-import "./coachings.scss";
+import RightPanel from "../../components/Panels/RightPanel";
 const coachingController = new CoachingController();
 
 const CoachingsList = ({ list }) => {
-  return <ListContainer header="Coachings" list={list} />;
+  return <CardContainer header="Coachings" list={list} />;
 };
-const RightPanel = ({ coaching, isJoined }) => {
-  return (
-    <div className="right-panel">
-      {coaching !== undefined && isJoined !== undefined ? (
-        <CoachingPanel coaching={coaching} isJoined={isJoined} />
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
-
 const Coachings = () => {
   const globalCtx = useContext(GlobalContext);
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [coachingsList, setCoachingsList] = useState([]);
   const [coaching, setCoaching] = useState(undefined);
   const [joinList, setJoinList] = useState([]);
@@ -58,7 +45,13 @@ const Coachings = () => {
   return (
     <div className="coachings-container">
       <CoachingsList list={coachingsList} />
-      <RightPanel coaching={coaching} isJoined={isJoined} />
+      <RightPanel>
+        {coaching !== undefined && isJoined !== undefined ? (
+          <CoachingPanel coaching={coaching} isJoined={isJoined} />
+        ) : (
+          <></>
+        )}
+      </RightPanel>
     </div>
   );
 };

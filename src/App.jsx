@@ -19,8 +19,10 @@ import {
   MyCourses,
   Applicants,
   Batches,
+  Notifications,
+  NoticeBoard,
 } from "./pages";
-import Layout from "./components/Layout";
+import Layout from "./components/Containers/Layout";
 import { Background } from "./components";
 import Cookies from "universal-cookie";
 import "./App.scss";
@@ -91,6 +93,8 @@ const App = () => {
             <Route path="/coaching" element={<Coaching />} />
             <Route path="/my_courses" element={<MyCourses />} />
             <Route path="/my_courses/batches" element={<Batches />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/notice_board" element={<NoticeBoard />} />
           </Route>
           <Route element={<Public />}>
             <Route path="/" element={<Landing />} />

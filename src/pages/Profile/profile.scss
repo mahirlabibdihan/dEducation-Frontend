@@ -1,5 +1,5 @@
 @import "../../components/components.scss";
-@import "../../components/layout.scss";
+@import "../../components/Containers/Layout.scss";
 .profile-container {
   // background-color: #f8f8f8;
   display: flex;
@@ -14,13 +14,12 @@
   .profile-card {
     // background-color: #fff
     overflow: hidden;
-    width: $sidebar-width;
     // height: 100vh;
-    padding: 2rem;
     padding-top: 3.3rem;
     display: flex;
     flex-direction: column;
     margin: auto;
+    width: 100%;
     // height: 91vh;
     .profile-banner {
       position: relative;
@@ -83,29 +82,6 @@
       flex-direction: column;
       align-items: center;
       padding: 5%;
-    }
-    .password-change {
-      // padding: 2rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 1rem;
-      .header {
-        font-size: x-large;
-      }
-      .input-fields {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        // padding: 1rem 0;
-        gap: 1rem;
-        width: 100%;
-        padding-bottom: 1rem;
-        // padding-top: 1rem;
-      }
-      .change-button {
-        width: 100%;
-      }
     }
   }
   .profile-details {

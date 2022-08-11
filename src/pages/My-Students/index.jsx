@@ -1,36 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import ListContainer from "../../components/ListContainer";
-import "./my-students.scss";
+import React, { useState, useEffect } from "react";
+import CardContainer from "../../components/Containers/CardContainer";
 import StudentsController from "../../controller/studentsController";
-import GlobalContext from "../../store/GlobalContext";
-import StudentPanel from "../../components/StudentPanel";
+import StudentPanel from "../../components/Panels/StudentPanel";
 import TutionController from "../../controller/tutionController";
-import SearchBox from "./SearchBox";
+import StudentSearchForm from "../../components/Forms/StudentSearchForm";
+import RightPanel from "../../components/Panels/RightPanel";
 import { useSearchParams } from "react-router-dom";
+import MainContainer from "../../components/Containers/MainContainer";
 const studentsController = new StudentsController();
 const tutionController = new TutionController();
 const StudentsList = ({ list }) => {
-  return <ListContainer header="My Students" list={list} />;
+  return <CardContainer header="My Students" list={list} />;
 };
-const RightPanel = ({ student, tution }) => {
+const Right = ({ student, tution }) => {
   return (
-    <div className="right-panel">
+    <RightPanel>
       {student === undefined || tution === undefined ? (
-        <SearchBox />
+        <StudentSearchForm />
       ) : (
         <StudentPanel student={student} tution={tution} />
       )}
-    </div>
+    </RightPanel>
   );
 };
 const MyStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const globalCtx = useContext(GlobalContext);
   const [studentsList, setStudentsList] = useState([]);
-  const [student, setStudent] = useState({});
+  const [student, setStudent] = useState(undefined);
   const [tutionsList, setTutionsList] = useState([]);
-  const [tution, setTution] = useState({});
+  const [tution, setTution] = useState(undefined);
   const setList = async () => {
     const list1 = await studentsController.getMyStudentsList();
     setStudentsList(list1.data);
@@ -44,30 +42,25 @@ const MyStudents = () => {
       subject: searchParams.get("subject"),
       batch: searchParams.get("batch"),
     };
+    let list;
     if (data.class === null) {
-      const list = await studentsController.getMembersList(data.coaching);
+      list = await studentsController.getMembersList(data.coaching);
       setStudentsList(list.data);
     } else {
-      const list = await studentsController.getEnrolledStudentsList(data);
+      list = await studentsController.getEnrolledStudentsList(data);
       setStudentsList(list.data);
     }
   };
-
-  useEffect(() => {
+  const setShowableList = () => {
     if (searchParams.get("coaching") === null) {
       setList();
     } else {
       setFilteredList();
     }
-  }, []);
+  };
+  useEffect(() => setShowableList(), []);
 
-  useEffect(() => {
-    if (searchParams.get("coaching") === null) {
-      setList();
-    } else {
-      setFilteredList();
-    }
-  }, [searchParams]);
+  useEffect(() => setShowableList(), [searchParams]);
   useEffect(() => {
     if (searchParams.get("id") !== null) {
       setStudent(studentsList[Number(searchParams.get("id"))]);
@@ -78,10 +71,10 @@ const MyStudents = () => {
     }
   }, [searchParams, studentsList, tutionsList]);
   return (
-    <Grid className="my-students-container">
+    <MainContainer>
       <StudentsList list={studentsList} />
-      <RightPanel student={student} tution={tution} />
-    </Grid>
+      <Right student={student} tution={tution} />
+    </MainContainer>
   );
 };
 

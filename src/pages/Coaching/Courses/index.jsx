@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import CoachingButtons from "../CoachingButtons";
 import { useNavigate } from "react-router";
-import ListContainer from "../../../components/ListContainer";
+import ListContainer from "../../../components/Containers/ListContainer";
 import "./my-courses.scss";
 
 // import InputField from "../../components/InputField";

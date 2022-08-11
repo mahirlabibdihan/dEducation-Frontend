@@ -1,31 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
-import ListContainer from "../../components/ListContainer";
-import CoachingForm from "./CoachingForm";
+import CardContainer from "../../components/Containers/CardContainer";
+import CoachingForm from "../../components/Forms/CoachingForm";
 import CoachingController from "../../controller/coachingController";
-import { TutorCoachingPanel } from "./CoachingPanel";
+import { TutorCoachingPanel } from "../../components/Panels/PrivateCoachingPanel";
 import GlobalContext from "../../store/GlobalContext";
 import Cookies from "universal-cookie";
 import { useSearchParams } from "react-router-dom";
-import "./my-coachings.scss";
-import CoachingPanel from "../../components/CoachingPanel";
+import RightPanel from "../../components/Panels/RightPanel";
+import CoachingPanel from "../../components/Panels/CoachingPanel";
+import MainContainer from "../../components/Containers/MainContainer";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 const CoachingsList = ({ list }) => {
-  return <ListContainer header="My Coachings" list={list} />;
+  return <CardContainer header="My Coachings" list={list} />;
 };
 
-const CoachingCreator = () => {
-  return (
-    <div className="coaching-creator">
-      <CoachingForm />
-    </div>
-  );
-};
-const RightPanel = ({ coaching }) => {
+const Right = ({ coaching }) => {
   const type = cookies.get("type");
   return (
-    <div className="right-panel">
+    <RightPanel>
       {coaching !== undefined ? (
         type === "TUTOR" ? (
           <TutorCoachingPanel coaching={coaching} />
@@ -33,18 +26,18 @@ const RightPanel = ({ coaching }) => {
           <CoachingPanel coaching={coaching} />
         )
       ) : type === "TUTOR" ? (
-        <CoachingCreator />
+        <CoachingForm />
       ) : (
         <></>
       )}
-    </div>
+    </RightPanel>
   );
 };
 const MyCoachings = () => {
   const globalCtx = useContext(GlobalContext);
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [coachingsList, setCoachingsList] = useState([]);
-  const [coaching, setCoaching] = useState({});
+  const [coaching, setCoaching] = useState(undefined);
 
   const setList = async () => {
     const res = await coachingController.getMyList();
@@ -69,10 +62,10 @@ const MyCoachings = () => {
   }, [searchParams, coachingsList]);
 
   return (
-    <Grid className="my-coachings-container">
+    <MainContainer className="my-coachings-container">
       <CoachingsList list={coachingsList} />
-      <RightPanel coaching={coaching} />
-    </Grid>
+      <Right coaching={coaching} />
+    </MainContainer>
   );
 };
 

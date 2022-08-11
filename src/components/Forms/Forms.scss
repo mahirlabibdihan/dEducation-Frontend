@@ -1,0 +1,88 @@
+@import "../components.scss";
+@import "../../images.scss";
+
+.login-form,
+.sign-up-form {
+  position: relative;
+  background-color: #fff;
+  // background-color: #16344e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .form-header {
+    font-family: "Kdam Thmor Pro", sans-serif;
+    @include flexCenter;
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  .login-button {
+    width: 100%;
+    height: 50px;
+    background-color: #166fe5;
+    font-family: "Kdam Thmor Pro", sans-serif;
+    &:hover {
+      background-color: #1667d1;
+    }
+  }
+  .sign-up-button {
+    width: 75%;
+    height: 50px;
+    background-color: #36a420;
+    font-family: "Kdam Thmor Pro", sans-serif;
+    &:hover {
+      color: white;
+      background-color: #25842d;
+    }
+  }
+  .reset-password {
+    width: 100%;
+    cursor: pointer;
+    color: grey;
+    text-decoration: underline;
+    text-decoration-color: grey;
+    &:hover {
+      // text-decoration-color: black;
+      color: rgb(88, 88, 88);
+    }
+    &:hover {
+      text-decoration-color: grey;
+    }
+  }
+  .login-link {
+    cursor: pointer;
+    color: grey;
+    text-decoration: underline;
+    text-decoration-color: grey;
+    &:hover {
+      // text-decoration-color: black;
+      color: rgb(88, 88, 88);
+    }
+  }
+  .exit-button {
+    position: absolute;
+    right: 4%;
+    top: 3%;
+    transition: 0.5s;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(200, 200, 200);
+    }
+  }
+}
+
+.sign-up-form {
+  .sign-up-button {
+    font-family: "Kdam Thmor Pro", sans-serif;
+    width: 100%;
+    height: 50px;
+    background-color: #36a420;
+    &:hover {
+      color: white;
+      background-color: #25842d;
+    }
+  }
+}

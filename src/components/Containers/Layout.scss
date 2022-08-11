@@ -1,0 +1,80 @@
+@import "../components.scss";
+$sidebar-width: 21vw;
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .nav-bar {
+  }
+  .body {
+    display: flex;
+    flex-direction: row;
+    .left-panel {
+      height: 100vh;
+      background-color: #fff;
+      border-right: rgba(0, 0, 0, 0.12) solid 2px;
+      // position: absolute;
+      width: $sidebar-width;
+      .logo {
+        display: flex;
+        flex-direction: row;
+        padding: 0 16px;
+        gap: 20px;
+        padding-left: 2rem;
+        .logo-image {
+          width: 30px;
+          background-image: "../assets/images/logo-2.svg";
+        }
+        .logo-name {
+          @include flexCenter;
+          justify-content: left;
+          font-family: "Oswald", sans-serif;
+          font-size: 2rem;
+          font-weight: bold;
+          height: 70px;
+        }
+      }
+
+      .side-buttons {
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        .side-button {
+          height: 50px;
+          line-height: 2;
+          border-radius: 0 25px 25px 0;
+          margin-right: 0.7rem;
+          transition: 0.5s;
+          padding-left: 2rem;
+          .side-icon {
+            min-width: 50px;
+          }
+          &:hover {
+            padding-left: 3.5rem;
+          }
+        }
+        .active-side-button {
+          background-color: rgb(204, 221, 236);
+          background-image: linear-gradient(
+            rgba(26, 72, 112, 0.9),
+            rgba(22, 52, 78, 1)
+          );
+          height: 50px;
+          line-height: 2;
+          border-radius: 0 25px 25px 0;
+          margin-right: 0.7rem;
+          // transition: 0.5s;
+          padding-left: 3.5rem;
+          color: rgb(230, 230, 230);
+          .side-icon {
+            color: rgb(230, 230, 230);
+            min-width: 50px;
+          }
+          &:hover {
+            // padding-left: 3.5rem;
+          }
+        }
+      }
+    }
+  }
+}

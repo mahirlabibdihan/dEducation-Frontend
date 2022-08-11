@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../../components/InputField";
+import { InputField2 } from "../../../components/InputFields/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import CoachingButtons from "../CoachingButtons";
 import { useNavigate } from "react-router";
-import { List } from "../../../components/ListContainer";
+import { List } from "../../../components/Containers/CardContainer";
 import "./my-courses.scss";
 
 // import InputField from "../../components/InputField";

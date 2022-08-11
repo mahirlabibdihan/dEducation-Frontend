@@ -1,0 +1,27 @@
+@import "../../components/components.scss";
+.request-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  .header {
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+  .input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+    width: 100%;
+  }
+  .post-button {
+    @include my-button;
+    margin: 0 auto;
+    font-size: 2rem;
+    color: rgb(232, 229, 229);
+    background-color: #164a4e;
+    width: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 @import "../images.scss";
+@import "./variables.scss";
 $bg-color: grey;
 @mixin flexCenter {
   display: flex;
@@ -123,7 +124,8 @@ $bg-color: grey;
   flex-direction: column;
   gap: 0.5rem;
 }
-.tution-post {
+.tution-post,
+.notice {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,7 +188,94 @@ $bg-color: grey;
   width: 100%;
 }
 
-.disabled-button {
+.search-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  .search-box {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    gap: 0.5rem;
+    overflow: auto;
+    .header {
+      margin: auto;
+      margin-bottom: 1rem;
+    }
+    .input-fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+      width: 100%;
+    }
+    .apply-button,
+    .clear-button {
+      @include my-button;
+      margin: 0 auto;
+      font-size: 2rem;
+      color: rgb(232, 229, 229);
+      background-color: #164a4e;
+      width: 100%;
+    }
+    .clear-button {
+      background-image: linear-gradient(#701a1a, #4e1616);
+      &:hover {
+        background-image: linear-gradient(#611919, #2e0f0f);
+      }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.standard-button-width {
+  width: 16vw;
+}
+
+.horizontal-center {
+  margin: 0 auto;
+}
+
+.blue-button,
+.red-button {
+  font-family: "Oswald", sans-serif;
+  transition: all 0.2s ease-in-out;
+  font-size: 2rem;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   color: rgb(232, 229, 229);
-  background-image: linear-gradient(#464a4d, #151616);
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+}
+.blue-button {
+  background-image: linear-gradient(#1a4870, #16344e);
+  &:hover {
+    background-image: linear-gradient(#194061, #0f202e);
+  }
+}
+
+.red-button {
+  background-image: linear-gradient(#701a1a, #4e1616);
+  &:hover {
+    background-image: linear-gradient(#611919, #2e0f0f);
+  }
+}
+
+.disabled-button {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  color: rgb(232, 229, 229);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  color: rgb(220, 220, 220);
 }

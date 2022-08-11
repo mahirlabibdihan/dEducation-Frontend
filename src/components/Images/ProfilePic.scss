@@ -1,0 +1,68 @@
+@import "../components.scss";
+.profile-picture {
+  @include flexCenter;
+  img {
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    object-position: center;
+    // &:hover {
+    //   box-shadow: #164a4e;
+    // }
+  }
+  input {
+    opacity: 0;
+    position: absolute;
+    height: 140px;
+    width: 140px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    cursor: pointer;
+    // &:hover {
+    //   box-shadow: #164a4e;
+    // }
+  }
+  input:hover + .upload-image-icon {
+    background-color: rgb(80, 80, 80);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
+  .upload-image-icon {
+    @include flexCenter;
+    background-color: rgb(36, 36, 36);
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    padding: 0.2rem;
+    position: absolute;
+    left: 9.6vw;
+    top: 12.5vh;
+    z-index: 0;
+    transition: 0.5s;
+    &:hover {
+      background-color: rgb(90, 90, 90);
+    }
+  }
+  .avg-rating {
+    @include flexCenter;
+    gap: 0.5rem;
+    // background-color: black;
+    background-image: linear-gradient(#194061, #0f202e);
+    height: 1.9rem;
+    min-width: 3.5rem;
+    border-radius: 50px;
+    padding: 0.5rem;
+    padding-right: 0.7rem;
+    position: absolute;
+    left: 9.6vw;
+    top: 12.5vh;
+    z-index: 0;
+    transition: 0.5s;
+    color: white;
+    font-size: 0.9rem;
+  }
+}

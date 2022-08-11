@@ -2,11 +2,17 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import { Divider } from "@mui/material";
 import "./home.scss";
-import PostsList from "./PostsList";
-import SearchBox from "./SearchBox";
-
-// import InputField from "../../components/InputField";
-
+import PostsList from "../../components/Containers/TutionPostContainer";
+import TutionPostSearchForm from "../../components/Forms/TutionPostSearchForm";
+import MainContainer from "../../components/Containers/MainContainer";
+import RightPanel from "../../components/Panels/RightPanel";
+const SearchFilter = () => {
+  return (
+    <div className="search-filter">
+      <TutionPostSearchForm />
+    </div>
+  );
+};
 const TutorHome = () => {
   const PostsFeed = () => {
     return (
@@ -17,27 +23,13 @@ const TutorHome = () => {
       </div>
     );
   };
-
-  // const DashBoard = () => {};
-  const SearchFilter = () => {
-    return (
-      <div className="search-filter">
-        <SearchBox />
-      </div>
-    );
-  };
-  const RightPanel = () => {
-    return (
-      <div className="right-panel">
-        <SearchFilter />
-      </div>
-    );
-  };
   return (
-    <Grid className="tutor-home-container">
+    <MainContainer className="tutor-home-container">
       <PostsFeed />
-      <RightPanel />
-    </Grid>
+      <RightPanel>
+        <SearchFilter />
+      </RightPanel>
+    </MainContainer>
   );
 };
 

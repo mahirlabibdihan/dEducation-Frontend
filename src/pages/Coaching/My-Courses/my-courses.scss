@@ -1,4 +1,4 @@
-@import "../../../components/layout.scss";
+@import "../../../components/Containers/layout.scss";
 .my-courses-container {
   display: flex;
   font-family: "Oswald", sans-serif;
@@ -6,12 +6,5 @@
   width: 100%;
   .course-list {
     width: 100vw - 2 * $sidebar-width;
-  }
-  .right-panel {
-    display: flex;
-    padding: 2rem;
-    width: $sidebar-width;
-    flex-direction: column;
-    align-items: center;
   }
 }

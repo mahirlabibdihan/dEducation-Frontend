@@ -1,0 +1,14 @@
+@import "../components.scss";
+@import "../../images.scss";
+.form-container {
+  height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/images/" + $background-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 100vw;
+}

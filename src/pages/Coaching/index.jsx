@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
-import { InputField2 } from "../../components/InputField";
+import { InputField2 } from "../../components/InputFields/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button } from "@mui/material";
 import CoachingButtons from "./CoachingButtons";
 import { useNavigate, useLocation } from "react-router";
-import ListContainer from "../../components/ListContainer";
+import CardContainer from "../../components/Containers/CardContainer";
 import { NavLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import MyCourses from "./My-Courses";
@@ -37,7 +37,7 @@ const Coaching = () => {
         </div>
         <Button
           variant="contained"
-          className="apply-button"
+          className="blue-button full-width"
           onClick={() => {
             setTimeout(() => {
               // navigate(button.path);

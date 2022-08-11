@@ -1,31 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
-import ListContainer from "../../components/ListContainer";
-import "./my-tutors.scss";
+import CardContainer from "../../components/Containers/CardContainer";
 import TutorsController from "../../controller/tutorsController";
-import TutorPanel from "../../components/TutorPanel";
+import TutorPanel from "../../components/Panels/TutorPanel";
 import GlobalContext from "../../store/GlobalContext";
 import TutionController from "../../controller/tutionController";
 import { useSearchParams } from "react-router-dom";
+import MainContainer from "../../components/Containers/MainContainer";
+import RightPanel from "../../components/Panels/RightPanel";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 const TutorsList = ({ list }) => {
-  return <ListContainer header="My Tutors" list={list} />;
+  return <CardContainer header="My Tutors" list={list} />;
 };
-const RightPanel = ({ tutor, tution }) => (
-  <div className="right-panel">
-    {tutor === undefined || tution === undefined ? (
-      <></>
-    ) : (
-      <TutorPanel tutor={tutor} tution={tution} />
-    )}
-  </div>
-);
 const MyTutors = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const globalCtx = useContext(GlobalContext);
-  const [tutor, setTutor] = useState({});
-  const [tution, setTution] = useState({});
+  const [tutor, setTutor] = useState(undefined);
+  const [tution, setTution] = useState(undefined);
   const [tutionsList, setTutionsList] = useState([]);
   const [tutorsList, setTutorsList] = useState([]);
   const setList = async () => {
@@ -55,10 +47,16 @@ const MyTutors = () => {
   }, [globalCtx.pendingUpdate]);
 
   return (
-    <Grid className="my-tutors-container">
+    <MainContainer>
       <TutorsList list={tutorsList} />
-      <RightPanel tutor={tutor} tution={tution} />
-    </Grid>
+      <RightPanel>
+        {tutor === undefined || tution === undefined ? (
+          <></>
+        ) : (
+          <TutorPanel tutor={tutor} tution={tution} />
+        )}
+      </RightPanel>
+    </MainContainer>
   );
 };
 
