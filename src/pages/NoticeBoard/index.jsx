@@ -9,36 +9,28 @@ import NoticeContainer from "../../components/Containers/NoticeContainer";
 import { format } from "date-fns";
 import NoticeForm from "../../components/Forms/NoticeForm";
 import Cookies from "universal-cookie";
+import CoachingController from "../../controller/coachingController";
+import GlobalContext from "../../store/GlobalContext";
+import { useContext } from "react";
+const coachingController = new CoachingController();
 const NoticeBoard = () => {
   const cookies = new Cookies();
   const type = cookies.get("type");
-  const [notices, setNotices] = useState([
-    {
-      TEXT: "No classes this week.No classes this week.No classes this week.No classes this week.No classes this week.",
-      IMAGE: "student1.jpg",
-      NAME: "Mahir Labib Dihan",
-      TIMESTAMP: format(
-        new Date("2022-08-10 11:14:20"),
-        "dd MMM, yyyy hh:mm a"
-      ),
-    },
-    {
-      TEXT: "No classes this week.No classes this week.No classes this week.No classes this week.No classes this week.",
-      IMAGE: "student1.jpg",
-      NAME: "Mahir Labib Dihan",
-      TIMESTAMP: format(
-        new Date("2022-08-10 11:14:20"),
-        "dd MMM, yyyy hh:mm a"
-      ),
-    },
-  ]);
+  const globalCtx = useContext(GlobalContext);
+  const [notices, setNotices] = useState([]);
   const setNoticeLists = async () => {
-    // const res = await tutionController.getList();
-    // setNotices(res.data);
+    const res = await coachingController.getMyNotices();
+    setNotices(res.data);
   };
   useEffect(() => {
     setNoticeLists();
   }, []);
+  useEffect(() => {
+    if (globalCtx.pendingUpdate) {
+      setNoticeLists();
+      globalCtx.setPendingUpdate(false);
+    }
+  }, [globalCtx.pendingUpdate]);
   const NoticeList = () => {
     return (
       <div className="posts-feed">

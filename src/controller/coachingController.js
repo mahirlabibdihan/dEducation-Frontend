@@ -10,6 +10,11 @@ class CoachingController extends Controller {
     this.showMessage("New coaching created", res);
     return res;
   };
+  postNotice = async (data) => {
+    const res = await this.coachingApi.postNotice(data);
+    this.showMessage("New notice posted", res);
+    return res;
+  };
   getList = async () => {
     const res = await this.coachingApi.getList();
     return res;
@@ -20,6 +25,10 @@ class CoachingController extends Controller {
   };
   getMyList = async () => {
     const res = await this.coachingApi.getMyList();
+    return res;
+  };
+  getMyNotices = async () => {
+    const res = await this.coachingApi.getMyNotices();
     return res;
   };
   getInfo = async (coaching_id) => {

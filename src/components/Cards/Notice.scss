@@ -9,6 +9,12 @@
         flex-direction: column;
         justify-content: center;
         gap: 0;
+        .notice-tag {
+          display: flex;
+          align-items: center;
+          font-size: 0.8rem;
+          color: grey;
+        }
         .time-stamp {
           margin: 0;
         }

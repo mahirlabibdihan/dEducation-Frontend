@@ -21,12 +21,21 @@ const Notice = (props) => {
           <img
             src={`http://localhost:5000/assets/images/${props.notice.IMAGE}`}
             alt=" "
-            className="shadow small-image"
+            className="shadow-sm small-image"
           />
           <div className="vbox w-100">
-            <h6 className="poppins-font">{props.notice.NAME}</h6>
+            <div className="hbox">
+              <h6 className="poppins-font">
+                <b>{props.notice.NAME}</b>
+              </h6>
+              <h6 className="poppins-font notice-tag">
+                {` ( ${props.notice.SUBJECT}, ${props.notice.CLASS} 
+               )`}
+              </h6>
+            </div>
+
             <h6 className="poppins-font time-stamp">
-              {props.notice.TIMESTAMP}
+              {format(new Date(props.notice.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
             </h6>
           </div>
         </div>
