@@ -89,6 +89,7 @@
 
 .notifications-list,
 .notices-list {
+  overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
