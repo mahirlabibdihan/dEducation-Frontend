@@ -1,4 +1,4 @@
-@import "../components.scss";   
+@import "../components.scss";
 .tutor-coaching-panel {
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
         padding: 0.2rem;
         position: absolute;
         left: 10.5vw;
-        top: 13vh;
+        top: 12.5vh;
         z-index: 0;
         transition: 0.5s;
         &:hover {

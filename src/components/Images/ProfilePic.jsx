@@ -75,7 +75,7 @@ export const PublicProfilePic = (props) => {
         <div className="avg-rating">
           {/* <StarIcon sx={{ color: "orange" }} /> */}
           <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
-          {props.rating === -1 ? "N/A" : props.rating}
+          {props.rating === -1 ? "N/A" : Math.round(props.rating * 100) / 100}
         </div>
       ) : (
         <></>
