@@ -19,19 +19,22 @@ const Notification = (props) => {
       className="notification-card"
       aria-hidden="true"
       onClick={() => {
-        navigate(props.notification.URL);
+        if (props.notification.URL !== null) navigate(props.notification.URL);
       }}
     >
       <div className="hbox">
         <img
           src={`http://localhost:5000/assets/images/${props.notification.IMAGE}`}
           alt=" "
-          className="shadow small-image"
+          className="shadow-sm small-image"
         />
         <div className="vbox w-100">
           <h6 className="poppins-font">{props.notification.TEXT}</h6>
           <h6 className="poppins-font time-stamp">
-            {props.notification.TIMESTAMP}
+            {format(
+              new Date(props.notification.TIMESTAMP),
+              "dd MMM, yyyy hh:mm a"
+            )}
           </h6>
         </div>
       </div>

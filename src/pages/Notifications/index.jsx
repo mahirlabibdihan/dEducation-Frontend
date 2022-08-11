@@ -10,35 +10,18 @@ import CreateCourseForm from "../../components/Forms/CreateCourseForm";
 import NotificationContainer from "../../components/Containers/NotificationContainer";
 import { Divider } from "@mui/material";
 import { format } from "date-fns";
+import ProfileController from "../../controller/profileController";
 const cookies = new Cookies();
 const courseController = new CourseController();
-
+const profileController = new ProfileController();
 const Notifications = () => {
   const globalCtx = useContext(GlobalContext);
-  const [notificationList, setNotificationList] = useState([
-    {
-      TEXT: "Ibrahim shagor has offered you a tution.Ibrahim shagor has offered you a tution.Ibrahim shagor has offered you a tution.",
-      URL: "/tuition_offers?id=0",
-      IMAGE: "student1.jpg",
-      TIMESTAMP: format(
-        new Date("2022-08-10 11:14:20"),
-        "dd MMM, yyyy hh:mm a"
-      ),
-    },
-    {
-      TEXT: "Ibrahim shagor has offered you a tution.Ibrahim shagor has offered you a tution.Ibrahim shagor has offered you a tution.",
-      URL: "/tuition_offers?id=0",
-      IMAGE: "student1.jpg",
-      TIMESTAMP: format(
-        new Date("2022-08-10 11:14:20"),
-        "dd MMM, yyyy hh:mm a"
-      ),
-    },
-  ]);
+  const [notificationList, setNotificationList] = useState([]);
   const type = cookies.get("type");
   const setList = async () => {
-    // const list = await courseController.getMyListAdmin();
-    // setCourseList(list.data);
+    const list = await profileController.getNotifications();
+    setNotificationList(list.data);
+    // console.log(list.data);
   };
   useEffect(() => {
     setList();
