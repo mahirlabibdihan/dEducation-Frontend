@@ -14,7 +14,9 @@ const PostsList = (props) => {
   const [posts, setPosts] = useState([]);
   const [isApplied, setIsApplied] = useState([]);
   const setTutionPosts = async () => {
-    const res = await tutionController.getList();
+    const res = await (type === "TUTOR"
+      ? tutionController.getList()
+      : tutionController.getMyList());
     setPosts(res.data);
     if (type === "TUTOR") {
       const res2 = await tutionController.getApplyList();
