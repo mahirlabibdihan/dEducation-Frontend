@@ -12,10 +12,29 @@ import Cookies from "universal-cookie";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { useContext } from "react";
+import SearchBar from "../../components/InputFields/SearchBar";
 const coachingController = new CoachingController();
+const NoticeList = ({ list }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  return (
+    <div className="posts-feed">
+      <div className="header-container">
+        <h2 className="header">Notice Board</h2>
+        <SearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          label="Search by coaching"
+        />
+      </div>
+      <Divider />
+      <NoticeContainer list={list} query={searchQuery} />
+    </div>
+  );
+};
 const NoticeBoard = () => {
   const cookies = new Cookies();
   const type = cookies.get("type");
+
   const globalCtx = useContext(GlobalContext);
   const [notices, setNotices] = useState([]);
   const setNoticeLists = async () => {
@@ -31,15 +50,7 @@ const NoticeBoard = () => {
       globalCtx.setPendingUpdate(false);
     }
   }, [globalCtx.pendingUpdate]);
-  const NoticeList = () => {
-    return (
-      <div className="posts-feed">
-        <h2 className="header">Notice Board</h2>
-        <Divider />
-        <NoticeContainer list={notices} />
-      </div>
-    );
-  };
+
   return (
     <MainContainer className="tutor-home-container">
       <NoticeList list={notices} />

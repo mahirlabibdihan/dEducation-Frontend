@@ -6,7 +6,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 const tutionController = new TutionController();
-const PostsList = () => {
+const PostsList = (props) => {
   const cookies = new Cookies();
   const type = cookies.get("type");
   const globalCtx = useContext(GlobalContext);
@@ -55,12 +55,23 @@ const PostsList = () => {
   }, [searchParams, globalCtx.pendingUpdate]);
   return (
     <div className="posts-list">
-      {posts.map((post, index) => (
-        <TutionPost
-          data={post}
-          isApplied={type === "TUTOR" ? isApplied[index] : undefined}
-        />
-      ))}
+      {posts.map((post, index) =>
+        post.ADDRESS.toLowerCase()
+          .split(" ")
+          .join("")
+          .includes(
+            props.query === undefined
+              ? ""
+              : props.query.toLowerCase().split(" ").join("")
+          ) ? (
+          <TutionPost
+            data={post}
+            isApplied={type === "TUTOR" ? isApplied[index] : undefined}
+          />
+        ) : (
+          <></>
+        )
+      )}
     </div>
   );
 };
