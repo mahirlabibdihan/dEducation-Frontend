@@ -1,26 +1,30 @@
 import { FormControl, OutlinedInput, InputLabel } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-const SearchBar = ({ setSearchQuery }) => (
-  <FormControl className="search-bar" variant="outlined">
-    <InputLabel
-      htmlFor="outlined-size-small"
-      sx={{ shrink: true, margin: "dense" }}
-    >
-      {/* Search */}
-    </InputLabel>
-    <OutlinedInput
-      id="outlined-size-small"
+import { InputAdornment, TextField } from "@mui/material";
+const SearchBar = ({ setSearchQuery, label }) => (
+  <FormControl
+    className="search-bar"
+    variant="outlined"
+    sx={{ width: "26.5vw" }}
+  >
+    <TextField
+      id="input-with-icon-textfield"
       className="search-input"
-      type="text"
-      // place-holder="Search..."
+      label={label}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
       onInput={(e) => {
         setSearchQuery(e.target.value);
       }}
-      label="-"
-      endAdornment={<SearchIcon />}
-      // size="small"
-      sx={{ width: "26.5vw", height: "5vh" }}
-      // InputLabelProps={{ shrink: true }}
+      size="small"
+      // sx={{ width: "26.5vw }}
+      variant="outlined"
+      fullWidth
     />
   </FormControl>
 );

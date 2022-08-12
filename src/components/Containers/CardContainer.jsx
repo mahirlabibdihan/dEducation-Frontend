@@ -25,7 +25,11 @@ const CardContainer = (props) => {
     <div className="card-container">
       <div className="header-container">
         <h2 className="header">{props.header}</h2>
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          label="Search by name"
+        />
       </div>
       <Divider />
       <List list={props.list} query={searchQuery}></List>

@@ -22,7 +22,11 @@ const CourseContainer = (props) => {
     <div className="table-container">
       <div className="header-container">
         <h2 className="header">{props.header}</h2>
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          label="Search by coaching"
+        />
       </div>
       <Divider />
       <Table list={props.list} query={searchQuery}></Table>

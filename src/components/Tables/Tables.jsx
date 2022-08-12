@@ -10,7 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useNavigate, createSearchParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import Cookies from "universal-cookie";   
+import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import "./Tables.scss";
 const cookies = new Cookies();
@@ -46,6 +46,7 @@ function StickyTable(props) {
           </TableHead>
           <TableBody>
             {props.rows.map((row, idx) => {
+              console.log(props.query);
               return (
                 props.query === undefined
                   ? true
@@ -132,6 +133,7 @@ export function TutorCoursesTable(props) {
       columns={columns}
       rows={rows}
       handleClick={handleClick}
+      query={props.query}
       height="86vh"
     />
   );
@@ -175,7 +177,14 @@ export function StudentCoursesTable(props) {
       course.CLASS_TIME
     )
   );
-  return <StickyTable columns={columns} rows={rows} height="86vh" />;
+  return (
+    <StickyTable
+      columns={columns}
+      rows={rows}
+      query={props.query}
+      height="86vh"
+    />
+  );
 }
 
 export function CoachingCoursesTable(props) {
@@ -193,7 +202,14 @@ export function CoachingCoursesTable(props) {
   const rows = props.list.map((course) =>
     createData(course.CLASS, course.SUBJECT)
   );
-  return <StickyTable columns={columns} rows={rows} height="35vh" />;
+  return (
+    <StickyTable
+      columns={columns}
+      rows={rows}
+      query={props.query}
+      height="35vh"
+    />
+  );
 }
 
 export function BatchesTable(props) {

@@ -8,14 +8,6 @@
   height: 100%;
   // flex-wrap: wrap;
   gap: 0.5rem;
-  .header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .search-input {
-      align-items: center;
-    }
-  }
   .cards {
     padding-top: 1.4rem;
     display: flex;
@@ -24,5 +16,14 @@
     width: 100%;
     // min-height: 100%;
     overflow: auto;
+  }
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .search-input {
+    align-items: center;
   }
 }
