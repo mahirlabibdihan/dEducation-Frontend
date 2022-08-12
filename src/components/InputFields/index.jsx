@@ -499,9 +499,9 @@ export const CoachingFields = ({ values, handleChange }) => (
 export const RequestFormFields = ({ values, handleChange }) => (
   <div className="input-fields">
     <TutionTypeField
-      value={values.type}
+      value={values.tution_type}
       handleChange={handleChange}
-      any={["Any"]}
+      any={[]}
     />
     <TutorGenderField
       value={values.desired_tutor_gender}
@@ -969,7 +969,10 @@ export const BatchFields = ({ values, setValues, handleChange }) => (
       <TimePicker
         label="End Time"
         value={values.end_time}
-        onChange={handleChange("end_time")}
+        minTime={values.start_time}
+        onChange={(time) => {
+          setValues({ ...values, end_time: time });
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
