@@ -5,6 +5,7 @@ import CoachingController from "../../controller/coachingController";
 import CoachingPanel from "../../components/Panels/CoachingPanel";
 import { useSearchParams } from "react-router-dom";
 import RightPanel from "../../components/Panels/RightPanel";
+import MainContainer from "../../components/Containers/MainContainer";
 const coachingController = new CoachingController();
 
 const CoachingsList = ({ list }) => {
@@ -43,7 +44,7 @@ const Coachings = () => {
   }, [searchParams, coachingsList, joinList]);
 
   return (
-    <div className="coachings-container">
+    <MainContainer className="coachings-container">
       <CoachingsList list={coachingsList} />
       <RightPanel>
         {coaching !== undefined && isJoined !== undefined ? (
@@ -52,7 +53,7 @@ const Coachings = () => {
           <></>
         )}
       </RightPanel>
-    </div>
+    </MainContainer>
   );
 };
 
