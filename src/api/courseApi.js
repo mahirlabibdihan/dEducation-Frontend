@@ -43,6 +43,21 @@ class CourseApi extends Api {
   enroll = async (batch_id) => {
     return await this.post(`/courses/enroll`, { batch_id: batch_id });
   };
+  approveEnrollment = async (batch_id, student_id) => {
+    return await this.post(`/courses/enroll/approve`, {
+      batch_id: batch_id,
+      student_id: student_id,
+    });
+  };
+  declineEnrollment = async (batch_id, student_id) => {
+    return await this.post(`/courses/enroll/decline`, {
+      batch_id: batch_id,
+      student_id: student_id,
+    });
+  };
+  cancelEnrollment = async (batch_id) => {
+    return await this.post(`/courses/enroll/cancel`, { batch_id: batch_id });
+  };
 }
 
 export default CourseApi;
