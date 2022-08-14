@@ -31,6 +31,23 @@ class CoachingApi extends Api {
       coaching_id: coaching_id,
     });
   };
+  approveJoinRequest = async (coaching_id, student_id) => {
+    return await this.post(`/coaching/join/approve`, {
+      coaching_id: coaching_id,
+      student_id: student_id,
+    });
+  };
+  declineJoinRequest = async (coaching_id, student_id) => {
+    return await this.post(`/coaching/join/decline`, {
+      coaching_id: coaching_id,
+      student_id: student_id,
+    });
+  };
+  cancelJoinRequest = async (coaching_id) => {
+    return await this.post(`/coaching/join/cancel`, {
+      coaching_id: coaching_id,
+    });
+  };
   updateInfo = async (data) => {
     return await this.post(`/coaching/update_info`, { coaching: data });
   };
