@@ -21,6 +21,7 @@ import ProfileController from "../../controller/profileController";
 import * as IMAGES from "../../images";
 import * as CONSTANTS from "../../constants";
 import Logo from "../../assets/images/Logo-small.svg";
+// import Logo from "../../assets/images/dEducation-small-logo.png";
 import GlobalContext from "../../store/GlobalContext";
 import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import BookIcon from "@mui/icons-material/Book";
@@ -30,6 +31,12 @@ import MessageIcon from "@mui/icons-material/Message";
 import { setLoading } from "../../App";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import BallotIcon from "@mui/icons-material/Ballot";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChalkboard } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPersonChalkboard,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -48,14 +55,19 @@ const Buttons = () => {
         },
         type === "TUTOR"
           ? {
-              label: "Tuition offers",
-              path: "/tuition_offers",
+              label: "Pending Requests",
+              path: "/pending_requests",
               icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
             }
           : {
               label: "Request Tutor",
               path: "/req_tutor",
-              icon: <EditLocationAltIcon sx={{ fontSize: "2rem" }} />,
+              icon: (
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
+                  style={{ fontSize: "1.8rem" }}
+                />
+              ),
             },
         type === "TUTOR"
           ? {
@@ -66,12 +78,22 @@ const Buttons = () => {
           : {
               label: "My tutors",
               path: "/my_tutors",
-              icon: <HailIcon sx={{ fontSize: "2rem" }} />,
+              icon: (
+                <FontAwesomeIcon
+                  icon={faPersonChalkboard}
+                  style={{ fontSize: "1.8rem" }}
+                />
+              ),
             },
         {
           label: "My coachings",
           path: "/my_coachings",
-          icon: <LocationCityIcon sx={{ fontSize: "2rem" }} />,
+          icon: (
+            <FontAwesomeIcon
+              icon={faChalkboard}
+              style={{ fontSize: "1.8rem" }}
+            />
+          ),
         },
         {
           label: "My courses",
