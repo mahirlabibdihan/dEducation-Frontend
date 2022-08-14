@@ -12,7 +12,22 @@ class CourseController extends Controller {
   };
   enroll = async (batch_id) => {
     const res = await this.courseApi.enroll(batch_id);
-    this.showSuccess("Enrolled in course", res);
+    this.showSuccess("You have successfully requested to enroll", res);
+    return res;
+  };
+  approveEnrollment = async (batch_id, student_id) => {
+    const res = await this.courseApi.approveEnrollment(batch_id, student_id);
+    this.showSuccess("Enrollment request approved", res);
+    return res;
+  };
+  declineEnrollment = async (batch_id, student_id) => {
+    const res = await this.courseApi.declineEnrollment(batch_id, student_id);
+    this.showSuccess("Enrollment request approved", res);
+    return res;
+  };
+  cancelEnrollment = async (batch_id) => {
+    const res = await this.courseApi.cancelEnrollment(batch_id);
+    this.showSuccess("Enrollment request canceled", res);
     return res;
   };
   create = async (data) => {
