@@ -88,11 +88,19 @@ class TutionApi extends Api {
       filter: query,
     });
   };
-  rate = async (tutor_id, rating) => {
-    return await this.post(`/tution/rate`, {
+  rate = async (tutor_id, rating, review) => {
+    const res = await this.post(`/tution/rate`, {
       tutor_id: tutor_id,
       rating: rating,
+      review: review,
     });
+    return res;
+  };
+  getFeedbacks = async (tutor_id) => {
+    const res = await this.post(`/tution/feedbacks`, {
+      tutor_id: tutor_id,
+    });
+    return res;
   };
 }
 
