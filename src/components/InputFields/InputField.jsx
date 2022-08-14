@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { TextField } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 const InputField = (props) => {
   return (
     <FormControl fullWidth className="input-field" variant="outlined">
@@ -28,7 +30,7 @@ export const InputField2 = (props) => {
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
-      <OutlinedInput
+      <TextField
         required
         id="outlined-adornment"
         className="outlined-input"
@@ -40,7 +42,12 @@ export const InputField2 = (props) => {
             : props.onChange(props.id, props.index)
         }
         label={props.label}
-        endAdornment={props.endAdornment}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">{props.endAdornment}</InputAdornment>
+          ),
+        }}
+        size="small"
       />
     </FormControl>
   );

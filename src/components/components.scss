@@ -55,7 +55,7 @@ $bg-color: grey;
 }
 
 .sidebar-container {
-  background-color: black;
+  // background-color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,14 +179,14 @@ $bg-color: grey;
   // }
 }
 
-.input-fields {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-  width: 100%;
-}
+// .input-fields {
+//   display: flex;
+//   gap: 1rem;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 1rem 0;
+//   width: 100%;
+// }
 
 .search-filter {
   display: flex;

@@ -21,6 +21,7 @@ const Coachings = () => {
   const setList = async () => {
     const res1 = await coachingController.getList();
     setCoachingsList(res1.data);
+    console.log(res1.data);
     const res2 = await coachingController.getJoinList();
     setJoinList(res2.data);
   };
