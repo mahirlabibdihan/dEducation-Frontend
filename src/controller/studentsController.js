@@ -20,5 +20,13 @@ class StudentsController extends Controller {
     const res = await this.studentsApi.getMembersList(coaching_id);
     return res;
   };
+  getJoinRequests = async (coaching_id) => {
+    const res = await this.studentsApi.getJoinRequests(coaching_id);
+    return res;
+  };
+  getPendingEnrolls = async (data) => {
+    const res = await this.studentsApi.getPendingEnrolls(data);
+    return res;
+  };
 }
 export default StudentsController;
