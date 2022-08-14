@@ -10,6 +10,7 @@ class CoachingController extends Controller {
     this.showMessage("New coaching created", res);
     return res;
   };
+
   postNotice = async (data) => {
     const res = await this.coachingApi.postNotice(data);
     this.showMessage("New notice posted", res);
@@ -37,7 +38,28 @@ class CoachingController extends Controller {
   };
   joinCoaching = async (coaching_id) => {
     const res = await this.coachingApi.joinCoaching(coaching_id);
-    this.showMessage("New coaching joined", res);
+    this.showMessage("You have successfully requested to join", res);
+    return res;
+  };
+  approveJoinRequest = async (coaching_id, student_id) => {
+    const res = await this.coachingApi.approveJoinRequest(
+      coaching_id,
+      student_id
+    );
+    this.showMessage("Join request approved", res);
+    return res;
+  };
+  declineJoinRequest = async (coaching_id, student_id) => {
+    const res = await this.coachingApi.declineJoinRequest(
+      coaching_id,
+      student_id
+    );
+    this.showMessage("Join request declined", res);
+    return res;
+  };
+  cancelJoinRequest = async (coaching_id) => {
+    const res = await this.coachingApi.cancelJoinRequest(coaching_id);
+    this.showMessage("Join request canceled", res);
     return res;
   };
   getCourseList = async (coaching_id) => {
