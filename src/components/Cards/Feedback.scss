@@ -1,0 +1,47 @@
+@import "../components.scss";
+.feedback-card {
+  padding-bottom: 1rem;
+  //   border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+  .vbox {
+    .header {
+      gap: 1rem;
+      align-items: center;
+      h6 {
+        // @include flexCenter();
+        margin-bottom: 0;
+      }
+      .vbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        width: 100%;
+      }
+      .rating-head {
+        position: relative;
+        h6 {
+          position: absolute;
+          left: 35%;
+          top: 26%;
+          font-weight: 900;
+        }
+      }
+    }
+    .details {
+      //   padding-top: 0.5rem;
+      //   padding-left: 1.5rem;
+      line-height: 1rem;
+      width: 100%;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.very-small-image {
+  border-radius: 50%;
+  min-width: 35px;
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  object-position: center;
+}
