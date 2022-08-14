@@ -14,6 +14,7 @@ const coachingController = new CoachingController();
 const courseController = new CourseController();
 const AddCourseForm = () => {
   const globalCtx = useContext(GlobalContext);
+  const [button, setButton] = useState("Disabled");
   const [coachingsList, setCoachingsList] = useState([
     // { NAME: "None", COACHING_ID: -1 },
   ]);
@@ -34,6 +35,7 @@ const AddCourseForm = () => {
 
   useEffect(() => {
     setCoachingOptions();
+    setButton("Disabled");
   }, []);
 
   const handleChange = (prop) => (event) => {
@@ -42,6 +44,17 @@ const AddCourseForm = () => {
   /*==========================*/
   const enrollCourse = async (event) => {
     const res = await courseController.enroll(values.batch);
+    if (res.success) {
+      globalCtx.setPendingUpdate(true);
+      setValues(initValues);
+      setClassList([]);
+      setSubjectList([]);
+      setBatchList([]);
+      setButton("Disabled");
+    }
+  };
+  const cancelEnroll = async (event) => {
+    const res = await courseController.cancelEnrollment(values.batch);
     if (res.success) {
       globalCtx.setPendingUpdate(true);
       setValues(initValues);
@@ -66,12 +79,32 @@ const AddCourseForm = () => {
         batchList={batchList}
         setBatchList={setBatchList}
         handleChange={handleChange}
+        setButton={setButton}
+        button={button}
       />
-      <RestrictedButton
-        isDisabled={values.batch === ""}
-        onClick={enrollCourse}
-        label="Enroll"
-      />
+      {button === "Cancel" ? (
+        <Button
+          variant="contained"
+          className="red-button horizontal-center full-width"
+          onClick={cancelEnroll}
+        >
+          Cancel
+        </Button>
+      ) : button === "Enrolled" ? (
+        <Button
+          variant="contained"
+          className="disabled-button full-width"
+          disabled
+        >
+          Enrolled
+        </Button>
+      ) : (
+        <RestrictedButton
+          isDisabled={values.batch === ""}
+          onClick={enrollCourse}
+          label="Enroll"
+        />
+      )}
     </div>
   );
 };
