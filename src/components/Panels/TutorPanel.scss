@@ -5,21 +5,40 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
   .profile-picture {
     position: relative;
-  }
-  .offer-form {
-    width: 100%;
-    .input-fields {
-      display: flex;
-      gap: 1rem;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem 0;
-      width: 100%;
+    img {
+      width: 120px;
+      height: 120px;
     }
   }
+  .feedback-form {
+    gap: 1rem;
+    width: 100%;
+  }
+  .feedback-container {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    height: 100%;
+    border-radius: 5px;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  // .offer-form {
+  //   width: 100%;
+  //   .input-fields {
+  //     display: flex;
+  //     gap: 1rem;
+  //     flex-direction: column;
+  //     align-items: center;
+  //     padding: 1rem 0;
+  //     width: 100%;
+  //   }
+  // }
   .offer-button,
   .cancel-button {
     @include my-button;
