@@ -13,6 +13,7 @@ import { useSearchParams, createSearchParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./Forms.scss";
+import { RoleSelectionField } from "../InputFields";
 const authController = new AuthController();
 
 const ResetPassword = () => {
@@ -96,11 +97,11 @@ const EmailField = ({ email, setEmail }) => (
   />
 );
 export const LoginForm = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [type, setType] = useState();
+  const [type, setType] = useState(searchParams.get("type"));
   const SignUpButton = ({ type }) => {
     const navigate = useNavigate();
     const handleSignup = () => {
@@ -127,7 +128,7 @@ export const LoginForm = (props) => {
   useEffect(() => {
     if (searchParams.get("type") === null) navigate("/");
     else setType(searchParams.get("type"));
-  }, [searchParams]);
+  }, [searchParams, props]);
 
   return (
     <Box
@@ -137,7 +138,7 @@ export const LoginForm = (props) => {
       <div className="exit-button" onClick={() => navigate("/")}>
         <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
       </div>
-      <h1 className="form-header">{type}</h1>
+      <RoleSelectionField value={type} setValue={setType} />
       <EmailField email={email} setEmail={setEmail} />
       <PasswordField pass={pass} setPass={setPass} />
       <LoginButton email={email} pass={pass} type={type} />
@@ -158,14 +159,14 @@ const NameField = ({ name, setName }) => (
 
 const LoginLink = ({ type, handleLogin }) => {
   return (
-    <h6
-      // component={Button}
-      align="center"
-      className="pt-2 login-link"
+    <Typography
+      // component={Link}
       onClick={handleLogin}
+      align="center"
+      className="pt-2 pb-3 border-bottom reset-password"
     >
       Already have an account?
-    </h6>
+    </Typography>
   );
 };
 
@@ -175,7 +176,7 @@ export const SignUpForm = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [type, setType] = useState();
+  const [type, setType] = useState(searchParams.get("type"));
   const SignUpButton = ({ name, email, pass, type, handleLogin }) => {
     const [loading, setLoading] = useState(false);
     const handleSignup = async (e) => {
@@ -220,7 +221,7 @@ export const SignUpForm = (props) => {
   useEffect(() => {
     if (searchParams.get("type") === null) navigate("/");
     else setType(searchParams.get("type"));
-  }, [searchParams]);
+  }, [props, searchParams]);
 
   const handleLogin = () => {
     navigate({
@@ -238,7 +239,8 @@ export const SignUpForm = (props) => {
       <div className="exit-button" onClick={() => navigate("/")}>
         <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
       </div>
-      <h1 className="form-header">{type}</h1>
+      <RoleSelectionField value={type} setValue={setType} />
+      {/* <h1 className="form-header">{type}</h1> */}
       <NameField name={name} setName={setName} />
       <EmailField email={email} setEmail={setEmail} />
       <PasswordField pass={pass} setPass={setPass} />
