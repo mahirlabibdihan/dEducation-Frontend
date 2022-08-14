@@ -1,5 +1,6 @@
 import React from "react";
 import "./TutionDetails.scss";
+import { format } from "date-fns";
 const TutionDetails = (props) => {
   const OfferDetails = [
     { label: "Tution Type", value: props.tution.TYPE },
@@ -14,14 +15,26 @@ const TutionDetails = (props) => {
     return props.tution.STATUS === "PENDING" ? (
       <h6>
         {`You have offered ${props.tutorName} to teach you 
-          ${props.tution.SUBJECTS} ${props.tution.DAYS_PER_WEEK} days a week. 
-          Classes will be taken ${props.tution.TYPE} and salary ${props.tution.SALARY} BDT per month.`}
+          ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
+          props.tution.CLASS_TIME
+        }.   
+          Classes will be taken ${props.tution.TYPE} and salary ${
+          props.tution.SALARY
+        } BDT per month from ${format(
+          new Date(props.tution.START_DATE),
+          "do MMMM, yyyy"
+        )}.`}
       </h6>
     ) : (
       <h6>
         {`${props.tutorName} teaches you ${props.tution.SUBJECTS} 
-          ${props.tution.DAYS_PER_WEEK} days a week. Classes are taken ${props.tution.TYPE} 
-          and salary ${props.tution.SALARY} BDT per month.`}
+        on ${props.tution.CLASS_DAYS} at ${
+          props.tution.CLASS_TIME
+        }. Classes are taken ${props.tution.TYPE} 
+          and salary ${props.tution.SALARY} BDT per month from  ${format(
+          new Date(props.tution.START_DATE),
+          "do MMMM, yyyy"
+        )}.`}
       </h6>
     );
   };
@@ -29,13 +42,25 @@ const TutionDetails = (props) => {
     return props.tution.STATUS === "PENDING" ? (
       <h6>
         {`${props.studentName} has offered you to teach 
-          ${props.tution.SUBJECTS} ${props.tution.DAYS_PER_WEEK} days a week. 
-          Classes will be taken ${props.tution.TYPE} and salary ${props.tution.SALARY} BDT per month.`}
+          ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
+          props.tution.CLASS_TIME
+        }. 
+          Classes will be taken ${props.tution.TYPE} and salary ${
+          props.tution.SALARY
+        } BDT per month from  ${format(
+          new Date(props.tution.START_DATE),
+          "do MMMM, yyyy"
+        )}.`}
       </h6>
     ) : (
       <h6>
-        {`You teach ${props.studentName} ${props.tution.SUBJECTS} ${props.tution.DAYS_PER_WEEK} days a week. Classes are taken ${props.tution.TYPE} 
-        and salary ${props.tution.SALARY} BDT per month.`}
+        {`You teach ${props.studentName} ${props.tution.SUBJECTS} on ${
+          props.tution.CLASS_DAYS
+        } at ${props.tution.CLASS_TIME}. Classes are taken ${props.tution.TYPE} 
+        and salary ${props.tution.SALARY} BDT per month from  ${format(
+          new Date(props.tution.START_DATE),
+          "do MMMM, yyyy"
+        )}.`}
       </h6>
     );
   };
