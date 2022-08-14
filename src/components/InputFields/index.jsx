@@ -88,7 +88,12 @@ export const BatchSelectionField = (props) => {
 
 export const InputField = (props) => {
   return (
-    <FormControl fullWidth className="input-field" variant="outlined">
+    <FormControl
+      fullWidth
+      className="input-field"
+      variant="outlined"
+      size={props.size === undefined ? "large" : props.size}
+    >
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -108,7 +113,12 @@ export const InputField = (props) => {
 
 export const InputField2 = (props) => {
   return (
-    <FormControl fullWidth className="input-field" variant="outlined">
+    <FormControl
+      fullWidth
+      className="input-field"
+      variant="outlined"
+      size={props.size === undefined ? "large" : props.size}
+    >
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -154,7 +164,12 @@ export const MultiLineField = (props) => {
 
 export const NumberField = (props) => {
   return (
-    <FormControl fullWidth className="input-field" variant="outlined">
+    <FormControl
+      fullWidth
+      className="input-field"
+      variant="outlined"
+      size={props.size === undefined ? "large" : props.size}
+    >
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -187,7 +202,12 @@ const MenuProps = {
 };
 export const MultiSelectionField = (props) => {
   return (
-    <FormControl fullWidth className=" input-field" variant="outlined">
+    <FormControl
+      fullWidth
+      className=" input-field"
+      variant="outlined"
+      size={props.size === undefined ? "large" : props.size}
+    >
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -217,7 +237,12 @@ export const MultiSelectionField = (props) => {
 };
 export const SelectionField = (props) => {
   return (
-    <FormControl fullWidth className=" input-field" variant="outlined">
+    <FormControl
+      fullWidth
+      className=" input-field"
+      variant="outlined"
+      size={props.size === undefined ? "large" : props.size}
+    >
       <InputLabel htmlFor="outlined-adornment" className="input-label">
         {props.label}
       </InputLabel>
@@ -229,6 +254,7 @@ export const SelectionField = (props) => {
         onChange={props.onChange(props.id)}
         input={<OutlinedInput label={props.label} />}
         MenuProps={MenuProps}
+        label={props.label}
         // MenuProps={MenuProps}
       >
         {props.list.map((value) => (
@@ -246,6 +272,52 @@ export const SelectionField = (props) => {
   );
 };
 
+export const RoleSelectionField = ({ value, setValue }) => {
+  // console.log(value);
+  // const handleChange = (e) => {
+  //   setValue(e.target.value);
+  // };
+  return (
+    <TextField
+      fullWidth
+      select
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      variant="filled"
+      sx={{
+        textAlign: "center",
+        fontWeight: "900",
+        "& .MuiFilledInput-underline": {
+          fontFamily: "poppins",
+          fontWeight: "bold",
+        },
+        "& .MuiInputBase-root": {
+          background: "none",
+        },
+        "& .MuiSelect-select": {
+          paddingLeft: "32px",
+          paddingTop: "4px",
+          // paddingRight: 0,
+        },
+      }}
+      size="small"
+    >
+      {["STUDENT", "TUTOR"].map((role) => (
+        <MenuItem
+          key={role}
+          value={role}
+          sx={{
+            justifyContent: "center",
+            fontWeight: "400",
+            fontSize: ".95rem",
+          }}
+        >
+          {role}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};
 export const TutorGenderField = ({ value, handleChange, any }) => (
   <SelectionField
     label="Desired Tutor Gender"
@@ -285,7 +357,7 @@ export const NameField = ({ value, handleChange }) => (
   />
 );
 
-export const LowestSalaryField = ({ value, handleChange }) => (
+export const LowestSalaryField = ({ value, handleChange, size }) => (
   <NumberField
     label="Lowest Salary (BDT)"
     type="number"
@@ -295,6 +367,7 @@ export const LowestSalaryField = ({ value, handleChange }) => (
     value={value}
     id="start_salary"
     onChange={handleChange}
+    size={size}
   />
 );
 export const HighestSalaryField = ({ minValue, value, handleChange }) => (
@@ -343,13 +416,25 @@ export const MaximumDaysField = ({ value, handleChange }) => (
   />
 );
 
-export const TutionTypeField = ({ value, handleChange, any }) => (
+export const TutionTypeField = ({ value, handleChange, any, size }) => (
   <SelectionField
     label="Tuition Type"
     value={value}
     id="tution_type"
     onChange={handleChange}
     list={any.concat(["Offline", "Online"])}
+    size={size}
+  ></SelectionField>
+);
+
+export const RequestTypeField = ({ value, handleChange, size }) => (
+  <SelectionField
+    label="Request Type"
+    value={value}
+    id="request_type"
+    onChange={handleChange}
+    list={["Tution Offer", "Join Request", "Course Enroll"]}
+    size={size}
   ></SelectionField>
 );
 
@@ -385,17 +470,18 @@ export const SeatsField = ({ value, handleChange }) => (
   />
 );
 
-export const ClassDaysField = ({ value, handleChange }) => (
+export const ClassDaysField = ({ value, handleChange, size }) => (
   <MultiSelectionField
     label="Class Days"
     value={value}
     id="days"
     onChange={handleChange}
     list={Fields.day}
+    size={size}
   />
 );
 
-export const DaysPerWeekField = ({ value, handleChange }) => (
+export const DaysPerWeekField = ({ value, handleChange, size }) => (
   <NumberField
     label="Days / Week"
     min={1}
@@ -404,6 +490,7 @@ export const DaysPerWeekField = ({ value, handleChange }) => (
     value={value}
     id="days_per_week"
     onChange={handleChange}
+    size={size}
   />
 );
 
@@ -420,7 +507,7 @@ export const AddressField = ({ value, handleChange }) => (
   />
 );
 
-export const SalaryField = ({ value, handleChange }) => (
+export const SalaryField = ({ value, handleChange, size }) => (
   <NumberField
     label="Salary (BDT)"
     type="number"
@@ -430,10 +517,11 @@ export const SalaryField = ({ value, handleChange }) => (
     value={value}
     id="salary"
     onChange={handleChange}
+    size={size}
   />
 );
 
-export const SubjectsField = ({ value, handleChange }) => (
+export const SubjectsField = ({ value, handleChange, size }) => (
   /* <MultiSelectionField
     label="Subjects"
     value={values.subjects}
@@ -447,6 +535,7 @@ export const SubjectsField = ({ value, handleChange }) => (
     value={value}
     id="subjects"
     onChange={handleChange}
+    size={size}
   />
 );
 
@@ -677,6 +766,51 @@ export const CourseSelectionFields = ({
     />
   </div>
 );
+
+// export const PendingRequestsFields = ({
+//   values,
+//   coachingsList,
+//   classList,
+//   subjectList,
+//   batchList,
+//   handleChange,
+// }) => (
+//   <div className="input-fields">
+//     <CoachingSelectionField
+//       coachingsList={coachingsList}
+//       value={values.coaching}
+//       onChange={handleChange}
+//     />
+//     {[
+//       {
+//         label: "Class",
+//         id: "class",
+//         value: values.class,
+//         list: classList,
+//       },
+//       {
+//         label: "Subject",
+//         id: "subject",
+//         value: values.subject,
+//         list: subjectList,
+//       },
+//     ].map((field, index) => (
+//       <SelectionField
+//         label={field.label}
+//         value={field.value}
+//         id={field.id}
+//         onChange={handleChange}
+//         list={field.list}
+//       ></SelectionField>
+//     ))}
+//     <BatchSelectionField
+//       batchList={batchList}
+//       value={values.batch}
+//       onChange={handleChange}
+//     />
+//   </div>
+// );
+
 export const AddCourseFields = ({
   values,
   coachingsList,
@@ -1027,14 +1161,70 @@ export const TutionPostSearchFields = ({ values, handleChange }) => (
   </div>
 );
 
-export const TutionOfferFields = ({ values, handleChange }) => (
-  <div className="input-fields">
-    <TutionTypeField value={values.type} handleChange={handleChange} any={[]} />
-    <SubjectsField value={values.subjects} handleChange={handleChange} />
-    <DaysPerWeekField
-      value={values.days_per_week}
-      handleChange={handleChange}
-    />
-    <SalaryField value={values.salary} handleChange={handleChange} />
-  </div>
+export const TutionOfferFields = ({ values, setValues, handleChange }) => (
+  <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <div className="input-fields">
+      <TutionTypeField
+        value={values.type}
+        handleChange={handleChange}
+        any={[]}
+      />
+      <SubjectsField value={values.subjects} handleChange={handleChange} />
+      {/*Start date */}
+      {/* Replace days per week with class days*/}
+      <MobileDatePicker
+        label="Starting Date"
+        inputFormat="MM/dd/yyyy"
+        value={values.start_date}
+        onChange={(date) => {
+          setValues({ ...values, start_date: date });
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            sx={{
+              width: "100%",
+            }}
+          />
+        )}
+        className="date-picker"
+      />
+      <ClassDaysField value={values.days} handleChange={handleChange} />
+      {/* Add tutoring start and end time field*/}
+
+      <TimePicker
+        label="Tutoring Time"
+        value={values.class_time}
+        onChange={(time) => {
+          setValues({ ...values, class_time: time });
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            sx={{
+              width: "100%",
+              label: "black",
+            }}
+          />
+        )}
+      />
+      {/* <TimePicker
+        label="End Time"
+        value={values.class_time}
+        onChange={(time) => {
+          setValues({ ...values, class_time: time });
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            sx={{
+              width: "100%",
+              label: "black",
+            }}
+          />
+        )}
+      /> */}
+      <SalaryField value={values.salary} handleChange={handleChange} />
+    </div>
+  </LocalizationProvider>
 );
