@@ -14,7 +14,7 @@ import {
   MyTutors,
   MyCoachings,
   MyStudents,
-  TuitionOffers,
+  PendingRequests,
   Coaching,
   MyCourses,
   Applicants,
@@ -89,7 +89,7 @@ const App = () => {
             <Route path="/my_tutors" element={<MyTutors />} />
             <Route path="/my_coachings" element={<MyCoachings />} />
             <Route path="/my_students" element={<MyStudents />} />
-            <Route path="/tuition_offers" element={<TuitionOffers />} />
+            <Route path="/pending_requests" element={<PendingRequests />} />
             <Route path="/coaching" element={<Coaching />} />
             <Route path="/my_courses" element={<MyCourses />} />
             <Route path="/my_courses/batches" element={<Batches />} />
