@@ -11,7 +11,7 @@ export { default as Coachings } from "./Coachings";
 export { default as Coaching } from "./Coaching";
 export { default as MyCoachings } from "./My-Coachings";
 export { default as MyStudents } from "./My-Students";
-export { default as TuitionOffers } from "./Tuition-Offers";
+export { default as PendingRequests } from "./Pending-Requests";
 export { default as MyCourses } from "./My-Courses";
 export { default as Batches } from "./Batches";
 export { default as Notifications } from "./Notifications";
