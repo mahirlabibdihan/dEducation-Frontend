@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Divider } from "@mui/material";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import { PublicProfilePic } from "../Images/ProfilePic";
 import "./TutorProfile.scss";
 
@@ -32,12 +33,13 @@ const TutorProfile = (props) => {
     return (
       <h6 className="education-details">
         {props.education.map((e) => (
-          <h6>
+          <>
             {new Date().getFullYear() < Number(e.PASSING_YEAR)
               ? `Will pass`
               : `Passed`}
             {` ${e.DEGREE}(${e.FIELD_OF_STUDY}) from ${e.INSTITUTE} in ${e.PASSING_YEAR}.`}
-          </h6>
+            <br></br>
+          </>
         ))}
       </h6>
     );

@@ -10,16 +10,16 @@
     margin: auto;
     margin-bottom: 1rem;
   }
-  .input-fields {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 0;
-    width: 100%;
-    gap: 1rem;
-  }
 }
 
+.input-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  width: 100%;
+  gap: 1rem;
+}
 .password-change {
   // padding: 2rem 0;
   display: flex;
