@@ -95,8 +95,12 @@ class TutionController extends Controller {
     const res = await this.tutionApi.getPendingTutionsList();
     return res;
   };
-  rate = async (tutor_id, rating) => {
-    const res = await this.tutionApi.rate(tutor_id, rating);
+  rate = async (tutor_id, rating, review) => {
+    const res = await this.tutionApi.rate(tutor_id, rating, review);
+    return res;
+  };
+  getFeedbacks = async (tutor_id) => {
+    const res = await this.tutionApi.getFeedbacks(tutor_id);
     return res;
   };
 }
