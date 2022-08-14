@@ -1,0 +1,171 @@
+@import url("http://fonts.cdnfonts.com/css/berlin-sans-fb-demi");
+.background {
+  .bg-1,
+  .bg-2,
+  .bg-3 {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 0;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    background: transparent;
+  }
+  .lr-1 {
+    animation: left-to-right-1 1.6s ease-out forwards;
+  }
+  .lr-2 {
+    animation: left-to-right-2 1.84s ease-out forwards;
+  }
+  .lr-3 {
+    animation: left-to-right-3 2.08s ease-out forwards;
+  }
+  .lr-4 {
+    animation: left-to-right-4 1.6s ease-in forwards;
+  }
+  .lr-5 {
+    animation: left-to-right-5 1.6s ease-in forwards;
+  }
+  .lr-6 {
+    animation: left-to-right-6 1.6s ease-in forwards;
+  }
+  .landing-container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Oswald", sans-serif;
+    .type-writer-brand {
+      position: absolute;
+      bottom: 25vh;
+      font-size: 3.26rem;
+      font-family: "Berlin Sans FB Demi", sans-serif;
+    }
+    .type-writer-slogan {
+      position: absolute;
+      bottom: 23vh;
+      font-size: 1.5rem;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: 2px;
+    }
+    .get-started-button {
+      position: absolute;
+      height: 2rem;
+      width: 24vw;
+      bottom: 13vh;
+      font-size: 2rem;
+      height: 7vh;
+      font-weight: 1000;
+      font-family: "Poppins", sans-serif;
+      background-image: linear-gradient(#194061, #0f202e);
+      color: rgb(200, 200, 200);
+      &:hover {
+        // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        // color: #16344e;
+        color: #fff;
+        // background-color: #112638;
+        background-image: linear-gradient(#194061, #0f202e);
+        cursor: pointer;
+      }
+      .hide-bottom {
+        animation: top-to-bottom 2.08s ease-out forwards;
+      }
+    }
+    .student-button,
+    .tutor-button {
+      z-index: 2;
+      font-family: "Oswald", sans-serif;
+      font-size: 2.5rem;
+      color: rgb(232, 229, 229);
+      // background-color: #16344e;
+      background-image: linear-gradient(#1a4870, #16344e);
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      min-width: 16vw;
+      min-height: 10vh;
+      &:hover {
+        // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        // color: #16344e;
+        color: #fff;
+        // background-color: #112638;
+        background-image: linear-gradient(#194061, #0f202e);
+        cursor: pointer;
+      }
+    }
+    // .student-button {
+    //   animation: left-to-right 3s ease-out forwards;
+    // }
+    // .tutor-button {
+    //   animation: right-to-left 3s ease-out forwards;
+    // }
+    @keyframes top-to-bottom {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(100px);
+      }
+    }
+    @keyframes left-to-right-1 {
+      0% {
+        transform: translateX(-1000px);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+    @keyframes left-to-right-2 {
+      0% {
+        transform: translateX(-1150px);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+    @keyframes left-to-right-3 {
+      0% {
+        transform: translateX(-1300px);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+    @keyframes left-to-right-4 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(1000px);
+      }
+    }
+    @keyframes left-to-right-5 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(1000px);
+      }
+    }
+    @keyframes left-to-right-6 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(1000px);
+      }
+    }
+    @keyframes right-to-left {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
