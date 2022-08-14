@@ -23,13 +23,19 @@ const PendingRequestsForm = () => {
   const [classList, setClassList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [batchList, setBatchList] = useState([]);
-  const [values, setValues] = useState({
-    request_type: "Tution Offer",
-    coaching: "",
-    class: "",
-    subject: "",
-    batch: "",
+  const initValues = () => ({
+    request_type:
+      searchParams.get("type") === null
+        ? "Tution Offer"
+        : searchParams.get("type"),
+    coaching:
+      searchParams.get("coaching") === null ? "" : searchParams.get("coaching"),
+    class: searchParams.get("class") === null ? "" : searchParams.get("class"),
+    subject:
+      searchParams.get("subject") === null ? "" : searchParams.get("subject"),
+    batch: searchParams.get("batch") === null ? "" : searchParams.get("batch"),
   });
+  const [values, setValues] = useState(initValues());
   const setCoachingOptions = async () => {
     var res = await coachingController.getMyList();
     const list = [];
@@ -39,13 +45,7 @@ const PendingRequestsForm = () => {
     setCoachingsList(list);
   };
   useEffect(() => {
-    setValues({
-      request_type: "Tution Offer",
-      coaching: "",
-      class: "",
-      subject: "",
-      batch: "",
-    });
+    setValues(initValues());
   }, []);
 
   useEffect(() => {
