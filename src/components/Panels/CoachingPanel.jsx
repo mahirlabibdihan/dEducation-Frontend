@@ -46,6 +46,14 @@ const CoachingPanel = (props) => {
       globalCtx.setPendingUpdate(true);
     }
   };
+  const cancelJoin = async () => {
+    const res = await coachingController.cancelJoinRequest(
+      props.coaching.COACHING_ID
+    );
+    if (res.success) {
+      globalCtx.setPendingUpdate(true);
+    }
+  };
   const setList = async () => {
     const res = await coachingController.getCourseList(
       props.coaching.COACHING_ID
@@ -64,20 +72,28 @@ const CoachingPanel = (props) => {
       ) : (
         <>
           <CoachingBanner coaching={props.coaching} />
-          {type === "STUDENT" &&
-          props.isJoined !== undefined &&
-          props.isJoined === "NO" ? (
-            <Button
-              variant="contained"
-              className="blue-button horizontal-center full-width"
-              onClick={joinCoaching}
-            >
-              Join
-            </Button>
+          {type === "STUDENT" && props.coaching.TYPE !== "MEMBER" ? (
+            props.coaching.TYPE === null ? (
+              <Button
+                variant="contained"
+                className="blue-button horizontal-center full-width"
+                onClick={joinCoaching}
+              >
+                Join
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                className="red-button horizontal-center full-width"
+                onClick={cancelJoin}
+              >
+                Cancel
+              </Button>
+            )
           ) : (
             <div className="flex-center vbox">
               <Divider />
-              <div className="rating-container poppins-font text-center">
+              {/* <div className="rating-container poppins-font text-center">
                 {`How would you rate ${props.coaching.NAME}?`}
               </div>
               <Rating
@@ -88,7 +104,7 @@ const CoachingPanel = (props) => {
                 onChange={(event, newValue) => {
                   setRating(newValue);
                 }}
-              />
+              /> */}
             </div>
           )}
           <Divider />
