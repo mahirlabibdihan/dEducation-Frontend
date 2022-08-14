@@ -63,8 +63,11 @@ const MyStudents = () => {
   useEffect(() => setShowableList(), [searchParams]);
   useEffect(() => {
     if (searchParams.get("id") !== null) {
-      setStudent(studentsList[Number(searchParams.get("id"))]);
-      setTution(tutionsList[Number(searchParams.get("id"))]);
+      const index = studentsList
+        .map((s) => s.USER_ID)
+        .indexOf(Number(searchParams.get("id")));
+      setStudent(studentsList[index]);
+      setTution(tutionsList[index]);
     } else {
       setStudent(undefined);
       setTution(undefined);

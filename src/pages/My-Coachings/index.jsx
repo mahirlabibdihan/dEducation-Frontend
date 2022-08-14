@@ -56,7 +56,10 @@ const MyCoachings = () => {
 
   useEffect(() => {
     if (searchParams.get("id") !== null) {
-      setCoaching(coachingsList[Number(searchParams.get("id"))]);
+      const index = coachingsList
+        .map((t) => t.COACHING_ID)
+        .indexOf(Number(searchParams.get("id")));
+      setCoaching(coachingsList[index]);
     } else {
       setCoaching(undefined);
     }

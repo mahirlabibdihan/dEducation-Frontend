@@ -61,8 +61,12 @@ const Tutors = () => {
 
   useEffect(() => {
     if (searchParams.get("id") !== null) {
-      setTutor(tutorsList[Number(searchParams.get("id"))]);
-      setTution(tutionsList[Number(searchParams.get("id"))]);
+      const index = tutorsList
+        .map((t) => t.USER_ID)
+        .indexOf(Number(searchParams.get("id")));
+
+      setTutor(tutorsList[index]);
+      setTution(tutionsList[index]);
     } else {
       setTutor(undefined);
       setTution(undefined);

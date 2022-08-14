@@ -13,7 +13,7 @@ const tutionController = new TutionController();
 const studentsController = new StudentsController();
 const coachingController = new CoachingController();
 const OffersList = ({ list }) => {
-  return <CardContainer header="Tuition Offers" list={list} />;
+  return <CardContainer header="Pending Requests" list={list} />;
 };
 const PendingRequests = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,6 +35,7 @@ const PendingRequests = () => {
     };
     console.log(data);
     if (data.request_type === "Tution Offer" || data.request_type === null) {
+      console.log("=>", data);
       const list1 = await studentsController.getPendingStudentsList();
       if (list1.success) setStudentsList(list1.data);
       const list2 = await tutionController.getPendingTutionsList();
@@ -75,12 +76,15 @@ const PendingRequests = () => {
   }, [globalCtx.pendingUpdate]);
   useEffect(() => {
     if (searchParams.get("id") !== null) {
-      setStudent(studentsList[Number(searchParams.get("id"))]);
+      const index = studentsList
+        .map((s) => s.USER_ID)
+        .indexOf(Number(searchParams.get("id")));
+      setStudent(studentsList[index]);
       if (
         searchParams.get("type") === null ||
-        searchParams.get("type") === "Pending Requests"
+        searchParams.get("type") === "Tution Offer"
       )
-        setOffer(offersList[Number(searchParams.get("id"))]);
+        setOffer(offersList[index]);
     } else {
       setStudent(undefined);
       setOffer(undefined);
