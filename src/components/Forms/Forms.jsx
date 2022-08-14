@@ -126,6 +126,12 @@ export const LoginForm = (props) => {
     );
   };
   useEffect(() => {
+    if (type !== searchParams.get("type")) {
+      searchParams.set("type", type);
+      setSearchParams(searchParams);
+    }
+  }, [type]);
+  useEffect(() => {
     if (searchParams.get("type") === null) navigate("/");
     else setType(searchParams.get("type"));
   }, [searchParams, props]);
@@ -218,6 +224,12 @@ export const SignUpForm = (props) => {
       </Button>
     );
   };
+  useEffect(() => {
+    if (type !== searchParams.get("type")) {
+      searchParams.set("type", type);
+      setSearchParams(searchParams);
+    }
+  }, [type]);
   useEffect(() => {
     if (searchParams.get("type") === null) navigate("/");
     else setType(searchParams.get("type"));
