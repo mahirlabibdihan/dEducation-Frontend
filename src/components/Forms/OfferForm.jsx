@@ -4,6 +4,7 @@ import "./OfferForm.scss";
 import TutionController from "../../controller/tutionController";
 import GlobalContext from "../../store/GlobalContext";
 import { TutionOfferFields } from "../InputFields";
+import { format } from "date-fns";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
@@ -11,17 +12,21 @@ const OfferForm = (props) => {
   const [values, setValues] = useState(
     props.tution === undefined
       ? {
-          type: "Offline",
+          tution_type: "Offline",
           desired_tutor_gender: "Male",
           subjects: "",
-          days_per_week: 1,
+          start_date: new Date(),
+          days: [],
+          class_time: new Date("2014-08-18T00:00:00"),
           salary: 0,
         }
       : {
-          type: props.tution.TYPE,
+          tution_type: props.tution.TYPE,
           desired_tutor_gender: props.tution.DESIRED_TUTOR_GENDER,
           subjects: props.tution.SUBJECTS,
-          days_per_week: props.tution.DAYS_PER_WEEK,
+          start_date: new Date(),
+          days: [],
+          class_time: new Date("2014-08-18T00:00:00"),
           salary: props.tution.SALARY,
         }
   );
@@ -31,9 +36,12 @@ const OfferForm = (props) => {
   const handleOffer = async (event) => {
     const res = await tutionController.offer(
       {
-        type: values.type,
+        days: values.days.toString(),
+        type: values.tution_type,
         subjects: values.subjects,
-        days_per_week: values.days_per_week,
+        start_date: format(values.start_date, "MM/dd/yyyy"),
+        class_days: values.days.toString(),
+        class_time: format(values.class_time, "h:mm a"),
         salary: values.salary,
       },
       props.tutor_id
@@ -44,7 +52,11 @@ const OfferForm = (props) => {
   };
   return (
     <div className="offer-form">
-      <TutionOfferFields values={values} handleChange={handleChange} />
+      <TutionOfferFields
+        values={values}
+        setValues={setValues}
+        handleChange={handleChange}
+      />
       <Button
         variant="contained"
         className="blue-button full-width"

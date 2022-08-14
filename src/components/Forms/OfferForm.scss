@@ -1,11 +1,14 @@
 @import "../components.scss";
 .offer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
   .input-fields {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 1rem 0;
+    // padding: 0.7rem 0;
     width: 100%;
     gap: 1rem;
   }
