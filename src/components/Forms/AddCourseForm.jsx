@@ -61,6 +61,7 @@ const AddCourseForm = () => {
       setClassList([]);
       setSubjectList([]);
       setBatchList([]);
+      setButton("Disabled");
     }
   };
   return (
