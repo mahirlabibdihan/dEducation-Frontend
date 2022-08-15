@@ -17,12 +17,12 @@ const tutionController = new TutionController();
 
 const ProfilePanel = (props) => {
   const location = useLocation();
-  console.log(props.feedbacks);
   return (
     <>
       <TutorProfile tutor={props.tutor} education={props.education} />
       <Divider />
-      {location.pathname.split("/")[1] === "home" ? (
+      {location.pathname.split("/")[1] === "home" ||
+      location.pathname.split("/")[1] === "req_tutor" ? (
         <div className="feedback-container">
           <h6 className="standard-font-1 text-center mb-0">Feedbacks</h6>
           <Divider />
@@ -33,7 +33,9 @@ const ProfilePanel = (props) => {
       ) : (
         <></>
       )}
-      {props.tution.STATUS === null ? (
+      {props.tution.STATUS === null ||
+      props.tution.STATUS === "REJECTED" ||
+      props.tution.STATUS === "CANCELLED" ? (
         <>
           <Button
             variant="contained"
@@ -177,7 +179,10 @@ const TutorPanel = (props) => {
       review: props.tution.REVIEW,
     });
     // console.log("=>", props);
-    if (location.pathname.split("/")[1] === "home") {
+    if (
+      location.pathname.split("/")[1] === "home" ||
+      location.pathname.split("/")[1] === "req_tutor"
+    ) {
       setFeedbackList();
     }
   }, [props]);
