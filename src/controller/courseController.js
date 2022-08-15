@@ -22,7 +22,7 @@ class CourseController extends Controller {
   };
   declineEnrollment = async (batch_id, student_id) => {
     const res = await this.courseApi.declineEnrollment(batch_id, student_id);
-    this.showSuccess("Enrollment request approved", res);
+    this.showSuccess("Enrollment request declined", res);
     return res;
   };
   cancelEnrollment = async (batch_id) => {

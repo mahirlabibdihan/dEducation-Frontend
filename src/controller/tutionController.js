@@ -97,6 +97,7 @@ class TutionController extends Controller {
   };
   rate = async (tutor_id, rating, review) => {
     const res = await this.tutionApi.rate(tutor_id, rating, review);
+    this.showMessage("Feedback submitted", res);
     return res;
   };
   getFeedbacks = async (tutor_id) => {
