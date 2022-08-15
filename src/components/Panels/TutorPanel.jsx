@@ -45,7 +45,8 @@ const ProfilePanel = (props) => {
         </>
       ) : (
         <div>
-          {props.tution.STATUS === "PENDING" ? (
+          {props.tution.STATUS === "PENDING" ||
+          props.tution.STATUS === "UPDATE" ? (
             <div className="vbox">
               <TutionDetails
                 tution={props.tution}
@@ -60,7 +61,19 @@ const ProfilePanel = (props) => {
               </Button>
             </div>
           ) : location.pathname.split("/")[1] === "home" ? (
-            <></>
+            <>
+              <h6 className="standard-font-1">
+                {`You are already a student of `}
+                <b>{props.tutor.NAME}</b>
+              </h6>
+              <Button
+                variant="contained"
+                className="blue-button full-width"
+                onClick={(e) => props.setPage("offer")}
+              >
+                Update
+              </Button>
+            </>
           ) : (
             <div className="flex-center vbox">
               <TutionDetails
@@ -134,7 +147,6 @@ const TutorPanel = (props) => {
   };
   const submitFeedback = async () => {
     // setRating(newValue);
-    console.log("CLICKED");
     const result = await tutionController.rate(
       props.tutor.USER_ID,
       feedback.rating,

@@ -12,7 +12,8 @@ const TutionDetails = (props) => {
     { label: "Subjects", value: props.tution.SUBJECTS },
   ];
   const StudentEnd = (props) => {
-    return props.tution.STATUS === "PENDING" ? (
+    return props.tution.STATUS === "PENDING" ||
+      props.tution.STATUS === "UPDATE" ? (
       <h6>
         {`You have offered ${props.tutorName} to teach you 
           ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
@@ -39,7 +40,8 @@ const TutionDetails = (props) => {
     );
   };
   const TutorEnd = (props) => {
-    return props.tution.STATUS === "PENDING" ? (
+    return props.tution.STATUS === "PENDING" ||
+      props.tution.STATUS === "UPDATE" ? (
       <h6>
         {`${props.studentName} has offered you to teach 
           ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
