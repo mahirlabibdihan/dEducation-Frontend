@@ -309,7 +309,7 @@ export const RoleSelectionField = ({ value, setValue }) => {
           sx={{
             justifyContent: "center",
             fontWeight: "400",
-            fontSize: ".95rem",
+            fontSize: ".90rem",
           }}
         >
           {role}
@@ -1165,7 +1165,7 @@ export const TutionOfferFields = ({ values, setValues, handleChange }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <div className="input-fields">
       <TutionTypeField
-        value={values.type}
+        value={values.tution_type}
         handleChange={handleChange}
         any={[]}
       />
