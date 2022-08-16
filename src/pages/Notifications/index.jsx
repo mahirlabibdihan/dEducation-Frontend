@@ -11,6 +11,8 @@ import NotificationContainer from "../../components/Containers/NotificationConta
 import { Divider } from "@mui/material";
 import { format } from "date-fns";
 import ProfileController from "../../controller/profileController";
+// import { setNotification } from "../../components/Containers/Layout";
+
 const cookies = new Cookies();
 const courseController = new CourseController();
 const profileController = new ProfileController();
@@ -21,6 +23,8 @@ const Notifications = () => {
   const setList = async () => {
     const list = await profileController.getNotifications();
     setNotificationList(list.data);
+    await profileController.seenNotifications();
+    globalCtx.setNewNotificationFlag(false);
     // console.log(list.data);
   };
   useEffect(() => {

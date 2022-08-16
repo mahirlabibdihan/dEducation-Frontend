@@ -21,10 +21,13 @@ export default class Api {
   };
   post = async (url, body) => {
     const token = this.cookies.get("token");
+    console.log(API_BASE_URL + url);
     try {
+      console.log("HERE-2");
       const res = await axios.post(API_BASE_URL + url, body, {
         headers: { authorization: "Bearer " + token },
       });
+      console.log(res);
       if (res.status === 200) {
         return {
           success: true,

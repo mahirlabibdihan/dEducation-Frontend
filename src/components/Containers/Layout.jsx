@@ -37,6 +37,8 @@ import {
   faPersonChalkboard,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
+import { Badge } from "@mui/material";
+import { showToast } from "../../App";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -45,6 +47,20 @@ const Buttons = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const type = cookies.get("type");
+  const globalCtx = useContext(GlobalContext);
+  const setNotification = async () => {
+    console.log("Get notification");
+    if (globalCtx.newNotificationFlag === false) {
+      const res = await profileController.isNotificationAvailable();
+      if (res.success === true && res.data === true) {
+        globalCtx.setNewNotificationFlag(true);
+        showToast("New notification available");
+      }
+    }
+  };
+  useEffect(() => {
+    setNotification();
+  }, [location]);
   return (
     <>
       {[
@@ -108,7 +124,21 @@ const Buttons = () => {
         {
           label: "Notifications",
           path: "/notifications",
-          icon: <NotificationsIcon sx={{ fontSize: "2rem" }} />,
+          icon:
+            globalCtx.newNotificationFlag === true ? (
+              <NotificationsIcon
+                sx={{
+                  fontSize: "2rem",
+                  color: "orange",
+                }}
+              />
+            ) : (
+              <NotificationsIcon
+                sx={{
+                  fontSize: "2rem",
+                }}
+              />
+            ),
         },
         {
           label: "Profile",
@@ -160,6 +190,8 @@ const LeftPanel = () => {
   );
 };
 const Layout = (props) => {
+  const globalCtx = useContext(GlobalContext);
+
   return (
     <div className="layout-container">
       <div className="body">
@@ -169,5 +201,4 @@ const Layout = (props) => {
     </div>
   );
 };
-
 export default Layout;

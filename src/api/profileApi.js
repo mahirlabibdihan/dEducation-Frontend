@@ -9,6 +9,12 @@ class ProfileApi extends Api {
   getNotifications = async () => {
     return await this.get(`/profile/notifications`);
   };
+  isNotificationAvailable = async () => {
+    return await this.get(`/profile/new_notifications?`);
+  };
+  seenNotifications = async () => {
+    return await this.post(`/profile/notifications/seen`, {});
+  };
   setEducation = async (list) => {
     return await this.post(`/profile/education`, { list: list });
   };

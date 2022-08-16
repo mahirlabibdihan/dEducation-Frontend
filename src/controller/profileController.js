@@ -20,6 +20,14 @@ class ProfileController extends Controller {
     const res = await this.profileApi.getNotifications();
     return res;
   };
+  isNotificationAvailable = async () => {
+    const res = await this.profileApi.isNotificationAvailable();
+    return res;
+  };
+  seenNotifications = async () => {
+    const res = await this.profileApi.seenNotifications();
+    return res;
+  };
   setEducation = async (list) => {
     const res = await this.profileApi.setEducation(list);
     this.showMessage("Education updated", res);
