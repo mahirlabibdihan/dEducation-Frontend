@@ -11,6 +11,7 @@ const TutorProfile = (props) => {
   }, [props]);
   const About = (props) => {
     return (
+      // props.tutor.NAME === null || props.tutor.GENDER === null ||props.tutor.EXPERTISE||props.tutor.YEARS_OF_EXPERIENCE||
       <h6 className="about-details">
         {`${props.tutor.NAME} is a `}
         <b>{props.tutor.GENDER}</b>
@@ -56,52 +57,48 @@ const TutorProfile = (props) => {
       <div className="banner-details">
         <h3 className="text-center">{props.tutor.NAME}</h3>
         <Divider />
-        <div className="full-details vbox">
-          {type === "about" ? (
-            <About tutor={props.tutor} />
-          ) : (
-            <Education education={props.education} />
-          )}
-
-          {/* <div className="hbox">
-            {profileDetails.map((row) => {
-              return (
-                <div className="vbox">
-                  {row.map((col) => (
-                    <h6>{`${col.label}: ${col.value}`}</h6>
-                  ))}
-                </div>
-              );
-            })}
+        {props.tutor.GENDER === null ||
+        props.tutor.EXPERTISE === null ||
+        props.tutor.YEARS_OF_EXPERIENCE === null ||
+        props.tutor.AVAILABILITY === null ||
+        props.tutor.PREFFERED_SALARY === null ||
+        props.tutor.PHONE_NUMBER === null ? (
+          <h6 className="about-details text-center">
+            Profile is not completed yet
+          </h6>
+        ) : (
+          <div className="full-details vbox">
+            {type === "about" ? (
+              <About tutor={props.tutor} />
+            ) : (
+              <Education education={props.education} />
+            )}
+            <div className="hbox">
+              <Button
+                variant="contained"
+                sx={{
+                  width: "100%",
+                  background:
+                    "linear-gradient(rgba(26, 72, 112, 0.9),rgba(22, 52, 78, 1))",
+                }}
+                onClick={() => setType("about")}
+              >
+                About
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  width: "100%",
+                  background:
+                    "linear-gradient(rgba(26, 72, 112, 0.9),rgba(22, 52, 78, 1))",
+                }}
+                onClick={() => setType("education")}
+              >
+                Education
+              </Button>
+            </div>
           </div>
-          <h6>{`Phone Number: ${tutor.PHONE_NUMBER}`}</h6>
-          <h6>{`Subjects: ${tutor.EXPERTISE}`}</h6>
-          */}
-          <div className="hbox">
-            <Button
-              variant="contained"
-              sx={{
-                width: "100%",
-                background:
-                  "linear-gradient(rgba(26, 72, 112, 0.9),rgba(22, 52, 78, 1))",
-              }}
-              onClick={() => setType("about")}
-            >
-              About
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                width: "100%",
-                background:
-                  "linear-gradient(rgba(26, 72, 112, 0.9),rgba(22, 52, 78, 1))",
-              }}
-              onClick={() => setType("education")}
-            >
-              Education
-            </Button>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
