@@ -6,6 +6,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { TutionOfferFields } from "../InputFields";
 import { format } from "date-fns";
 import { useEffect } from "react";
+import { RestrictedButton } from "../Buttons";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
@@ -30,7 +31,6 @@ const OfferForm = (props) => {
       props.tution === undefined
         ? {
             tution_type: "Offline",
-            desired_tutor_gender: "Male",
             subjects: "",
             start_date: new Date(),
             days: [],
@@ -38,9 +38,10 @@ const OfferForm = (props) => {
             salary: 0,
           }
         : {
-            tution_type: props.tution.TYPE,
-            desired_tutor_gender: props.tution.DESIRED_TUTOR_GENDER,
-            subjects: props.tution.SUBJECTS,
+            tution_type:
+              props.tution.TYPE === null ? "Offline" : props.tution.TYPE,
+            subjects:
+              props.tution.SUBJECTS === null ? "" : props.tution.SUBJECTS,
             start_date:
               props.tution.START_DATE === null
                 ? new Date()
@@ -57,7 +58,7 @@ const OfferForm = (props) => {
                       `01/01/1970 ${convertTime12to24(props.tution.CLASS_TIME)}`
                     )
                   ),
-            salary: props.tution.SALARY,
+            salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
           };
     return tution;
   };
@@ -94,13 +95,11 @@ const OfferForm = (props) => {
         setValues={setValues}
         handleChange={handleChange}
       />
-      <Button
-        variant="contained"
-        className="blue-button full-width"
+      <RestrictedButton
+        isDisabled={values.days.length === 0 || values.subjects === ""}
         onClick={handleOffer}
-      >
-        Offer
-      </Button>
+        label="Offer"
+      ></RestrictedButton>
     </div>
   );
 };

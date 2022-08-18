@@ -888,9 +888,27 @@ export const EducationFields = ({
           onChange={handleNewEducationChange}
         />
       ))}
-      <Button variant="contained" className="add-button" onClick={handleAdd}>
+      {newEducationFields[0].value === "" ||
+      newEducationFields[1].value === "" ||
+      newEducationFields[2].value === "" ||
+      newEducationFields[3].value === "" ? (
+        <Button
+          variant="contained"
+          className="disabled-button"
+          sx={{ minWidth: "4vw" }}
+          onClick={handleAdd}
+          disabled
+        >
+          <AddIcon />
+        </Button>
+      ) : (
+        <Button variant="contained" className="add-button" onClick={handleAdd}>
+          <AddIcon />
+        </Button>
+      )}
+      {/* <Button variant="contained" className="add-button" onClick={handleAdd}>
         <AddIcon />
-      </Button>
+      </Button> */}
     </div>
   </div>
 );

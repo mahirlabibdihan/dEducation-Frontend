@@ -6,6 +6,7 @@ import { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "./RequestForm.scss";
 import { RequestFormFields } from "../InputFields";
+import { RestrictedButton } from "../Buttons";
 
 const tutionController = new TutionController();
 const RequestForm = () => {
@@ -22,7 +23,7 @@ const RequestForm = () => {
   };
   const handlePost = async (event) => {
     const res = await tutionController.post({
-      tution_type: values.type,
+      type: values.tution_type,
       desired_tutor_gender: values.desired_tutor_gender,
       subjects: values.subjects,
       days_per_week: values.days_per_week,
@@ -37,13 +38,11 @@ const RequestForm = () => {
       <h1 className="header"> Need a tutor? </h1>
       <Divider />
       <RequestFormFields values={values} handleChange={handleChange} />
-      <Button
-        variant="contained"
-        className="blue-button full-width"
+      <RestrictedButton
+        isDisabled={values.subjects === ""}
         onClick={handlePost}
-      >
-        Post
-      </Button>
+        label="Post"
+      ></RestrictedButton>
     </div>
   );
 };

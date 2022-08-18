@@ -88,7 +88,8 @@ const NoticeForm = () => {
           values.coaching === -1 ||
           values.class === "" ||
           values.subject === "" ||
-          values.notice === ""
+          values.notice === "" ||
+          values.notice === undefined
         }
         onClick={postNotice}
         label="Post"
