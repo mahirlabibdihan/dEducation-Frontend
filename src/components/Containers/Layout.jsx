@@ -49,18 +49,21 @@ const Buttons = () => {
   const type = cookies.get("type");
   const globalCtx = useContext(GlobalContext);
   const setNotification = async () => {
-    console.log("Get notification");
     if (globalCtx.newNotificationFlag === false) {
       const res = await profileController.isNotificationAvailable();
       if (res.success === true && res.data === true) {
         globalCtx.setNewNotificationFlag(true);
-        showToast("New notification available");
       }
     }
   };
   useEffect(() => {
     setNotification();
-  }, [location]);
+  }, [location.pathname]);
+  useEffect(() => {
+    if (globalCtx.newNotificationFlag) {
+      showToast("New notification available");
+    }
+  }, [globalCtx.newNotificationFlag]);
   return (
     <>
       {[
@@ -160,7 +163,10 @@ const Buttons = () => {
           component={Button}
           onClick={() => {
             setTimeout(() => {
-              if (button.path === "/") authController.logout();
+              if (button.path === "/") {
+                globalCtx.setNewNotificationFlag(false);
+                authController.logout();
+              }
               // if(setLoading(true);
               navigate(button.path);
             }, 300);
