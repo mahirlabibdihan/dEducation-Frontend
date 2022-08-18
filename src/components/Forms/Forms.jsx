@@ -74,7 +74,7 @@ const LoginButton = ({ email, pass, type }) => {
       onClick={handleLogin}
       disabled
     >
-      <CircularProgress color="inherit" size="1.5rem" />
+      <CircularProgress color="inherit" size="1.5rem" sx={{ color: "white" }} />
     </Button>
   ) : (
     <Button
@@ -210,7 +210,11 @@ export const SignUpForm = (props) => {
         onClick={handleSignup}
         disabled
       >
-        <CircularProgress color="inherit" size="1.5rem" />
+        <CircularProgress
+          color="inherit"
+          size="1.5rem"
+          sx={{ color: "white" }}
+        />
       </Button>
     ) : (
       <Button
