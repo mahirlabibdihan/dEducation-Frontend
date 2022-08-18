@@ -70,7 +70,7 @@ const LoginButton = ({ email, pass, type }) => {
     <Button
       type="submit"
       variant="contained"
-      className="login-button"
+      className="blue-button full-width login-button"
       onClick={handleLogin}
       disabled
     >
@@ -80,7 +80,7 @@ const LoginButton = ({ email, pass, type }) => {
     <Button
       type="submit"
       variant="contained"
-      className="login-button"
+      className="blue-button full-width login-button"
       onClick={handleLogin}
     >
       Login
@@ -119,7 +119,7 @@ export const LoginForm = (props) => {
         onClick={handleSignup}
         variant="contained"
         color="success"
-        className="rounded sign-up-button"
+        className="green-button sign-up-button"
       >
         Create New Account
       </Button>
@@ -206,7 +206,7 @@ export const SignUpForm = (props) => {
         type="submit"
         variant="contained"
         color="success"
-        className="rounded sign-up-button"
+        className="green-button sign-up-button"
         onClick={handleSignup}
         disabled
       >
@@ -217,7 +217,7 @@ export const SignUpForm = (props) => {
         type="submit"
         variant="contained"
         color="success"
-        className="rounded sign-up-button"
+        className="green-button sign-up-button"
         onClick={handleSignup}
       >
         Sign Up

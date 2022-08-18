@@ -18,22 +18,19 @@
     margin-bottom: 0;
   }
   .login-button {
-    width: 100%;
     height: 50px;
-    background-color: #166fe5;
-    font-family: "Kdam Thmor Pro", sans-serif;
-    &:hover {
-      background-color: #1667d1;
-    }
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
   }
   .sign-up-button {
     width: 75%;
     height: 50px;
-    background-color: #36a420;
-    font-family: "Kdam Thmor Pro", sans-serif;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
     &:hover {
       color: white;
-      background-color: #25842d;
     }
   }
   .reset-password {
@@ -76,13 +73,11 @@
 
 .sign-up-form {
   .sign-up-button {
-    font-family: "Kdam Thmor Pro", sans-serif;
     width: 100%;
-    height: 50px;
-    background-color: #36a420;
+    font-size: 1.3rem;
+    font-weight: bolder;
     &:hover {
       color: white;
-      background-color: #25842d;
     }
   }
 }
