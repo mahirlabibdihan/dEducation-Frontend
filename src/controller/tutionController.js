@@ -21,6 +21,11 @@ class TutionController extends Controller {
     const res = await this.tutionApi.getFilteredList(query);
     return res;
   };
+  postOffer = async (data, tutor_id, post_id) => {
+    const res = await this.tutionApi.postOffer(data, tutor_id, post_id);
+    this.showSuccess("Tution offered", res);
+    return res;
+  };
   offer = async (data, tutor_id) => {
     const res = await this.tutionApi.offer(data, tutor_id);
     this.showSuccess("Tution offered", res);
@@ -61,6 +66,10 @@ class TutionController extends Controller {
   };
   getApplyList = async () => {
     const res = await this.tutionApi.getApplyList();
+    return res;
+  };
+  getSelectedTutor = async (post_id) => {
+    const res = await this.tutionApi.getSelectedTutor(post_id);
     return res;
   };
   getFilteredApplyList = async (query) => {

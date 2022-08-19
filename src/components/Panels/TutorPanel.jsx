@@ -193,7 +193,11 @@ const TutorPanel = (props) => {
         <></>
       ) : page === "offer" ? (
         <>
-          <OfferForm tutor_id={props.tutor.USER_ID} tution={props.tution} />
+          <OfferForm
+            tutor_id={props.tutor.USER_ID}
+            tution={props.tution}
+            post={props.post}
+          />
           <Button
             variant="contained"
             className="red-button full-width"

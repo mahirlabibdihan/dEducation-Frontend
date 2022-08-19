@@ -36,6 +36,7 @@ const TutionPost = (props) => {
     });
     // navigate("/req_tutor/applicants");
   };
+  // console.log(data);
   const tutionPostDetails = [
     [
       { label: "Tution Type", value: data.TYPE },
@@ -53,7 +54,19 @@ const TutionPost = (props) => {
   ];
   return (
     <Grid className="tution-post">
-      <h3>{`Need ${data.VERSION} tutor for ${data.CLASS} student - ${data.DAYS_PER_WEEK} Days / Week`}</h3>
+      <div className="vbox" style={{ gap: 0 }}>
+        {data.BOOKING_STATUS === "BOOKED" ? (
+          <h6
+            className="standard-font-1 text-center"
+            style={{ fontSize: ".9rem", color: "red" }}
+          >
+            This tution is booked. You won't get any further applications.
+          </h6>
+        ) : (
+          <></>
+        )}
+        <h3>{`Need ${data.VERSION} tutor for ${data.CLASS} student - ${data.DAYS_PER_WEEK} Days / Week`}</h3>
+      </div>
       <div className="hbox">
         {tutionPostDetails.map((row) => {
           return (

@@ -48,3 +48,10 @@
   );
   margin-top: -1rem;
 }
+
+.selected-user-card {
+  background-image: linear-gradient(#952222, #4e1616);
+  &:hover {
+    background-image: linear-gradient(#782525, #2e0f0f);
+  }
+}

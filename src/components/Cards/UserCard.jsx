@@ -10,6 +10,8 @@ const UserCard = (props) => {
         Number(searchParams.get("id")) === props.id
           ? "active-user-card"
           : ""
+      } ${
+        props.user.isSelected === undefined ? "" : "selected-user-card"
       } user-card`}
       aria-hidden="true"
       onClick={() => {

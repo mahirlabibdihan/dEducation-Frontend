@@ -14,6 +14,13 @@ class TutionApi extends Api {
     });
   };
 
+  postOffer = async (data, tutor_id, post_id) => {
+    return await this.post(`/tution/post_offer`, {
+      tution: data,
+      tutor_id: tutor_id,
+      post_id: post_id,
+    });
+  };
   offer = async (data, tutor_id) => {
     return await this.post(`/tution/offer`, {
       tution: data,
@@ -48,6 +55,10 @@ class TutionApi extends Api {
   };
   getMyList = async () => {
     return await this.get(`/tution/my_list`);
+  };
+  getSelectedTutor = async (post_id) => {
+    console.log(post_id);
+    return await this.post(`/tution/selected_tutor`, { post_id: post_id });
   };
   getOfferFromPost = async (post_id) => {
     return await this.post(`/tution/by_post`, { post_id: post_id });

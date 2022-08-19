@@ -30,7 +30,23 @@ const Applicants = () => {
     const list1 = await tutorsController.getApplicantsList(
       searchParams.get("post_id")
     );
-    setTutorsList(list1.data);
+    if (list1.success) {
+      const tutor = await tutionController.getSelectedTutor(
+        searchParams.get("post_id")
+      );
+      if (tutor.success) {
+        console.log("==>", tutor.data);
+        for (let i = 0; i < list1.data.length; i++) {
+          if (list1.data[i].USER_ID === tutor.data) {
+            list1.data[i]["isSelected"] = true;
+            console.log("FOUND SELECTED");
+            break;
+          }
+        }
+      }
+      setTutorsList(list1.data);
+    }
+
     const list2 = await tutionController.getApplicantsTutionDetails(
       searchParams.get("post_id")
     );
@@ -65,7 +81,11 @@ const Applicants = () => {
         {tutor === undefined || tution === undefined ? (
           <></>
         ) : (
-          <TutorPanel tutor={tutor} tution={tution} />
+          <TutorPanel
+            tutor={tutor}
+            tution={tution}
+            post={searchParams.get("post_id")}
+          />
         )}
       </RightPanel>
     </MainContainer>

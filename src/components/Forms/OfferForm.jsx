@@ -10,7 +10,6 @@ import { RestrictedButton } from "../Buttons";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
-  console.log(props.tution);
   const globalCtx = useContext(GlobalContext);
   const convertTime12to24 = (time12h) => {
     const [time, modifier] = time12h.split(" ");
@@ -67,19 +66,36 @@ const OfferForm = (props) => {
     setValues({ ...values, [prop]: event.target.value });
   };
   const handleOffer = async (event) => {
-    console.log("NEW", values);
-    const res = await tutionController.offer(
-      {
-        days: values.days.toString(),
-        type: values.tution_type,
-        subjects: values.subjects,
-        start_date: format(values.start_date, "MM/dd/yyyy"),
-        class_days: values.days.toString(),
-        class_time: format(values.class_time, "h:mm a"),
-        salary: values.salary,
-      },
-      props.tutor_id
-    );
+    let res;
+    if (props.post === undefined) {
+      res = await tutionController.offer(
+        {
+          days: values.days.toString(),
+          type: values.tution_type,
+          subjects: values.subjects,
+          start_date: format(values.start_date, "MM/dd/yyyy"),
+          class_days: values.days.toString(),
+          class_time: format(values.class_time, "h:mm a"),
+          salary: values.salary,
+        },
+        props.tutor_id
+      );
+    } else {
+      res = await tutionController.postOffer(
+        {
+          days: values.days.toString(),
+          type: values.tution_type,
+          subjects: values.subjects,
+          start_date: format(values.start_date, "MM/dd/yyyy"),
+          class_days: values.days.toString(),
+          class_time: format(values.class_time, "h:mm a"),
+          salary: values.salary,
+        },
+        props.tutor_id,
+        props.post
+      );
+    }
+
     if (res.success) {
       globalCtx.setPendingUpdate(true);
     }
