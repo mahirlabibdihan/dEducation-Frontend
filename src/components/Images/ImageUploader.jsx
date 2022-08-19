@@ -2,12 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
+import UploadConfirmation from "./UploadConfirmation";
 const coachingController = new CoachingController();
 
 const ImageUploader = (props) => {
   const globalCtx = useContext(GlobalContext);
   const [file, setFile] = useState("");
   const [image, setImage] = useState(props.coaching.IMAGE);
+  const [open, setOpen] = useState(false);
   const ImageUpload = (e) => {
     setFile(e.target.files[0]);
   };
@@ -31,7 +33,8 @@ const ImageUploader = (props) => {
     }
   };
   useEffect(() => {
-    setProfileImage();
+    // setProfileImage();
+    if (file !== "") setOpen(true);
   }, [file]);
   useEffect(() => {
     setImage(props.coaching.IMAGE);
@@ -50,6 +53,11 @@ const ImageUploader = (props) => {
       <div className="upload-image-icon">
         <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
       </div>
+      <UploadConfirmation
+        open={open}
+        setOpen={setOpen}
+        onConfirm={setProfileImage}
+      />
     </>
   );
 };

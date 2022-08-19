@@ -6,12 +6,23 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import StarIcon from "@mui/icons-material/Star";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
+import UploadConfirmation from "./UploadConfirmation";
 import "./ProfilePic.scss";
 
 const profileController = new ProfileController();
+
 const ProfilePic = () => {
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
+  const [open, setOpen] = useState(false);
   const ImageUpload = (e) => {
     setFile(e.target.files[0]);
   };
@@ -36,7 +47,8 @@ const ProfilePic = () => {
     }
   };
   useEffect(() => {
-    setProfileImage();
+    if (file !== "") setOpen(true);
+    // if (!open) setProfileImage();
   }, [file]);
   return (
     <>
@@ -52,6 +64,11 @@ const ProfilePic = () => {
       <div className="upload-image-icon">
         <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
       </div>
+      <UploadConfirmation
+        open={open}
+        setOpen={setOpen}
+        onConfirm={setProfileImage}
+      />
     </>
   );
 };
