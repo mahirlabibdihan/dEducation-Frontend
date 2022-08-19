@@ -30,7 +30,7 @@ const OfferForm = (props) => {
       props.tution === undefined
         ? {
             tution_type: "Offline",
-            subjects: "",
+            subjects: [],
             start_date: new Date(),
             days: [],
             class_time: new Date("2014-08-18T00:00:00"),
@@ -40,7 +40,9 @@ const OfferForm = (props) => {
             tution_type:
               props.tution.TYPE === null ? "Offline" : props.tution.TYPE,
             subjects:
-              props.tution.SUBJECTS === null ? "" : props.tution.SUBJECTS,
+              props.tution.SUBJECTS === null
+                ? []
+                : props.tution.SUBJECTS.split(", "),
             start_date:
               props.tution.START_DATE === null
                 ? new Date()
@@ -48,7 +50,7 @@ const OfferForm = (props) => {
             days:
               props.tution.CLASS_DAYS === null
                 ? []
-                : props.tution.CLASS_DAYS.split(","),
+                : props.tution.CLASS_DAYS.split(", "),
             class_time:
               props.tution.CLASS_TIME === null
                 ? new Date("2014-08-18T00:00:00")
@@ -59,6 +61,7 @@ const OfferForm = (props) => {
                   ),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
           };
+    console.log(tution.days, props.tution.CLASS_DAYS);
     return tution;
   };
   const [values, setValues] = useState(initValues());
@@ -70,11 +73,10 @@ const OfferForm = (props) => {
     if (props.post === undefined) {
       res = await tutionController.offer(
         {
-          days: values.days.toString(),
           type: values.tution_type,
-          subjects: values.subjects,
+          subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
-          class_days: values.days.toString(),
+          class_days: values.days.join(", "),
           class_time: format(values.class_time, "h:mm a"),
           salary: values.salary,
         },
@@ -83,11 +85,10 @@ const OfferForm = (props) => {
     } else {
       res = await tutionController.postOffer(
         {
-          days: values.days.toString(),
           type: values.tution_type,
-          subjects: values.subjects,
+          subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
-          class_days: values.days.toString(),
+          class_days: values.days.join(", "),
           class_time: format(values.class_time, "h:mm a"),
           salary: values.salary,
         },
@@ -112,7 +113,7 @@ const OfferForm = (props) => {
         handleChange={handleChange}
       />
       <RestrictedButton
-        isDisabled={values.days.length === 0 || values.subjects === ""}
+        isDisabled={values.days.length === 0 || values.subjects.length === 0}
         onClick={handleOffer}
         label="Offer"
       ></RestrictedButton>

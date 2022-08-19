@@ -14,7 +14,7 @@ const RequestForm = () => {
   const [values, setValues] = useState({
     tution_type: "Offline",
     desired_tutor_gender: "Any",
-    subjects: "",
+    subjects: [],
     days_per_week: 1,
     salary: 0,
   });
@@ -25,7 +25,7 @@ const RequestForm = () => {
     const res = await tutionController.post({
       type: values.tution_type,
       desired_tutor_gender: values.desired_tutor_gender,
-      subjects: values.subjects,
+      subjects: values.subjects.join(", "),
       days_per_week: values.days_per_week,
       salary: values.salary,
     });
@@ -39,7 +39,7 @@ const RequestForm = () => {
       <Divider />
       <RequestFormFields values={values} handleChange={handleChange} />
       <RestrictedButton
-        isDisabled={values.subjects === ""}
+        isDisabled={values.subjects.length === 0}
         onClick={handlePost}
         label="Post"
       ></RestrictedButton>

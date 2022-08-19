@@ -522,31 +522,38 @@ export const SalaryField = ({ value, handleChange, size }) => (
 );
 
 export const SubjectsField = ({ value, handleChange, size }) => (
-  /* <MultiSelectionField
+  <MultiSelectionField
     label="Subjects"
-    value={values.subjects}
+    value={value}
     id="subjects"
     onChange={handleChange}
-    list={Fields.subject}
-  ></MultiSelectionField> */
-  <InputField2
+    list={Fields.subject.sort()}
+  ></MultiSelectionField>
+  /* <InputField2
     label="Subjects"
     type="text"
     value={value}
     id="subjects"
     onChange={handleChange}
     size={size}
-  />
+  /> */
 );
 
 export const SubjectField = ({ value, handleChange }) => (
-  <InputField2
+  /*<InputField2
     label="Subject"
     type="text"
     value={value}
     id="subject"
     onChange={handleChange}
-  />
+  />*/
+  <SelectionField
+    label="Subject"
+    value={value}
+    id="subject"
+    onChange={handleChange}
+    list={Fields.subject.sort()}
+  ></SelectionField>
 );
 
 export const PhoneField = ({ value, handleChange }) => (
@@ -939,14 +946,20 @@ export const TutorProfileSettingsFields = ({ user, setUser, handleChange }) => (
       </LocalizationProvider>
       <PhoneField value={user.phone} handleChange={handleChange} />
     </div>
-
-    <InputField2
+    <MultiSelectionField
+      label="Teaching Subjects"
+      value={user.subjects}
+      id="subjects"
+      onChange={handleChange}
+      list={Fields.subject.sort()}
+    ></MultiSelectionField>
+    {/* <InputField2
       label="Teaching Subjects"
       type="text"
       value={user.subjects}
       id="subjects"
       onChange={handleChange}
-    />
+    /> */}
 
     <div className="hbox">
       <NumberField

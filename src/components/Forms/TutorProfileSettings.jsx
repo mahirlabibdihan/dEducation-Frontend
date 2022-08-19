@@ -3,10 +3,7 @@ import { Divider } from "@mui/material";
 import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import { format } from "date-fns";
-import {
-  TutorProfileSettingsFields,
-  EducationFields,
-} from "../InputFields";
+import { TutorProfileSettingsFields, EducationFields } from "../InputFields";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {
   const [user, setUser] = useState({
@@ -15,7 +12,7 @@ const TutorProfileSettings = () => {
     dob: "",
     phone: "",
     email: "",
-    subjects: "",
+    subjects: [],
     salary: "",
     experience: "",
     status: "",
@@ -38,7 +35,7 @@ const TutorProfileSettings = () => {
       dob: new Date(data.DATE_OF_BIRTH),
       phone: data.PHONE_NUMBER,
       email: data.EMAIL,
-      subjects: data.EXPERTISE,
+      subjects: data.EXPERTISE.split(", "),
       salary: data.PREFFERED_SALARY,
       experience: data.YEARS_OF_EXPERIENCE,
       status: data.AVAILABILITY,
@@ -119,7 +116,7 @@ const TutorProfileSettings = () => {
       dob: format(user.dob, "MM/dd/yyyy"),
       phone: user.phone,
       email: user.email,
-      subjects: user.subjects,
+      subjects: user.subjects.join(", "),
       salary: user.salary,
       experience: user.experience,
       status: user.status,
