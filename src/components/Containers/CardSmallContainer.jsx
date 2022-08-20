@@ -8,6 +8,7 @@ import TutorsController from "../../controller/tutorsController";
 import CoachingController from "../../controller/coachingController";
 import UserCard from "../../components/Cards/UserCard";
 import ProfileController from "../../controller/profileController";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import StudentPanel from "../../components/Panels/StudentPanel";
 import { setLoading } from "../../App";
 import RightPanel from "../../components/Panels/RightPanel";
@@ -37,7 +38,8 @@ const CardSmallContainer = (props) => {
             }, 300);
           }}
         >
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon sx={{ fontSize: "2.3rem" }} />
+          {/* <ArrowRightIcon sx={{ fontSize: "4rem" }} /> */}
         </Button>
       </div>
     </div>
