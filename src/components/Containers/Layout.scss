@@ -13,6 +13,8 @@ $sidebar-width: 21vw;
 
     .left-panel {
       height: 100vh;
+      display: flex;
+      flex-direction: column;
       // background-color: #fff;
       border-right: rgba(0, 0, 0, 0.12) solid 2px;
       // position: absolute;

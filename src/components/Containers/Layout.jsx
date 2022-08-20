@@ -39,6 +39,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Badge } from "@mui/material";
 import { showToast } from "../../App";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -182,6 +183,13 @@ const Buttons = () => {
 
 const LeftPanel = () => {
   const globalCtx = useContext(GlobalContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleBack = () => {
+    const list = location.pathname.split("/");
+    list.pop();
+    navigate(list.join("/"));
+  };
   return (
     <div className="left-panel" aria-hidden="true">
       <div className="logo">
@@ -192,6 +200,24 @@ const LeftPanel = () => {
       <List className="side-buttons">
         <Buttons />
       </List>
+      {location.pathname.split("/").length > 2 ? (
+        <div
+          style={{
+            padding: "2rem",
+            marginTop: "auto",
+            // marginTop: "18.3vh",
+            // display: "flex",
+            // justifyContent: "flex-end",
+          }}
+        >
+          <Button className="blue-button full-width" onClick={handleBack}>
+            {/* <KeyboardBackspaceIcon sx={{ fontSize: "3rem" }} /> */}
+            Back
+          </Button>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
