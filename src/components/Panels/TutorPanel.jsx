@@ -194,7 +194,7 @@ const TutorPanel = (props) => {
       ) : page === "offer" ? (
         <>
           <OfferForm
-            tutor_id={props.tutor.USER_ID}
+            tutor={props.tutor}
             tution={props.tution}
             post={props.post}
           />

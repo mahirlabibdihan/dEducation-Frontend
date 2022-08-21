@@ -96,7 +96,7 @@ const OfferForm = (props) => {
           end_time: format(values.end_time, "h:mm a"),
           salary: values.salary,
         },
-        props.tutor_id
+        props.tutor.USER_ID
       );
     } else {
       res = await tutionController.postOffer(
@@ -109,7 +109,7 @@ const OfferForm = (props) => {
           end_time: format(values.end_time, "h:mm a"),
           salary: values.salary,
         },
-        props.tutor_id,
+        props.tutor.USER_ID,
         props.post
       );
     }
@@ -121,12 +121,14 @@ const OfferForm = (props) => {
   useEffect(() => {
     setValues(initValues());
   }, [props]);
+  console.log("Sub", props.tutor.EXPERTISE);
   return (
     <div className="offer-form">
       <TutionOfferFields
         values={values}
         setValues={setValues}
         handleChange={handleChange}
+        subjects={props.tutor.EXPERTISE.split(", ")}
       />
       <RestrictedButton
         isDisabled={values.days.length === 0 || values.subjects.length === 0}

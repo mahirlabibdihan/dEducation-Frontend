@@ -521,13 +521,13 @@ export const SalaryField = ({ value, handleChange, size }) => (
   />
 );
 
-export const SubjectsField = ({ value, handleChange, size }) => (
+export const SubjectsField = ({ value, handleChange, list }) => (
   <MultiSelectionField
     label="Subjects"
     value={value}
     id="subjects"
     onChange={handleChange}
-    list={Fields.subject.sort()}
+    list={list === undefined ? Fields.subject.sort() : list}
   ></MultiSelectionField>
   /* <InputField2
     label="Subjects"
@@ -1192,7 +1192,12 @@ export const TutionPostSearchFields = ({ values, handleChange }) => (
   </div>
 );
 
-export const TutionOfferFields = ({ values, setValues, handleChange }) => (
+export const TutionOfferFields = ({
+  values,
+  setValues,
+  handleChange,
+  subjects,
+}) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <div className="input-fields">
       <TutionTypeField
@@ -1200,7 +1205,11 @@ export const TutionOfferFields = ({ values, setValues, handleChange }) => (
         handleChange={handleChange}
         any={[]}
       />
-      <SubjectsField value={values.subjects} handleChange={handleChange} />
+      <SubjectsField
+        value={values.subjects}
+        handleChange={handleChange}
+        list={subjects}
+      />
       {/*Start date */}
       {/* Replace days per week with class days*/}
       <MobileDatePicker
