@@ -1114,6 +1114,7 @@ export const BatchFields = ({ values, setValues, handleChange }) => (
         )}
         className="date-picker"
       />
+      <ClassDaysField value={values.days} handleChange={handleChange} />
       <TimePicker
         label="Start Time"
         value={values.start_time}
@@ -1148,7 +1149,6 @@ export const BatchFields = ({ values, setValues, handleChange }) => (
           />
         )}
       />
-      <ClassDaysField value={values.days} handleChange={handleChange} />
       <SeatsField value={values.seats} handleChange={handleChange} />
     </div>
   </LocalizationProvider>
@@ -1222,12 +1222,11 @@ export const TutionOfferFields = ({ values, setValues, handleChange }) => (
       />
       <ClassDaysField value={values.days} handleChange={handleChange} />
       {/* Add tutoring start and end time field*/}
-
       <TimePicker
-        label="Tutoring Time"
-        value={values.class_time}
+        label="Start Time"
+        value={values.start_time}
         onChange={(time) => {
-          setValues({ ...values, class_time: time });
+          setValues({ ...values, start_time: time });
         }}
         renderInput={(params) => (
           <TextField
@@ -1239,11 +1238,13 @@ export const TutionOfferFields = ({ values, setValues, handleChange }) => (
           />
         )}
       />
-      {/* <TimePicker
+
+      <TimePicker
         label="End Time"
-        value={values.class_time}
+        value={values.end_time}
+        minTime={values.start_time}
         onChange={(time) => {
-          setValues({ ...values, class_time: time });
+          setValues({ ...values, end_time: time });
         }}
         renderInput={(params) => (
           <TextField
@@ -1254,7 +1255,7 @@ export const TutionOfferFields = ({ values, setValues, handleChange }) => (
             }}
           />
         )}
-      /> */}
+      />
       <SalaryField value={values.salary} handleChange={handleChange} />
     </div>
   </LocalizationProvider>

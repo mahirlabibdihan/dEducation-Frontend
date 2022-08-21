@@ -33,7 +33,8 @@ const OfferForm = (props) => {
             subjects: [],
             start_date: new Date(),
             days: [],
-            class_time: new Date("2014-08-18T00:00:00"),
+            start_time: new Date("2014-08-18T00:00:00"),
+            end_time: new Date("2014-08-18T00:00:00"),
             salary: 0,
           }
         : {
@@ -51,12 +52,20 @@ const OfferForm = (props) => {
               props.tution.CLASS_DAYS === null
                 ? []
                 : props.tution.CLASS_DAYS.split(", "),
-            class_time:
-              props.tution.CLASS_TIME === null
+            start_time:
+              props.tution.START_TIME === null
                 ? new Date("2014-08-18T00:00:00")
                 : new Date(
                     new Date(
-                      `01/01/1970 ${convertTime12to24(props.tution.CLASS_TIME)}`
+                      `01/01/1970 ${convertTime12to24(props.tution.START_TIME)}`
+                    )
+                  ),
+            end_time:
+              props.tution.END_TIME === null
+                ? new Date("2014-08-18T00:00:00")
+                : new Date(
+                    new Date(
+                      `01/01/1970 ${convertTime12to24(props.tution.END_TIME)}`
                     )
                   ),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
@@ -68,6 +77,12 @@ const OfferForm = (props) => {
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+  useEffect(() => {
+    setValues({
+      ...values,
+      end_time: Math.max(values.start_time, values.end_time),
+    });
+  }, [values.start_time]);
   const handleOffer = async (event) => {
     let res;
     if (props.post === undefined) {
@@ -77,7 +92,8 @@ const OfferForm = (props) => {
           subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
           class_days: values.days.join(", "),
-          class_time: format(values.class_time, "h:mm a"),
+          start_time: format(values.start_time, "h:mm a"),
+          end_time: format(values.end_time, "h:mm a"),
           salary: values.salary,
         },
         props.tutor_id
@@ -89,7 +105,8 @@ const OfferForm = (props) => {
           subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
           class_days: values.days.join(", "),
-          class_time: format(values.class_time, "h:mm a"),
+          start_time: format(values.start_time, "h:mm a"),
+          end_time: format(values.end_time, "h:mm a"),
           salary: values.salary,
         },
         props.tutor_id,
@@ -103,7 +120,6 @@ const OfferForm = (props) => {
   };
   useEffect(() => {
     setValues(initValues());
-    console.log(initValues());
   }, [props]);
   return (
     <div className="offer-form">

@@ -17,8 +17,8 @@ const TutionDetails = (props) => {
       <h6>
         {`You have offered ${props.tutorName} to teach you 
           ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
-          props.tution.CLASS_TIME
-        }.   
+          props.tution.START_TIME
+        }-${props.tution.END_TIME}.   
           Classes will be taken ${props.tution.TYPE} and salary ${
           props.tution.SALARY
         } BDT per month from ${format(
@@ -29,8 +29,8 @@ const TutionDetails = (props) => {
     ) : (
       <h6>
         {`${props.tutorName} teaches you ${props.tution.SUBJECTS} 
-        on ${props.tution.CLASS_DAYS} at ${
-          props.tution.CLASS_TIME
+        on ${props.tution.CLASS_DAYS} at ${props.tution.START_TIME}-${
+          props.tution.END_TIME
         }. Classes are taken ${props.tution.TYPE} 
           and salary ${props.tution.SALARY} BDT per month from  ${format(
           new Date(props.tution.START_DATE),
@@ -45,8 +45,8 @@ const TutionDetails = (props) => {
       <h6>
         {`${props.studentName} has offered you to teach 
           ${props.tution.SUBJECTS} on ${props.tution.CLASS_DAYS} at ${
-          props.tution.CLASS_TIME
-        }. 
+          props.tution.START_TIME
+        }-${props.tution.END_TIME}. 
           Classes will be taken ${props.tution.TYPE} and salary ${
           props.tution.SALARY
         } BDT per month from  ${format(
@@ -58,7 +58,9 @@ const TutionDetails = (props) => {
       <h6>
         {`You teach ${props.studentName} ${props.tution.SUBJECTS} on ${
           props.tution.CLASS_DAYS
-        } at ${props.tution.CLASS_TIME}. Classes are taken ${props.tution.TYPE} 
+        } at ${props.tution.START_TIME}-${
+          props.tution.END_TIME
+        }. Classes are taken ${props.tution.TYPE} 
         and salary ${props.tution.SALARY} BDT per month from  ${format(
           new Date(props.tution.START_DATE),
           "do MMMM, yyyy"

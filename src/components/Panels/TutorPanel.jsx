@@ -200,10 +200,10 @@ const TutorPanel = (props) => {
           />
           <Button
             variant="contained"
-            className="red-button full-width"
+            className="blue-button full-width"
             onClick={(e) => setPage("profile")}
           >
-            Cancel
+            Back
           </Button>
         </>
       ) : (
