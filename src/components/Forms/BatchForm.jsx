@@ -33,10 +33,8 @@ export const BatchForm = () => {
     const res = await courseController.addBatch(searchParams.get("course_id"), {
       start: format(values.start_date, "MM/dd/yyyy"),
       days: values.days.toString(),
-      time:
-        format(values.start_time, "h:mm a") +
-        "-" +
-        format(values.end_time, "h:mm a"),
+      start_time: format(values.start_time, "h:mm a"),
+      end_time: format(values.end_time, "h:mm a"),
       seats: values.seats,
     });
     if (res.success) {
