@@ -15,8 +15,8 @@ export const BatchForm = () => {
   const initValues = {
     start_date: new Date(),
     days: [],
-    start_time: new Date("2014-08-18T00:00:00"),
-    end_time: new Date("2014-08-18T00:00:00"),
+    start_time: new Date(),
+    end_time: new Date(),
     seats: 0,
   };
   const [values, setValues] = useState(initValues);
@@ -33,8 +33,8 @@ export const BatchForm = () => {
     const res = await courseController.addBatch(searchParams.get("course_id"), {
       start: format(values.start_date, "MM/dd/yyyy"),
       days: values.days.toString(),
-      start_time: format(values.start_time, "h:mm a"),
-      end_time: format(values.end_time, "h:mm a"),
+      start_time: format(values.start_time, "HH:mm:ss"),
+      end_time: format(values.end_time, "HH:mm:ss"),
       seats: values.seats,
     });
     if (res.success) {

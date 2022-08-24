@@ -174,7 +174,10 @@ export function StudentCoursesTable(props) {
       course.SUBJECT,
       format(new Date(course.START_DATE), "do MMMM, yyyy"),
       course.CLASS_DAYS,
-      `${course.START_TIME} - ${course.END_TIME}`
+      `${format(new Date(course.START_TIME.slice(0, -1)), "h:mm a")} - ${format(
+        new Date(course.END_TIME.slice(0, -1)),
+        "h:mm a"
+      )}`
     )
   );
   return (
@@ -237,7 +240,10 @@ export function BatchesTable(props) {
       idx + 1,
       format(new Date(course.START_DATE), "do MMMM, yyyy"),
       course.CLASS_DAYS,
-      `${course.START_TIME} - ${course.END_TIME}`,
+      `${format(new Date(course.START_TIME.slice(0, -1)), "h:mm a")} - ${format(
+        new Date(course.END_TIME.slice(0, -1)),
+        "h:mm a"
+      )}`,
       course.SEATS,
       course.STUDENT_COUNT
     )

@@ -33,8 +33,8 @@ const OfferForm = (props) => {
             subjects: [],
             start_date: new Date(),
             days: [],
-            start_time: new Date("2014-08-18T00:00:00"),
-            end_time: new Date("2014-08-18T00:00:00"),
+            start_time: new Date(),
+            end_time: new Date(),
             salary: 0,
           }
         : {
@@ -53,24 +53,16 @@ const OfferForm = (props) => {
                 ? []
                 : props.tution.CLASS_DAYS.split(", "),
             start_time:
-              props.tution.START_TIME === null
-                ? new Date("2014-08-18T00:00:00")
-                : new Date(
-                    new Date(
-                      `01/01/1970 ${convertTime12to24(props.tution.START_TIME)}`
-                    )
-                  ),
+              props.tution.START_TIME.slice(0, -1) === null
+                ? new Date()
+                : new Date(props.tution.START_TIME.slice(0, -1)),
             end_time:
-              props.tution.END_TIME === null
-                ? new Date("2014-08-18T00:00:00")
-                : new Date(
-                    new Date(
-                      `01/01/1970 ${convertTime12to24(props.tution.END_TIME)}`
-                    )
-                  ),
+              props.tution.END_TIME.slice(0, -1) === null
+                ? new Date()
+                : new Date(props.tution.END_TIME.slice(0, -1)),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
           };
-    console.log(tution.days, props.tution.CLASS_DAYS);
+
     return tution;
   };
   const [values, setValues] = useState(initValues());
@@ -92,8 +84,8 @@ const OfferForm = (props) => {
           subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
           class_days: values.days.join(", "),
-          start_time: format(values.start_time, "h:mm a"),
-          end_time: format(values.end_time, "h:mm a"),
+          start_time: format(values.start_time, "HH:mm:ss"),
+          end_time: format(values.end_time, "HH:mm:ss"),
           salary: values.salary,
         },
         props.tutor.USER_ID
@@ -105,8 +97,8 @@ const OfferForm = (props) => {
           subjects: values.subjects.join(", "),
           start_date: format(values.start_date, "MM/dd/yyyy"),
           class_days: values.days.join(", "),
-          start_time: format(values.start_time, "h:mm a"),
-          end_time: format(values.end_time, "h:mm a"),
+          start_time: format(values.start_time, "HH:mm:ss"),
+          end_time: format(values.end_time, "HH:mm:ss"),
           salary: values.salary,
         },
         props.tutor.USER_ID,
@@ -121,7 +113,10 @@ const OfferForm = (props) => {
   useEffect(() => {
     setValues(initValues());
   }, [props]);
-  console.log("Sub", props.tutor.EXPERTISE);
+  // console.log(format(new Date("2022-08-01 13:00:00"), "h:mm a"));
+  // console.log(new Date());
+  // console.log("Sub", props.tutor.EXPERTISE);
+  // console.log(format(values.start_time, "MM/dd/yyyy HH:mm:ss"));
   return (
     <div className="offer-form">
       <TutionOfferFields
