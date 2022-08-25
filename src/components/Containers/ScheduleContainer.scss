@@ -1,0 +1,65 @@
+.schedule-calender {
+  // width: 100vw - 2 * $sidebar-width;
+  // border-right: rgba(0, 0, 0, 0.12) solid 2px;
+  padding-bottom: 0.5rem;
+  // display: flex;
+  // flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  position: relative;
+  .schedule-grid {
+    margin-top: 0.5rem;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.12);
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    gap: 1px;
+    // grid-gap: 1px;
+    height: 100%;
+    // padding: 5px;
+    // justify-content: space-around;
+    .schedule-block {
+      padding: 0.5rem;
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      h6 {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  .schedule-list {
+    display: flex;
+    .schedule-card {
+      height: 9vh;
+      display: flex;
+      border-radius: 5px;
+
+      padding: 1rem;
+      color: white;
+      background-image: linear-gradient(
+        rgba(26, 72, 112, 0.9),
+        rgba(22, 52, 78, 1)
+      );
+      .content {
+        width: 100%;
+        text-overflow: ellipsis;
+        .schedule-details {
+          display: flex;
+
+          width: 100%;
+          h6 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // text-overflow: ellipsis;
+            width: 100px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

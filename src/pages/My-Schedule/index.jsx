@@ -18,6 +18,7 @@ import { TextField } from "@mui/material";
 import { Grid } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import Fields from "../../components/InputFields/Fields";
+import "./my-schedule.scss";
 // import { LocalizationProvider } from "@mui/x-date-pickers";
 // import Calendar from "@mui/lab/Ca";
 // import { setNotification } from "../../components/Containers/Layout";
@@ -25,6 +26,39 @@ import Fields from "../../components/InputFields/Fields";
 const cookies = new Cookies();
 const courseController = new CourseController();
 const profileController = new ProfileController();
+
+const ScheduleList = ({ date, setDate, list }) => {
+  return (
+    <div className="posts-feed">
+      <div className="hbox header-container">
+        <h2 className="header">My Schedule</h2>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <MobileDatePicker
+            size="small"
+            label="Date"
+            inputFormat="eeee, do MMMM, yyyy"
+            value={date}
+            onChange={(newValue) => {
+              setDate(newValue);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                sx={{
+                  width: "26.5vw",
+                }}
+                size="small"
+              />
+            )}
+            className="date-picker"
+          />
+        </LocalizationProvider>
+      </div>
+      <Divider />
+      <ScheduleContainer list={list} />
+    </div>
+  );
+};
 const MySchedule = () => {
   const globalCtx = useContext(GlobalContext);
   const [scheduleList2, setScheduleList2] = useState([]);
@@ -61,57 +95,10 @@ const MySchedule = () => {
   useEffect(() => {
     setList2();
   }, [date]);
-  const ScheduleList = () => {
-    return (
-      <div className="posts-feed">
-        <div className="hbox header-container">
-          <h2 className="header">My Schedule</h2>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MobileDatePicker
-              size="small"
-              label="Date"
-              inputFormat="eeee, do MMMM, yyyy"
-              value={date}
-              onChange={(newValue) => {
-                setDate(newValue);
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  sx={{
-                    width: "26.5vw",
-                  }}
-                  size="small"
-                />
-              )}
-              className="date-picker"
-            />
-          </LocalizationProvider>
-        </div>
 
-        <Divider />
-        <ScheduleContainer list={scheduleList2} />
-      </div>
-    );
-  };
   return (
     <MainContainer className="schedule-container">
-      <ScheduleList />
-      {/* <RightPanel>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDatePicker
-            // size="small"
-            orientation="potrait"
-            openTo="day"
-            value={date}
-            onChange={(newValue) => {
-              setDate(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} fullWidth />}
-            // sx={{ width: "200px", minWidth: "200px" }}
-          />
-        </LocalizationProvider>
-      </RightPanel> */}
+      <ScheduleList date={date} setDate={setDate} list={scheduleList2} />
     </MainContainer>
   );
 };
