@@ -14,6 +14,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button } from "@mui/material";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useEffect } from "react";
 
 export const CoachingSelectionField = (props) => {
   return (
@@ -1135,7 +1136,7 @@ export const BatchFields = ({ values, setValues, handleChange }) => (
       <TimePicker
         label="End Time"
         value={values.end_time}
-        minTime={values.start_time}
+        minTime={new Date(values.start_time.getTime() + 60 * 60 * 1000)}
         onChange={(time) => {
           setValues({ ...values, end_time: time });
         }}
@@ -1197,75 +1198,77 @@ export const TutionOfferFields = ({
   setValues,
   handleChange,
   subjects,
-}) => (
-  <LocalizationProvider dateAdapter={AdapterDateFns}>
-    <div className="input-fields">
-      <TutionTypeField
-        value={values.tution_type}
-        handleChange={handleChange}
-        any={[]}
-      />
-      <SubjectsField
-        value={values.subjects}
-        handleChange={handleChange}
-        list={subjects}
-      />
-      {/*Start date */}
-      {/* Replace days per week with class days*/}
-      <MobileDatePicker
-        label="Starting Date"
-        inputFormat="MM/dd/yyyy"
-        value={values.start_date}
-        onChange={(date) => {
-          setValues({ ...values, start_date: date });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-            }}
-          />
-        )}
-        className="date-picker"
-      />
-      <ClassDaysField value={values.days} handleChange={handleChange} />
-      {/* Add tutoring start and end time field*/}
-      <TimePicker
-        label="Start Time"
-        value={values.start_time}
-        onChange={(time) => {
-          setValues({ ...values, start_time: time });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-              label: "black",
-            }}
-          />
-        )}
-      />
+}) => {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <div className="input-fields">
+        <TutionTypeField
+          value={values.tution_type}
+          handleChange={handleChange}
+          any={[]}
+        />
+        <SubjectsField
+          value={values.subjects}
+          handleChange={handleChange}
+          list={subjects}
+        />
+        {/*Start date */}
+        {/* Replace days per week with class days*/}
+        <MobileDatePicker
+          label="Starting Date"
+          inputFormat="MM/dd/yyyy"
+          value={values.start_date}
+          onChange={(date) => {
+            setValues({ ...values, start_date: date });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+              }}
+            />
+          )}
+          className="date-picker"
+        />
+        <ClassDaysField value={values.days} handleChange={handleChange} />
+        {/* Add tutoring start and end time field*/}
+        <TimePicker
+          label="Start Time"
+          value={values.start_time}
+          onChange={(time) => {
+            setValues({ ...values, start_time: time });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+                label: "black",
+              }}
+            />
+          )}
+        />
 
-      <TimePicker
-        label="End Time"
-        value={values.end_time}
-        minTime={values.start_time}
-        onChange={(time) => {
-          setValues({ ...values, end_time: time });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-              label: "black",
-            }}
-          />
-        )}
-      />
-      <SalaryField value={values.salary} handleChange={handleChange} />
-    </div>
-  </LocalizationProvider>
-);
+        <TimePicker
+          label="End Time"
+          value={values.end_time}
+          minTime={new Date(values.start_time.getTime() + 60 * 60 * 1000)}
+          onChange={(time) => {
+            setValues({ ...values, end_time: time });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+                label: "black",
+              }}
+            />
+          )}
+        />
+        <SalaryField value={values.salary} handleChange={handleChange} />
+      </div>
+    </LocalizationProvider>
+  );
+};

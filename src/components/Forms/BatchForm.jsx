@@ -26,7 +26,10 @@ export const BatchForm = () => {
   useEffect(() => {
     setValues({
       ...values,
-      end_time: Math.max(values.start_time, values.end_time),
+      end_time: Math.max(
+        new Date(values.start_time.getTime() + 60 * 60 * 1000),
+        values.end_time
+      ),
     });
   }, [values.start_time]);
   const addBatch = async (event) => {
