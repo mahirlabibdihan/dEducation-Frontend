@@ -1,0 +1,27 @@
+.schedule-card {
+  display: flex;
+  padding: 0.7rem 0;
+  //   flex-direction: column;
+
+  align-items: center;
+  //   justify-content: center;
+  .content {
+    gap: 0.8rem;
+  }
+  .time-card {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(
+      rgba(26, 72, 112, 0.9),
+      rgba(22, 52, 78, 1)
+    );
+    border-radius: 0 30px 30px 0;
+    color: white;
+    padding: 0.9rem;
+    width: 10vw;
+    h6 {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+  }
+}

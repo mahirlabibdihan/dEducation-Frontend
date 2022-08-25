@@ -40,6 +40,7 @@ import {
 import { Badge } from "@mui/material";
 import { showToast } from "../../App";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import TodayIcon from "@mui/icons-material/Today";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -119,6 +120,11 @@ const Buttons = () => {
           label: "My courses",
           path: "/my_courses",
           icon: <CollectionsBookmarkIcon sx={{ fontSize: "2rem" }} />,
+        },
+        {
+          label: "My schedule",
+          path: "/my_schedule",
+          icon: <TodayIcon sx={{ fontSize: "2rem" }} />,
         },
         {
           label: "Notice Board",

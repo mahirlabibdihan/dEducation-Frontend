@@ -21,6 +21,7 @@ import {
   Batches,
   Notifications,
   NoticeBoard,
+  MySchedule,
 } from "./pages";
 import Layout from "./components/Containers/Layout";
 import { Background } from "./components";
@@ -33,9 +34,12 @@ import { Dialog, DialogContent } from "@mui/material";
 import { Circles } from "react-loader-spinner";
 
 const showToast = (message, type) => {
+  console.log(message, type);
   if (type === "success") toast.success(message, {});
   else if (type === "error") toast.error(message, {});
-  else toast.dark(message, {});
+  else {
+    toast.dark(message, {});
+  }
 };
 const Private = () => {
   const cookies = new Cookies();
@@ -95,6 +99,7 @@ const App = () => {
             <Route path="/my_courses/batches" element={<Batches />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/notice_board" element={<NoticeBoard />} />
+            <Route path="/my_schedule" element={<MySchedule />} />
           </Route>
           <Route element={<Public />}>
             <Route path="/" element={<Landing />} />
