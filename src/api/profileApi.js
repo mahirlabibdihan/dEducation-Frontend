@@ -9,6 +9,9 @@ class ProfileApi extends Api {
   getNotifications = async () => {
     return await this.get(`/profile/notifications`);
   };
+  getSchedule = async () => {
+    return await this.get(`/profile/schedule`);
+  };
   isNotificationAvailable = async () => {
     return await this.get(`/profile/new_notifications?`);
   };
