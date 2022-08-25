@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import AuthController from "../../controller/authController";
 import { PasswordChangeFields } from "../InputFields";
+import { RestrictedButton } from "../Buttons";
 const authController = new AuthController();
 const PasswordChangeForm = () => {
   const [currPass, setCurrPass] = useState("");
@@ -22,9 +23,14 @@ const PasswordChangeForm = () => {
         newPass={newPass}
         setNewPass={setNewPass}
       />
-      <Button className="blue-button full-width" onClick={changePass}>
+      <RestrictedButton
+        isDisabled={currPass === "" || newPass === ""}
+        onClick={changePass}
+        label="Change"
+      />
+      {/* <Button className="blue-button full-width" onClick={changePass}>
         Change
-      </Button>
+      </Button> */}
     </div>
   );
 };
