@@ -53,11 +53,11 @@ const OfferForm = (props) => {
                 ? []
                 : props.tution.CLASS_DAYS.split(", "),
             start_time:
-              props.tution.START_TIME.slice(0, -1) === null
+              props.tution.START_TIME === null
                 ? new Date()
                 : new Date(props.tution.START_TIME.slice(0, -1)),
             end_time:
-              props.tution.END_TIME.slice(0, -1) === null
+              props.tution.END_TIME === null
                 ? new Date()
                 : new Date(props.tution.END_TIME.slice(0, -1)),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,

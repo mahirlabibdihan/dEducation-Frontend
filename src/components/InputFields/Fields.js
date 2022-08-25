@@ -1,5 +1,5 @@
 const Fields = {
-  day: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+  day: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   gender: ["Male", "Female"],
   tution_type: ["Online", "Offline"],
   medium: ["Bangla Medium", "English Medium", "English Version"],

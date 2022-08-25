@@ -2,15 +2,8 @@ import React from "react";
 import "./TutionDetails.scss";
 import { format } from "date-fns";
 const TutionDetails = (props) => {
-  const OfferDetails = [
-    { label: "Tution Type", value: props.tution.TYPE },
-    { label: "Salary (BDT)", value: props.tution.SALARY },
-    {
-      label: "Tutoring Days",
-      value: `${props.tution.DAYS_PER_WEEK} Days / Week`,
-    },
-    { label: "Subjects", value: props.tution.SUBJECTS },
-  ];
+
+
   const StudentEnd = (props) => {
     console.log("=>", props.tution.START_TIME.slice(0, -1));
     console.log("=>", new Date("2022-08-01T13:00:00.000"));
