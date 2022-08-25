@@ -142,7 +142,7 @@ export function TutorCoursesTable(props) {
 export function StudentCoursesTable(props) {
   const columns = [
     { id: "coaching", label: "Coaching", align: "center" },
-    { id: "class_no", label: "Class", align: "center" },
+    // { id: "class_no", label: "Class", align: "center" },
     {
       id: "subject",
       label: "Subject",
