@@ -163,9 +163,22 @@ export function StudentCoursesTable(props) {
       label: "Class Time",
       align: "center",
     },
+    {
+      id: "status",
+      label: "Status",
+      align: "center",
+    },
   ];
-  function createData(coaching, class_no, subject, start_date, days, time) {
-    return { coaching, class_no, subject, start_date, days, time };
+  function createData(
+    coaching,
+    class_no,
+    subject,
+    start_date,
+    days,
+    time,
+    status
+  ) {
+    return { coaching, class_no, subject, start_date, days, time, status };
   }
   const rows = props.list.map((course) =>
     createData(
@@ -177,7 +190,8 @@ export function StudentCoursesTable(props) {
       `${format(new Date(course.START_TIME.slice(0, -1)), "h:mm a")} - ${format(
         new Date(course.END_TIME.slice(0, -1)),
         "h:mm a"
-      )}`
+      )}`,
+      course.STATUS
     )
   );
   return (
