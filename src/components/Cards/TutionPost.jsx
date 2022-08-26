@@ -6,6 +6,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import { showToast } from "../../App";
+import Zoom from "@mui/material/Zoom";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const cookies = new Cookies();
@@ -53,62 +54,64 @@ const TutionPost = (props) => {
     ],
   ];
   return (
-    <Grid className="tution-post">
-      <div className="vbox" style={{ gap: 0 }}>
-        {data.BOOKING_STATUS === "BOOKED" ? (
-          <h6
-            className="standard-font-1 text-center"
-            style={{ fontSize: ".9rem", color: "red" }}
-          >
-            This tution is booked. You won't get any further applications.
+    <Zoom in={true}>
+      <Grid className="tution-post">
+        <div className="vbox" style={{ gap: 0 }}>
+          {data.BOOKING_STATUS === "BOOKED" ? (
+            <h6
+              className="standard-font-1 text-center"
+              style={{ fontSize: ".9rem", color: "red" }}
+            >
+              This tution is booked. You won't get any further applications.
+            </h6>
+          ) : (
+            <></>
+          )}
+          <h3>{`Need ${data.VERSION} tutor for ${data.CLASS} student - ${data.DAYS_PER_WEEK} Days / Week`}</h3>
+        </div>
+        <div className="hbox">
+          {tutionPostDetails.map((row) => {
+            return (
+              <div className="vbox">
+                {row.map((col) => (
+                  <h6 className="standard-font-1">{`${col.label}: ${col.value}`}</h6>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+        <div className="hbox">
+          <h6 className="time-stamp">
+            {format(new Date(data.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
           </h6>
-        ) : (
-          <></>
-        )}
-        <h3>{`Need ${data.VERSION} tutor for ${data.CLASS} student - ${data.DAYS_PER_WEEK} Days / Week`}</h3>
-      </div>
-      <div className="hbox">
-        {tutionPostDetails.map((row) => {
-          return (
-            <div className="vbox">
-              {row.map((col) => (
-                <h6 className="standard-font-1">{`${col.label}: ${col.value}`}</h6>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-      <div className="hbox">
-        <h6 className="time-stamp">
-          {format(new Date(data.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
-        </h6>
-        <h6 className="time-stamp">
-          {`Applications: ${data.APPLICANT_COUNT}`}
-        </h6>
-        {type === "STUDENT" ? (
-          <Button
-            className="blue-button standard-button-width"
-            onClick={handleApplicants}
-          >
-            Applicants
-          </Button>
-        ) : props.isApplied === undefined || props.isApplied === "NO" ? (
-          <Button
-            className="blue-button standard-button-width"
-            onClick={handleApply}
-          >
-            Apply
-          </Button>
-        ) : (
-          <Button
-            className="red-button standard-button-width"
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
-        )}
-      </div>
-    </Grid>
+          <h6 className="time-stamp">
+            {`Applications: ${data.APPLICANT_COUNT}`}
+          </h6>
+          {type === "STUDENT" ? (
+            <Button
+              className="blue-button standard-button-width"
+              onClick={handleApplicants}
+            >
+              Applicants
+            </Button>
+          ) : props.isApplied === undefined || props.isApplied === "NO" ? (
+            <Button
+              className="blue-button standard-button-width"
+              onClick={handleApply}
+            >
+              Apply
+            </Button>
+          ) : (
+            <Button
+              className="red-button standard-button-width"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          )}
+        </div>
+      </Grid>
+    </Zoom>
   );
 };
 

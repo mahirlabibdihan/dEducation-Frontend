@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import GlobalContext from "../../store/GlobalContext";
 import { TutionPostSearchFields } from "../InputFields";
 import { SearchButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const TutionPostSearchForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,12 +60,14 @@ const TutionPostSearchForm = () => {
   };
 
   return (
-    <div className="search-box">
-      <h1 className="header">Filter</h1>
-      <Divider />
-      <TutionPostSearchFields values={values} handleChange={handleChange} />
-      <SearchButton handleSearch={handleSearch} handleClear={handleClear} />
-    </div>
+    <Zoom in={true}>
+      <div className="search-box">
+        <h1 className="header">Filter</h1>
+        <Divider />
+        <TutionPostSearchFields values={values} handleChange={handleChange} />
+        <SearchButton handleSearch={handleSearch} handleClear={handleClear} />
+      </div>
+    </Zoom>
   );
 };
 

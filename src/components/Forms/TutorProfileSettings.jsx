@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import ProfileController from "../../controller/profileController";
 import { format } from "date-fns";
 import { TutorProfileSettingsFields, EducationFields } from "../InputFields";
+import { Zoom } from "@mui/material";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {
   const [user, setUser] = useState({
@@ -25,7 +26,7 @@ const TutorProfileSettings = () => {
     passing_year: "",
   });
 
-  const [educationsList, setEducationsList] = useState([]);
+  const [educationsList, setEducationsList] = useState(undefined);
   const setProfileData = async () => {
     const res = await profileController.getProfile();
     const data = res.data;
@@ -153,27 +154,31 @@ const TutorProfileSettings = () => {
     <div className="profile-details">
       <h2 className="header">Profile</h2>
       <Divider />
-      <TutorProfileSettingsFields
-        user={user}
-        setUser={setUser}
-        handleChange={handleChange}
-      />
-      <h4>Educational Qualification</h4>
-      <EducationFields
-        educationFields={educationFields}
-        handleOldEducationChange={handleOldEducationChange}
-        newEducationFields={newEducationFields}
-        handleNewEducationChange={handleNewEducationChange}
-        handleDelete={handleDelete}
-        handleAdd={handleAdd}
-      />
-      <Button
-        variant="contained"
-        className="blue-button standard-button-width horizontal-center mt-3"
-        onClick={handleSave}
-      >
-        Save
-      </Button>
+      <Zoom in={educationsList !== undefined}>
+        <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+          <TutorProfileSettingsFields
+            user={user}
+            setUser={setUser}
+            handleChange={handleChange}
+          />
+          <h4>Educational Qualification</h4>
+          <EducationFields
+            educationFields={educationFields}
+            handleOldEducationChange={handleOldEducationChange}
+            newEducationFields={newEducationFields}
+            handleNewEducationChange={handleNewEducationChange}
+            handleDelete={handleDelete}
+            handleAdd={handleAdd}
+          />
+          <Button
+            variant="contained"
+            className="blue-button standard-button-width horizontal-center mt-3"
+            onClick={handleSave}
+          >
+            Save
+          </Button>
+        </div>
+      </Zoom>
     </div>
   );
 };

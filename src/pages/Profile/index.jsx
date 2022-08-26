@@ -7,13 +7,14 @@ import PasswordChangeForm from "../../components/Forms/PasswordChangeForm";
 import ProfilePic from "../../components/Images/ProfilePic";
 import RightPanel from "../../components/Panels/RightPanel";
 import "./profile.scss";
+import { Zoom } from "@mui/material";
 const profileController = new ProfileController();
 
 const Profile = () => {
   const [user, setUser] = useState({});
   const getProfileData = async () => {
     const res = await profileController.getProfile();
-    setUser(res.data);
+    if (res.success) setUser(res.data);
   };
   useEffect(() => {
     getProfileData();
@@ -32,13 +33,17 @@ const Profile = () => {
     );
   };
   const Right = () => {
-    return (
+    return user === {} ? (
+      <></>
+    ) : (
       <RightPanel>
-        <div className="profile-card">
-          <UserProfile />
-          <Divider />
-          <PasswordChangeForm />
-        </div>
+        <Zoom in={user.IMAGE !== undefined}>
+          <div className="profile-card">
+            <UserProfile />
+            <Divider />
+            <PasswordChangeForm />
+          </div>
+        </Zoom>
       </RightPanel>
     );
   };

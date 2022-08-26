@@ -12,6 +12,7 @@ import { useSearchParams } from "react-router-dom";
 import "./styles.scss";
 import CourseSelectionForm from "./CourseSelectionForm";
 import { RequestTypeField } from "../InputFields";
+import { Zoom } from "@mui/material";
 // import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -163,34 +164,37 @@ const PendingRequestsForm = () => {
   /*==========================*/
   //   console.log(values);
   return (
-    <div className="student-search">
-      {/* <h1 className="adeher">Filter</h1>
+    <Zoom in={true}>
+      <div className="student-search">
+        {/* <h1 className="adeher">Filter</h1>
       <Divider /> */}
-      <RequestTypeField
-        value={values.request_type}
-        handleChange={handleChange}
-      />
-      <CourseSelectionFields
-        values={values}
-        coachingsList={coachingsList}
-        classList={classList}
-        subjectList={subjectList}
-        batchList={batchList}
-        handleChange={handleChange}
-      />
-      <RestrictedButton
-        isDisabled={
-          (values.request_type === "Join Request" && values.coaching === "") ||
-          (values.request_type === "Course Enroll" &&
-            (values.coaching === "" ||
-              values.class === "" ||
-              values.subject === "" ||
-              values.batch === ""))
-        }
-        onClick={handleSearch}
-        label="Apply"
-      />
-    </div>
+        <RequestTypeField
+          value={values.request_type}
+          handleChange={handleChange}
+        />
+        <CourseSelectionFields
+          values={values}
+          coachingsList={coachingsList}
+          classList={classList}
+          subjectList={subjectList}
+          batchList={batchList}
+          handleChange={handleChange}
+        />
+        <RestrictedButton
+          isDisabled={
+            (values.request_type === "Join Request" &&
+              values.coaching === "") ||
+            (values.request_type === "Course Enroll" &&
+              (values.coaching === "" ||
+                values.class === "" ||
+                values.subject === "" ||
+                values.batch === ""))
+          }
+          onClick={handleSearch}
+          label="Apply"
+        />
+      </div>
+    </Zoom>
   );
 };
 export default PendingRequestsForm;

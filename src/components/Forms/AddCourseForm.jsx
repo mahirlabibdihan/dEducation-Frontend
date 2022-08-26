@@ -8,6 +8,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { AddCourseFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import CourseSelectionForm from "./CourseSelectionForm";
+import { Zoom } from "@mui/material";
 import "./styles.scss";
 // import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
@@ -65,48 +66,50 @@ const AddCourseForm = () => {
     }
   };
   return (
-    <div className="course-form">
-      <h1 className="header">New Course</h1>
-      <Divider />
-      <CourseSelectionForm
-        values={values}
-        setValues={setValues}
-        coachingsList={coachingsList}
-        setCoachingOptions={setCoachingOptions}
-        classList={classList}
-        setClassList={setClassList}
-        subjectList={subjectList}
-        setSubjectList={setSubjectList}
-        batchList={batchList}
-        setBatchList={setBatchList}
-        handleChange={handleChange}
-        setButton={setButton}
-        button={button}
-      />
-      {button === "Cancel" ? (
-        <Button
-          variant="contained"
-          className="red-button horizontal-center full-width"
-          onClick={cancelEnroll}
-        >
-          Cancel
-        </Button>
-      ) : button === "Enrolled" ? (
-        <Button
-          variant="contained"
-          className="disabled-button full-width"
-          disabled
-        >
-          Enrolled
-        </Button>
-      ) : (
-        <RestrictedButton
-          isDisabled={values.batch === ""}
-          onClick={enrollCourse}
-          label="Enroll"
+    <Zoom in={true}>
+      <div className="course-form">
+        <h1 className="header">New Course</h1>
+        <Divider />
+        <CourseSelectionForm
+          values={values}
+          setValues={setValues}
+          coachingsList={coachingsList}
+          setCoachingOptions={setCoachingOptions}
+          classList={classList}
+          setClassList={setClassList}
+          subjectList={subjectList}
+          setSubjectList={setSubjectList}
+          batchList={batchList}
+          setBatchList={setBatchList}
+          handleChange={handleChange}
+          setButton={setButton}
+          button={button}
         />
-      )}
-    </div>
+        {button === "Cancel" ? (
+          <Button
+            variant="contained"
+            className="red-button horizontal-center full-width"
+            onClick={cancelEnroll}
+          >
+            Cancel
+          </Button>
+        ) : button === "Enrolled" ? (
+          <Button
+            variant="contained"
+            className="disabled-button full-width"
+            disabled
+          >
+            Enrolled
+          </Button>
+        ) : (
+          <RestrictedButton
+            isDisabled={values.batch === ""}
+            onClick={enrollCourse}
+            label="Enroll"
+          />
+        )}
+      </div>
+    </Zoom>
   );
 };
 

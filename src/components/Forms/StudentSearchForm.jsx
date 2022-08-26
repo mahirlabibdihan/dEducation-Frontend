@@ -6,6 +6,7 @@ import CourseController from "../../controller/courseController";
 import { useSearchParams } from "react-router-dom";
 import GlobalContext from "../../store/GlobalContext";
 import CourseSelectionForm from "./CourseSelectionForm";
+import { Zoom } from "@mui/material";
 import "./styles.scss";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -57,30 +58,32 @@ const StudentSearchForm = () => {
     globalCtx.setPendingUpdate(true);
   };
   return (
-    <div className="student-search">
-      <h1 className="header">Filter</h1>
-      <Divider />
-      <CourseSelectionForm
-        values={values}
-        setValues={setValues}
-        coachingsList={coachingsList}
-        setCoachingOptions={setCoachingOptions}
-        classList={classList}
-        setClassList={setClassList}
-        subjectList={subjectList}
-        setSubjectList={setSubjectList}
-        batchList={batchList}
-        setBatchList={setBatchList}
-        handleChange={handleChange}
-      />
-      <Button
-        variant="contained"
-        className="blue-button full-width"
-        onClick={handleSearch}
-      >
-        Apply
-      </Button>
-    </div>
+    <Zoom in={true}>
+      <div className="student-search">
+        <h1 className="header">Filter</h1>
+        <Divider />
+        <CourseSelectionForm
+          values={values}
+          setValues={setValues}
+          coachingsList={coachingsList}
+          setCoachingOptions={setCoachingOptions}
+          classList={classList}
+          setClassList={setClassList}
+          subjectList={subjectList}
+          setSubjectList={setSubjectList}
+          batchList={batchList}
+          setBatchList={setBatchList}
+          handleChange={handleChange}
+        />
+        <Button
+          variant="contained"
+          className="blue-button full-width"
+          onClick={handleSearch}
+        >
+          Apply
+        </Button>
+      </div>
+    </Zoom>
   );
 };
 export default StudentSearchForm;

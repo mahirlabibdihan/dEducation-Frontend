@@ -7,7 +7,7 @@ import GlobalContext from "../../store/GlobalContext";
 import "./RequestForm.scss";
 import { RequestFormFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
-
+import { Zoom } from "@mui/material";
 const tutionController = new TutionController();
 const RequestForm = () => {
   const globalCtx = useContext(GlobalContext);
@@ -34,16 +34,18 @@ const RequestForm = () => {
     }
   };
   return (
-    <div className="request-form">
-      <h1 className="header"> Need a tutor? </h1>
-      <Divider />
-      <RequestFormFields values={values} handleChange={handleChange} />
-      <RestrictedButton
-        isDisabled={values.subjects.length === 0}
-        onClick={handlePost}
-        label="Post"
-      ></RestrictedButton>
-    </div>
+    <Zoom in={true}>
+      <div className="request-form">
+        <h1 className="header"> Need a tutor? </h1>
+        <Divider />
+        <RequestFormFields values={values} handleChange={handleChange} />
+        <RestrictedButton
+          isDisabled={values.subjects.length === 0}
+          onClick={handlePost}
+          label="Post"
+        ></RestrictedButton>
+      </div>
+    </Zoom>
   );
 };
 

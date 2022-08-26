@@ -5,6 +5,7 @@ import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { CoachingFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const coachingController = new CoachingController();
 
 const CoachingForm = () => {
@@ -24,18 +25,20 @@ const CoachingForm = () => {
     }
   };
   return (
-    <div className="coaching-form">
-      <h1 className="header">New Coaching</h1>
-      <Divider />
-      <CoachingFields values={values} handleChange={handleChange} />
-      <RestrictedButton
-        isDisabled={
-          values.name === "" || values.phone === "" || values.address === ""
-        }
-        onClick={createCoaching}
-        label="Create"
-      />
-    </div>
+    <Zoom in={true}>
+      <div className="coaching-form">
+        <h1 className="header">New Coaching</h1>
+        <Divider />
+        <CoachingFields values={values} handleChange={handleChange} />
+        <RestrictedButton
+          isDisabled={
+            values.name === "" || values.phone === "" || values.address === ""
+          }
+          onClick={createCoaching}
+          label="Create"
+        />
+      </div>
+    </Zoom>
   );
 };
 

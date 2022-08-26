@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
 import { BatchFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const courseController = new CourseController();
 
 export const BatchForm = () => {
@@ -49,30 +50,32 @@ export const BatchForm = () => {
     }
   };
   return (
-    <div className="batch-form">
-      <h1 className="header">New Batch</h1>
-      <Divider />
-      <BatchFields
-        values={values}
-        setValues={setValues}
-        handleChange={handleChange}
-      />
-      <RestrictedButton
-        isDisabled={
-          values.days === [] ||
-          values.seats === 0 ||
-          values.start_time.getTime() >= values.end_time.getTime()
-        }
-        onClick={addBatch}
-        label="Add"
-      />
-      {/* <Button
+    <Zoom in={true}>
+      <div className="batch-form">
+        <h1 className="header">New Batch</h1>
+        <Divider />
+        <BatchFields
+          values={values}
+          setValues={setValues}
+          handleChange={handleChange}
+        />
+        <RestrictedButton
+          isDisabled={
+            values.days === [] ||
+            values.seats === 0 ||
+            values.start_time.getTime() >= values.end_time.getTime()
+          }
+          onClick={addBatch}
+          label="Add"
+        />
+        {/* <Button
         variant="contained"
         className="blue-button full-width"
         onClick={addBatch}
       >
         Add
       </Button> */}
-    </div>
+      </div>
+    </Zoom>
   );
 };

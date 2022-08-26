@@ -13,74 +13,78 @@ import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import "./Tables.scss";
+import { Zoom } from "@mui/material";
 const cookies = new Cookies();
 
 function StickyTable(props) {
   return (
-    <Paper
-      sx={{
-        width: "100%",
-        height: props.height,
-        marginTop: "0.5rem",
-        overflow: "auto",
-      }}
-    >
-      <TableContainer sx={{ height: "97%" }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {props.columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{
-                    minWidth: column.minWidth,
-                    background: "linear-gradient(#1a4870, #16344e)",
-                    color: "white",
-                  }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.rows.map((row, idx) => {
-              console.log(props.query);
-              return (
-                props.query === undefined
-                  ? true
-                  : row.coaching
-                      .toLowerCase()
-                      .startsWith(props.query.toLowerCase())
-              ) ? (
-                <TableRow
-                  hover
-                  role="checkbox"
-                  onClick={() => {
-                    if (props.handleClick !== undefined) props.handleClick(idx);
-                  }}
-                  tabIndex={-1}
-                  key={row.class}
-                  sx={{ cursor: "pointer" }}
-                >
-                  {props.columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ) : (
-                <></>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <Zoom in={props.rows.length > 0}>
+      <Paper
+        sx={{
+          width: "100%",
+          height: props.height,
+          marginTop: "0.5rem",
+          overflow: "auto",
+        }}
+      >
+        <TableContainer sx={{ height: "97%" }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {props.columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{
+                      minWidth: column.minWidth,
+                      background: "linear-gradient(#1a4870, #16344e)",
+                      color: "white",
+                    }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {props.rows.map((row, idx) => {
+                console.log(props.query);
+                return (
+                  props.query === undefined
+                    ? true
+                    : row.coaching
+                        .toLowerCase()
+                        .startsWith(props.query.toLowerCase())
+                ) ? (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    onClick={() => {
+                      if (props.handleClick !== undefined)
+                        props.handleClick(idx);
+                    }}
+                    tabIndex={-1}
+                    key={row.class}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    {props.columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ) : (
+                  <></>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </Zoom>
   );
 }
 export function TutorCoursesTable(props) {

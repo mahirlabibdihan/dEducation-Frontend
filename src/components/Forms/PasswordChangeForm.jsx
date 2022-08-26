@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import AuthController from "../../controller/authController";
 import { PasswordChangeFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const authController = new AuthController();
 const PasswordChangeForm = () => {
   const [currPass, setCurrPass] = useState("");
@@ -16,6 +17,7 @@ const PasswordChangeForm = () => {
     }
   };
   return (
+    // <Zoom in={true}>
     <div className="password-change">
       <PasswordChangeFields
         currPass={currPass}
@@ -28,10 +30,8 @@ const PasswordChangeForm = () => {
         onClick={changePass}
         label="Change"
       />
-      {/* <Button className="blue-button full-width" onClick={changePass}>
-        Change
-      </Button> */}
     </div>
+    // </Zoom>
   );
 };
 export default PasswordChangeForm;

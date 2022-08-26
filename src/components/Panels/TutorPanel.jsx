@@ -12,6 +12,7 @@ import "./TutorPanel.scss";
 import { MultiLineField } from "../InputFields";
 import Feedback from "../Cards/Feedback";
 import { useLocation } from "react-router-dom";
+import { Zoom } from "@mui/material";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 
@@ -188,38 +189,40 @@ const TutorPanel = (props) => {
   }, [props]);
 
   return (
-    <div className="tutor-panel">
-      {props.tutor === undefined ? (
-        <></>
-      ) : page === "offer" ? (
-        <>
-          <OfferForm
+    <Zoom in={true}>
+      <div className="tutor-panel">
+        {props.tutor === undefined ? (
+          <></>
+        ) : page === "offer" ? (
+          <>
+            <OfferForm
+              tutor={props.tutor}
+              tution={props.tution}
+              post={props.post}
+            />
+            <Button
+              variant="contained"
+              className="blue-button full-width"
+              onClick={(e) => setPage("profile")}
+            >
+              Back
+            </Button>
+          </>
+        ) : (
+          <ProfilePanel
             tutor={props.tutor}
             tution={props.tution}
-            post={props.post}
+            feedback={feedback}
+            feedbacks={feedbacks}
+            submitFeedback={submitFeedback}
+            handleCancel={handleCancel}
+            education={education}
+            setPage={setPage}
+            handleChange={handleChange}
           />
-          <Button
-            variant="contained"
-            className="blue-button full-width"
-            onClick={(e) => setPage("profile")}
-          >
-            Back
-          </Button>
-        </>
-      ) : (
-        <ProfilePanel
-          tutor={props.tutor}
-          tution={props.tution}
-          feedback={feedback}
-          feedbacks={feedbacks}
-          submitFeedback={submitFeedback}
-          handleCancel={handleCancel}
-          education={education}
-          setPage={setPage}
-          handleChange={handleChange}
-        />
-      )}
-    </div>
+        )}
+      </div>
+    </Zoom>
   );
 };
 

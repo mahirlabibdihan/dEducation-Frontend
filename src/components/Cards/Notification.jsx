@@ -5,6 +5,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
+import Zoom from "@mui/material/Zoom";
 import { showToast } from "../../App";
 import "./Notification.scss";
 const tutionController = new TutionController();
@@ -15,30 +16,32 @@ const Notification = (props) => {
   const globalCtx = useContext(GlobalContext);
   const navigate = new useNavigate();
   return (
-    <div
-      className="notification-card"
-      aria-hidden="true"
-      onClick={() => {
-        if (props.notification.URL !== null) navigate(props.notification.URL);
-      }}
-    >
-      <div className="hbox">
-        <img
-          src={`http://localhost:5000/assets/images/${props.notification.IMAGE}`}
-          alt=" "
-          className="shadow-sm small-image"
-        />
-        <div className="vbox w-100">
-          <h6 className="poppins-font">{props.notification.TEXT}</h6>
-          <h6 className="poppins-font time-stamp">
-            {format(
-              new Date(props.notification.TIMESTAMP),
-              "dd MMM, yyyy hh:mm a"
-            )}
-          </h6>
+    <Zoom in={true}>
+      <div
+        className="notification-card"
+        aria-hidden="true"
+        onClick={() => {
+          if (props.notification.URL !== null) navigate(props.notification.URL);
+        }}
+      >
+        <div className="hbox">
+          <img
+            src={`http://localhost:5000/assets/images/${props.notification.IMAGE}`}
+            alt=" "
+            className="shadow-sm small-image"
+          />
+          <div className="vbox w-100">
+            <h6 className="poppins-font">{props.notification.TEXT}</h6>
+            <h6 className="poppins-font time-stamp">
+              {format(
+                new Date(props.notification.TIMESTAMP),
+                "dd MMM, yyyy hh:mm a"
+              )}
+            </h6>
+          </div>
         </div>
       </div>
-    </div>
+    </Zoom>
   );
 };
 

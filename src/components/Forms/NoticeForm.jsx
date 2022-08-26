@@ -11,6 +11,7 @@ import { CourseSelectionFields } from "../InputFields";
 import CourseSelectionForm from "./CourseSelectionForm";
 import { MultiLineField } from "../InputFields";
 import "./styles.scss";
+import { Zoom } from "@mui/material";
 import Cookies from "universal-cookie";
 // import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
@@ -56,45 +57,47 @@ const NoticeForm = () => {
     }
   };
   return (
-    <div className="course-form">
-      <h1 className="header">New Notice</h1>
-      <Divider />
-      <div className="notice-form-fields">
-        <CourseSelectionForm
-          values={values}
-          setValues={setValues}
-          coachingsList={coachingsList}
-          setCoachingOptions={setCoachingOptions}
-          classList={classList}
-          setClassList={setClassList}
-          subjectList={subjectList}
-          setSubjectList={setSubjectList}
-          batchList={batchList}
-          setBatchList={setBatchList}
-          handleChange={handleChange}
-        />
-        <MultiLineField
-          rows={8}
-          label={"Notice"}
-          type="text"
-          value={values.notice}
-          id={"notice"}
-          onChange={handleChange}
+    <Zoom in={true}>
+      <div className="course-form">
+        <h1 className="header">New Notice</h1>
+        <Divider />
+        <div className="notice-form-fields">
+          <CourseSelectionForm
+            values={values}
+            setValues={setValues}
+            coachingsList={coachingsList}
+            setCoachingOptions={setCoachingOptions}
+            classList={classList}
+            setClassList={setClassList}
+            subjectList={subjectList}
+            setSubjectList={setSubjectList}
+            batchList={batchList}
+            setBatchList={setBatchList}
+            handleChange={handleChange}
+          />
+          <MultiLineField
+            rows={8}
+            label={"Notice"}
+            type="text"
+            value={values.notice}
+            id={"notice"}
+            onChange={handleChange}
+          />
+        </div>
+
+        <RestrictedButton
+          isDisabled={
+            values.coaching === -1 ||
+            values.class === "" ||
+            values.subject === "" ||
+            values.notice === "" ||
+            values.notice === undefined
+          }
+          onClick={postNotice}
+          label="Post"
         />
       </div>
-
-      <RestrictedButton
-        isDisabled={
-          values.coaching === -1 ||
-          values.class === "" ||
-          values.subject === "" ||
-          values.notice === "" ||
-          values.notice === undefined
-        }
-        onClick={postNotice}
-        label="Post"
-      />
-    </div>
+    </Zoom>
   );
 };
 

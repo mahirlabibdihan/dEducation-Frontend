@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./UserCard.scss";
+import { CSSTransition } from "react-transition-group";
+import Zoom from "@mui/material/Zoom";
+import { Fade } from "@mui/material";
 const UserCard = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    setShow(true);
+    return () => setShow(false);
+  }, []);
   return (
+    // <Zoom in={true}>
     <div
       className={`${
         searchParams.get("id") !== null &&
@@ -27,12 +36,16 @@ const UserCard = (props) => {
         }
       }}
     >
-      <img
-        src={`http://localhost:5000/assets/images/${props.user.IMAGE}`}
-        alt=" "
-      />
+      <Fade in={props.user.IMAGE !== undefined}>
+        <img
+          src={`http://localhost:5000/assets/images/${props.user.IMAGE}`}
+          alt=" "
+        />
+      </Fade>
+
       <h5>{props.user.NAME}</h5>
     </div>
+    // </Zoom>
   );
 };
 

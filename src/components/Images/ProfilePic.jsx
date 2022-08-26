@@ -15,6 +15,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import UploadConfirmation from "./UploadConfirmation";
+import { Zoom } from "@mui/material";
+import { Fade } from "@mui/material";
 import "./ProfilePic.scss";
 
 const profileController = new ProfileController();
@@ -52,14 +54,17 @@ const ProfilePic = () => {
   }, [file]);
   return (
     <>
-      <img
-        src={`http://localhost:5000/assets/images/${
-          image === null ? "sample.jpg" : image
-        }`}
-        // onClick={() => ImageUpload()}
-        alt=" "
-        className="shadow"
-      />
+      <Fade in={image !== undefined}>
+        <img
+          src={`http://localhost:5000/assets/images/${
+            image === null ? "sample.jpg" : image
+          }`}
+          // onClick={() => ImageUpload()}
+          alt=" "
+          className="shadow"
+        />
+      </Fade>
+
       <input type="file" onChange={ImageUpload}></input>
       <div className="upload-image-icon">
         <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
@@ -80,14 +85,17 @@ export const PublicProfilePic = (props) => {
   }, [props]);
   return (
     <>
-      <img
-        src={`http://localhost:5000/assets/images/${
-          image === null ? "sample.jpg" : image
-        }`}
-        // onClick={() => ImageUpload()}
-        alt=" "
-        className="shadow"
-      />
+      <Fade in={image !== undefined}>
+        <img
+          src={`http://localhost:5000/assets/images/${
+            image === null ? "sample.jpg" : image
+          }`}
+          // onClick={() => ImageUpload()}
+          alt=" "
+          className="shadow"
+        />
+      </Fade>
+
       {props.rating !== undefined ? (
         <div className="avg-rating">
           {/* <StarIcon sx={{ color: "orange" }} /> */}

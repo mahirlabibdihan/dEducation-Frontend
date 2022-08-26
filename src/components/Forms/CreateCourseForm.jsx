@@ -7,6 +7,7 @@ import { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import { CreateCourseFields } from "../../components/InputFields";
 import { RestrictedButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 import "./styles.scss";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -41,22 +42,26 @@ const CreateCourseForm = () => {
     }
   };
   return (
-    <div className="course-form">
-      <h1 className="header">New Course</h1>
-      <Divider />
-      <CreateCourseFields
-        values={values}
-        coachingsList={coachingsList}
-        handleChange={handleChange}
-      />
-      <RestrictedButton
-        isDisabled={
-          values.coaching === "" || values.class === "" || values.subject === ""
-        }
-        onClick={createCourse}
-        label="Create"
-      />
-    </div>
+    <Zoom in={true}>
+      <div className="course-form">
+        <h1 className="header">New Course</h1>
+        <Divider />
+        <CreateCourseFields
+          values={values}
+          coachingsList={coachingsList}
+          handleChange={handleChange}
+        />
+        <RestrictedButton
+          isDisabled={
+            values.coaching === "" ||
+            values.class === "" ||
+            values.subject === ""
+          }
+          onClick={createCourse}
+          label="Create"
+        />
+      </div>
+    </Zoom>
   );
 };
 

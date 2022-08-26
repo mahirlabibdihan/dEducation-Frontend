@@ -7,6 +7,7 @@ import { TutionOfferFields } from "../InputFields";
 import { format } from "date-fns";
 import { useEffect } from "react";
 import { RestrictedButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
@@ -123,19 +124,21 @@ const OfferForm = (props) => {
   // console.log("Sub", props.tutor.EXPERTISE);
   // console.log(format(values.start_time, "MM/dd/yyyy HH:mm:ss"));
   return (
-    <div className="offer-form">
-      <TutionOfferFields
-        values={values}
-        setValues={setValues}
-        handleChange={handleChange}
-        subjects={props.tutor.EXPERTISE.split(", ")}
-      />
-      <RestrictedButton
-        isDisabled={values.days.length === 0 || values.subjects.length === 0}
-        onClick={handleOffer}
-        label="Offer"
-      ></RestrictedButton>
-    </div>
+    <Zoom in={true}>
+      <div className="offer-form">
+        <TutionOfferFields
+          values={values}
+          setValues={setValues}
+          handleChange={handleChange}
+          subjects={props.tutor.EXPERTISE.split(", ")}
+        />
+        <RestrictedButton
+          isDisabled={values.days.length === 0 || values.subjects.length === 0}
+          onClick={handleOffer}
+          label="Offer"
+        ></RestrictedButton>
+      </div>
+    </Zoom>
   );
 };
 

@@ -14,6 +14,7 @@ import { CircularProgress } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./Forms.scss";
 import { RoleSelectionField } from "../InputFields";
+import { Zoom } from "@mui/material";
 const authController = new AuthController();
 
 const ResetPassword = () => {
@@ -137,20 +138,22 @@ export const LoginForm = (props) => {
   }, [searchParams, props]);
 
   return (
-    <Box
-      component="form"
-      className={`w-25 p-5 rounded shadow login-form ${props.className}`}
-    >
-      <div className="exit-button" onClick={() => navigate("/")}>
-        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
-      </div>
-      <RoleSelectionField value={type} setValue={setType} />
-      <EmailField email={email} setEmail={setEmail} />
-      <PasswordField pass={pass} setPass={setPass} />
-      <LoginButton email={email} pass={pass} type={type} />
-      <ResetPassword />
-      <SignUpButton type={type} />
-    </Box>
+    <Zoom in={true}>
+      <Box
+        component="form"
+        className={`w-25 p-5 rounded shadow login-form ${props.className}`}
+      >
+        <div className="exit-button" onClick={() => navigate("/")}>
+          <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
+        </div>
+        <RoleSelectionField value={type} setValue={setType} />
+        <EmailField email={email} setEmail={setEmail} />
+        <PasswordField pass={pass} setPass={setPass} />
+        <LoginButton email={email} pass={pass} type={type} />
+        <ResetPassword />
+        <SignUpButton type={type} />
+      </Box>
+    </Zoom>
   );
 };
 
@@ -248,26 +251,28 @@ export const SignUpForm = (props) => {
     });
   };
   return (
-    <Box
-      component="form"
-      className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
-    >
-      <div className="exit-button" onClick={() => navigate("/")}>
-        <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
-      </div>
-      <RoleSelectionField value={type} setValue={setType} />
-      {/* <h1 className="form-header">{type}</h1> */}
-      <NameField name={name} setName={setName} />
-      <EmailField email={email} setEmail={setEmail} />
-      <PasswordField pass={pass} setPass={setPass} />
-      <SignUpButton
-        name={name}
-        email={email}
-        pass={pass}
-        type={type}
-        handleLogin={handleLogin}
-      />
-      <LoginLink type={type} handleLogin={handleLogin} />
-    </Box>
+    <Zoom in={true}>
+      <Box
+        component="form"
+        className={`w-25 p-5 rounded shadow sign-up-form ${props.className}`}
+      >
+        <div className="exit-button" onClick={() => navigate("/")}>
+          <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
+        </div>
+        <RoleSelectionField value={type} setValue={setType} />
+        {/* <h1 className="form-header">{type}</h1> */}
+        <NameField name={name} setName={setName} />
+        <EmailField email={email} setEmail={setEmail} />
+        <PasswordField pass={pass} setPass={setPass} />
+        <SignUpButton
+          name={name}
+          email={email}
+          pass={pass}
+          type={type}
+          handleLogin={handleLogin}
+        />
+        <LoginLink type={type} handleLogin={handleLogin} />
+      </Box>
+    </Zoom>
   );
 };

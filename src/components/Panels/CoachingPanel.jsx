@@ -9,6 +9,7 @@ import "./CoachingPanel.scss";
 import { CoachingCoursesTable } from "../Tables/Tables";
 import { useEffect } from "react";
 import Rating from "@mui/material/Rating";
+import { Zoom } from "@mui/material";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 
@@ -66,34 +67,35 @@ const CoachingPanel = (props) => {
     setList();
   }, [props]);
   return (
-    <div className="coaching-panel">
-      {props.coaching === undefined ? (
-        <></>
-      ) : (
-        <>
-          <CoachingBanner coaching={props.coaching} />
-          {type === "STUDENT" && props.coaching.TYPE !== "MEMBER" ? (
-            props.coaching.TYPE === null ? (
-              <Button
-                variant="contained"
-                className="blue-button horizontal-center full-width"
-                onClick={joinCoaching}
-              >
-                Join
-              </Button>
+    <Zoom in={true}>
+      <div className="coaching-panel">
+        {props.coaching === undefined ? (
+          <></>
+        ) : (
+          <>
+            <CoachingBanner coaching={props.coaching} />
+            {type === "STUDENT" && props.coaching.TYPE !== "MEMBER" ? (
+              props.coaching.TYPE === null ? (
+                <Button
+                  variant="contained"
+                  className="blue-button horizontal-center full-width"
+                  onClick={joinCoaching}
+                >
+                  Join
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  className="red-button horizontal-center full-width"
+                  onClick={cancelJoin}
+                >
+                  Cancel
+                </Button>
+              )
             ) : (
-              <Button
-                variant="contained"
-                className="red-button horizontal-center full-width"
-                onClick={cancelJoin}
-              >
-                Cancel
-              </Button>
-            )
-          ) : (
-            <div className="flex-center vbox">
-              <Divider />
-              {/* <div className="rating-container poppins-font text-center">
+              <div className="flex-center vbox">
+                <Divider />
+                {/* <div className="rating-container poppins-font text-center">
                 {`How would you rate ${props.coaching.NAME}?`}
               </div>
               <Rating
@@ -105,28 +107,29 @@ const CoachingPanel = (props) => {
                   setRating(newValue);
                 }}
               /> */}
+              </div>
+            )}
+            <Divider />
+            {/* <h5>Available Courses</h5> */}
+            <CoachingCoursesTable list={coursesList} />
+            <div
+              className="flex-center"
+              style={{
+                width: "100%",
+                background: "linear-gradient(#1a4870, #16344e)",
+                height: "7vh",
+                color: "white",
+                fontFamily: "sans-serif",
+                fontSize: ".9rem",
+                borderRadius: "0 0 5px 5px",
+              }}
+            >
+              Available Courses
             </div>
-          )}
-          <Divider />
-          {/* <h5>Available Courses</h5> */}
-          <CoachingCoursesTable list={coursesList} />
-          <div
-            className="flex-center"
-            style={{
-              width: "100%",
-              background: "linear-gradient(#1a4870, #16344e)",
-              height: "7vh",
-              color: "white",
-              fontFamily: "sans-serif",
-              fontSize: ".9rem",
-              borderRadius: "0 0 5px 5px",
-            }}
-          >
-            Available Courses
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </Zoom>
   );
 };
 

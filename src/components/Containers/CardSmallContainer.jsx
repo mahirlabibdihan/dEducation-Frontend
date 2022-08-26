@@ -13,6 +13,8 @@ import StudentPanel from "../../components/Panels/StudentPanel";
 import { setLoading } from "../../App";
 import RightPanel from "../../components/Panels/RightPanel";
 import MainContainer from "../../components/Containers/MainContainer";
+// import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const tutorsController = new TutorsController();
 const coachingController = new CoachingController();
 const profileController = new ProfileController();
@@ -23,25 +25,28 @@ const CardSmallContainer = (props) => {
     <div className="short-list-container">
       <h2 className="header">{props.header}</h2>
       <Divider />
-      <div className="short-list-box">
-        <div className="short-list">
-          {props.list.map((tutor, index) => (
-            <UserCard className="scroll" user={tutor} />
-          ))}
+      <Zoom in={props.list.length > 0}>
+        <div className="short-list-box">
+          <div className="short-list">
+            {props.list.map((tutor, index) => (
+              <UserCard className="scroll" user={tutor} />
+            ))}
+          </div>
+
+          <Button
+            variant="contained"
+            className="next-button"
+            onClick={() => {
+              setTimeout(() => {
+                navigate(props.path);
+              }, 300);
+            }}
+          >
+            <ArrowForwardIosIcon sx={{ fontSize: "2.3rem" }} />
+            {/* <ArrowRightIcon sx={{ fontSize: "4rem" }} /> */}
+          </Button>
         </div>
-        <Button
-          variant="contained"
-          className="next-button"
-          onClick={() => {
-            setTimeout(() => {
-              navigate(props.path);
-            }, 300);
-          }}
-        >
-          <ArrowForwardIosIcon sx={{ fontSize: "2.3rem" }} />
-          {/* <ArrowRightIcon sx={{ fontSize: "4rem" }} /> */}
-        </Button>
-      </div>
+      </Zoom>
     </div>
   );
 };

@@ -4,26 +4,28 @@ import { Divider } from "@mui/material";
 import UserCard from "../Cards/UserCard";
 import SearchBar from "../InputFields/SearchBar";
 import "./CardContainer.scss";
-
+import { Zoom } from "@mui/material";
 export const List = (props) => {
   return (
-    <div className="cards">
-      {props.list.map((user, index) =>
-        user.NAME.toLowerCase().startsWith(props.query.toLowerCase()) ? (
-          user.USER_ID === undefined ? (
-            user.COACHING_ID === undefined ? (
-              <></>
+    <Zoom in={true}>
+      <div className="cards">
+        {props.list.map((user, index) =>
+          user.NAME.toLowerCase().startsWith(props.query.toLowerCase()) ? (
+            user.USER_ID === undefined ? (
+              user.COACHING_ID === undefined ? (
+                <></>
+              ) : (
+                <UserCard user={user} id={user.COACHING_ID} />
+              )
             ) : (
-              <UserCard user={user} id={user.COACHING_ID} />
+              <UserCard user={user} id={user.USER_ID} />
             )
           ) : (
-            <UserCard user={user} id={user.USER_ID} />
+            <></>
           )
-        ) : (
-          <></>
-        )
-      )}
-    </div>
+        )}
+      </div>
+    </Zoom>
   );
 };
 

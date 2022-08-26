@@ -6,6 +6,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { TutorSearchFields } from "../InputFields";
 import "../../components/components.scss";
 import { SearchButton } from "../Buttons";
+import { Zoom } from "@mui/material";
 const TutorSearchForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,12 +55,14 @@ const TutorSearchForm = () => {
     globalCtx.setPendingUpdate(true);
   };
   return (
-    <div className="search-box">
-      <h1 className="header">Filter</h1>
-      <Divider />
-      <TutorSearchFields values={values} handleChange={handleChange} />
-      <SearchButton handleSearch={handleSearch} handleClear={handleClear} />
-    </div>
+    <Zoom in={true}>
+      <div className="search-box">
+        <h1 className="header">Filter</h1>
+        <Divider />
+        <TutorSearchFields values={values} handleChange={handleChange} />
+        <SearchButton handleSearch={handleSearch} handleClear={handleClear} />
+      </div>
+    </Zoom>
   );
 };
 

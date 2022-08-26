@@ -6,6 +6,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { CoachingFields } from "../InputFields";
 import "./styles.scss";
 import ImageUploader from "../Images/ImageUploader";
+import { Zoom } from "@mui/material";
 const coachingController = new CoachingController();
 
 const EditCoaching = (props) => {
@@ -53,13 +54,15 @@ const EditCoaching = (props) => {
 };
 export const TutorCoachingPanel = (props) => {
   return (
-    <div className="tutor-coaching-panel">
-      {props.coaching === undefined ? (
-        <></>
-      ) : (
-        <EditCoaching coaching={props.coaching} />
-      )}
-    </div>
+    <Zoom in={true}>
+      <div className="tutor-coaching-panel">
+        {props.coaching === undefined ? (
+          <></>
+        ) : (
+          <EditCoaching coaching={props.coaching} />
+        )}
+      </div>
+    </Zoom>
   );
 };
 
