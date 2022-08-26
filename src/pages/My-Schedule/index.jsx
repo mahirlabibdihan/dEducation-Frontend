@@ -8,7 +8,7 @@ import MainContainer from "../../components/Containers/MainContainer";
 import AddCourseForm from "../../components/Forms/AddCourseForm";
 import CreateCourseForm from "../../components/Forms/CreateCourseForm";
 import ScheduleContainer from "../../components/Containers/ScheduleContainer";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { format } from "date-fns";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import ProfileController from "../../controller/profileController";
@@ -19,6 +19,14 @@ import { Grid } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import Fields from "../../components/InputFields/Fields";
 import "./my-schedule.scss";
+import { InputAdornment } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRight from "@mui/icons-material/ArrowRight";
+import ArrowLeft from "@mui/icons-material/ArrowLeft";
 // import { LocalizationProvider } from "@mui/x-date-pickers";
 // import Calendar from "@mui/lab/Ca";
 // import { setNotification } from "../../components/Containers/Layout";
@@ -48,6 +56,47 @@ const ScheduleList = ({ date, setDate, list }) => {
                   width: "26.5vw",
                 }}
                 size="small"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <div className="hbox" style={{ gap: ".1rem" }}>
+                        <Button
+                          className="blue-button"
+                          style={{
+                            padding: 0,
+                            minWidth: "30px",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          onClick={() => {
+                            setDate(
+                              new Date(date.getTime() - 24 * 60 * 60 * 1000)
+                            );
+                          }}
+                        >
+                          <ArrowLeft />
+                        </Button>
+                        <Button
+                          className="blue-button"
+                          style={{
+                            padding: 0,
+                            minWidth: "30px",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          onClick={() => {
+                            setDate(
+                              new Date(date.getTime() + 24 * 60 * 60 * 1000)
+                            );
+                          }}
+                        >
+                          <ArrowRight />
+                        </Button>
+                        {/* <PlayCircleIcon /> */}
+                      </div>
+                    </InputAdornment>
+                  ),
+                }}
               />
             )}
             className="date-picker"
