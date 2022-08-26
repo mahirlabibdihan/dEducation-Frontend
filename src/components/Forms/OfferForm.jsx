@@ -32,7 +32,7 @@ const OfferForm = (props) => {
         ? {
             tution_type: "Offline",
             subjects: [],
-            start_date: new Date(),
+            start_date: "",
             days: [],
             start_time: new Date(),
             end_time: new Date(),
@@ -47,7 +47,7 @@ const OfferForm = (props) => {
                 : props.tution.SUBJECTS.split(", "),
             start_date:
               props.tution.START_DATE === null
-                ? new Date()
+                ? ""
                 : new Date(props.tution.START_DATE),
             days:
               props.tution.CLASS_DAYS === null
@@ -133,7 +133,11 @@ const OfferForm = (props) => {
           subjects={props.tutor.EXPERTISE.split(", ")}
         />
         <RestrictedButton
-          isDisabled={values.days.length === 0 || values.subjects.length === 0}
+          isDisabled={
+            values.days.length === 0 ||
+            values.subjects.length === 0 ||
+            values.start_date === ""
+          }
           onClick={handleOffer}
           label="Offer"
         ></RestrictedButton>

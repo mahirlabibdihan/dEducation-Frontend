@@ -14,7 +14,7 @@ export const BatchForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const initValues = {
-    start_date: new Date(),
+    start_date: "",
     days: [],
     start_time: new Date(),
     end_time: new Date(),
@@ -25,7 +25,6 @@ export const BatchForm = () => {
     setValues({ ...values, [prop]: event.target.value });
   };
   useEffect(() => {
-    console.log(values);
     setValues({
       ...values,
       end_time: new Date(
@@ -63,7 +62,8 @@ export const BatchForm = () => {
           isDisabled={
             values.days === [] ||
             values.seats === 0 ||
-            values.start_time.getTime() >= values.end_time.getTime()
+            values.start_time.getTime() >= values.end_time.getTime() ||
+            values.start_date === ""
           }
           onClick={addBatch}
           label="Add"
