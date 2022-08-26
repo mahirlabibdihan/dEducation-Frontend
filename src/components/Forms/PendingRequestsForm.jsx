@@ -112,6 +112,7 @@ const PendingRequestsForm = () => {
       subject: "",
       batch: "",
     });
+    if (values.request_type === "Tution Offer") setCoachingsList([]);
     setClassList([]);
     setSubjectList([]);
     setBatchList([]);
