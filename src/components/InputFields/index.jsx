@@ -1161,6 +1161,7 @@ export const BatchFields = ({ values, setValues, handleChange }) => {
             />
           )}
           className="date-picker"
+          minDate={new Date()}
           shouldDisableDate={disableDates}
         />
         <SeatsField value={values.seats} handleChange={handleChange} />
@@ -1277,6 +1278,7 @@ export const TutionOfferFields = ({
           label="Starting Date"
           inputFormat="MM/dd/yyyy"
           value={values.start_date}
+          minDate={new Date()}
           onChange={(date) => {
             setValues({ ...values, start_date: date });
           }}
