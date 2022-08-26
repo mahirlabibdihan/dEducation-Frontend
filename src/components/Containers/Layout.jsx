@@ -74,22 +74,7 @@ const Buttons = () => {
           path: "/home",
           icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
         },
-        type === "TUTOR"
-          ? {
-              label: "Pending Requests",
-              path: "/pending_requests",
-              icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
-            }
-          : {
-              label: "Request Tutor",
-              path: "/req_tutor",
-              icon: (
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={{ fontSize: "1.8rem" }}
-                />
-              ),
-            },
+
         type === "TUTOR"
           ? {
               label: "My students",
@@ -102,6 +87,22 @@ const Buttons = () => {
               icon: (
                 <FontAwesomeIcon
                   icon={faPersonChalkboard}
+                  style={{ fontSize: "1.8rem" }}
+                />
+              ),
+            },
+        type === "TUTOR"
+          ? {
+              label: "Pending Requests",
+              path: "/pending_requests",
+              icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
+            }
+          : {
+              label: "Request Tutor",
+              path: "/req_tutor",
+              icon: (
+                <FontAwesomeIcon
+                  icon={faPenToSquare}
                   style={{ fontSize: "1.8rem" }}
                 />
               ),
@@ -122,15 +123,16 @@ const Buttons = () => {
           icon: <CollectionsBookmarkIcon sx={{ fontSize: "2rem" }} />,
         },
         {
-          label: "My schedule",
-          path: "/my_schedule",
-          icon: <TodayIcon sx={{ fontSize: "2rem" }} />,
-        },
-        {
           label: "Notice Board",
           path: "/notice_board",
           icon: <BallotIcon sx={{ fontSize: "2rem" }} />,
         },
+        {
+          label: "My schedule",
+          path: "/my_schedule",
+          icon: <TodayIcon sx={{ fontSize: "2rem" }} />,
+        },
+
         {
           label: "Notifications",
           path: "/notifications",
