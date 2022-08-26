@@ -6,6 +6,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import { showToast } from "../../App";
+import Zoom from "@mui/material/Zoom";
 import "./Schedule.scss";
 const tutionController = new TutionController();
 // const Schedule = (props) => {
@@ -40,11 +41,9 @@ const tutionController = new TutionController();
 // };
 
 const Schedule = ({ schedule, x, y, w }) => {
-  // Similar to facebook post
   const cookies = new Cookies();
-  const type = cookies.get("type");
-
   return (
+    // <Zoom in={true}>
     <div
       className="schedule-card"
       style={{
@@ -61,13 +60,19 @@ const Schedule = ({ schedule, x, y, w }) => {
           className="shadow-sm very-small-image"
         />
         <div className="schedule-details vbox">
-          <h6 style={{ fontSize: ".9rem" }}>
+          <h6 className="name">
             <b>{schedule.NAME}</b>
           </h6>
-          <h6 style={{ fontSize: ".8rem" }}>{schedule.SUBJECTS}</h6>
+          <h6 className="subjects">{schedule.SUBJECTS}</h6>
+          <h6 className="time-range">
+            {format(new Date(schedule.START_TIME.slice(0, -1)), "h:mm a")}
+            {" - "}
+            {format(new Date(schedule.END_TIME.slice(0, -1)), "h:mm a")}
+          </h6>
         </div>
       </div>
     </div>
+    // </Zoom>
   );
 };
 export default Schedule;
