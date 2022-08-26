@@ -74,7 +74,10 @@ export const BatchSelectionField = (props) => {
               <br></br>
               {`Days: ${batch.CLASS_DAYS}`}
               <br></br>
-              {`Time: ${batch.CLASS_TIME}`}
+              {`Time: ${format(
+                new Date(batch.START_TIME.slice(0, -1)),
+                "h:mm a"
+              )} - ${format(new Date(batch.END_TIME.slice(0, -1)), "h:mm a")}`}
               <br></br>
               {`Total seats: ${batch.SEATS}`}
             </MenuItem>
@@ -1095,65 +1098,76 @@ export const PasswordChangeFields = ({
   );
 };
 
-export const BatchFields = ({ values, setValues, handleChange }) => (
-  <LocalizationProvider dateAdapter={AdapterDateFns}>
-    <div className="input-fields">
-      <MobileDatePicker
-        label="Starting Date"
-        inputFormat="MM/dd/yyyy"
-        value={values.start_date}
-        onChange={(date) => {
-          setValues({ ...values, start_date: date });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-            }}
-          />
-        )}
-        className="date-picker"
-      />
-      <ClassDaysField value={values.days} handleChange={handleChange} />
-      <TimePicker
-        label="Start Time"
-        value={values.start_time}
-        onChange={(time) => {
-          setValues({ ...values, start_time: time });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-              label: "black",
-            }}
-          />
-        )}
-      />
+export const BatchFields = ({ values, setValues, handleChange }) => {
+  const disableDates = (date) => {
+    for (let i = 0; i < values.days.length; i++) {
+      if (values.days[i] === Fields.day[date.getDay()]) {
+        return false;
+      }
+    }
+    return true;
+  };
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <div className="input-fields">
+        <ClassDaysField value={values.days} handleChange={handleChange} />
+        <TimePicker
+          label="Start Time"
+          value={values.start_time}
+          onChange={(time) => {
+            setValues({ ...values, start_time: time });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+                label: "black",
+              }}
+            />
+          )}
+        />
 
-      <TimePicker
-        label="End Time"
-        value={values.end_time}
-        minTime={new Date(values.start_time.getTime() + 60 * 60 * 1000)}
-        onChange={(time) => {
-          setValues({ ...values, end_time: time });
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            sx={{
-              width: "100%",
-              label: "black",
-            }}
-          />
-        )}
-      />
-      <SeatsField value={values.seats} handleChange={handleChange} />
-    </div>
-  </LocalizationProvider>
-);
+        <TimePicker
+          label="End Time"
+          value={values.end_time}
+          minTime={new Date(values.start_time.getTime() + 60 * 60 * 1000)}
+          onChange={(time) => {
+            setValues({ ...values, end_time: time });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+                label: "black",
+              }}
+            />
+          )}
+        />
+        <MobileDatePicker
+          label="Starting Date"
+          inputFormat="MM/dd/yyyy"
+          value={values.start_date}
+          onChange={(date) => {
+            setValues({ ...values, start_date: date });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+              }}
+            />
+          )}
+          className="date-picker"
+          shouldDisableDate={disableDates}
+        />
+        <SeatsField value={values.seats} handleChange={handleChange} />
+      </div>
+    </LocalizationProvider>
+  );
+};
 
 export const TutionPostSearchFields = ({ values, handleChange }) => (
   <div className="input-fields">
@@ -1199,6 +1213,14 @@ export const TutionOfferFields = ({
   handleChange,
   subjects,
 }) => {
+  const disableDates = (date) => {
+    for (let i = 0; i < values.days.length; i++) {
+      if (values.days[i] === Fields.day[date.getDay()]) {
+        return false;
+      }
+    }
+    return true;
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className="input-fields">
@@ -1214,23 +1236,7 @@ export const TutionOfferFields = ({
         />
         {/*Start date */}
         {/* Replace days per week with class days*/}
-        <MobileDatePicker
-          label="Starting Date"
-          inputFormat="MM/dd/yyyy"
-          value={values.start_date}
-          onChange={(date) => {
-            setValues({ ...values, start_date: date });
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              sx={{
-                width: "100%",
-              }}
-            />
-          )}
-          className="date-picker"
-        />
+
         <ClassDaysField value={values.days} handleChange={handleChange} />
         {/* Add tutoring start and end time field*/}
         <TimePicker
@@ -1266,6 +1272,24 @@ export const TutionOfferFields = ({
               }}
             />
           )}
+        />
+        <MobileDatePicker
+          label="Starting Date"
+          inputFormat="MM/dd/yyyy"
+          value={values.start_date}
+          onChange={(date) => {
+            setValues({ ...values, start_date: date });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+              }}
+            />
+          )}
+          className="date-picker"
+          shouldDisableDate={disableDates}
         />
         <SalaryField value={values.salary} handleChange={handleChange} />
       </div>
