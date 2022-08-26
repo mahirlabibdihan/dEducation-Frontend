@@ -32,34 +32,5 @@
   }
   .schedule-list {
     display: flex;
-    .schedule-card {
-      height: 9vh;
-      display: flex;
-      border-radius: 5px;
-
-      padding: 1rem;
-      color: white;
-      background-image: linear-gradient(
-        rgba(26, 72, 112, 0.9),
-        rgba(22, 52, 78, 1)
-      );
-      .content {
-        width: 100%;
-        text-overflow: ellipsis;
-        .schedule-details {
-          display: flex;
-
-          width: 100%;
-          h6 {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            // text-overflow: ellipsis;
-            width: 100px;
-            margin: 0;
-          }
-        }
-      }
-    }
   }
 }
