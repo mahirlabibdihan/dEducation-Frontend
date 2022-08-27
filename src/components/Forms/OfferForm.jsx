@@ -130,7 +130,11 @@ const OfferForm = (props) => {
           values={values}
           setValues={setValues}
           handleChange={handleChange}
-          subjects={props.tutor.EXPERTISE.split(", ")}
+          subjects={
+            props.tutor.EXPERTISE === null
+              ? []
+              : props.tutor.EXPERTISE.split(", ")
+          }
         />
         <RestrictedButton
           isDisabled={
