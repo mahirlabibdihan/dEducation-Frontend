@@ -33,6 +33,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import BallotIcon from "@mui/icons-material/Ballot";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChalkboard } from "@fortawesome/free-solid-svg-icons";
+import { faScreenUsers } from "@fortawesome/free-solid-svg-icons";
+import Groups2Icon from "@mui/icons-material/Groups";
 import {
   faPersonChalkboard,
   faPenToSquare,
@@ -85,7 +87,7 @@ const Buttons = () => {
           ? {
               label: "My students",
               path: "/my_students",
-              icon: <ManIcon sx={{ fontSize: "2rem" }} />,
+              icon: <Groups2Icon sx={{ fontSize: "2rem" }} />,
             }
           : {
               label: "My tutors",
