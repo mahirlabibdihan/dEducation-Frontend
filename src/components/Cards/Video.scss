@@ -1,0 +1,29 @@
+.video-card {
+  padding-bottom: 2rem;
+  //   border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+  .vbox {
+    .header {
+      gap: 1rem;
+      .vbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+        .notice-tag {
+          display: flex;
+          align-items: center;
+          font-size: 0.8rem;
+          color: grey;
+        }
+        .time-stamp {
+          margin: 0;
+        }
+      }
+    }
+    .details {
+      padding-top: 0.5rem;
+      padding-left: 1.5rem;
+      line-height: 1.4rem;
+    }
+  }
+}

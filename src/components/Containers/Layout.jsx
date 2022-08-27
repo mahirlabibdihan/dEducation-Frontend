@@ -41,6 +41,7 @@ import { Badge } from "@mui/material";
 import { showToast } from "../../App";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import TodayIcon from "@mui/icons-material/Today";
+import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
@@ -60,6 +61,7 @@ const Buttons = () => {
   };
   useEffect(() => {
     setNotification();
+    console.log(location.pathname.split("/")[1]);
   }, [location.pathname]);
   useEffect(() => {
     if (globalCtx.newNotificationFlag) {
@@ -74,7 +76,11 @@ const Buttons = () => {
           path: "/home",
           icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
         },
-
+        {
+          label: "Demo Lectures",
+          path: "/demo_lectures",
+          icon: <OndemandVideoIcon sx={{ fontSize: "2rem" }} />,
+        },
         type === "TUTOR"
           ? {
               label: "My students",
@@ -122,6 +128,7 @@ const Buttons = () => {
           path: "/my_courses",
           icon: <CollectionsBookmarkIcon sx={{ fontSize: "2rem" }} />,
         },
+
         {
           label: "Notice Board",
           path: "/notice_board",

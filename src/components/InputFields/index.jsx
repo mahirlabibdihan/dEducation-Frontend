@@ -734,6 +734,28 @@ export const CreateNoticeFields = ({
     />
   </div>
 );
+
+export const UploadLectureFields = ({ values, handleChange }) => (
+  <div className="input-fields">
+    <MultiLineField
+      rows={8}
+      label={"Description"}
+      type="text"
+      value={values.description}
+      id={"description"}
+      onChange={handleChange}
+    />
+    <MultiLineField
+      rows={4}
+      label={"Video Link"}
+      type="text"
+      value={values.link}
+      id={"link"}
+      onChange={handleChange}
+    />
+  </div>
+);
+
 export const CourseSelectionFields = ({
   values,
   coachingsList,

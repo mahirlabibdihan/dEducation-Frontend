@@ -22,6 +22,7 @@ import {
   Notifications,
   NoticeBoard,
   MySchedule,
+  DemoLectures,
 } from "./pages";
 import Layout from "./components/Containers/Layout";
 import { Background } from "./components";
@@ -100,6 +101,7 @@ const App = () => {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/notice_board" element={<NoticeBoard />} />
             <Route path="/my_schedule" element={<MySchedule />} />
+            <Route path="/demo_lectures" element={<DemoLectures />} />
           </Route>
           <Route element={<Public />}>
             <Route path="/" element={<Landing />} />

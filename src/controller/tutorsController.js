@@ -32,6 +32,20 @@ class TutorsController extends Controller {
     const res = await this.tutorsApi.getApplicantsList(post_id);
     return res;
   };
-
+  getAllMaterials = async () => {
+    const res = await this.tutorsApi.getAllMaterials();
+    return res;
+  };
+  getMyMaterials = async () => {
+    const res = await this.tutorsApi.getMyMaterials();
+    return res;
+  };
+  uploadLecture = async (values) => {
+    const res = await this.tutorsApi.uploadLecture(
+      values.description,
+      values.link
+    );
+    return res;
+  };
 }
 export default TutorsController;

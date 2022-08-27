@@ -25,6 +25,18 @@ class TutorsApi extends Api {
       post_id: post_id,
     });
   };
+  getAllMaterials = async () => {
+    return await this.get(`/tutors/all_materials`);
+  };
+  getMyMaterials = async () => {
+    return await this.get(`/tutors/my_materials`);
+  };
+  uploadLecture = async (description, link) => {
+    return await this.post(`/tutors/upload`, {
+      description: description,
+      link: link,
+    });
+  };
 }
 
 export default TutorsApi;
