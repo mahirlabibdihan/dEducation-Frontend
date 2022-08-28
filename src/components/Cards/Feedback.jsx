@@ -21,11 +21,6 @@ const Feedback = ({ rating, review }) => {
     <Grid className="feedback-card">
       <div className="vbox">
         <div className="hbox header">
-          {/* <img
-            // src={`http://localhost:5000/assets/images/student1.jpg`}
-            alt=" "
-            className="shadow-sm very-small-image"
-          /> */}
           <div className="rating-head poppins-font">
             <FontAwesomeIcon
               icon={faStar}

@@ -2,8 +2,6 @@ import React from "react";
 import "./TutionDetails.scss";
 import { format } from "date-fns";
 const TutionDetails = (props) => {
-
-
   const StudentEnd = (props) => {
     console.log("=>", props.tution.START_TIME.slice(0, -1));
     console.log("=>", new Date("2022-08-01T13:00:00.000"));

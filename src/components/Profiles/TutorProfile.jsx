@@ -11,7 +11,6 @@ const TutorProfile = (props) => {
   }, [props]);
   const About = (props) => {
     return (
-      // props.tutor.NAME === null || props.tutor.GENDER === null ||props.tutor.EXPERTISE||props.tutor.YEARS_OF_EXPERIENCE||
       <h6 className="about-details">
         {`${props.tutor.NAME} is a `}
         <b>{props.tutor.GENDER}</b>
