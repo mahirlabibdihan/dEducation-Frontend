@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import TutorProfile from "../Profiles/TutorProfile";
 import OfferForm from "../Forms/OfferForm";
 import TutionDetails from "./TutionDetails";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import TutionController from "../../controller/tutionController";
 import GlobalContext from "../../store/GlobalContext";
 import TutorsController from "../../controller/tutorsController";
@@ -12,7 +12,8 @@ import "./TutorPanel.scss";
 import { MultiLineField } from "../InputFields";
 import Feedback from "../Cards/Feedback";
 import { useLocation } from "react-router-dom";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
+import { RestrictedButton } from "../Buttons";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 
@@ -38,13 +39,11 @@ const ProfilePanel = (props) => {
       props.tution.STATUS === "REJECTED" ||
       props.tution.STATUS === "CANCELLED" ? (
         <>
-          <Button
-            variant="contained"
-            className="blue-button full-width"
+          <RestrictedButton
+            isDisabled={props.tutor.AVAILABILITY === "Unavailable"}
+            label="Offer"
             onClick={(e) => props.setPage("offer")}
-          >
-            Offer
-          </Button>
+          ></RestrictedButton>
         </>
       ) : (
         <div>
