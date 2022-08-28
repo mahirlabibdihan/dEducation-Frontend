@@ -5,6 +5,7 @@ import ProfileController from "../../controller/profileController";
 import { format } from "date-fns";
 import { StudentProfileSettingsFields } from "../InputFields";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 const profileController = new ProfileController();
 const StudentProfileSettings = () => {
   const [user, setUser] = useState({
@@ -18,6 +19,7 @@ const StudentProfileSettings = () => {
     institution: "",
     address: "",
   });
+  const [open, setOpen] = useState(false);
   const setProfileData = async () => {
     const res = await profileController.getProfile();
     const data = res.data;
@@ -73,10 +75,11 @@ const StudentProfileSettings = () => {
           <Button
             variant="contained"
             className="blue-button standard-button-width horizontal-center"
-            onClick={handleSave}
+            onClick={() => setOpen(true)}
           >
             Save
           </Button>
+          <Confirmation open={open} setOpen={setOpen} onConfirm={handleSave} />
         </div>
       </Zoom>
     </div>

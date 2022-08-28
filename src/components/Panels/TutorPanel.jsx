@@ -14,11 +14,13 @@ import Feedback from "../Cards/Feedback";
 import { useLocation } from "react-router-dom";
 import Zoom from "@mui/material/Zoom";
 import { RestrictedButton } from "../Buttons";
+import Confirmation from "../Cards/Confirmation";
 const tutorsController = new TutorsController();
 const tutionController = new TutionController();
 
 const ProfilePanel = (props) => {
   const location = useLocation();
+  const [open, setOpen] = useState(false);
   return (
     <>
       <TutorProfile tutor={props.tutor} education={props.education} />
@@ -57,10 +59,15 @@ const ProfilePanel = (props) => {
               <Button
                 variant="Contained"
                 className="red-button full-width"
-                onClick={props.handleCancel}
+                onClick={() => setOpen(true)}
               >
                 Cancel
               </Button>
+              <Confirmation
+                open={open}
+                setOpen={setOpen}
+                onConfirm={props.handleCancel}
+              />
             </div>
           ) : location.pathname.split("/")[1] === "home" ? (
             <>
@@ -107,24 +114,20 @@ const ProfilePanel = (props) => {
                 <Button
                   variant="Contained"
                   className="blue-button full-width"
-                  onClick={() => {
-                    props.submitFeedback();
-                  }}
+                  onClick={() => setOpen(true)}
                 >
                   Submit
                 </Button>
+                <Confirmation
+                  open={open}
+                  setOpen={setOpen}
+                  onConfirm={props.submitFeedback}
+                />
               </div>
             </div>
           )}
         </div>
       )}
-      {/* <Button
-        variant="contained"
-        className="blue-button full-width"
-        onClick={(e) => props.setPage("offer")}
-      >
-        Feedbacks
-      </Button> */}
     </>
   );
 };

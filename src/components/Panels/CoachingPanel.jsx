@@ -10,6 +10,7 @@ import { CoachingCoursesTable } from "../Tables/Tables";
 import { useEffect } from "react";
 import Rating from "@mui/material/Rating";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 const coachingController = new CoachingController();
 const cookies = new Cookies();
 
@@ -39,6 +40,7 @@ const CoachingPanel = (props) => {
   const type = cookies.get("type");
   const [coursesList, setCoursesList] = useState([]);
   const [rating, setRating] = useState(0);
+  const [open, setOpen] = useState(false);
   const joinCoaching = async () => {
     const res = await coachingController.joinCoaching(
       props.coaching.COACHING_ID
@@ -76,21 +78,35 @@ const CoachingPanel = (props) => {
             <CoachingBanner coaching={props.coaching} />
             {type === "STUDENT" && props.coaching.TYPE !== "MEMBER" ? (
               props.coaching.TYPE === null ? (
-                <Button
-                  variant="contained"
-                  className="blue-button horizontal-center full-width"
-                  onClick={joinCoaching}
-                >
-                  Join
-                </Button>
+                <>
+                  <Button
+                    variant="contained"
+                    className="blue-button horizontal-center full-width"
+                    onClick={() => setOpen(true)}
+                  >
+                    Join
+                  </Button>
+                  <Confirmation
+                    open={open}
+                    setOpen={setOpen}
+                    onConfirm={joinCoaching}
+                  />
+                </>
               ) : (
-                <Button
-                  variant="contained"
-                  className="red-button horizontal-center full-width"
-                  onClick={cancelJoin}
-                >
-                  Cancel
-                </Button>
+                <>
+                  <Button
+                    variant="contained"
+                    className="red-button horizontal-center full-width"
+                    onClick={() => setOpen(true)}
+                  >
+                    Cancel
+                  </Button>
+                  <Confirmation
+                    open={open}
+                    setOpen={setOpen}
+                    onConfirm={cancelJoin}
+                  />
+                </>
               )
             ) : (
               <div className="flex-center vbox">

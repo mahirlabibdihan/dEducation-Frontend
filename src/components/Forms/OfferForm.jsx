@@ -9,10 +9,12 @@ import { useEffect } from "react";
 import { RestrictedButton } from "../Buttons";
 import { Zoom } from "@mui/material";
 import { getTime } from "../../service/DateUtils";
+import Confirmation from "../Cards/Confirmation";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
   const globalCtx = useContext(GlobalContext);
+  const [open, setOpen] = useState(false);
   const convertTime12to24 = (time12h) => {
     const [time, modifier] = time12h.split(" ");
     let [hours, minutes] = time.split(":");
@@ -146,9 +148,10 @@ const OfferForm = (props) => {
             values.subjects.length === 0 ||
             values.start_date === null
           }
-          onClick={handleOffer}
+          onClick={() => setOpen(true)}
           label="Offer"
         ></RestrictedButton>
+        <Confirmation open={open} setOpen={setOpen} onConfirm={handleOffer} />
       </div>
     </Zoom>
   );

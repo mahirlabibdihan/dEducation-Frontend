@@ -11,6 +11,7 @@ import { CourseSelectionFields } from "../InputFields";
 import CourseSelectionForm from "./CourseSelectionForm";
 import { MultiLineField } from "../InputFields";
 import "./styles.scss";
+import Confirmation from "../Cards/Confirmation";
 import { Zoom } from "@mui/material";
 import Cookies from "universal-cookie";
 // import SelectionField from "../../components/SelectionField";
@@ -24,6 +25,7 @@ const NoticeForm = () => {
   const [classList, setClassList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [batchList, setBatchList] = useState([]);
+  const [open, setOpen] = useState(false);
   const initValues = {
     coaching: "",
     class: "",
@@ -93,9 +95,10 @@ const NoticeForm = () => {
             values.notice === "" ||
             values.notice === undefined
           }
-          onClick={postNotice}
+          onClick={() => setOpen(true)}
           label="Post"
         />
+        <Confirmation open={open} setOpen={setOpen} onConfirm={postNotice} />
       </div>
     </Zoom>
   );

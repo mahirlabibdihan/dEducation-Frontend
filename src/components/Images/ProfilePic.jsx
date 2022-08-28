@@ -14,7 +14,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
-import UploadConfirmation from "./UploadConfirmation";
+import Confirmation from "../Cards/Confirmation";
 import { Zoom } from "@mui/material";
 import { Fade } from "@mui/material";
 import "./ProfilePic.scss";
@@ -40,11 +40,10 @@ const ProfilePic = () => {
       console.log(file);
       const formData = new FormData();
       formData.append("file", file);
-      console.log("Upload request");
       const res = await profileController.uploadImage(formData);
-      console.log("IMAGE", res);
       if (res.success) {
         setImage(res.data.image);
+        setFile("");
       }
     }
   };
@@ -69,11 +68,7 @@ const ProfilePic = () => {
       <div className="upload-image-icon">
         <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
       </div>
-      <UploadConfirmation
-        open={open}
-        setOpen={setOpen}
-        onConfirm={setProfileImage}
-      />
+      <Confirmation open={open} setOpen={setOpen} onConfirm={setProfileImage} />
     </>
   );
 };

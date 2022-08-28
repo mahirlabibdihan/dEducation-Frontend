@@ -15,6 +15,7 @@ import { Zoom } from "@mui/material";
 import Cookies from "universal-cookie";
 import TutorsController from "../../controller/tutorsController";
 import { UploadLectureFields } from "../InputFields";
+import Confirmation from "../Cards/Confirmation";
 const tutorsController = new TutorsController();
 // import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
@@ -27,6 +28,7 @@ const LectureForm = () => {
     description: "",
     link: "",
   };
+  const [open, setOpen] = useState(false);
   const [values, setValues] = useState(initValues);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -50,9 +52,10 @@ const LectureForm = () => {
 
         <RestrictedButton
           isDisabled={values.link === ""}
-          onClick={uploadLecture}
+          onClick={() => setOpen(true)}
           label="Upload"
         />
+        <Confirmation open={open} setOpen={setOpen} onConfirm={uploadLecture} />
       </div>
     </Zoom>
   );

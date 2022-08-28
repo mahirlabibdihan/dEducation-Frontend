@@ -8,9 +8,11 @@ import "./RequestForm.scss";
 import { RequestFormFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 const tutionController = new TutionController();
 const RequestForm = () => {
   const globalCtx = useContext(GlobalContext);
+  const [open, setOpen] = useState(false);
   const [values, setValues] = useState({
     tution_type: "Offline",
     desired_tutor_gender: "Any",
@@ -41,9 +43,10 @@ const RequestForm = () => {
         <RequestFormFields values={values} handleChange={handleChange} />
         <RestrictedButton
           isDisabled={values.subjects.length === 0}
-          onClick={handlePost}
+          onClick={() => setOpen(true)}
           label="Post"
         ></RestrictedButton>
+        <Confirmation open={open} setOpen={setOpen} onConfirm={handlePost} />
       </div>
     </Zoom>
   );

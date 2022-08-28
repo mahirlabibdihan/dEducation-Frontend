@@ -9,6 +9,7 @@ import { AddCourseFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import CourseSelectionForm from "./CourseSelectionForm";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 import "./styles.scss";
 // import SelectionField from "../../components/SelectionField";
 const coachingController = new CoachingController();
@@ -22,6 +23,7 @@ const AddCourseForm = () => {
   const [classList, setClassList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [batchList, setBatchList] = useState([]);
+  const [open, setOpen] = useState(false);
   const initValues = {
     coaching: "",
     class: "",
@@ -104,10 +106,11 @@ const AddCourseForm = () => {
         ) : (
           <RestrictedButton
             isDisabled={values.batch === ""}
-            onClick={enrollCourse}
+            onClick={() => setOpen(true)}
             label="Enroll"
           />
         )}
+        <Confirmation open={open} setOpen={setOpen} onConfirm={enrollCourse} />
       </div>
     </Zoom>
   );

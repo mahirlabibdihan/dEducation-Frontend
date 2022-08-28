@@ -8,6 +8,7 @@ import GlobalContext from "../../store/GlobalContext";
 import { CreateCourseFields } from "../../components/InputFields";
 import { RestrictedButton } from "../Buttons";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 import "./styles.scss";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -23,6 +24,7 @@ const CreateCourseForm = () => {
     time: "",
     seats: "",
   };
+  const [open, setOpen] = useState(false);
   const [values, setValues] = useState(initValues);
   const setList = async () => {
     const res = await coachingController.getMyList();
@@ -57,9 +59,10 @@ const CreateCourseForm = () => {
             values.class === "" ||
             values.subject === ""
           }
-          onClick={createCourse}
+          onClick={() => setOpen(true)}
           label="Create"
         />
+        <Confirmation open={open} setOpen={setOpen} onConfirm={createCourse} />
       </div>
     </Zoom>
   );

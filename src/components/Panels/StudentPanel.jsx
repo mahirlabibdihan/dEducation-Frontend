@@ -12,6 +12,7 @@ import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
 import { Zoom } from "@mui/material";
 import { MultiLineField } from "../InputFields/InputField";
+import Confirmation from "../Cards/Confirmation";
 const tutionController = new TutionController();
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -19,6 +20,7 @@ const StudentPanel = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [values, setValues] = useState({ reason: "" });
   const globalCtx = useContext(GlobalContext);
+  const [open, setOpen] = useState(false);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };

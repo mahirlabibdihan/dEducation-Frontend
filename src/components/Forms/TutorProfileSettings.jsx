@@ -5,8 +5,10 @@ import ProfileController from "../../controller/profileController";
 import { format } from "date-fns";
 import { TutorProfileSettingsFields, EducationFields } from "../InputFields";
 import { Zoom } from "@mui/material";
+import Confirmation from "../Cards/Confirmation";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {
+  const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
     name: "",
     gender: "",
@@ -173,10 +175,11 @@ const TutorProfileSettings = () => {
           <Button
             variant="contained"
             className="blue-button standard-button-width horizontal-center mt-3"
-            onClick={handleSave}
+            onClick={() => setOpen(true)}
           >
             Save
           </Button>
+          <Confirmation open={open} setOpen={setOpen} onConfirm={handleSave} />
         </div>
       </Zoom>
     </div>

@@ -7,6 +7,7 @@ import { BatchFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import { Zoom, Divider } from "@mui/material";
 import { getTime } from "../../service/DateUtils";
+import Confirmation from "../Cards/Confirmation";
 const courseController = new CourseController();
 
 export const BatchForm = () => {
@@ -20,6 +21,7 @@ export const BatchForm = () => {
     seats: 0,
   };
   const [values, setValues] = useState(initValues);
+  const [open, setOpen] = useState(false);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -64,16 +66,10 @@ export const BatchForm = () => {
             values.start_time.getTime() >= values.end_time.getTime() ||
             values.start_date === null
           }
-          onClick={addBatch}
+          onClick={() => setOpen(true)}
           label="Add"
         />
-        {/* <Button
-        variant="contained"
-        className="blue-button full-width"
-        onClick={addBatch}
-      >
-        Add
-      </Button> */}
+        <Confirmation open={open} setOpen={setOpen} onConfirm={addBatch} />
       </div>
     </Zoom>
   );

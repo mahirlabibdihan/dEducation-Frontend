@@ -5,6 +5,7 @@ import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { CoachingFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
+import Confirmation from "../Cards/Confirmation";
 import { Zoom } from "@mui/material";
 const coachingController = new CoachingController();
 
@@ -15,6 +16,7 @@ const CoachingForm = () => {
     phone: "",
     address: "",
   });
+  const [open, setOpen] = useState(false);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -34,8 +36,13 @@ const CoachingForm = () => {
           isDisabled={
             values.name === "" || values.phone === "" || values.address === ""
           }
-          onClick={createCoaching}
+          onClick={() => setOpen(true)}
           label="Create"
+        />
+        <Confirmation
+          open={open}
+          setOpen={setOpen}
+          onConfirm={createCoaching}
         />
       </div>
     </Zoom>
