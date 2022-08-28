@@ -44,200 +44,202 @@ import { showToast } from "../../App";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import TodayIcon from "@mui/icons-material/Today";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
+import LeftPanel from "../Panels/LeftPanel";
 // import GlobalContext from "../../store/GlobalContext";
 const cookies = new Cookies();
 const authController = new AuthController();
 const profileController = new ProfileController();
-const Buttons = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const type = cookies.get("type");
-  const globalCtx = useContext(GlobalContext);
-  const setNotification = async () => {
-    if (globalCtx.newNotificationFlag === false) {
-      const res = await profileController.isNotificationAvailable();
-      if (res.success === true && res.data === true) {
-        globalCtx.setNewNotificationFlag(true);
-      }
-    }
-  };
-  useEffect(() => {
-    setNotification();
-    console.log(location.pathname.split("/")[1]);
-  }, [location.pathname]);
-  useEffect(() => {
-    if (globalCtx.newNotificationFlag) {
-      showToast("New notification available");
-    }
-  }, [globalCtx.newNotificationFlag]);
-  return (
-    <>
-      {[
-        {
-          label: "Home",
-          path: "/home",
-          icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
-        },
-        {
-          label: "Demo Lectures",
-          path: "/demo_lectures",
-          icon: <OndemandVideoIcon sx={{ fontSize: "2rem" }} />,
-        },
-        type === "TUTOR"
-          ? {
-              label: "My students",
-              path: "/my_students",
-              icon: <Groups2Icon sx={{ fontSize: "2rem" }} />,
-            }
-          : {
-              label: "My tutors",
-              path: "/my_tutors",
-              icon: (
-                <FontAwesomeIcon
-                  icon={faPersonChalkboard}
-                  style={{ fontSize: "1.8rem" }}
-                />
-              ),
-            },
-        type === "TUTOR"
-          ? {
-              label: "Pending Requests",
-              path: "/pending_requests",
-              icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
-            }
-          : {
-              label: "Request Tutor",
-              path: "/req_tutor",
-              icon: (
-                <FontAwesomeIcon
-                  icon={faPenToSquare}
-                  style={{ fontSize: "1.8rem" }}
-                />
-              ),
-            },
-        {
-          label: "My coachings",
-          path: "/my_coachings",
-          icon: (
-            <FontAwesomeIcon
-              icon={faChalkboard}
-              style={{ fontSize: "1.8rem" }}
-            />
-          ),
-        },
-        {
-          label: "My courses",
-          path: "/my_courses",
-          icon: <CollectionsBookmarkIcon sx={{ fontSize: "2rem" }} />,
-        },
 
-        {
-          label: "Notice Board",
-          path: "/notice_board",
-          icon: <BallotIcon sx={{ fontSize: "2rem" }} />,
-        },
-        {
-          label: "My schedule",
-          path: "/my_schedule",
-          icon: <TodayIcon sx={{ fontSize: "2rem" }} />,
-        },
+// const Buttons = () => {
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const type = cookies.get("type");
+//   const globalCtx = useContext(GlobalContext);
+//   const setNotification = async () => {
+//     if (globalCtx.newNotificationFlag === false) {
+//       const res = await profileController.isNotificationAvailable();
+//       if (res.success === true && res.data === true) {
+//         globalCtx.setNewNotificationFlag(true);
+//       }
+//     }
+//   };
+//   useEffect(() => {
+//     setNotification();
+//     console.log(location.pathname.split("/")[1]);
+//   }, [location.pathname]);
+//   useEffect(() => {
+//     if (globalCtx.newNotificationFlag) {
+//       showToast("New notification available");
+//     }
+//   }, [globalCtx.newNotificationFlag]);
+//   return (
+//     <>
+//       {[
+//         {
+//           label: "Home",
+//           path: "/home",
+//           icon: <HomeIcon sx={{ fontSize: "2rem" }} />,
+//         },
+//         {
+//           label: "Demo Lectures",
+//           path: "/demo_lectures",
+//           icon: <OndemandVideoIcon sx={{ fontSize: "2rem" }} />,
+//         },
+//         type === "TUTOR"
+//           ? {
+//               label: "My students",
+//               path: "/my_students",
+//               icon: <Groups2Icon sx={{ fontSize: "2rem" }} />,
+//             }
+//           : {
+//               label: "My tutors",
+//               path: "/my_tutors",
+//               icon: (
+//                 <FontAwesomeIcon
+//                   icon={faPersonChalkboard}
+//                   style={{ fontSize: "1.8rem" }}
+//                 />
+//               ),
+//             },
+//         type === "TUTOR"
+//           ? {
+//               label: "Pending Requests",
+//               path: "/pending_requests",
+//               icon: <CameraFrontOutlinedIcon sx={{ fontSize: "2rem" }} />,
+//             }
+//           : {
+//               label: "Request Tutor",
+//               path: "/req_tutor",
+//               icon: (
+//                 <FontAwesomeIcon
+//                   icon={faPenToSquare}
+//                   style={{ fontSize: "1.8rem" }}
+//                 />
+//               ),
+//             },
+//         {
+//           label: "My coachings",
+//           path: "/my_coachings",
+//           icon: (
+//             <FontAwesomeIcon
+//               icon={faChalkboard}
+//               style={{ fontSize: "1.8rem" }}
+//             />
+//           ),
+//         },
+//         {
+//           label: "My courses",
+//           path: "/my_courses",
+//           icon: <CollectionsBookmarkIcon sx={{ fontSize: "2rem" }} />,
+//         },
 
-        {
-          label: "Notifications",
-          path: "/notifications",
-          icon:
-            globalCtx.newNotificationFlag === true ? (
-              <NotificationsIcon
-                sx={{
-                  fontSize: "2rem",
-                  color: "orange",
-                }}
-              />
-            ) : (
-              <NotificationsIcon
-                sx={{
-                  fontSize: "2rem",
-                }}
-              />
-            ),
-        },
-        {
-          label: "Profile",
-          path: "/profile",
-          icon: <AccountCircleIcon sx={{ fontSize: "2rem" }} />,
-        },
-        {
-          label: "Logout",
-          path: "/",
-          icon: <LogoutIcon sx={{ fontSize: "2rem" }} />,
-        },
-      ].map((button, index) => (
-        <ListItemButton
-          className={
-            (button.path.split("/")[1] === location.pathname.split("/")[1]
-              ? "active-"
-              : "") + "side-button"
-          }
-          component={Button}
-          onClick={() => {
-            setTimeout(() => {
-              if (button.path === "/") {
-                globalCtx.setNewNotificationFlag(false);
-                authController.logout();
-              }
-              // if(setLoading(true);
-              navigate(button.path);
-            }, 300);
-          }}
-        >
-          <ListItemIcon className="side-icon">{button.icon}</ListItemIcon>
-          <Typography className="my-text">{button.label}</Typography>
-        </ListItemButton>
-      ))}
-    </>
-  );
-};
+//         {
+//           label: "Notice Board",
+//           path: "/notice_board",
+//           icon: <BallotIcon sx={{ fontSize: "2rem" }} />,
+//         },
+//         {
+//           label: "My schedule",
+//           path: "/my_schedule",
+//           icon: <TodayIcon sx={{ fontSize: "2rem" }} />,
+//         },
 
-const LeftPanel = () => {
-  const globalCtx = useContext(GlobalContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const handleBack = () => {
-    const list = location.pathname.split("/");
-    list.pop();
-    navigate(list.join("/"));
-  };
-  return (
-    <div className="left-panel" aria-hidden="true">
-      <div className="logo">
-        <img src={Logo} className="logo-image" alt="logo"></img>
-        <Typography className="logo-name">{CONSTANTS.BRAND_NAME}</Typography>
-      </div>
-      <Divider />
-      <List className="side-buttons">
-        <Buttons />
-      </List>
-      {location.pathname.split("/").length > 2 ? (
-        <div
-          style={{
-            padding: "2rem",
-            marginTop: "auto",
-            // marginTop: "18.3vh",
-            // display: "flex",
-            // justifyContent: "flex-end",
-          }}
-        >
-          <Button className="blue-button full-width" onClick={handleBack}>
-            {/* <KeyboardBackspaceIcon sx={{ fontSize: "3rem" }} /> */}
-            Back
-          </Button>
-        </div>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
+//         {
+//           label: "Notifications",
+//           path: "/notifications",
+//           icon:
+//             globalCtx.newNotificationFlag === true ? (
+//               <NotificationsIcon
+//                 sx={{
+//                   fontSize: "2rem",
+//                   color: "orange",
+//                 }}
+//               />
+//             ) : (
+//               <NotificationsIcon
+//                 sx={{
+//                   fontSize: "2rem",
+//                 }}
+//               />
+//             ),
+//         },
+//         {
+//           label: "Profile",
+//           path: "/profile",
+//           icon: <AccountCircleIcon sx={{ fontSize: "2rem" }} />,
+//         },
+//         {
+//           label: "Logout",
+//           path: "/",
+//           icon: <LogoutIcon sx={{ fontSize: "2rem" }} />,
+//         },
+//       ].map((button, index) => (
+//         <ListItemButton
+//           className={
+//             (button.path.split("/")[1] === location.pathname.split("/")[1]
+//               ? "active-"
+//               : "") + "side-button"
+//           }
+//           component={Button}
+//           onClick={() => {
+//             setTimeout(() => {
+//               if (button.path === "/") {
+//                 globalCtx.setNewNotificationFlag(false);
+//                 authController.logout();
+//               }
+//               // if(setLoading(true);
+//               navigate(button.path);
+//             }, 300);
+//           }}
+//         >
+//           <ListItemIcon className="side-icon">{button.icon}</ListItemIcon>
+//           <Typography className="my-text">{button.label}</Typography>
+//         </ListItemButton>
+//       ))}
+//     </>
+//   );
+// };
+
+// const LeftPanel = () => {
+//   const globalCtx = useContext(GlobalContext);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const handleBack = () => {
+//     const list = location.pathname.split("/");
+//     list.pop();
+//     navigate(list.join("/"));
+//   };
+//   return (
+//     <div className="left-panel" aria-hidden="true">
+//       <div className="logo">
+//         <img src={Logo} className="logo-image" alt="logo"></img>
+//         <Typography className="logo-name">{CONSTANTS.BRAND_NAME}</Typography>
+//       </div>
+//       <Divider />
+//       <List className="side-buttons">
+//         <Buttons />
+//       </List>
+//       {location.pathname.split("/").length > 2 ? (
+//         <div
+//           style={{
+//             padding: "2rem",
+//             marginTop: "auto",
+//             // marginTop: "18.3vh",
+//             // display: "flex",
+//             // justifyContent: "flex-end",
+//           }}
+//         >
+//           <Button className="blue-button full-width" onClick={handleBack}>
+//             {/* <KeyboardBackspaceIcon sx={{ fontSize: "3rem" }} /> */}
+//             Back
+//           </Button>
+//         </div>
+//       ) : (
+//         <></>
+//       )}
+//     </div>
+//   );
+// };
 const Layout = (props) => {
   const globalCtx = useContext(GlobalContext);
 
