@@ -36,8 +36,8 @@ class TutionController extends Controller {
     this.showMessage("Accepted tution offer", res);
     return res;
   };
-  rejectOffer = async (student_id) => {
-    const res = await this.tutionApi.rejectOffer(student_id);
+  rejectOffer = async (student_id, reason) => {
+    const res = await this.tutionApi.rejectOffer(student_id, reason);
     this.showMessage("Rejected tution offer", res);
     return res;
   };
