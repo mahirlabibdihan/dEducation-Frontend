@@ -3,6 +3,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import UploadConfirmation from "./UploadConfirmation";
+import { API_BASE_URL } from "../..";
 const coachingController = new CoachingController();
 
 const ImageUploader = (props) => {
@@ -42,7 +43,7 @@ const ImageUploader = (props) => {
   return (
     <>
       <img
-        src={`http://localhost:5000/assets/images/${
+        src={`${API_BASE_URL}/assets/images/${
           image === null ? "sample.jpg" : image
         }`}
         // onClick={() => ImageUpload()}

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { API_BASE_URL } from "../index";
 import Cookies from "universal-cookie";
+import RealtimeNotification from "../service/RealtimeNotification";
 export default class Api {
   cookies = new Cookies();
   get = async (url) => {
     const token = this.cookies.get("token");
     try {
-      const res = await axios.get(API_BASE_URL + url, {
+      const res = await axios.get(API_BASE_URL + "/api/v1.0.0" + url, {
         headers: { authorization: "Bearer " + token },
       });
       if (res.status === 200) {
@@ -16,15 +17,15 @@ export default class Api {
         };
       }
     } catch (err) {
+      console.log(":", err);
       return err.response.data;
     }
   };
   post = async (url, body) => {
     const token = this.cookies.get("token");
-    console.log(API_BASE_URL + url);
+    console.log(API_BASE_URL + url, body);
     try {
-      console.log("HERE-2");
-      const res = await axios.post(API_BASE_URL + url, body, {
+      const res = await axios.post(API_BASE_URL + "/api/v1.0.0" + url, body, {
         headers: { authorization: "Bearer " + token },
       });
       console.log(res);

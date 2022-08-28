@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProfileController from "../../controller/profileController";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import "./ProfilePic.scss";
+import { API_BASE_URL } from "../..";
 const profileController = new ProfileController();
 const ChangeablePicture = (props) => {
   const [file, setFile] = useState("");
@@ -24,7 +25,7 @@ const ChangeablePicture = (props) => {
   return (
     <>
       <img
-        src={`http://localhost:5000/assets/images/${
+        src={`${API_BASE_URL}/assets/images/${
           props.image === undefined ? "sample.jpg" : props.image
         }`}
         alt=" "

@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import Zoom from "@mui/material/Zoom";
 import { showToast } from "../../App";
 import "./Notification.scss";
+import { API_BASE_URL } from "../..";
 const tutionController = new TutionController();
 const Notification = (props) => {
   // Similar to facebook post
@@ -26,7 +27,7 @@ const Notification = (props) => {
       >
         <div className="hbox">
           <img
-            src={`http://localhost:5000/assets/images/${props.notification.IMAGE}`}
+            src={`${API_BASE_URL}/assets/images/${props.notification.IMAGE}`}
             alt=" "
             className="shadow-sm small-image"
           />

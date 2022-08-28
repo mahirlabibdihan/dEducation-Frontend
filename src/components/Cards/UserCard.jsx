@@ -4,6 +4,7 @@ import "./UserCard.scss";
 import { CSSTransition } from "react-transition-group";
 import Zoom from "@mui/material/Zoom";
 import { Fade } from "@mui/material";
+import { API_BASE_URL } from "../..";
 const UserCard = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [show, setShow] = useState(false);
@@ -38,7 +39,7 @@ const UserCard = (props) => {
     >
       <Fade in={props.user.IMAGE !== undefined}>
         <img
-          src={`http://localhost:5000/assets/images/${props.user.IMAGE}`}
+          src={`${API_BASE_URL}/assets/images/${props.user.IMAGE}`}
           alt=" "
         />
       </Fade>

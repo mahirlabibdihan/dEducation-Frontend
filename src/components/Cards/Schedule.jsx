@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { showToast } from "../../App";
 import Zoom from "@mui/material/Zoom";
 import "./Schedule.scss";
+import { API_BASE_URL } from "../..";
 const tutionController = new TutionController();
 // const Schedule = (props) => {
 //   // Similar to facebook post
@@ -55,7 +56,7 @@ const Schedule = ({ schedule, x, y, w }) => {
     >
       <div className="hbox poppins-font content">
         <img
-          src={`http://localhost:5000/assets/images/${schedule.IMAGE}`}
+          src={`${API_BASE_URL}/assets/images/${schedule.IMAGE}`}
           alt=" "
           className="shadow-sm very-small-image"
         />

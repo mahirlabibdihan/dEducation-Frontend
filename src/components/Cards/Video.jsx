@@ -9,6 +9,7 @@ import { showToast } from "../../App";
 import Zoom from "@mui/material/Zoom";
 import "./Video.scss";
 import ReactPlayer from "react-player";
+import { API_BASE_URL } from "../..";
 const tutionController = new TutionController();
 const Video = ({ video }) => {
   // Similar to facebook post
@@ -22,7 +23,7 @@ const Video = ({ video }) => {
         <div className="vbox">
           <div className="hbox header">
             <img
-              src={`http://localhost:5000/assets/images/${video.IMAGE}`}
+              src={`${API_BASE_URL}/assets/images/${video.IMAGE}`}
               alt=" "
               className="shadow-sm small-image"
             />

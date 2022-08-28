@@ -18,7 +18,7 @@ import UploadConfirmation from "./UploadConfirmation";
 import { Zoom } from "@mui/material";
 import { Fade } from "@mui/material";
 import "./ProfilePic.scss";
-
+import { API_BASE_URL } from "../..";
 const profileController = new ProfileController();
 
 const ProfilePic = () => {
@@ -56,7 +56,7 @@ const ProfilePic = () => {
     <>
       <Fade in={image !== undefined}>
         <img
-          src={`http://localhost:5000/assets/images/${
+          src={`${API_BASE_URL}/assets/images/${
             image === null ? "sample.jpg" : image
           }`}
           // onClick={() => ImageUpload()}
@@ -87,7 +87,7 @@ export const PublicProfilePic = (props) => {
     <>
       <Fade in={image !== undefined}>
         <img
-          src={`http://localhost:5000/assets/images/${
+          src={`${API_BASE_URL}/assets/images/${
             image === null ? "sample.jpg" : image
           }`}
           // onClick={() => ImageUpload()}

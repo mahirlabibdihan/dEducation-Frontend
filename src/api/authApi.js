@@ -5,12 +5,15 @@ import Api from "./base";
 class AuthApi extends Api {
   signup = async (data) => {
     try {
-      let res = await axios.post(API_BASE_URL + "/auth/signup", {
-        name: data.name,
-        email: data.email,
-        pass: data.pass,
-        type: data.type,
-      });
+      let res = await axios.post(
+        API_BASE_URL + "/api/v1.0.0" + "/auth/signup",
+        {
+          name: data.name,
+          email: data.email,
+          pass: data.pass,
+          type: data.type,
+        }
+      );
       if (res.status === 200) {
         return {
           success: true,
@@ -23,7 +26,7 @@ class AuthApi extends Api {
 
   login = async (data) => {
     try {
-      let res = await axios.post(API_BASE_URL + "/auth/login", {
+      let res = await axios.post(API_BASE_URL + "/api/v1.0.0" + "/auth/login", {
         email: data.email,
         pass: data.pass,
         type: data.type,
