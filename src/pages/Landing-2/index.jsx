@@ -8,16 +8,19 @@ import Button from "@mui/material/Button";
 import { createSearchParams } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 import { useEffect } from "react";
+import { Fade } from "@mui/material";
+import { Slide } from "@mui/material";
 const Home = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(true);
   const [time1, setTime1] = useState("start");
   const [time2, setTime2] = useState("start");
   const [time3, setTime3] = useState("start");
   const [write, setWrite] = useState("write");
   useEffect(() => {
-    setTimeout(() => {
-      setWrite("static");
-    }, 3000);
+    // setTimeout(() => {
+    //   setWrite("static");
+    // }, 3000);
   }, []);
   return (
     <Grid className={`background`}>
@@ -37,46 +40,62 @@ const Home = () => {
         alt="bg-spark"
       />
       <Grid className="landing-container">
-        <div className="type-writer-brand">
-          <Typewriter
-            onInit={(typewriter) => {
-              typewriter.typeString("DEDUCATION").start();
-            }}
-          />
-        </div>
-        <div className="type-writer-slogan">
-          <Typewriter
-            onInit={(typewriter) => {
-              typewriter.typeString("Dedication to Education").start();
-              // typewriter.stop();
-            }}
-          />
-        </div>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setTimeout(() => {
-              setTime1("end");
-            }, 0);
-            setTimeout(() => {
-              setTime2("end");
-            }, 110);
-            setTimeout(() => {
-              setTime3("end");
-            }, 250);
-            setTimeout(() => {
-              navigate({
-                pathname: "/login",
-                search: createSearchParams({
-                  type: "STUDENT",
-                }).toString(),
-              });
-            }, 2000);
-          }}
-          className="rounded mt-3 get-started-button"
+        {show ? (
+          <>
+            <div className="type-writer-brand">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.typeString("DEDUCATION").start();
+                }}
+              />
+            </div>
+            <div className="type-writer-slogan">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.typeString("Dedication to Education").start();
+                  // typewriter.stop();
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+        <Slide
+          direction="up"
+          in={show}
+          mountOnEnter
+          unmountOnExit
+          timeout={1000}
         >
-          Get Started
-        </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setShow(false);
+              setWrite("delete");
+              setTimeout(() => {
+                setTime1("end");
+              }, 0);
+              setTimeout(() => {
+                setTime2("end");
+              }, 110);
+              setTimeout(() => {
+                setTime3("end");
+              }, 250);
+              setTimeout(() => {
+                navigate({
+                  pathname: "/login",
+                  search: createSearchParams({
+                    type: "STUDENT",
+                  }).toString(),
+                });
+              }, 2000);
+            }}
+            className="rounded mt-3 get-started-button"
+          >
+            Get Started
+          </Button>
+        </Slide>
         {/* <Button
           variant="contained"
           onClick={() => {
