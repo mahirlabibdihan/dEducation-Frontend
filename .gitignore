@@ -39,3 +39,4 @@ todo.txt
 *.env
 *.psd
 *.vscode
+*.json
