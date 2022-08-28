@@ -1,23 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
 import CourseController from "../../controller/courseController";
 import GlobalContext from "../../store/GlobalContext";
 import { useSearchParams } from "react-router-dom";
 import { format } from "date-fns";
 import { BatchFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
-import { Zoom } from "@mui/material";
+import { Zoom, Divider } from "@mui/material";
+import { getTime } from "../../service/DateUtils";
 const courseController = new CourseController();
 
 export const BatchForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const initValues = {
-    start_date: "",
+    start_date: null,
     days: [],
-    start_time: new Date(),
-    end_time: new Date(),
+    start_time: getTime(8),
+    end_time: getTime(9),
     seats: 0,
   };
   const [values, setValues] = useState(initValues);
@@ -63,7 +62,7 @@ export const BatchForm = () => {
             values.days === [] ||
             values.seats === 0 ||
             values.start_time.getTime() >= values.end_time.getTime() ||
-            values.start_date === ""
+            values.start_date === null
           }
           onClick={addBatch}
           label="Add"

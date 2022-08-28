@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { useEffect } from "react";
 import { RestrictedButton } from "../Buttons";
 import { Zoom } from "@mui/material";
+import { getTime } from "../../service/DateUtils";
 const tutionController = new TutionController();
 
 const OfferForm = (props) => {
@@ -32,10 +33,10 @@ const OfferForm = (props) => {
         ? {
             tution_type: "Offline",
             subjects: [],
-            start_date: "",
+            start_date: null,
             days: [],
-            start_time: new Date(),
-            end_time: new Date(),
+            start_time: getTime(8),
+            end_time: getTime(9),
             salary: 0,
           }
         : {
@@ -47,7 +48,7 @@ const OfferForm = (props) => {
                 : props.tution.SUBJECTS.split(", "),
             start_date:
               props.tution.START_DATE === null
-                ? ""
+                ? null
                 : new Date(props.tution.START_DATE),
             days:
               props.tution.CLASS_DAYS === null
@@ -55,11 +56,11 @@ const OfferForm = (props) => {
                 : props.tution.CLASS_DAYS.split(", "),
             start_time:
               props.tution.START_TIME === null
-                ? new Date()
+                ? getTime(8)
                 : new Date(props.tution.START_TIME.slice(0, -1)),
             end_time:
               props.tution.END_TIME === null
-                ? new Date()
+                ? getTime(9)
                 : new Date(props.tution.END_TIME.slice(0, -1)),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
           };
@@ -119,6 +120,9 @@ const OfferForm = (props) => {
   useEffect(() => {
     setValues(initValues());
   }, [props]);
+  useEffect(() => {
+    console.log(":", values.start_date);
+  });
   // console.log(format(new Date("2022-08-01 13:00:00"), "h:mm a"));
   // console.log(new Date());
   // console.log("Sub", props.tutor.EXPERTISE);
@@ -140,7 +144,7 @@ const OfferForm = (props) => {
           isDisabled={
             values.days.length === 0 ||
             values.subjects.length === 0 ||
-            values.start_date === ""
+            values.start_date === null
           }
           onClick={handleOffer}
           label="Offer"

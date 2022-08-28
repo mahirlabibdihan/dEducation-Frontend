@@ -33,7 +33,7 @@ const TutorProfileSettings = () => {
     setUser({
       name: data.NAME,
       gender: data.GENDER,
-      dob: new Date(data.DATE_OF_BIRTH),
+      dob: data.DATE_OF_BIRTH == null ? null : new Date(data.DATE_OF_BIRTH),
       phone: data.PHONE_NUMBER,
       email: data.EMAIL,
       subjects: data.EXPERTISE.split(", "),
