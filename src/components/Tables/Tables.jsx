@@ -48,7 +48,6 @@ function StickyTable(props) {
             </TableHead>
             <TableBody>
               {props.rows.map((row, idx) => {
-                console.log(props.query);
                 return (
                   props.query === undefined
                     ? true
@@ -223,6 +222,7 @@ export function CoachingCoursesTable(props) {
   const rows = props.list.map((course) =>
     createData(course.CLASS, course.SUBJECT)
   );
+  console.log(":", rows, columns);
   return (
     <StickyTable
       columns={columns}

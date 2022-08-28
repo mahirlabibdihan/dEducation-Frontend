@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Divider, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import TutionController from "../../controller/tutionController";
@@ -11,12 +11,17 @@ import { Rating } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
 import { Zoom } from "@mui/material";
+import { MultiLineField } from "../InputFields/InputField";
 const tutionController = new TutionController();
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 const StudentPanel = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [values, setValues] = useState({ reason: "" });
   const globalCtx = useContext(GlobalContext);
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
   const acceptOffer = async () => {
     const res = await tutionController.acceptOffer(props.student.USER_ID);
     if (res.success) {
@@ -26,7 +31,10 @@ const StudentPanel = (props) => {
     }
   };
   const rejectOffer = async () => {
-    const res = await tutionController.rejectOffer(props.student.USER_ID);
+    const res = await tutionController.rejectOffer(
+      props.student.USER_ID,
+      values.reason
+    );
     if (res.success) {
       globalCtx.setPendingUpdate(true);
       searchParams.delete("id");
@@ -144,20 +152,31 @@ const StudentPanel = (props) => {
                 studentName={props.student.NAME}
                 type="tutor"
               />
-              <Button
-                variant="contained"
-                className="blue-button full-width"
-                onClick={acceptOffer}
-              >
-                Accept
-              </Button>
-              <Button
-                variant="contained"
-                className="red-button full-width"
-                onClick={rejectOffer}
-              >
-                Reject
-              </Button>
+              <div className="vbox" style={{ gap: "1rem" }}>
+                {" "}
+                <Button
+                  variant="contained"
+                  className="blue-button full-width"
+                  onClick={acceptOffer}
+                >
+                  Accept
+                </Button>
+                <MultiLineField
+                  rows={4}
+                  label={"Rejection reason"}
+                  type="text"
+                  value={values.reason}
+                  id={"reason"}
+                  onChange={handleChange}
+                ></MultiLineField>
+                <Button
+                  variant="contained"
+                  className="red-button full-width"
+                  onClick={rejectOffer}
+                >
+                  Reject
+                </Button>
+              </div>
             </>
           )
         ) : (

@@ -34,9 +34,10 @@ class TutionApi extends Api {
     });
   };
 
-  rejectOffer = async (student_id) => {
+  rejectOffer = async (student_id, reason) => {
     return await this.post(`/tution/offer/reject`, {
       student_id: student_id,
+      reason: reason === "" ? "N/A" : reason,
     });
   };
 
