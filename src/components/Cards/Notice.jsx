@@ -9,6 +9,7 @@ import { showToast } from "../../App";
 import Zoom from "@mui/material/Zoom";
 import "./Notice.scss";
 import { API_BASE_URL } from "../..";
+import { getTimeStamp } from "../../service/DateUtils";
 const tutionController = new TutionController();
 const Notice = (props) => {
   // Similar to facebook post
@@ -32,16 +33,14 @@ const Notice = (props) => {
                   <b>{props.notice.NAME}</b>
                 </h6>
                 <h6 className="poppins-font notice-tag">
-                  {` ( ${props.notice.SUBJECT}, ${props.notice.CLASS} 
-               )`}
+                  {` ( ${props.notice.SUBJECT}`}
+                  {type === "TUTOR" ? `, ${props.notice.CLASS}` : ""}
+                  {`)`}
                 </h6>
               </div>
 
               <h6 className="poppins-font time-stamp">
-                {format(
-                  new Date(props.notice.TIMESTAMP),
-                  "dd MMM, yyyy hh:mm a"
-                )}
+                {getTimeStamp(props.notice.TIMESTAMP)}
               </h6>
             </div>
           </div>

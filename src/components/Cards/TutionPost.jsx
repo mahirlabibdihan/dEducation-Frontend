@@ -7,6 +7,7 @@ import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import { showToast } from "../../App";
 import Zoom from "@mui/material/Zoom";
+import { getTimeStamp } from "../../service/DateUtils";
 const tutionController = new TutionController();
 const TutionPost = (props) => {
   const cookies = new Cookies();
@@ -82,7 +83,9 @@ const TutionPost = (props) => {
         </div>
         <div className="hbox">
           <h6 className="time-stamp">
-            {format(new Date(data.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
+            {format(new Date(data.TIMESTAMP), "eee, MMM d, yyyy")}
+            {" at "}
+            {format(new Date(data.TIMESTAMP), "hh:mm a")}
           </h6>
           <h6 className="time-stamp">
             {`Applications: ${data.APPLICANT_COUNT}`}

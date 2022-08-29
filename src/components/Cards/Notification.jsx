@@ -9,6 +9,7 @@ import Zoom from "@mui/material/Zoom";
 import { showToast } from "../../App";
 import "./Notification.scss";
 import { API_BASE_URL } from "../..";
+import { getTimeStamp } from "../../service/DateUtils";
 const tutionController = new TutionController();
 const Notification = (props) => {
   // Similar to facebook post
@@ -34,10 +35,7 @@ const Notification = (props) => {
           <div className="vbox w-100">
             <h6 className="poppins-font">{props.notification.TEXT}</h6>
             <h6 className="poppins-font time-stamp">
-              {format(
-                new Date(props.notification.TIMESTAMP),
-                "dd MMM, yyyy hh:mm a"
-              )}
+              {getTimeStamp(props.notification.TIMESTAMP)}
             </h6>
           </div>
         </div>

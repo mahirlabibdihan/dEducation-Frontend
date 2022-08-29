@@ -44,7 +44,7 @@ const ScheduleList = ({ date, setDate, list }) => {
           <MobileDatePicker
             size="small"
             label="Date"
-            inputFormat="eeee, do MMMM, yyyy"
+            inputFormat="eee, MMM d, yyyy"
             value={date}
             onChange={(newValue) => {
               setDate(newValue);

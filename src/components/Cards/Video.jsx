@@ -10,6 +10,7 @@ import Zoom from "@mui/material/Zoom";
 import "./Video.scss";
 import ReactPlayer from "react-player";
 import { API_BASE_URL } from "../..";
+import { getTimeStamp } from "../../service/DateUtils";
 const tutionController = new TutionController();
 const Video = ({ video }) => {
   // Similar to facebook post
@@ -35,7 +36,7 @@ const Video = ({ video }) => {
                 </h6>
               </div>
               <h6 className="poppins-font time-stamp">
-                {format(new Date(video.TIMESTAMP), "dd MMM, yyyy hh:mm a")}
+                {getTimeStamp(video.TIMESTAMP)}
               </h6>
             </div>
           </div>
