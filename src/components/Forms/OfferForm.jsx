@@ -59,11 +59,11 @@ const OfferForm = (props) => {
             start_time:
               props.tution.START_TIME === null
                 ? getTime(8)
-                : new Date(props.tution.START_TIME.slice(0, -1)),
+                : new Date(props.tution.START_TIME),
             end_time:
               props.tution.END_TIME === null
                 ? getTime(9)
-                : new Date(props.tution.END_TIME.slice(0, -1)),
+                : new Date(props.tution.END_TIME),
             salary: props.tution.SALARY === null ? 0 : props.tution.SALARY,
           };
 

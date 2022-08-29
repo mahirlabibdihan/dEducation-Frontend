@@ -36,10 +36,10 @@ const ScheduleContainer = ({ list }) => {
         </div>
         <div className="schedule-list">
           {list.map((schedule, index) => {
-            const startDate = new Date(schedule.START_TIME.slice(0, -1));
-            const endDate = new Date(schedule.END_TIME.slice(0, -1));
-            const start = new Date(schedule.START_TIME.slice(0, -1)).getHours();
-            const end = new Date(schedule.END_TIME.slice(0, -1)).getHours();
+            const startDate = new Date(schedule.START_TIME);
+            const endDate = new Date(schedule.END_TIME);
+            const start = new Date(schedule.START_TIME).getHours();
+            const end = new Date(schedule.END_TIME).getHours();
             const width =
               endDate.getHours() * 60 +
               endDate.getMinutes() -

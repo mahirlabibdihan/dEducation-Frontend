@@ -75,9 +75,9 @@ export const BatchSelectionField = (props) => {
               {`Days: ${batch.CLASS_DAYS}`}
               <br></br>
               {`Time: ${format(
-                new Date(batch.START_TIME.slice(0, -1)),
+                new Date(batch.START_TIME),
                 "h:mm a"
-              )} - ${format(new Date(batch.END_TIME.slice(0, -1)), "h:mm a")}`}
+              )} - ${format(new Date(batch.END_TIME), "h:mm a")}`}
               <br></br>
               {`Total seats: ${batch.SEATS}`}
             </MenuItem>

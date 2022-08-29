@@ -17,7 +17,7 @@ export const getTimeStamp = (timestamp) => {
   const curr_hour = curr_date.getHours();
   const curr_minutes = curr_date.getMinutes();
 
-  const date = new Date(timestamp.slice(0, -1));
+  const date = new Date(timestamp);
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();

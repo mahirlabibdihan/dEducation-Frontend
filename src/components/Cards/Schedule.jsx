@@ -21,9 +21,9 @@ const tutionController = new TutionController();
 //       <div className="hbox poppins-font content">
 //         <div className="time-card">
 //           <h6>
-//             {format(new Date(props.schedule.START_TIME.slice(0, -1)), "h:mm a")}
+//             {format(new Date(props.schedule.START_TIME ), "h:mm a")}
 //             {" - "}
-//             {format(new Date(props.schedule.END_TIME.slice(0, -1)), "h:mm a")}
+//             {format(new Date(props.schedule.END_TIME ), "h:mm a")}
 //           </h6>
 //         </div>
 
@@ -66,9 +66,9 @@ const Schedule = ({ schedule, x, y, w }) => {
           </h6>
           <h6 className="subjects">{schedule.SUBJECTS}</h6>
           <h6 className="time-range">
-            {format(new Date(schedule.START_TIME.slice(0, -1)), "h:mm a")}
+            {format(new Date(schedule.START_TIME), "h:mm a")}
             {" - "}
-            {format(new Date(schedule.END_TIME.slice(0, -1)), "h:mm a")}
+            {format(new Date(schedule.END_TIME), "h:mm a")}
           </h6>
         </div>
       </div>
