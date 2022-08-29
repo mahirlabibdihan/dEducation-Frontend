@@ -28,8 +28,16 @@ const StudentHome = () => {
       setUser(res.data);
     }
   };
+
+  const setList = async () => {
+    const list1 = await tutorsController.getTutorsList();
+    setTutorsList(list1.data);
+    const list2 = await coachingController.getList();
+    setCoachingsList(list2.data);
+  };
+
   useEffect(() => {
-    setList();
+    if (tutorsList.length === 0) setList();
     setProfileData();
   }, []);
 
@@ -42,12 +50,6 @@ const StudentHome = () => {
       setLoading(false);
     }
   }, [tutorsList, coachingsList, user]);
-  const setList = async () => {
-    const list1 = await tutorsController.getTutorsList();
-    setTutorsList(list1.data);
-    const list2 = await coachingController.getList();
-    setCoachingsList(list2.data);
-  };
 
   const DashBoard = () => {
     return (

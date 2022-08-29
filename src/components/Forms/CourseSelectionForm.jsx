@@ -89,7 +89,6 @@ const CourseSelectionForm = ({
       subject: "",
       batch: "",
     });
-    console.log(values.coaching);
     if (values.coaching !== -1 && values.coaching !== "") {
       setClassOptions();
     } else {

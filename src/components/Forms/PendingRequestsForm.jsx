@@ -188,8 +188,7 @@ const PendingRequestsForm = () => {
             (values.request_type === "Course Enroll" &&
               (values.coaching === "" ||
                 values.class === "" ||
-                values.subject === "" ||
-                values.batch === ""))
+                values.subject === ""))
           }
           onClick={handleSearch}
           label="Apply"

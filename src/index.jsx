@@ -5,6 +5,7 @@ import App from "./App";
 import GlobalContextProvider from "./store/GlobalContextProvider";
 import { StyledEngineProvider } from "@mui/material/styles";
 // const { readFileSync } = require("fs");
+// let API_BASE_URL = "http://localhost:5000";
 let API_BASE_URL = "http://localhost:5000";
 // let API_BASE_URL = "https://2266-45-127-245-12.ap.ngrok.io";
 export const COOKIE_AGE = 31536000;

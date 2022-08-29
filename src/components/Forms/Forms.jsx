@@ -10,7 +10,7 @@ import EyeIcon from "../Icons/EyeIcon";
 import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Divider } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./Forms.scss";
 import { RoleSelectionField } from "../InputFields";
@@ -151,6 +151,7 @@ export const LoginForm = (props) => {
         <PasswordField pass={pass} setPass={setPass} />
         <LoginButton email={email} pass={pass} type={type} />
         <ResetPassword />
+        {/* <Divider sx={{ borderWidth: "0.5px", width: "100%" }} /> */}
         <SignUpButton type={type} />
       </Box>
     </Zoom>
@@ -172,7 +173,7 @@ const LoginLink = ({ type, handleLogin }) => {
       // component={Link}
       onClick={handleLogin}
       align="center"
-      className="pt-2 pb-3 border-bottom reset-password"
+      className="pt-2 pb-3 reset-password"
     >
       Already have an account?
     </Typography>
