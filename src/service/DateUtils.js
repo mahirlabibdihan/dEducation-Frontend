@@ -31,13 +31,20 @@ export const getTimeStamp = (timestamp) => {
           if (curr_minutes === minutes) {
             return "Just now";
           } else {
-            return curr_minutes - minutes + "m";
+            let m = curr_minutes - minutes;
+            return m + " minute" + (m > 1 ? "s" : "") + " ago";
           }
         } else {
-          return curr_hour - hour + "h";
+          let h = curr_hour - hour;
+          return curr_hour - hour + " hour" + (h > 1 ? "s" : "") + " ago";
         }
       } else {
-        return curr_day - day + "d";
+        let d = curr_day - day;
+        return (
+          (d === 1 ? "Yesterday" : format(date, "MMM d")) +
+          " at " +
+          format(date, "h:mm a")
+        );
       }
     } else {
       return format(date, "MMM d");

@@ -83,9 +83,10 @@ const TutionPost = (props) => {
         </div>
         <div className="hbox">
           <h6 className="time-stamp">
-            {format(new Date(data.TIMESTAMP), "eee, MMM d, yyyy")}
+            {getTimeStamp(data.TIMESTAMP)}
+            {/* {format(new Date(data.TIMESTAMP), "eee, MMM d, yyyy")}
             {" at "}
-            {format(new Date(data.TIMESTAMP), "hh:mm a")}
+            {format(new Date(data.TIMESTAMP), "hh:mm a")} */}
           </h6>
           <h6 className="time-stamp">
             {`Applications: ${data.APPLICANT_COUNT}`}
