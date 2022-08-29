@@ -235,7 +235,7 @@ export function CoachingCoursesTable(props) {
 
 export function BatchesTable(props) {
   const columns = [
-    { id: "batch_no", label: "Batch No", align: "center" },
+    { id: "batch_id", label: "Batch Id", align: "center" },
     { id: "start_date", label: "Starting Date", align: "center" },
     {
       id: "days",
@@ -250,20 +250,20 @@ export function BatchesTable(props) {
     { id: "students", label: "Total students", align: "center" },
     { id: "seats", label: "Total seats", align: "center" },
   ];
-  function createData(batch_no, start_date, days, time, seats, students) {
-    return { batch_no, start_date, days, time, seats, students };
+  function createData(batch_id, start_date, days, time, seats, students) {
+    return { batch_id, start_date, days, time, seats, students };
   }
-  const rows = props.list.map((course, idx) =>
+  const rows = props.list.map((batch, idx) =>
     createData(
-      idx + 1,
-      format(new Date(course.START_DATE), "do MMMM, yyyy"),
-      course.CLASS_DAYS,
-      `${format(new Date(course.START_TIME), "h:mm a")} - ${format(
-        new Date(course.END_TIME),
+      batch.BATCH_ID,
+      format(new Date(batch.START_DATE), "do MMMM, yyyy"),
+      batch.CLASS_DAYS,
+      `${format(new Date(batch.START_TIME), "h:mm a")} - ${format(
+        new Date(batch.END_TIME),
         "h:mm a"
       )}`,
-      course.SEATS,
-      course.STUDENT_COUNT
+      batch.SEATS,
+      batch.STUDENT_COUNT
     )
   );
   return <StickyTable columns={columns} rows={rows} height="86vh" />;

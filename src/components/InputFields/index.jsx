@@ -65,7 +65,7 @@ export const BatchSelectionField = (props) => {
         {props.batchList !== undefined ? (
           props.batchList.map((batch, index) => (
             <MenuItem key={batch.BATCH_ID} value={batch.BATCH_ID}>
-              {`Batch ${index + 1}: `}
+              {`Batch id: ${batch.BATCH_ID}`}
               <br></br>
               {`Starting date:  ${format(
                 new Date(batch.START_DATE),
@@ -438,6 +438,17 @@ export const RequestTypeField = ({ value, handleChange, size }) => (
     id="request_type"
     onChange={handleChange}
     list={["Tution Offer", "Join Request", "Course Enroll"]}
+    size={size}
+  ></SelectionField>
+);
+
+export const StudentTypeField = ({ value, handleChange, size }) => (
+  <SelectionField
+    label="Student Type"
+    value={value}
+    id="student_type"
+    onChange={handleChange}
+    list={["Accepted Tution", "Coaching Member", "Course Enrolled"]}
     size={size}
   ></SelectionField>
 );
