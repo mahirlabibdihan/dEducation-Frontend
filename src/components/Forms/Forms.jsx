@@ -17,13 +17,18 @@ import { RoleSelectionField } from "../InputFields";
 import { Zoom } from "@mui/material";
 const authController = new AuthController();
 
-const ResetPassword = () => {
+const ResetPassword = ({ email, type }) => {
+  const handleReset = async (e) => {
+    e.preventDefault();
+    const res = await authController.forgotPass(email, type);
+  };
   return (
     <Typography
-      component={Link}
-      to="/"
+      // component={Link}
+      onClick={handleReset}
       align="center"
-      className="pt-2 pb-3 border-bottom reset-password"
+      className="pt-2 pb-3 border-bottom reset-password poppins-font"
+      sx={{ textTransform: "none" }}
     >
       Forgot Password?
     </Typography>
@@ -35,6 +40,25 @@ const PasswordField = ({ pass, setPass }) => {
   return (
     <InputField
       label="Password"
+      type={showPassword ? "text" : "password"}
+      value={pass}
+      setValue={setPass}
+      endAdornment={
+        <EyeIcon
+          isVisible={pass.length > 0}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
+      }
+    />
+  );
+};
+
+const NewPasswordField = ({ pass, setPass }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  return (
+    <InputField
+      label="New Password"
       type={showPassword ? "text" : "password"}
       value={pass}
       setValue={setPass}
@@ -89,6 +113,49 @@ const LoginButton = ({ email, pass, type }) => {
   );
 };
 
+const ResetButton = ({ new_pass }) => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const [token, setToken] = useState(searchParams.get("token"));
+  // useEffect(() => {
+  //   setToken();
+  // }, [searchParams]);
+  const handleReset = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+    const res = await authController.resetPass(
+      new_pass,
+      searchParams.get("token")
+    );
+    if (res.success) {
+      navigate("/login?type=" + searchParams.get("type"));
+    } else {
+      setLoading(false);
+    }
+  };
+
+  return loading === true ? (
+    <Button
+      type="submit"
+      variant="contained"
+      className="blue-button full-width login-button"
+      onClick={handleReset}
+      disabled
+    >
+      <CircularProgress color="inherit" size="1.5rem" sx={{ color: "white" }} />
+    </Button>
+  ) : (
+    <Button
+      type="submit"
+      variant="contained"
+      className="blue-button full-width login-button"
+      onClick={handleReset}
+    >
+      Reset
+    </Button>
+  );
+};
 const EmailField = ({ email, setEmail }) => (
   <InputField
     label="Email Address"
@@ -150,9 +217,29 @@ export const LoginForm = (props) => {
         <EmailField email={email} setEmail={setEmail} />
         <PasswordField pass={pass} setPass={setPass} />
         <LoginButton email={email} pass={pass} type={type} />
-        <ResetPassword />
+        <ResetPassword email={email} type={type} />
         {/* <Divider sx={{ borderWidth: "0.5px", width: "100%" }} /> */}
         <SignUpButton type={type} />
+      </Box>
+    </Zoom>
+  );
+};
+
+export const ResetForm = (props) => {
+  const [pass, setPass] = useState("");
+  const navigate = useNavigate();
+
+  return (
+    <Zoom in={true}>
+      <Box
+        component="form"
+        className={`w-25 p-5 rounded shadow login-form ${props.className}`}
+      >
+        <div className="exit-button" onClick={() => navigate("/")}>
+          <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
+        </div>
+        <NewPasswordField pass={pass} setPass={setPass} />
+        <ResetButton new_pass={pass} />
       </Box>
     </Zoom>
   );

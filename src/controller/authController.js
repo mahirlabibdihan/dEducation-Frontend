@@ -51,5 +51,17 @@ class AuthController extends Controller {
     this.showSuccess("Password changed", res);
     return res;
   };
+  resetPass = async (newPass, token) => {
+    const res = await this.authApi.resetPass(newPass, token);
+    if (res.success) {
+      this.showSuccess("Password changed", res);
+    }
+    return res;
+  };
+  forgotPass = async (email, type) => {
+    const res = await this.authApi.forgotPass(email, type);
+    this.showSuccess("Password recovery link sent to your email", res);
+    return res;
+  };
 }
 export default AuthController;

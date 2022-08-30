@@ -48,5 +48,17 @@ class AuthApi extends Api {
       new_pass: data.newPass,
     });
   };
+  resetPass = async (newPass, token) => {
+    return await this.post("/auth/reset_pass", {
+      new_pass: newPass,
+      token: token,
+    });
+  };
+  forgotPass = async (email, type) => {
+    return await this.post("/auth/forgot_pass", {
+      email: email,
+      type: type,
+    });
+  };
 }
 export default AuthApi;

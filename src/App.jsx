@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   Login,
+  ResetPassword,
   Landing,
   Home,
   Signup,
@@ -107,6 +108,7 @@ const App = () => {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/reset_password" element={<ResetPassword />} />
           </Route>
         </Routes>
       </Router>
