@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
-import UploadConfirmation from "./UploadConfirmation";
+import Confirmation from "../Cards/Confirmation";
 import { API_BASE_URL } from "../..";
 const coachingController = new CoachingController();
 
@@ -29,6 +29,7 @@ const ImageUploader = (props) => {
       const res = await coachingController.uploadImage(formData);
       if (res.success) {
         setImage(res.data.image);
+        setFile("");
         globalCtx.setPendingUpdate(true);
       }
     }
@@ -54,11 +55,7 @@ const ImageUploader = (props) => {
       <div className="upload-image-icon">
         <CameraAltIcon sx={{ fontSize: "1.5rem", color: "#fff" }} />
       </div>
-      <UploadConfirmation
-        open={open}
-        setOpen={setOpen}
-        onConfirm={setProfileImage}
-      />
+      <Confirmation open={open} setOpen={setOpen} onConfirm={setProfileImage} />
     </>
   );
 };

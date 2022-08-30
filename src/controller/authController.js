@@ -53,9 +53,7 @@ class AuthController extends Controller {
   };
   resetPass = async (newPass, token) => {
     const res = await this.authApi.resetPass(newPass, token);
-    if (res.success) {
-      this.showSuccess("Password changed", res);
-    }
+    this.showSuccess("Password changed", res);
     return res;
   };
   forgotPass = async (email, type) => {
