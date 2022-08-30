@@ -1,13 +1,10 @@
+import React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
-import { CSSTransition } from "react-transition-group";
-import React, { useState } from "react";
 import "../Images/styles.scss";
 const Confirmation = ({ open, setOpen, onConfirm }) => {
   const handleClose = () => {

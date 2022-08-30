@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../components/InputFields/InputField";
-import { Button } from "@mui/material";
+import InputField, {
+  InputField2,
+} from "../../components/InputFields/InputField";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 const CoachingButtons = () => {
   const [type, setType] = useState("ADMIN");

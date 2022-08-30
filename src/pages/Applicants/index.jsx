@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import Grid from "@mui/material/Grid";
 import { useSearchParams } from "react-router-dom";
 import CardContainer from "../../components/Containers/CardContainer";
 import TutorsController from "../../controller/tutorsController";
@@ -39,7 +38,6 @@ const Applicants = () => {
         for (let i = 0; i < list1.data.length; i++) {
           if (list1.data[i].USER_ID === tutor.data) {
             list1.data[i]["isSelected"] = true;
-            console.log("FOUND SELECTED");
             break;
           }
         }

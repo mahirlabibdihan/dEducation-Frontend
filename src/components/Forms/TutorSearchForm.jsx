@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
-import { Divider } from "@mui/material";
-import { useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import Divider from "@mui/material/Divider";
 import { useSearchParams } from "react-router-dom";
 import GlobalContext from "../../store/GlobalContext";
 import { TutorSearchFields } from "../InputFields";
 import "../../components/components.scss";
 import { SearchButton } from "../Buttons";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const TutorSearchForm = () => {
   const globalCtx = useContext(GlobalContext);
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import { PublicProfilePic } from "../Images/ProfilePic";
 import "./StudentProfile.scss";
 

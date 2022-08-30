@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button } from "@mui/material";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import Button from "@mui/material/Button";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { CoachingFields } from "../InputFields";
 import "./styles.scss";
 import ImageUploader from "../Images/ImageUploader";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const coachingController = new CoachingController();
 
 const EditCoaching = (props) => {

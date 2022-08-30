@@ -42,7 +42,6 @@ const MyCoachings = () => {
   const setList = async () => {
     const res = await coachingController.getMyList();
     setCoachingsList(res.data);
-    // console.log(r)
   };
   useEffect(() => {
     setList();

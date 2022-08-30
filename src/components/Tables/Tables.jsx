@@ -1,19 +1,16 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableFooter from "@mui/material/TableFooter";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { format } from "date-fns";
 import "./Tables.scss";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const cookies = new Cookies();
 
 function StickyTable(props) {

@@ -1,38 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
-import CourseController from "../../controller/courseController";
-import CourseContainer from "../../components/Containers/CourseContainer";
-import Cookies from "universal-cookie";
-import RightPanel from "../../components/Panels/RightPanel";
 import MainContainer from "../../components/Containers/MainContainer";
-import AddCourseForm from "../../components/Forms/AddCourseForm";
-import CreateCourseForm from "../../components/Forms/CreateCourseForm";
 import ScheduleContainer from "../../components/Containers/ScheduleContainer";
 import { Button, Divider } from "@mui/material";
-import { format } from "date-fns";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import ProfileController from "../../controller/profileController";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { TextField } from "@mui/material";
-import { Grid } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import { MobileDatePicker } from "@mui/x-date-pickers";
 import Fields from "../../components/InputFields/Fields";
 import "./my-schedule.scss";
 import { InputAdornment } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import ArrowLeft from "@mui/icons-material/ArrowLeft";
-// import { LocalizationProvider } from "@mui/x-date-pickers";
-// import Calendar from "@mui/lab/Ca";
-// import { setNotification } from "../../components/Containers/Layout";
-
-const cookies = new Cookies();
-const courseController = new CourseController();
 const profileController = new ProfileController();
 
 const ScheduleList = ({ date, setDate, list }) => {

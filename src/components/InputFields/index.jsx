@@ -6,15 +6,14 @@ import Fields from "./Fields";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { MobileDatePicker } from "@mui/x-date-pickers";
-import { TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import EyeIcon from "../Icons/EyeIcon";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect } from "react";
 
 export const CoachingSelectionField = (props) => {
   return (

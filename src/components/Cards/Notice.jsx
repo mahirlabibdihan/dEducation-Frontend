@@ -1,22 +1,13 @@
-import React, { useContext } from "react";
-import { Button, Grid } from "@mui/material";
-import TutionController from "../../controller/tutionController";
-import GlobalContext from "../../store/GlobalContext";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { Grid } from "@mui/material";
 import Cookies from "universal-cookie";
-import { format } from "date-fns";
-import { showToast } from "../../App";
 import Zoom from "@mui/material/Zoom";
 import "./Notice.scss";
 import { API_BASE_URL } from "../..";
 import { getTimeStamp } from "../../service/DateUtils";
-const tutionController = new TutionController();
 const Notice = (props) => {
-  // Similar to facebook post
   const cookies = new Cookies();
   const type = cookies.get("type");
-  const globalCtx = useContext(GlobalContext);
-  const navigate = new useNavigate();
   return (
     <Zoom in={true}>
       <Grid className="notice-card">

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Divider } from "@mui/material";
+import React from "react";
+import Divider from "@mui/material/Divider";
 import { BatchesTable } from "../Tables/Tables";
 
 const BatchContainer = (props) => {

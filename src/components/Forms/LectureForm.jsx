@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
-import CoachingController from "../../controller/coachingController";
-import CourseController from "../../controller/courseController";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
+import Divider from "@mui/material/Divider";
 import GlobalContext from "../../store/GlobalContext";
-import { AddCourseFields, CreateNoticeFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
-import { CourseSelectionFields } from "../InputFields";
-import CourseSelectionForm from "./CourseSelectionForm";
-import { MultiLineField } from "../InputFields";
 import "./styles.scss";
-import { Zoom } from "@mui/material";
-import Cookies from "universal-cookie";
+import Zoom from "@mui/material/Zoom";
 import TutorsController from "../../controller/tutorsController";
 import { UploadLectureFields } from "../InputFields";
 import Confirmation from "../Cards/Confirmation";
 const tutorsController = new TutorsController();
-// import SelectionField from "../../components/SelectionField";
-const coachingController = new CoachingController();
-const courseController = new CourseController();
 const LectureForm = () => {
-  const cookies = new Cookies();
   const globalCtx = useContext(GlobalContext);
-  const type = cookies.get("type");
   const initValues = {
     description: "",
     link: "",

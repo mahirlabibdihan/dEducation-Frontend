@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Divider, Typography } from "@mui/material";
-import { Button } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Divider } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
 import { CoachingFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import Confirmation from "../Cards/Confirmation";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const coachingController = new CoachingController();
 
 const CoachingForm = () => {

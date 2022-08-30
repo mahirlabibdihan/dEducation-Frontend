@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router";
 import TutorsController from "../../controller/tutorsController";
 import "./home.scss";
 import CoachingController from "../../controller/coachingController";
-import UserCard from "../../components/Cards/UserCard";
 import ProfileController from "../../controller/profileController";
 import StudentPanel from "../../components/Panels/StudentPanel";
 import { setLoading } from "../../App";
@@ -21,7 +15,6 @@ const StudentHome = () => {
   const [tutorsList, setTutorsList] = useState([]);
   const [coachingsList, setCoachingsList] = useState([]);
   const [user, setUser] = useState({});
-  const navigate = useNavigate();
   const setProfileData = async () => {
     const res = await profileController.getProfile();
     if (res.success) {

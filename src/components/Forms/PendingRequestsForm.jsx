@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
 import { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
-import { AddCourseFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
 import { CourseSelectionFields } from "../InputFields";
 import { useSearchParams } from "react-router-dom";
 import "./styles.scss";
-import CourseSelectionForm from "./CourseSelectionForm";
 import { RequestTypeField } from "../InputFields";
-import { Zoom } from "@mui/material";
-// import SelectionField from "../../components/SelectionField";
+import Zoom from "@mui/material/Zoom";
 const coachingController = new CoachingController();
 const courseController = new CourseController();
 const PendingRequestsForm = () => {

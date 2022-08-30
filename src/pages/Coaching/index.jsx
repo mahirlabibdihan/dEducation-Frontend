@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import { Divider, Typography } from "@mui/material";
 import { InputField2 } from "../../components/InputFields/InputField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import CoachingButtons from "./CoachingButtons";
 import { useNavigate, useLocation } from "react-router";
 import CardContainer from "../../components/Containers/CardContainer";

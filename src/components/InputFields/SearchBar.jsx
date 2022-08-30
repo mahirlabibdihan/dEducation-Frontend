@@ -1,4 +1,4 @@
-import { FormControl, OutlinedInput, InputLabel } from "@mui/material";
+import { FormControl } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, TextField } from "@mui/material";
 const SearchBar = ({ setSearchQuery, label }) => (

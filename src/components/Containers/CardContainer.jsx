@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Divider } from "@mui/material";
-
+import Divider from "@mui/material/Divider";
 import UserCard from "../Cards/UserCard";
 import SearchBar from "../InputFields/SearchBar";
 import "./CardContainer.scss";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 export const List = (props) => {
   return (
     <Zoom in={true}>

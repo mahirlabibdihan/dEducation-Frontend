@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import RequestForm from "../../components/Forms/RequestForm";
 import PostsList from "../../components/Containers/TutionPostContainer";
 import MainContainer from "../../components/Containers/MainContainer";

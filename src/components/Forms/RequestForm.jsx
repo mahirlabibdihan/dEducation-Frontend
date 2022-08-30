@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import TutionController from "../../controller/tutionController";
 import { useContext } from "react";
 import GlobalContext from "../../store/GlobalContext";
 import "./RequestForm.scss";
 import { RequestFormFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 import Confirmation from "../Cards/Confirmation";
 const tutionController = new TutionController();
 const RequestForm = () => {

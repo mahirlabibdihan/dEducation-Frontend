@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import ProfileController from "../../controller/profileController";
 import ProfileSettings from "./ProfileSettings";
 import PasswordChangeForm from "../../components/Forms/PasswordChangeForm";
 import ProfilePic from "../../components/Images/ProfilePic";
 import RightPanel from "../../components/Panels/RightPanel";
 import "./profile.scss";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const profileController = new ProfileController();
 
 const Profile = () => {

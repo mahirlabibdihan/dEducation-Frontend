@@ -1,20 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import CancelIcon from "@mui/icons-material/Cancel";
 import { useNavigate } from "react-router-dom";
 import InputField from "../InputFields/InputField";
 import EyeIcon from "../Icons/EyeIcon";
-import GlobalContext from "../../store/GlobalContext";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
-import { CircularProgress, Divider } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./Forms.scss";
 import { RoleSelectionField } from "../InputFields";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 const authController = new AuthController();
 
 const ResetPassword = ({ email, type }) => {

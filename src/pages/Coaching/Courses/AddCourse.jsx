@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Divider, Typography } from "@mui/material";
-import InputField, { InputField2 } from "../../../components/InputFields/InputField";
-import { Button } from "@mui/material";
+import InputField, {
+  InputField2,
+} from "../../../components/InputFields/InputField";
+import Button from "@mui/material/Button";
 import "./courses.scss";
 const AddCourse = () => {
   const [values, setValues] = useState({

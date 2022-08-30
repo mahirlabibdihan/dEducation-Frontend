@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import "./home.scss";
 import PostsList from "../../components/Containers/TutionPostContainer";
 import TutionPostSearchForm from "../../components/Forms/TutionPostSearchForm";

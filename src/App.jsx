@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import {
   Login,
   ResetPassword,
@@ -26,7 +30,6 @@ import {
   DemoLectures,
 } from "./pages";
 import Layout from "./components/Containers/Layout";
-import { Background } from "./components";
 import Cookies from "universal-cookie";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";

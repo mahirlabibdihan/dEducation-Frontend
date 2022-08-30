@@ -1,7 +1,6 @@
 import axios from "axios";
 import { API_BASE_URL } from "../index";
 import Cookies from "universal-cookie";
-import RealtimeNotification from "../service/RealtimeNotification";
 export default class Api {
   cookies = new Cookies();
   get = async (url) => {

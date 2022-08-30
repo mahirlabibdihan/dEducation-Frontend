@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
+import React from "react";
+import Divider from "@mui/material/Divider";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-import TutorsController from "../../controller/tutorsController";
-import CoachingController from "../../controller/coachingController";
 import UserCard from "../../components/Cards/UserCard";
-import ProfileController from "../../controller/profileController";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import StudentPanel from "../../components/Panels/StudentPanel";
-import { setLoading } from "../../App";
-import RightPanel from "../../components/Panels/RightPanel";
-import MainContainer from "../../components/Containers/MainContainer";
-// import { Zoom } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
-const tutorsController = new TutorsController();
-const coachingController = new CoachingController();
-const profileController = new ProfileController();
 
 const CardSmallContainer = (props) => {
   const navigate = useNavigate();

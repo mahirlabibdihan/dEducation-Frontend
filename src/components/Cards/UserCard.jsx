@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./UserCard.scss";
-import { CSSTransition } from "react-transition-group";
-import Zoom from "@mui/material/Zoom";
 import { Fade } from "@mui/material";
 import { API_BASE_URL } from "../..";
 const UserCard = (props) => {

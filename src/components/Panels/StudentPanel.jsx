@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Divider, Typography } from "@mui/material";
-import { Button } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
 import TutionController from "../../controller/tutionController";
 import StudentProfile from "../Profiles/StudentProfile";
 import GlobalContext from "../../store/GlobalContext";
@@ -10,9 +10,8 @@ import "./StudentPanel.scss";
 import { Rating } from "@mui/material";
 import CoachingController from "../../controller/coachingController";
 import CourseController from "../../controller/courseController";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 import { MultiLineField } from "../InputFields/InputField";
-import Confirmation from "../Cards/Confirmation";
 const tutionController = new TutionController();
 const coachingController = new CoachingController();
 const courseController = new CourseController();
@@ -20,7 +19,6 @@ const StudentPanel = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [values, setValues] = useState({ reason: "" });
   const globalCtx = useContext(GlobalContext);
-  const [open, setOpen] = useState(false);
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import AuthController from "../../controller/authController";
 import { PasswordChangeFields } from "../InputFields";
 import { RestrictedButton } from "../Buttons";
-import { Zoom } from "@mui/material";
 import Confirmation from "../Cards/Confirmation";
 const authController = new AuthController();
 const PasswordChangeForm = () => {

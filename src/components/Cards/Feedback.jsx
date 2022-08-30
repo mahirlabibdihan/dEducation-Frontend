@@ -1,22 +1,9 @@
-import React, { useContext } from "react";
-import { Button, Grid } from "@mui/material";
-import TutionController from "../../controller/tutionController";
-import GlobalContext from "../../store/GlobalContext";
-import { createSearchParams, useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
-import { format } from "date-fns";
-import { showToast } from "../../App";
+import React from "react";
+import { Grid } from "@mui/material";
 import "./Feedback.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-const tutionController = new TutionController();
 const Feedback = ({ rating, review }) => {
-  // Similar to facebook post
-  console.log(rating, review);
-  const cookies = new Cookies();
-  const type = cookies.get("type");
-  const globalCtx = useContext(GlobalContext);
-  const navigate = new useNavigate();
   return (
     <Grid className="feedback-card">
       <div className="vbox">

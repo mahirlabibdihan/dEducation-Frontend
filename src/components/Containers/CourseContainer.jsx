@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Divider } from "@mui/material";
-import GlobalContext from "../../store/GlobalContext";
+import React, { useState } from "react";
+import Divider from "@mui/material/Divider";
 import Cookies from "universal-cookie";
 import { TutorCoursesTable, StudentCoursesTable } from "../Tables/Tables";
-import { useNavigate, createSearchParams } from "react-router-dom";
 import SearchBar from "../InputFields/SearchBar";
 import "./styles.scss";
 const cookies = new Cookies();

@@ -1,7 +1,7 @@
 /*import React from "react";
 import { Typography } from "@mui/material";
 import MuiLink from "@mui/material/Link";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./components.scss";

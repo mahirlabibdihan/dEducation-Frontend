@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Divider } from "@mui/material";
-import { Button } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
 import ProfileController from "../../controller/profileController";
 import { format } from "date-fns";
 import { TutorProfileSettingsFields, EducationFields } from "../InputFields";
-import { Zoom } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 import Confirmation from "../Cards/Confirmation";
 const profileController = new ProfileController();
 const TutorProfileSettings = () => {

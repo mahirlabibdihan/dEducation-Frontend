@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
-import { Divider } from "@mui/material";
-import PostsList from "../../components/Containers/TutionPostContainer";
-import TutionPostSearchForm from "../../components/Forms/TutionPostSearchForm";
+import React, { useEffect, useState, useContext } from "react";
+import Divider from "@mui/material/Divider";
 import MainContainer from "../../components/Containers/MainContainer";
 import RightPanel from "../../components/Panels/RightPanel";
-import NoticeContainer from "../../components/Containers/NoticeContainer";
-import { format } from "date-fns";
-import NoticeForm from "../../components/Forms/NoticeForm";
 import Cookies from "universal-cookie";
-import CoachingController from "../../controller/coachingController";
 import GlobalContext from "../../store/GlobalContext";
-import { useContext } from "react";
 import SearchBar from "../../components/InputFields/SearchBar";
 import TutorsController from "../../controller/tutorsController";
 import VideoContainer from "../../components/Containers/VideoContainer";
 import LectureForm from "../../components/Forms/LectureForm";
 const tutorsController = new TutorsController();
-const coachingController = new CoachingController();
 const VideoList = ({ list }) => {
   const [searchQuery, setSearchQuery] = useState("");
   return (
@@ -47,7 +38,6 @@ const DemoLectures = () => {
         ? await tutorsController.getMyMaterials()
         : await tutorsController.getAllMaterials();
     setMaterials(res.data);
-    // console.log(res.data);
   };
   useEffect(() => {
     setMaterialList();
