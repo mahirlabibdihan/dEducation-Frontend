@@ -21,7 +21,7 @@ Make sure you have node installed in your device.
 1.  Clone the repo
 
     ```sh
-    git clone https://github.com/mahirlabibdihan/dEducation-backend.git
+    git clone https://github.com/mahirlabibdihan/dEducation-frontend.git
     ```
 
 2.  If you don't have git installed in your device then download zip
