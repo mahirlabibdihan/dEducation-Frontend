@@ -4,37 +4,47 @@
 
 ## About The Project
 
-Squirrel is an oracle powered bootstrapped node Website. It is a faithful copy of Rokomari.com. You'll find many features that is in the main site. We tried best of our ability to create something in this short time.
+dEducation is an ed-tech platform where tutors,students and coaching centers get connected to each other. Students can find their desired tutors and join coaching centers. On the other hand, tutors can get tuitions and create their own coaching centers.
 
-Youtube Demo: https://youtu.be/eeUI5hNmdYo
+## Getting Started
+
+Follow the step by step installation procedure to install and run this on your machine
+
+## Prerequisites
+
+Make sure you have node installed in your device.
+
+**`NodeJs`**: Install Nodejs from [here](https://nodejs.org/en/download/)
 
 ## Configuring frontend<a name="configuring-frontend"></a>
 
-1.  clone this repository or download the repository as zip and unzip it
-2.  typescript should be installed if not already installed. to install typescript globally, run
+1.  Clone the repo
 
-    npm install -g typescript
+    ```sh
+    git clone https://github.com/mahirlabibdihan/dEducation-backend.git
+    ```
 
-3.  use terminal inside the project and run
+2.  If you don't have git installed in your device then download zip
 
+3.  After installation or download go to the repository and open command line.
+
+4.  Install NPM packages
+
+    ```sh
     npm install
+    ```
 
-4.  ensure backend is configured and running correctly on "http://localhost:3000" (note the port number)
-5.  using the terminal inside project, run
+5.  Ensure backend is configured and running correctly on "http://localhost:5000" (note the port number)
 
-    npm run dev
+#### Run the project
 
-that's it. This project should work perfectly now on "http://localhost:3001"
+Go to your favourite code editor and run
 
-### Production build<a name="build"></a>
+```sh
+npm start
+```
 
-6.  (optional) in case of production build, run
-
-    npm run build
-
-7.  (optional) after build is finished, run
-
-    npm start
+You should find that the project is working!
 
 ## Languages, Tools and Frameworks:<a name="tools"></a>
 
