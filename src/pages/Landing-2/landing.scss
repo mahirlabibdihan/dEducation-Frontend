@@ -1,4 +1,5 @@
 @import url("http://fonts.cdnfonts.com/css/berlin-sans-fb-demi");
+@import "../../components/components.scss";
 .background {
   .bg-1,
   .bg-2,
@@ -39,19 +40,26 @@
     flex-direction: row;
     align-items: center;
     font-family: "Oswald", sans-serif;
-    .type-writer-brand {
+    .type-writer-text {
+      @include flexCenter();
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       position: absolute;
-      bottom: 25vh;
-      font-size: 3.26rem;
-      font-family: "Berlin Sans FB Demi", sans-serif;
+      bottom: 21vh;
+      width: 100%;
+      .type-writer-brand {
+        font-size: 3.26rem;
+        font-family: "Berlin Sans FB Demi", sans-serif;
+      }
+      .type-writer-slogan {
+        margin-top: -15px;
+        font-size: 1.5rem;
+        font-family: "Poppins", sans-serif;
+        letter-spacing: 2px;
+      }
     }
-    .type-writer-slogan {
-      position: absolute;
-      bottom: 23vh;
-      font-size: 1.5rem;
-      font-family: "Poppins", sans-serif;
-      letter-spacing: 2px;
-    }
+
     .get-started-button {
       position: absolute;
       height: 2rem;
@@ -103,12 +111,15 @@
     // .tutor-button {
     //   animation: right-to-left 3s ease-out forwards;
     // }
+    .slide-down {
+      animation: top-to-bottom 1s linear forwards;
+    }
     @keyframes top-to-bottom {
       0% {
         transform: translateY(0px);
       }
       100% {
-        transform: translateY(100px);
+        transform: translateY(300px);
       }
     }
     @keyframes left-to-right-1 {

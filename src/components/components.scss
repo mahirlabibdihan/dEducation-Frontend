@@ -7,6 +7,7 @@ $bg-color: grey;
   align-items: center;
 }
 .background {
+  overflow: hidden;
   height: 100vh;
   background-image: url("../assets/images/" + $background-image);
   background-size: cover;

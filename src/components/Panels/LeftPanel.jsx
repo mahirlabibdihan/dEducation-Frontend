@@ -14,8 +14,8 @@ import AuthController from "../../controller/authController";
 import ProfileController from "../../controller/profileController";
 import * as IMAGES from "../../images";
 import * as CONSTANTS from "../../constants";
-import Logo from "../../assets/images/Logo-small.svg";
-// import Logo from "../../assets/images/dEducation-small-logo.png";
+// import Logo from "../../assets/images/Logo-small.svg";
+import Logo from "../../assets/images/dEducation-small-logo.png";
 import GlobalContext from "../../store/GlobalContext";
 import CameraFrontOutlinedIcon from "@mui/icons-material/CameraFrontOutlined";
 import Cookies from "universal-cookie";
@@ -156,7 +156,7 @@ const Buttons = () => {
         },
         {
           label: "Logout",
-          path: "/",
+          path: "/login?type=" + type,
           icon: <LogoutIcon sx={{ fontSize: "2rem" }} />,
         },
       ].map((button, index) => (
@@ -169,7 +169,7 @@ const Buttons = () => {
           component={Button}
           onClick={() => {
             setTimeout(() => {
-              if (button.path === "/") {
+              if (button.path.startsWith("/login")) {
                 globalCtx.setNewNotificationFlag(false);
                 authController.logout();
               }
@@ -199,7 +199,7 @@ const LeftPanel = () => {
     <div className="left-panel" aria-hidden="true">
       <div className="logo">
         <img src={Logo} className="logo-image" alt="logo"></img>
-        <Typography className="logo-name">{CONSTANTS.BRAND_NAME}</Typography>
+        <h6 className="logo-name"> EDUCATION </h6>
       </div>
       <Divider />
       <List className="side-buttons">

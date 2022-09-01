@@ -13,6 +13,7 @@ import { Slide } from "@mui/material";
 const Home = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
+  // const [show2, setShow2] = useState(true);
   const [time1, setTime1] = useState("start");
   const [time2, setTime2] = useState("start");
   const [time3, setTime3] = useState("start");
@@ -40,27 +41,24 @@ const Home = () => {
         alt="bg-spark"
       />
       <Grid className="landing-container">
-        {show ? (
-          <>
-            <div className="type-writer-brand">
-              <Typewriter
-                onInit={(typewriter) => {
-                  typewriter.typeString("DEDUCATION").start();
-                }}
-              />
-            </div>
-            <div className="type-writer-slogan">
-              <Typewriter
-                onInit={(typewriter) => {
-                  typewriter.typeString("Dedication to Education").start();
-                  // typewriter.stop();
-                }}
-              />
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
+        <div className={`type-writer-text ${show ? "" : "slide-down"}`}>
+          <div className="type-writer-brand">
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter.typeString("DEDUCATION").start();
+              }}
+            />
+          </div>
+          <div className="type-writer-slogan">
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter.typeString("Dedication to Education").start();
+                // typewriter.stop();
+              }}
+            />
+          </div>
+        </div>
+
         <Slide
           direction="up"
           in={show}

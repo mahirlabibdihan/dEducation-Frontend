@@ -7,7 +7,7 @@ import InputField from "../InputFields/InputField";
 import EyeIcon from "../Icons/EyeIcon";
 import AuthController from "../../controller/authController";
 import { useSearchParams, createSearchParams } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Switch } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import "./Forms.scss";
 import { RoleSelectionField } from "../InputFields";
@@ -167,6 +167,7 @@ export const LoginForm = (props) => {
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
   const [type, setType] = useState(searchParams.get("type"));
+  const [checked, setChecked] = useState(type === "TUTOR" ? true : false);
   const SignUpButton = ({ type }) => {
     const navigate = useNavigate();
     const handleSignup = () => {
@@ -210,7 +211,31 @@ export const LoginForm = (props) => {
         <div className="exit-button" onClick={() => navigate("/")}>
           <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
         </div>
-        <RoleSelectionField value={type} setValue={setType} />
+        {/* <RoleSelectionField value={type} setValue={setType} /> */}
+        <div className="hbox flex-center">
+          <h6 className={checked ? "unchecked-role" : "checked-role"}>
+            STUDENT
+          </h6>
+          <Switch
+            checked={checked}
+            onChange={() => {
+              if (checked) {
+                setChecked(false);
+                setType("STUDENT");
+              } else {
+                setChecked(true);
+                setType("TUTOR");
+              }
+            }}
+          />
+          <h6
+            className={checked ? "checked-role" : "unchecked-role"}
+            style={{ width: "5vw", fontWeight: "" }}
+          >
+            TUTOR
+          </h6>
+        </div>
+
         <EmailField email={email} setEmail={setEmail} />
         <PasswordField pass={pass} setPass={setPass} />
         <LoginButton email={email} pass={pass} type={type} />
@@ -271,6 +296,7 @@ export const SignUpForm = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [type, setType] = useState(searchParams.get("type"));
+  const [checked, setChecked] = useState(type === "TUTOR" ? true : false);
   const SignUpButton = ({ name, email, pass, type, handleLogin }) => {
     const [loading, setLoading] = useState(false);
     const handleSignup = async (e) => {
@@ -344,8 +370,31 @@ export const SignUpForm = (props) => {
         <div className="exit-button" onClick={() => navigate("/")}>
           <CloseOutlinedIcon sx={{ fontSize: "1.7rem" }} />
         </div>
-        <RoleSelectionField value={type} setValue={setType} />
+        {/* <RoleSelectionField value={type} setValue={setType} /> */}
         {/* <h1 className="form-header">{type}</h1> */}
+        <div className="hbox flex-center">
+          <h6 className={checked ? "unchecked-role" : "checked-role"}>
+            STUDENT
+          </h6>
+          <Switch
+            checked={checked}
+            onChange={() => {
+              if (checked) {
+                setChecked(false);
+                setType("STUDENT");
+              } else {
+                setChecked(true);
+                setType("TUTOR");
+              }
+            }}
+          />
+          <h6
+            className={checked ? "checked-role" : "unchecked-role"}
+            style={{ width: "5vw", fontWeight: "" }}
+          >
+            TUTOR
+          </h6>
+        </div>
         <NameField name={name} setName={setName} />
         <EmailField email={email} setEmail={setEmail} />
         <PasswordField pass={pass} setPass={setPass} />

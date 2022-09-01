@@ -1143,6 +1143,25 @@ export const BatchFields = ({ values, setValues, handleChange }) => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className="input-fields">
         <ClassDaysField value={values.days} handleChange={handleChange} />
+        <MobileDatePicker
+          label="Starting Date"
+          inputFormat="MM/dd/yyyy"
+          value={values.start_date}
+          onChange={(date) => {
+            setValues({ ...values, start_date: date });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+              }}
+            />
+          )}
+          className="date-picker"
+          minDate={new Date()}
+          shouldDisableDate={disableDates}
+        />
         <TimePicker
           label="Start Time"
           value={values.start_time}
@@ -1177,25 +1196,7 @@ export const BatchFields = ({ values, setValues, handleChange }) => {
             />
           )}
         />
-        <MobileDatePicker
-          label="Starting Date"
-          inputFormat="MM/dd/yyyy"
-          value={values.start_date}
-          onChange={(date) => {
-            setValues({ ...values, start_date: date });
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              sx={{
-                width: "100%",
-              }}
-            />
-          )}
-          className="date-picker"
-          minDate={new Date()}
-          shouldDisableDate={disableDates}
-        />
+
         <SeatsField value={values.seats} handleChange={handleChange} />
       </div>
     </LocalizationProvider>
@@ -1271,6 +1272,25 @@ export const TutionOfferFields = ({
         {/* Replace days per week with class days*/}
 
         <ClassDaysField value={values.days} handleChange={handleChange} />
+        <MobileDatePicker
+          label="Starting Date"
+          inputFormat="MM/dd/yyyy"
+          value={values.start_date}
+          minDate={new Date()}
+          onChange={(date) => {
+            setValues({ ...values, start_date: date });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{
+                width: "100%",
+              }}
+            />
+          )}
+          className="date-picker"
+          shouldDisableDate={disableDates}
+        />
         {/* Add tutoring start and end time field*/}
         <TimePicker
           label="Start Time"
@@ -1306,25 +1326,7 @@ export const TutionOfferFields = ({
             />
           )}
         />
-        <MobileDatePicker
-          label="Starting Date"
-          inputFormat="MM/dd/yyyy"
-          value={values.start_date}
-          minDate={new Date()}
-          onChange={(date) => {
-            setValues({ ...values, start_date: date });
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              sx={{
-                width: "100%",
-              }}
-            />
-          )}
-          className="date-picker"
-          shouldDisableDate={disableDates}
-        />
+
         <SalaryField value={values.salary} handleChange={handleChange} />
       </div>
     </LocalizationProvider>
