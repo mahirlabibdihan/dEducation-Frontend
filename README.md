@@ -1,76 +1,61 @@
-# Getting Started with Create React App
+<h2 align="center">DEDUCATION FRONTEND</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![dEducation-logo](https://user-images.githubusercontent.com/62663759/187912013-d1653a15-833a-4102-9091-0c9aa96b8505.png)
 
-## Available Scripts
+## About The Project
 
-In the project directory, you can run:
+Squirrel is an oracle powered bootstrapped node Website. It is a faithful copy of Rokomari.com. You'll find many features that is in the main site. We tried best of our ability to create something in this short time.
 
-### `npm start`
+Youtube Demo: https://youtu.be/eeUI5hNmdYo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Configuring frontend<a name="configuring-frontend"></a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1.  clone this repository or download the repository as zip and unzip it
+2.  typescript should be installed if not already installed. to install typescript globally, run
 
-### `npm test`
+    npm install -g typescript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3.  use terminal inside the project and run
 
-### `npm run build`
+    npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4.  ensure backend is configured and running correctly on "http://localhost:3000" (note the port number)
+5.  using the terminal inside project, run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    npm run dev
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+that's it. This project should work perfectly now on "http://localhost:3001"
 
-### `npm run eject`
+### Production build<a name="build"></a>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6.  (optional) in case of production build, run
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    npm run build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+7.  (optional) after build is finished, run
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    npm start
 
-## Learn More
+## Languages, Tools and Frameworks:<a name="tools"></a>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React.js
+- Material Ui
+- SCSS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Video Demonstration:<a name="video-demonstration"></a>
 
-### Code Splitting
+- [Demo (Youtube)](https://www.youtube.com/watch?v=zL0V96N6PM8)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Supervisor
 
-### Analyzing the Bundle Size
+- Khaled Mahmud Shahriar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  - **Assistant Professor**
 
-### Making a Progressive Web App
+    :arrow_forward: **Contact:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Department of Computer Science and Engineering
+    Bangladesh University of Engineering and Technology
+    Dhaka-1000, Bangladesh
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### Public Deployment
-
-npm run build
-serve -s build -l 8080
-ngrok http 8080
+<p align="right">(<a href="#top">back to top</a>)</p>
