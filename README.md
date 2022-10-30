@@ -8,7 +8,7 @@ dEducation is an ed-tech platform where tutors,students and coaching centers get
 
 ## Getting Started
 
-Follow the step by step installation procedure to install and run this on your machine
+Follow the step by step installation procedure to install and run this on your machine.
 
 ## Prerequisites
 
